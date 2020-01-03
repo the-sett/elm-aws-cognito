@@ -1865,18 +1865,26 @@ addCustomAttributes req =
     AWS.Core.Http.request "AddCustomAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AwsaccountIdType =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AccountTakeoverActionNotifyType =
     Bool
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AccountTakeoverActionType =
     { notify : Bool, eventAction : AccountTakeoverEventActionType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AccountTakeoverActionsType =
     { mediumAction : Maybe AccountTakeoverActionType
     , lowAction : Maybe AccountTakeoverActionType
@@ -1884,6 +1892,8 @@ type alias AccountTakeoverActionsType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type AccountTakeoverEventActionType
     = AccountTakeoverEventActionTypeBlock
     | AccountTakeoverEventActionTypeMfaIfConfigured
@@ -1891,6 +1901,8 @@ type AccountTakeoverEventActionType
     | AccountTakeoverEventActionTypeNoAction
 
 
+{-| Some type - blah blah blah.
+-}
 accountTakeoverEventActionType : Enum AccountTakeoverEventActionType
 accountTakeoverEventActionType =
     Enum.define
@@ -1915,30 +1927,44 @@ accountTakeoverEventActionType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AccountTakeoverRiskConfigurationType =
     { notifyConfiguration : Maybe NotifyConfigurationType, actions : AccountTakeoverActionsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AddCustomAttributesRequest =
     { userPoolId : UserPoolIdType, customAttributes : CustomAttributesListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AddCustomAttributesResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminAddUserToGroupRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminConfirmSignUpRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminConfirmSignUpResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminCreateUserConfigType =
     { unusedAccountValidityDays : Maybe AdminCreateUserUnusedAccountValidityDaysType
     , inviteMessageTemplate : Maybe MessageTemplateType
@@ -1946,6 +1972,8 @@ type alias AdminCreateUserConfigType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminCreateUserRequest =
     { validationData : Maybe AttributeListType
     , username : UsernameType
@@ -1958,6 +1986,8 @@ type alias AdminCreateUserRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminCreateUserResponse =
     { user : Maybe UserType }
 
@@ -1966,6 +1996,8 @@ type AdminCreateUserUnusedAccountValidityDaysType
     = AdminCreateUserUnusedAccountValidityDaysType Int
 
 
+{-| Some type - blah blah blah.
+-}
 adminCreateUserUnusedAccountValidityDaysType : Refined Int AdminCreateUserUnusedAccountValidityDaysType IntError
 adminCreateUserUnusedAccountValidityDaysType =
     let
@@ -1980,58 +2012,86 @@ adminCreateUserUnusedAccountValidityDaysType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDeleteUserAttributesRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, userAttributeNames : AttributeNameListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDeleteUserAttributesResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDeleteUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDisableProviderForUserRequest =
     { userPoolId : String, user : ProviderUserIdentifierType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDisableProviderForUserResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDisableUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminDisableUserResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminEnableUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminEnableUserResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminForgetDeviceRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, deviceKey : DeviceKeyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminGetDeviceRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, deviceKey : DeviceKeyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminGetDeviceResponse =
     { device : DeviceType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminGetUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminGetUserResponse =
     { username : UsernameType
     , userStatus : Maybe UserStatusType
@@ -2045,6 +2105,8 @@ type alias AdminGetUserResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminInitiateAuthRequest =
     { userPoolId : UserPoolIdType
     , contextData : Maybe ContextDataType
@@ -2056,6 +2118,8 @@ type alias AdminInitiateAuthRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminInitiateAuthResponse =
     { session : Maybe SessionType
     , challengeParameters : Maybe ChallengeParametersType
@@ -2064,14 +2128,20 @@ type alias AdminInitiateAuthResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminLinkProviderForUserRequest =
     { userPoolId : String, sourceUser : ProviderUserIdentifierType, destinationUser : ProviderUserIdentifierType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminLinkProviderForUserResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminListDevicesRequest =
     { username : UsernameType
     , userPoolId : UserPoolIdType
@@ -2080,10 +2150,14 @@ type alias AdminListDevicesRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminListDevicesResponse =
     { paginationToken : Maybe SearchPaginationTokenType, devices : Maybe DeviceListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminListGroupsForUserRequest =
     { username : UsernameType
     , userPoolId : UserPoolIdType
@@ -2092,10 +2166,14 @@ type alias AdminListGroupsForUserRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminListGroupsForUserResponse =
     { nextToken : Maybe PaginationKey, groups : Maybe GroupListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminListUserAuthEventsRequest =
     { username : UsernameType
     , userPoolId : UserPoolIdType
@@ -2104,22 +2182,32 @@ type alias AdminListUserAuthEventsRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminListUserAuthEventsResponse =
     { nextToken : Maybe PaginationKey, authEvents : Maybe AuthEventsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminRemoveUserFromGroupRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminResetUserPasswordRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminResetUserPasswordResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminRespondToAuthChallengeRequest =
     { userPoolId : UserPoolIdType
     , session : Maybe SessionType
@@ -2131,6 +2219,8 @@ type alias AdminRespondToAuthChallengeRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminRespondToAuthChallengeResponse =
     { session : Maybe SessionType
     , challengeParameters : Maybe ChallengeParametersType
@@ -2139,6 +2229,8 @@ type alias AdminRespondToAuthChallengeResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminSetUserMfapreferenceRequest =
     { username : UsernameType
     , userPoolId : UserPoolIdType
@@ -2147,34 +2239,50 @@ type alias AdminSetUserMfapreferenceRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminSetUserMfapreferenceResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminSetUserPasswordRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, permanent : Maybe Bool, password : PasswordType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminSetUserPasswordResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminSetUserSettingsRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, mfaoptions : MfaoptionListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminSetUserSettingsResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUpdateAuthEventFeedbackRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, feedbackValue : FeedbackValueType, eventId : EventIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUpdateAuthEventFeedbackResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUpdateDeviceStatusRequest =
     { username : UsernameType
     , userPoolId : UserPoolIdType
@@ -2183,32 +2291,46 @@ type alias AdminUpdateDeviceStatusRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUpdateDeviceStatusResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUpdateUserAttributesRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, userAttributes : AttributeListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUpdateUserAttributesResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUserGlobalSignOutRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AdminUserGlobalSignOutResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type AdvancedSecurityModeType
     = AdvancedSecurityModeTypeOff
     | AdvancedSecurityModeTypeAudit
     | AdvancedSecurityModeTypeEnforced
 
 
+{-| Some type - blah blah blah.
+-}
 advancedSecurityModeType : Enum AdvancedSecurityModeType
 advancedSecurityModeType =
     Enum.define
@@ -2226,12 +2348,16 @@ advancedSecurityModeType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type AliasAttributeType
     = AliasAttributeTypePhoneNumber
     | AliasAttributeTypeEmail
     | AliasAttributeTypePreferredUsername
 
 
+{-| Some type - blah blah blah.
+-}
 aliasAttributeType : Enum AliasAttributeType
 aliasAttributeType =
     Enum.define
@@ -2249,14 +2375,20 @@ aliasAttributeType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AliasAttributesListType =
     List AliasAttributeType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AnalyticsConfigurationType =
     { userDataShared : Maybe Bool, roleArn : ArnType, externalId : String, applicationId : HexStringType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AnalyticsMetadataType =
     { analyticsEndpointId : Maybe String }
 
@@ -2265,6 +2397,8 @@ type ArnType
     = ArnType String
 
 
+{-| Some type - blah blah blah.
+-}
 arnType : Refined String ArnType StringError
 arnType =
     let
@@ -2283,14 +2417,20 @@ arnType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AssociateSoftwareTokenRequest =
     { session : Maybe SessionType, accessToken : Maybe TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AssociateSoftwareTokenResponse =
     { session : Maybe SessionType, secretCode : Maybe SecretCodeType }
 
 
+{-| Some type - blah blah blah.
+-}
 type AttributeDataType
     = AttributeDataTypeString_
     | AttributeDataTypeNumber
@@ -2298,6 +2438,8 @@ type AttributeDataType
     | AttributeDataTypeBoolean
 
 
+{-| Some type - blah blah blah.
+-}
 attributeDataType : Enum AttributeDataType
 attributeDataType =
     Enum.define
@@ -2318,6 +2460,8 @@ attributeDataType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AttributeListType =
     List AttributeType
 
@@ -2326,6 +2470,8 @@ type AttributeMappingKeyType
     = AttributeMappingKeyType String
 
 
+{-| Some type - blah blah blah.
+-}
 attributeMappingKeyType : Refined String AttributeMappingKeyType StringError
 attributeMappingKeyType =
     let
@@ -2338,10 +2484,14 @@ attributeMappingKeyType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AttributeMappingType =
     Dict.Refined.Dict String AttributeMappingKeyType String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AttributeNameListType =
     List AttributeNameType
 
@@ -2350,6 +2500,8 @@ type AttributeNameType
     = AttributeNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 attributeNameType : Refined String AttributeNameType StringError
 attributeNameType =
     let
@@ -2365,6 +2517,8 @@ attributeNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AttributeType =
     { value : Maybe AttributeValueType, name : AttributeNameType }
 
@@ -2373,6 +2527,8 @@ type AttributeValueType
     = AttributeValueType String
 
 
+{-| Some type - blah blah blah.
+-}
 attributeValueType : Refined String AttributeValueType StringError
 attributeValueType =
     let
@@ -2385,6 +2541,8 @@ attributeValueType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AuthEventType =
     { eventType : Maybe EventType
     , eventRisk : Maybe EventRiskType
@@ -2397,10 +2555,14 @@ type alias AuthEventType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AuthEventsType =
     List AuthEventType
 
 
+{-| Some type - blah blah blah.
+-}
 type AuthFlowType
     = AuthFlowTypeUserSrpAuth
     | AuthFlowTypeRefreshTokenAuth
@@ -2410,6 +2572,8 @@ type AuthFlowType
     | AuthFlowTypeUserPasswordAuth
 
 
+{-| Some type - blah blah blah.
+-}
 authFlowType : Enum AuthFlowType
 authFlowType =
     Enum.define
@@ -2442,10 +2606,14 @@ authFlowType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AuthParametersType =
     Dict String String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias AuthenticationResultType =
     { tokenType : Maybe String
     , refreshToken : Maybe TokenModelType
@@ -2456,31 +2624,45 @@ type alias AuthenticationResultType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias BlockedIprangeListType =
     List String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias BooleanType =
     Bool
 
 
+{-| Some type - blah blah blah.
+-}
 type alias Csstype =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CssversionType =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CallbackUrlsListType =
     List RedirectUrlType
 
 
+{-| Some type - blah blah blah.
+-}
 type ChallengeName
     = ChallengeNamePassword
     | ChallengeNameMfa
 
 
+{-| Some type - blah blah blah.
+-}
 challengeName : Enum ChallengeName
 challengeName =
     Enum.define
@@ -2495,6 +2677,8 @@ challengeName =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type ChallengeNameType
     = ChallengeNameTypeSmsMfa
     | ChallengeNameTypeSoftwareTokenMfa
@@ -2508,6 +2692,8 @@ type ChallengeNameType
     | ChallengeNameTypeNewPasswordRequired
 
 
+{-| Some type - blah blah blah.
+-}
 challengeNameType : Enum ChallengeNameType
 challengeNameType =
     Enum.define
@@ -2556,15 +2742,21 @@ challengeNameType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ChallengeParametersType =
     Dict String String
 
 
+{-| Some type - blah blah blah.
+-}
 type ChallengeResponse
     = ChallengeResponseSuccess
     | ChallengeResponseFailure
 
 
+{-| Some type - blah blah blah.
+-}
 challengeResponse : Enum ChallengeResponse
 challengeResponse =
     Enum.define
@@ -2579,22 +2771,32 @@ challengeResponse =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ChallengeResponseListType =
     List ChallengeResponseType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ChallengeResponseType =
     { challengeResponse : Maybe ChallengeResponse, challengeName : Maybe ChallengeName }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ChallengeResponsesType =
     Dict String String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ChangePasswordRequest =
     { proposedPassword : PasswordType, previousPassword : PasswordType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ChangePasswordResponse =
     {}
 
@@ -2603,6 +2805,8 @@ type ClientIdType
     = ClientIdType String
 
 
+{-| Some type - blah blah blah.
+-}
 clientIdType : Refined String ClientIdType StringError
 clientIdType =
     let
@@ -2618,6 +2822,8 @@ clientIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ClientMetadataType =
     Dict String String
 
@@ -2626,6 +2832,8 @@ type ClientNameType
     = ClientNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 clientNameType : Refined String ClientNameType StringError
 clientNameType =
     let
@@ -2641,6 +2849,8 @@ clientNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ClientPermissionListType =
     List ClientPermissionType
 
@@ -2649,6 +2859,8 @@ type ClientPermissionType
     = ClientPermissionType String
 
 
+{-| Some type - blah blah blah.
+-}
 clientPermissionType : Refined String ClientPermissionType StringError
 clientPermissionType =
     let
@@ -2665,6 +2877,8 @@ type ClientSecretType
     = ClientSecretType String
 
 
+{-| Some type - blah blah blah.
+-}
 clientSecretType : Refined String ClientSecretType StringError
 clientSecretType =
     let
@@ -2680,10 +2894,14 @@ clientSecretType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CodeDeliveryDetailsListType =
     List CodeDeliveryDetailsType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CodeDeliveryDetailsType =
     { destination : Maybe String, deliveryMedium : Maybe DeliveryMediumType, attributeName : Maybe AttributeNameType }
 
@@ -2692,6 +2910,8 @@ type CompletionMessageType
     = CompletionMessageType String
 
 
+{-| Some type - blah blah blah.
+-}
 completionMessageType : Refined String CompletionMessageType StringError
 completionMessageType =
     let
@@ -2707,15 +2927,21 @@ completionMessageType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CompromisedCredentialsActionsType =
     { eventAction : CompromisedCredentialsEventActionType }
 
 
+{-| Some type - blah blah blah.
+-}
 type CompromisedCredentialsEventActionType
     = CompromisedCredentialsEventActionTypeBlock
     | CompromisedCredentialsEventActionTypeNoAction
 
 
+{-| Some type - blah blah blah.
+-}
 compromisedCredentialsEventActionType : Enum CompromisedCredentialsEventActionType
 compromisedCredentialsEventActionType =
     Enum.define
@@ -2730,10 +2956,14 @@ compromisedCredentialsEventActionType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CompromisedCredentialsRiskConfigurationType =
     { eventFilter : Maybe EventFiltersType, actions : CompromisedCredentialsActionsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ConfirmDeviceRequest =
     { deviceSecretVerifierConfig : Maybe DeviceSecretVerifierConfigType
     , deviceName : Maybe DeviceNameType
@@ -2742,10 +2972,14 @@ type alias ConfirmDeviceRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ConfirmDeviceResponse =
     { userConfirmationNecessary : Maybe Bool }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ConfirmForgotPasswordRequest =
     { username : UsernameType
     , userContextData : Maybe UserContextDataType
@@ -2757,10 +2991,14 @@ type alias ConfirmForgotPasswordRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ConfirmForgotPasswordResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ConfirmSignUpRequest =
     { username : UsernameType
     , userContextData : Maybe UserContextDataType
@@ -2772,6 +3010,8 @@ type alias ConfirmSignUpRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ConfirmSignUpResponse =
     {}
 
@@ -2780,6 +3020,8 @@ type ConfirmationCodeType
     = ConfirmationCodeType String
 
 
+{-| Some type - blah blah blah.
+-}
 confirmationCodeType : Refined String ConfirmationCodeType StringError
 confirmationCodeType =
     let
@@ -2795,6 +3037,8 @@ confirmationCodeType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ContextDataType =
     { serverPath : String
     , serverName : String
@@ -2804,6 +3048,8 @@ type alias ContextDataType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateGroupRequest =
     { userPoolId : UserPoolIdType
     , roleArn : Maybe ArnType
@@ -2813,10 +3059,14 @@ type alias CreateGroupRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateGroupResponse =
     { group : Maybe GroupType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateIdentityProviderRequest =
     { userPoolId : UserPoolIdType
     , providerType : IdentityProviderTypeType
@@ -2827,10 +3077,14 @@ type alias CreateIdentityProviderRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateIdentityProviderResponse =
     { identityProvider : IdentityProviderType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateResourceServerRequest =
     { userPoolId : UserPoolIdType
     , scopes : Maybe ResourceServerScopeListType
@@ -2839,18 +3093,26 @@ type alias CreateResourceServerRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateResourceServerResponse =
     { resourceServer : ResourceServerType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobName : UserImportJobNameType, cloudWatchLogsRoleArn : ArnType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserPoolClientRequest =
     { writeAttributes : Maybe ClientPermissionListType
     , userPoolId : UserPoolIdType
@@ -2870,18 +3132,26 @@ type alias CreateUserPoolClientRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserPoolClientResponse =
     { userPoolClient : Maybe UserPoolClientType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserPoolDomainRequest =
     { userPoolId : UserPoolIdType, domain : DomainType, customDomainConfig : Maybe CustomDomainConfigType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserPoolDomainResponse =
     { cloudFrontDomain : Maybe DomainType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserPoolRequest =
     { verificationMessageTemplate : Maybe VerificationMessageTemplateType
     , usernameAttributes : Maybe UsernameAttributesListType
@@ -2905,6 +3175,8 @@ type alias CreateUserPoolRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CreateUserPoolResponse =
     { userPool : Maybe UserPoolType }
 
@@ -2913,6 +3185,8 @@ type CustomAttributeNameType
     = CustomAttributeNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 customAttributeNameType : Refined String CustomAttributeNameType StringError
 customAttributeNameType =
     let
@@ -2928,23 +3202,33 @@ customAttributeNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CustomAttributesListType =
     List SchemaAttributeType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias CustomDomainConfigType =
     { certificateArn : ArnType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DateType =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type DefaultEmailOptionType
     = DefaultEmailOptionTypeConfirmWithLink
     | DefaultEmailOptionTypeConfirmWithCode
 
 
+{-| Some type - blah blah blah.
+-}
 defaultEmailOptionType : Enum DefaultEmailOptionType
 defaultEmailOptionType =
     Enum.define
@@ -2959,55 +3243,81 @@ defaultEmailOptionType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteGroupRequest =
     { userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteIdentityProviderRequest =
     { userPoolId : UserPoolIdType, providerName : ProviderNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteResourceServerRequest =
     { userPoolId : UserPoolIdType, identifier : ResourceServerIdentifierType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserAttributesRequest =
     { userAttributeNames : AttributeNameListType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserAttributesResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserPoolClientRequest =
     { userPoolId : UserPoolIdType, clientId : ClientIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserPoolDomainRequest =
     { userPoolId : UserPoolIdType, domain : DomainType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserPoolDomainResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserPoolRequest =
     { userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeleteUserRequest =
     { accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeliveryMediumListType =
     List DeliveryMediumType
 
 
+{-| Some type - blah blah blah.
+-}
 type DeliveryMediumType
     = DeliveryMediumTypeSms
     | DeliveryMediumTypeEmail
 
 
+{-| Some type - blah blah blah.
+-}
 deliveryMediumType : Enum DeliveryMediumType
 deliveryMediumType =
     Enum.define
@@ -3022,58 +3332,86 @@ deliveryMediumType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeIdentityProviderRequest =
     { userPoolId : UserPoolIdType, providerName : ProviderNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeIdentityProviderResponse =
     { identityProvider : IdentityProviderType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeResourceServerRequest =
     { userPoolId : UserPoolIdType, identifier : ResourceServerIdentifierType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeResourceServerResponse =
     { resourceServer : ResourceServerType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeRiskConfigurationRequest =
     { userPoolId : UserPoolIdType, clientId : Maybe ClientIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeRiskConfigurationResponse =
     { riskConfiguration : RiskConfigurationType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobId : UserImportJobIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserPoolClientRequest =
     { userPoolId : UserPoolIdType, clientId : ClientIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserPoolClientResponse =
     { userPoolClient : Maybe UserPoolClientType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserPoolDomainRequest =
     { domain : DomainType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserPoolDomainResponse =
     { domainDescription : Maybe DomainDescriptionType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserPoolRequest =
     { userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DescribeUserPoolResponse =
     { userPool : Maybe UserPoolType }
 
@@ -3082,6 +3420,8 @@ type DescriptionType
     = DescriptionType String
 
 
+{-| Some type - blah blah blah.
+-}
 descriptionType : Refined String DescriptionType StringError
 descriptionType =
     let
@@ -3094,6 +3434,8 @@ descriptionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeviceConfigurationType =
     { deviceOnlyRememberedOnUserPrompt : Maybe Bool, challengeRequiredOnNewDevice : Maybe Bool }
 
@@ -3102,6 +3444,8 @@ type DeviceKeyType
     = DeviceKeyType String
 
 
+{-| Some type - blah blah blah.
+-}
 deviceKeyType : Refined String DeviceKeyType StringError
 deviceKeyType =
     let
@@ -3117,6 +3461,8 @@ deviceKeyType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeviceListType =
     List DeviceType
 
@@ -3125,6 +3471,8 @@ type DeviceNameType
     = DeviceNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 deviceNameType : Refined String DeviceNameType StringError
 deviceNameType =
     let
@@ -3137,11 +3485,15 @@ deviceNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type DeviceRememberedStatusType
     = DeviceRememberedStatusTypeRemembered
     | DeviceRememberedStatusTypeNotRemembered
 
 
+{-| Some type - blah blah blah.
+-}
 deviceRememberedStatusType : Enum DeviceRememberedStatusType
 deviceRememberedStatusType =
     Enum.define
@@ -3156,10 +3508,14 @@ deviceRememberedStatusType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeviceSecretVerifierConfigType =
     { salt : Maybe String, passwordVerifier : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DeviceType =
     { deviceLastModifiedDate : Maybe DateType
     , deviceLastAuthenticatedDate : Maybe DateType
@@ -3169,6 +3525,8 @@ type alias DeviceType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias DomainDescriptionType =
     { version : Maybe DomainVersionType
     , userPoolId : Maybe UserPoolIdType
@@ -3181,6 +3539,8 @@ type alias DomainDescriptionType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type DomainStatusType
     = DomainStatusTypeCreating
     | DomainStatusTypeDeleting
@@ -3189,6 +3549,8 @@ type DomainStatusType
     | DomainStatusTypeFailed
 
 
+{-| Some type - blah blah blah.
+-}
 domainStatusType : Enum DomainStatusType
 domainStatusType =
     Enum.define
@@ -3221,6 +3583,8 @@ type DomainType
     = DomainType String
 
 
+{-| Some type - blah blah blah.
+-}
 domainType : Refined String DomainType StringError
 domainType =
     let
@@ -3240,6 +3604,8 @@ type DomainVersionType
     = DomainVersionType String
 
 
+{-| Some type - blah blah blah.
+-}
 domainVersionType : Refined String DomainVersionType StringError
 domainVersionType =
     let
@@ -3256,6 +3622,8 @@ type EmailAddressType
     = EmailAddressType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailAddressType : Refined String EmailAddressType StringError
 emailAddressType =
     let
@@ -3269,6 +3637,8 @@ emailAddressType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias EmailConfigurationType =
     { sourceArn : Maybe ArnType
     , replyToEmailAddress : Maybe EmailAddressType
@@ -3280,6 +3650,8 @@ type EmailNotificationBodyType
     = EmailNotificationBodyType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailNotificationBodyType : Refined String EmailNotificationBodyType StringError
 emailNotificationBodyType =
     let
@@ -3299,6 +3671,8 @@ type EmailNotificationSubjectType
     = EmailNotificationSubjectType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailNotificationSubjectType : Refined String EmailNotificationSubjectType StringError
 emailNotificationSubjectType =
     let
@@ -3314,11 +3688,15 @@ emailNotificationSubjectType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type EmailSendingAccountType
     = EmailSendingAccountTypeCognitoDefault
     | EmailSendingAccountTypeDeveloper
 
 
+{-| Some type - blah blah blah.
+-}
 emailSendingAccountType : Enum EmailSendingAccountType
 emailSendingAccountType =
     Enum.define
@@ -3337,6 +3715,8 @@ type EmailVerificationMessageByLinkType
     = EmailVerificationMessageByLinkType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailVerificationMessageByLinkType : Refined String EmailVerificationMessageByLinkType StringError
 emailVerificationMessageByLinkType =
     let
@@ -3359,6 +3739,8 @@ type EmailVerificationMessageType
     = EmailVerificationMessageType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailVerificationMessageType : Refined String EmailVerificationMessageType StringError
 emailVerificationMessageType =
     let
@@ -3381,6 +3763,8 @@ type EmailVerificationSubjectByLinkType
     = EmailVerificationSubjectByLinkType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailVerificationSubjectByLinkType : Refined String EmailVerificationSubjectByLinkType StringError
 emailVerificationSubjectByLinkType =
     let
@@ -3400,6 +3784,8 @@ type EmailVerificationSubjectType
     = EmailVerificationSubjectType String
 
 
+{-| Some type - blah blah blah.
+-}
 emailVerificationSubjectType : Refined String EmailVerificationSubjectType StringError
 emailVerificationSubjectType =
     let
@@ -3415,6 +3801,8 @@ emailVerificationSubjectType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias EventContextDataType =
     { timezone : Maybe String
     , ipAddress : Maybe String
@@ -3424,16 +3812,22 @@ type alias EventContextDataType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias EventFeedbackType =
     { provider : String, feedbackValue : FeedbackValueType, feedbackDate : Maybe DateType }
 
 
+{-| Some type - blah blah blah.
+-}
 type EventFilterType
     = EventFilterTypeSignIn
     | EventFilterTypePasswordChange
     | EventFilterTypeSignUp
 
 
+{-| Some type - blah blah blah.
+-}
 eventFilterType : Enum EventFilterType
 eventFilterType =
     Enum.define
@@ -3451,6 +3845,8 @@ eventFilterType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias EventFiltersType =
     List EventFilterType
 
@@ -3459,6 +3855,8 @@ type EventIdType
     = EventIdType String
 
 
+{-| Some type - blah blah blah.
+-}
 eventIdType : Refined String EventIdType StringError
 eventIdType =
     let
@@ -3474,11 +3872,15 @@ eventIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type EventResponseType
     = EventResponseTypeSuccess
     | EventResponseTypeFailure
 
 
+{-| Some type - blah blah blah.
+-}
 eventResponseType : Enum EventResponseType
 eventResponseType =
     Enum.define
@@ -3493,16 +3895,22 @@ eventResponseType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias EventRiskType =
     { riskLevel : Maybe RiskLevelType, riskDecision : Maybe RiskDecisionType }
 
 
+{-| Some type - blah blah blah.
+-}
 type EventType
     = EventTypeSignIn
     | EventTypeSignUp
     | EventTypeForgotPassword
 
 
+{-| Some type - blah blah blah.
+-}
 eventType : Enum EventType
 eventType =
     Enum.define
@@ -3520,16 +3928,22 @@ eventType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ExplicitAuthFlowsListType =
     List ExplicitAuthFlowsType
 
 
+{-| Some type - blah blah blah.
+-}
 type ExplicitAuthFlowsType
     = ExplicitAuthFlowsTypeAdminNoSrpAuth
     | ExplicitAuthFlowsTypeCustomAuthFlowOnly
     | ExplicitAuthFlowsTypeUserPasswordAuth
 
 
+{-| Some type - blah blah blah.
+-}
 explicitAuthFlowsType : Enum ExplicitAuthFlowsType
 explicitAuthFlowsType =
     Enum.define
@@ -3550,11 +3964,15 @@ explicitAuthFlowsType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type FeedbackValueType
     = FeedbackValueTypeValid
     | FeedbackValueTypeInvalid
 
 
+{-| Some type - blah blah blah.
+-}
 feedbackValueType : Enum FeedbackValueType
 feedbackValueType =
     Enum.define
@@ -3569,14 +3987,20 @@ feedbackValueType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ForceAliasCreation =
     Bool
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ForgetDeviceRequest =
     { deviceKey : DeviceKeyType, accessToken : Maybe TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ForgotPasswordRequest =
     { username : UsernameType
     , userContextData : Maybe UserContextDataType
@@ -3586,74 +4010,110 @@ type alias ForgotPasswordRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ForgotPasswordResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GenerateSecret =
     Bool
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetCsvheaderRequest =
     { userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetCsvheaderResponse =
     { userPoolId : Maybe UserPoolIdType, csvheader : Maybe ListOfStringTypes }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetDeviceRequest =
     { deviceKey : DeviceKeyType, accessToken : Maybe TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetDeviceResponse =
     { device : DeviceType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetGroupRequest =
     { userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetGroupResponse =
     { group : Maybe GroupType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetIdentityProviderByIdentifierRequest =
     { userPoolId : UserPoolIdType, idpIdentifier : IdpIdentifierType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetIdentityProviderByIdentifierResponse =
     { identityProvider : IdentityProviderType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetSigningCertificateRequest =
     { userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetSigningCertificateResponse =
     { certificate : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUicustomizationRequest =
     { userPoolId : UserPoolIdType, clientId : Maybe ClientIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUicustomizationResponse =
     { uicustomization : UicustomizationType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUserAttributeVerificationCodeRequest =
     { attributeName : AttributeNameType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUserAttributeVerificationCodeResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUserPoolMfaConfigRequest =
     { userPoolId : UserPoolIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUserPoolMfaConfigResponse =
     { softwareTokenMfaConfiguration : Maybe SoftwareTokenMfaConfigType
     , smsMfaConfiguration : Maybe SmsMfaConfigType
@@ -3661,10 +4121,14 @@ type alias GetUserPoolMfaConfigResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUserRequest =
     { accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GetUserResponse =
     { username : UsernameType
     , userMfasettingList : Maybe UserMfasettingListType
@@ -3674,14 +4138,20 @@ type alias GetUserResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GlobalSignOutRequest =
     { accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GlobalSignOutResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GroupListType =
     List GroupType
 
@@ -3690,6 +4160,8 @@ type GroupNameType
     = GroupNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 groupNameType : Refined String GroupNameType StringError
 groupNameType =
     let
@@ -3705,6 +4177,8 @@ groupNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias GroupType =
     { userPoolId : Maybe UserPoolIdType
     , roleArn : Maybe ArnType
@@ -3720,6 +4194,8 @@ type HexStringType
     = HexStringType String
 
 
+{-| Some type - blah blah blah.
+-}
 hexStringType : Refined String HexStringType StringError
 hexStringType =
     let
@@ -3732,14 +4208,20 @@ hexStringType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias HttpHeader =
     { headerValue : Maybe String, headerName : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias HttpHeaderList =
     List HttpHeader
 
 
+{-| Some type - blah blah blah.
+-}
 type alias IdentityProviderType =
     { userPoolId : Maybe UserPoolIdType
     , providerType : Maybe IdentityProviderTypeType
@@ -3752,6 +4234,8 @@ type alias IdentityProviderType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type IdentityProviderTypeType
     = IdentityProviderTypeTypeSaml
     | IdentityProviderTypeTypeFacebook
@@ -3760,6 +4244,8 @@ type IdentityProviderTypeType
     | IdentityProviderTypeTypeOidc
 
 
+{-| Some type - blah blah blah.
+-}
 identityProviderTypeType : Enum IdentityProviderTypeType
 identityProviderTypeType =
     Enum.define
@@ -3792,6 +4278,8 @@ type IdpIdentifierType
     = IdpIdentifierType String
 
 
+{-| Some type - blah blah blah.
+-}
 idpIdentifierType : Refined String IdpIdentifierType StringError
 idpIdentifierType =
     let
@@ -3807,18 +4295,26 @@ idpIdentifierType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias IdpIdentifiersListType =
     List IdpIdentifierType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ImageFileType =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ImageUrlType =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias InitiateAuthRequest =
     { userContextData : Maybe UserContextDataType
     , clientMetadata : Maybe ClientMetadataType
@@ -3829,6 +4325,8 @@ type alias InitiateAuthRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias InitiateAuthResponse =
     { session : Maybe SessionType
     , challengeParameters : Maybe ChallengeParametersType
@@ -3837,10 +4335,14 @@ type alias InitiateAuthResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias IntegerType =
     Int
 
 
+{-| Some type - blah blah blah.
+-}
 type alias LambdaConfigType =
     { verifyAuthChallengeResponse : Maybe ArnType
     , userMigration : Maybe ArnType
@@ -3855,30 +4357,44 @@ type alias LambdaConfigType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListDevicesRequest =
     { paginationToken : Maybe SearchPaginationTokenType, limit : Maybe QueryLimitType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListDevicesResponse =
     { paginationToken : Maybe SearchPaginationTokenType, devices : Maybe DeviceListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListGroupsRequest =
     { userPoolId : UserPoolIdType, nextToken : Maybe PaginationKey, limit : Maybe QueryLimitType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListGroupsResponse =
     { nextToken : Maybe PaginationKey, groups : Maybe GroupListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListIdentityProvidersRequest =
     { userPoolId : UserPoolIdType, nextToken : Maybe PaginationKeyType, maxResults : Maybe ListProvidersLimitType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListIdentityProvidersResponse =
     { providers : ProvidersListType, nextToken : Maybe PaginationKeyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListOfStringTypes =
     List String
 
@@ -3887,6 +4403,8 @@ type ListProvidersLimitType
     = ListProvidersLimitType Int
 
 
+{-| Some type - blah blah blah.
+-}
 listProvidersLimitType : Refined Int ListProvidersLimitType IntError
 listProvidersLimitType =
     let
@@ -3903,6 +4421,8 @@ type ListResourceServersLimitType
     = ListResourceServersLimitType Int
 
 
+{-| Some type - blah blah blah.
+-}
 listResourceServersLimitType : Refined Int ListResourceServersLimitType IntError
 listResourceServersLimitType =
     let
@@ -3915,6 +4435,8 @@ listResourceServersLimitType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListResourceServersRequest =
     { userPoolId : UserPoolIdType
     , nextToken : Maybe PaginationKeyType
@@ -3922,42 +4444,62 @@ type alias ListResourceServersRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListResourceServersResponse =
     { resourceServers : ResourceServersListType, nextToken : Maybe PaginationKeyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListTagsForResourceRequest =
     { resourceArn : ArnType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListTagsForResourceResponse =
     { tags : Maybe UserPoolTagsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUserImportJobsRequest =
     { userPoolId : UserPoolIdType, paginationToken : Maybe PaginationKeyType, maxResults : PoolQueryLimitType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUserImportJobsResponse =
     { userImportJobs : Maybe UserImportJobsListType, paginationToken : Maybe PaginationKeyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUserPoolClientsRequest =
     { userPoolId : UserPoolIdType, nextToken : Maybe PaginationKey, maxResults : Maybe QueryLimit }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUserPoolClientsResponse =
     { userPoolClients : Maybe UserPoolClientListType, nextToken : Maybe PaginationKey }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUserPoolsRequest =
     { nextToken : Maybe PaginationKeyType, maxResults : PoolQueryLimitType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUserPoolsResponse =
     { userPools : Maybe UserPoolListType, nextToken : Maybe PaginationKeyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUsersInGroupRequest =
     { userPoolId : UserPoolIdType
     , nextToken : Maybe PaginationKey
@@ -3966,10 +4508,14 @@ type alias ListUsersInGroupRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUsersInGroupResponse =
     { users : Maybe UsersListType, nextToken : Maybe PaginationKey }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUsersRequest =
     { userPoolId : UserPoolIdType
     , paginationToken : Maybe SearchPaginationTokenType
@@ -3979,31 +4525,45 @@ type alias ListUsersRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ListUsersResponse =
     { users : Maybe UsersListType, paginationToken : Maybe SearchPaginationTokenType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias LogoutUrlsListType =
     List RedirectUrlType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias LongType =
     Int
 
 
+{-| Some type - blah blah blah.
+-}
 type alias MfaoptionListType =
     List MfaoptionType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias MfaoptionType =
     { deliveryMedium : Maybe DeliveryMediumType, attributeName : Maybe AttributeNameType }
 
 
+{-| Some type - blah blah blah.
+-}
 type MessageActionType
     = MessageActionTypeResend
     | MessageActionTypeSuppress
 
 
+{-| Some type - blah blah blah.
+-}
 messageActionType : Enum MessageActionType
 messageActionType =
     Enum.define
@@ -4018,6 +4578,8 @@ messageActionType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias MessageTemplateType =
     { smsmessage : Maybe SmsVerificationMessageType
     , emailSubject : Maybe EmailVerificationSubjectType
@@ -4025,10 +4587,14 @@ type alias MessageTemplateType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias NewDeviceMetadataType =
     { deviceKey : Maybe DeviceKeyType, deviceGroupKey : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias NotifyConfigurationType =
     { sourceArn : ArnType
     , replyTo : Maybe String
@@ -4039,6 +4605,8 @@ type alias NotifyConfigurationType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias NotifyEmailType =
     { textBody : Maybe EmailNotificationBodyType
     , subject : EmailNotificationSubjectType
@@ -4046,16 +4614,22 @@ type alias NotifyEmailType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias NumberAttributeConstraintsType =
     { minValue : Maybe String, maxValue : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type OauthFlowType
     = OauthFlowTypeCode
     | OauthFlowTypeImplicit
     | OauthFlowTypeClientCredentials
 
 
+{-| Some type - blah blah blah.
+-}
 oauthFlowType : Enum OauthFlowType
 oauthFlowType =
     Enum.define
@@ -4073,6 +4647,8 @@ oauthFlowType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias OauthFlowsType =
     List OauthFlowType
 
@@ -4081,6 +4657,8 @@ type PaginationKey
     = PaginationKey String
 
 
+{-| Some type - blah blah blah.
+-}
 paginationKey : Refined String PaginationKey StringError
 paginationKey =
     let
@@ -4097,6 +4675,8 @@ type PaginationKeyType
     = PaginationKeyType String
 
 
+{-| Some type - blah blah blah.
+-}
 paginationKeyType : Refined String PaginationKeyType StringError
 paginationKeyType =
     let
@@ -4113,6 +4693,8 @@ type PasswordPolicyMinLengthType
     = PasswordPolicyMinLengthType Int
 
 
+{-| Some type - blah blah blah.
+-}
 passwordPolicyMinLengthType : Refined Int PasswordPolicyMinLengthType IntError
 passwordPolicyMinLengthType =
     let
@@ -4125,6 +4707,8 @@ passwordPolicyMinLengthType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias PasswordPolicyType =
     { temporaryPasswordValidityDays : Maybe TemporaryPasswordValidityDaysType
     , requireUppercase : Maybe Bool
@@ -4139,6 +4723,8 @@ type PasswordType
     = PasswordType String
 
 
+{-| Some type - blah blah blah.
+-}
 passwordType : Refined String PasswordType StringError
 passwordType =
     let
@@ -4158,6 +4744,8 @@ type PoolQueryLimitType
     = PoolQueryLimitType Int
 
 
+{-| Some type - blah blah blah.
+-}
 poolQueryLimitType : Refined Int PoolQueryLimitType IntError
 poolQueryLimitType =
     let
@@ -4174,6 +4762,8 @@ type PreSignedUrlType
     = PreSignedUrlType String
 
 
+{-| Some type - blah blah blah.
+-}
 preSignedUrlType : Refined String PreSignedUrlType StringError
 preSignedUrlType =
     let
@@ -4190,6 +4780,8 @@ type PrecedenceType
     = PrecedenceType Int
 
 
+{-| Some type - blah blah blah.
+-}
 precedenceType : Refined Int PrecedenceType IntError
 precedenceType =
     let
@@ -4202,6 +4794,8 @@ precedenceType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ProviderDescription =
     { providerType : Maybe IdentityProviderTypeType
     , providerName : Maybe ProviderNameType
@@ -4210,6 +4804,8 @@ type alias ProviderDescription =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ProviderDetailsType =
     Dict String String
 
@@ -4218,6 +4814,8 @@ type ProviderNameType
     = ProviderNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 providerNameType : Refined String ProviderNameType StringError
 providerNameType =
     let
@@ -4237,6 +4835,8 @@ type ProviderNameTypeV1
     = ProviderNameTypeV1 String
 
 
+{-| Some type - blah blah blah.
+-}
 providerNameTypeV1 : Refined String ProviderNameTypeV1 StringError
 providerNameTypeV1 =
     let
@@ -4252,6 +4852,8 @@ providerNameTypeV1 =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ProviderUserIdentifierType =
     { providerName : Maybe ProviderNameType
     , providerAttributeValue : Maybe String
@@ -4259,6 +4861,8 @@ type alias ProviderUserIdentifierType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ProvidersListType =
     List ProviderDescription
 
@@ -4267,6 +4871,8 @@ type QueryLimit
     = QueryLimit Int
 
 
+{-| Some type - blah blah blah.
+-}
 queryLimit : Refined Int QueryLimit IntError
 queryLimit =
     let
@@ -4283,6 +4889,8 @@ type QueryLimitType
     = QueryLimitType Int
 
 
+{-| Some type - blah blah blah.
+-}
 queryLimitType : Refined Int QueryLimitType IntError
 queryLimitType =
     let
@@ -4299,6 +4907,8 @@ type RedirectUrlType
     = RedirectUrlType String
 
 
+{-| Some type - blah blah blah.
+-}
 redirectUrlType : Refined String RedirectUrlType StringError
 redirectUrlType =
     let
@@ -4318,6 +4928,8 @@ type RefreshTokenValidityType
     = RefreshTokenValidityType Int
 
 
+{-| Some type - blah blah blah.
+-}
 refreshTokenValidityType : Refined Int RefreshTokenValidityType IntError
 refreshTokenValidityType =
     let
@@ -4330,6 +4942,8 @@ refreshTokenValidityType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ResendConfirmationCodeRequest =
     { username : UsernameType
     , userContextData : Maybe UserContextDataType
@@ -4339,6 +4953,8 @@ type alias ResendConfirmationCodeRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ResendConfirmationCodeResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
@@ -4347,6 +4963,8 @@ type ResourceServerIdentifierType
     = ResourceServerIdentifierType String
 
 
+{-| Some type - blah blah blah.
+-}
 resourceServerIdentifierType : Refined String ResourceServerIdentifierType StringError
 resourceServerIdentifierType =
     let
@@ -4366,6 +4984,8 @@ type ResourceServerNameType
     = ResourceServerNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 resourceServerNameType : Refined String ResourceServerNameType StringError
 resourceServerNameType =
     let
@@ -4385,6 +5005,8 @@ type ResourceServerScopeDescriptionType
     = ResourceServerScopeDescriptionType String
 
 
+{-| Some type - blah blah blah.
+-}
 resourceServerScopeDescriptionType : Refined String ResourceServerScopeDescriptionType StringError
 resourceServerScopeDescriptionType =
     let
@@ -4399,6 +5021,8 @@ resourceServerScopeDescriptionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ResourceServerScopeListType =
     List ResourceServerScopeType
 
@@ -4407,6 +5031,8 @@ type ResourceServerScopeNameType
     = ResourceServerScopeNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 resourceServerScopeNameType : Refined String ResourceServerScopeNameType StringError
 resourceServerScopeNameType =
     let
@@ -4422,10 +5048,14 @@ resourceServerScopeNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ResourceServerScopeType =
     { scopeName : ResourceServerScopeNameType, scopeDescription : ResourceServerScopeDescriptionType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ResourceServerType =
     { userPoolId : Maybe UserPoolIdType
     , scopes : Maybe ResourceServerScopeListType
@@ -4434,10 +5064,14 @@ type alias ResourceServerType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ResourceServersListType =
     List ResourceServerType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias RespondToAuthChallengeRequest =
     { userContextData : Maybe UserContextDataType
     , session : Maybe SessionType
@@ -4448,6 +5082,8 @@ type alias RespondToAuthChallengeRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias RespondToAuthChallengeResponse =
     { session : Maybe SessionType
     , challengeParameters : Maybe ChallengeParametersType
@@ -4456,6 +5092,8 @@ type alias RespondToAuthChallengeResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias RiskConfigurationType =
     { userPoolId : Maybe UserPoolIdType
     , riskExceptionConfiguration : Maybe RiskExceptionConfigurationType
@@ -4466,12 +5104,16 @@ type alias RiskConfigurationType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type RiskDecisionType
     = RiskDecisionTypeNoRisk
     | RiskDecisionTypeAccountTakeover
     | RiskDecisionTypeBlock
 
 
+{-| Some type - blah blah blah.
+-}
 riskDecisionType : Enum RiskDecisionType
 riskDecisionType =
     Enum.define
@@ -4489,16 +5131,22 @@ riskDecisionType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias RiskExceptionConfigurationType =
     { skippedIprangeList : Maybe SkippedIprangeListType, blockedIprangeList : Maybe BlockedIprangeListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type RiskLevelType
     = RiskLevelTypeLow
     | RiskLevelTypeMedium
     | RiskLevelTypeHigh
 
 
+{-| Some type - blah blah blah.
+-}
 riskLevelType : Enum RiskLevelType
 riskLevelType =
     Enum.define
@@ -4520,6 +5168,8 @@ type S3BucketType
     = S3BucketType String
 
 
+{-| Some type - blah blah blah.
+-}
 s3BucketType : Refined String S3BucketType StringError
 s3BucketType =
     let
@@ -4535,10 +5185,14 @@ s3BucketType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SmsmfaSettingsType =
     { preferredMfa : Maybe Bool, enabled : Maybe Bool }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SchemaAttributeType =
     { stringAttributeConstraints : Maybe StringAttributeConstraintsType
     , required : Maybe Bool
@@ -4550,10 +5204,14 @@ type alias SchemaAttributeType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SchemaAttributesListType =
     List SchemaAttributeType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias ScopeListType =
     List ScopeType
 
@@ -4562,6 +5220,8 @@ type ScopeType
     = ScopeType String
 
 
+{-| Some type - blah blah blah.
+-}
 scopeType : Refined String ScopeType StringError
 scopeType =
     let
@@ -4581,6 +5241,8 @@ type SearchPaginationTokenType
     = SearchPaginationTokenType String
 
 
+{-| Some type - blah blah blah.
+-}
 searchPaginationTokenType : Refined String SearchPaginationTokenType StringError
 searchPaginationTokenType =
     let
@@ -4595,6 +5257,8 @@ searchPaginationTokenType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SearchedAttributeNamesListType =
     List AttributeNameType
 
@@ -4603,6 +5267,8 @@ type SecretCodeType
     = SecretCodeType String
 
 
+{-| Some type - blah blah blah.
+-}
 secretCodeType : Refined String SecretCodeType StringError
 secretCodeType =
     let
@@ -4619,6 +5285,8 @@ type SecretHashType
     = SecretHashType String
 
 
+{-| Some type - blah blah blah.
+-}
 secretHashType : Refined String SecretHashType StringError
 secretHashType =
     let
@@ -4638,6 +5306,8 @@ type SessionType
     = SessionType String
 
 
+{-| Some type - blah blah blah.
+-}
 sessionType : Refined String SessionType StringError
 sessionType =
     let
@@ -4650,6 +5320,8 @@ sessionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetRiskConfigurationRequest =
     { userPoolId : UserPoolIdType
     , riskExceptionConfiguration : Maybe RiskExceptionConfigurationType
@@ -4659,18 +5331,26 @@ type alias SetRiskConfigurationRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetRiskConfigurationResponse =
     { riskConfiguration : RiskConfigurationType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUicustomizationRequest =
     { userPoolId : UserPoolIdType, imageFile : Maybe String, clientId : Maybe ClientIdType, css : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUicustomizationResponse =
     { uicustomization : UicustomizationType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUserMfapreferenceRequest =
     { softwareTokenMfaSettings : Maybe SoftwareTokenMfaSettingsType
     , smsmfaSettings : Maybe SmsmfaSettingsType
@@ -4678,10 +5358,14 @@ type alias SetUserMfapreferenceRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUserMfapreferenceResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUserPoolMfaConfigRequest =
     { userPoolId : UserPoolIdType
     , softwareTokenMfaConfiguration : Maybe SoftwareTokenMfaConfigType
@@ -4690,6 +5374,8 @@ type alias SetUserPoolMfaConfigRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUserPoolMfaConfigResponse =
     { softwareTokenMfaConfiguration : Maybe SoftwareTokenMfaConfigType
     , smsMfaConfiguration : Maybe SmsMfaConfigType
@@ -4697,14 +5383,20 @@ type alias SetUserPoolMfaConfigResponse =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUserSettingsRequest =
     { mfaoptions : MfaoptionListType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SetUserSettingsResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SignUpRequest =
     { validationData : Maybe AttributeListType
     , username : UsernameType
@@ -4717,18 +5409,26 @@ type alias SignUpRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SignUpResponse =
     { userSub : String, userConfirmed : Bool, codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SkippedIprangeListType =
     List String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SmsConfigurationType =
     { snsCallerArn : ArnType, externalId : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SmsMfaConfigType =
     { smsConfiguration : Maybe SmsConfigurationType, smsAuthenticationMessage : Maybe SmsVerificationMessageType }
 
@@ -4737,6 +5437,8 @@ type SmsVerificationMessageType
     = SmsVerificationMessageType String
 
 
+{-| Some type - blah blah blah.
+-}
 smsVerificationMessageType : Refined String SmsVerificationMessageType StringError
 smsVerificationMessageType =
     let
@@ -4756,6 +5458,8 @@ type SoftwareTokenMfauserCodeType
     = SoftwareTokenMfauserCodeType String
 
 
+{-| Some type - blah blah blah.
+-}
 softwareTokenMfauserCodeType : Refined String SoftwareTokenMfauserCodeType StringError
 softwareTokenMfauserCodeType =
     let
@@ -4771,27 +5475,39 @@ softwareTokenMfauserCodeType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SoftwareTokenMfaConfigType =
     { enabled : Maybe Bool }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SoftwareTokenMfaSettingsType =
     { preferredMfa : Maybe Bool, enabled : Maybe Bool }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias StartUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobId : UserImportJobIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias StartUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
+{-| Some type - blah blah blah.
+-}
 type StatusType
     = StatusTypeEnabled
     | StatusTypeDisabled
 
 
+{-| Some type - blah blah blah.
+-}
 statusType : Enum StatusType
 statusType =
     Enum.define
@@ -4806,22 +5522,32 @@ statusType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias StopUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobId : UserImportJobIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias StopUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias StringAttributeConstraintsType =
     { minLength : Maybe String, maxLength : Maybe String }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias StringType =
     String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias SupportedIdentityProvidersListType =
     List ProviderNameType
 
@@ -4830,6 +5556,8 @@ type TagKeysType
     = TagKeysType String
 
 
+{-| Some type - blah blah blah.
+-}
 tagKeysType : Refined String TagKeysType StringError
 tagKeysType =
     let
@@ -4842,10 +5570,14 @@ tagKeysType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias TagResourceRequest =
     { tags : Maybe UserPoolTagsType, resourceArn : ArnType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias TagResourceResponse =
     {}
 
@@ -4854,6 +5586,8 @@ type TagValueType
     = TagValueType String
 
 
+{-| Some type - blah blah blah.
+-}
 tagValueType : Refined String TagValueType StringError
 tagValueType =
     let
@@ -4870,6 +5604,8 @@ type TemporaryPasswordValidityDaysType
     = TemporaryPasswordValidityDaysType Int
 
 
+{-| Some type - blah blah blah.
+-}
 temporaryPasswordValidityDaysType : Refined Int TemporaryPasswordValidityDaysType IntError
 temporaryPasswordValidityDaysType =
     let
@@ -4886,6 +5622,8 @@ type TokenModelType
     = TokenModelType String
 
 
+{-| Some type - blah blah blah.
+-}
 tokenModelType : Refined String TokenModelType StringError
 tokenModelType =
     let
@@ -4898,6 +5636,8 @@ tokenModelType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UicustomizationType =
     { userPoolId : Maybe UserPoolIdType
     , lastModifiedDate : Maybe DateType
@@ -4909,14 +5649,20 @@ type alias UicustomizationType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UntagResourceRequest =
     { tagKeys : Maybe UserPoolTagsListType, resourceArn : ArnType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UntagResourceResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateAuthEventFeedbackRequest =
     { username : UsernameType
     , userPoolId : UserPoolIdType
@@ -4926,10 +5672,14 @@ type alias UpdateAuthEventFeedbackRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateAuthEventFeedbackResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateDeviceStatusRequest =
     { deviceRememberedStatus : Maybe DeviceRememberedStatusType
     , deviceKey : DeviceKeyType
@@ -4937,10 +5687,14 @@ type alias UpdateDeviceStatusRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateDeviceStatusResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateGroupRequest =
     { userPoolId : UserPoolIdType
     , roleArn : Maybe ArnType
@@ -4950,10 +5704,14 @@ type alias UpdateGroupRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateGroupResponse =
     { group : Maybe GroupType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateIdentityProviderRequest =
     { userPoolId : UserPoolIdType
     , providerName : ProviderNameType
@@ -4963,10 +5721,14 @@ type alias UpdateIdentityProviderRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateIdentityProviderResponse =
     { identityProvider : IdentityProviderType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateResourceServerRequest =
     { userPoolId : UserPoolIdType
     , scopes : Maybe ResourceServerScopeListType
@@ -4975,18 +5737,26 @@ type alias UpdateResourceServerRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateResourceServerResponse =
     { resourceServer : ResourceServerType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserAttributesRequest =
     { userAttributes : AttributeListType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserAttributesResponse =
     { codeDeliveryDetailsList : Maybe CodeDeliveryDetailsListType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserPoolClientRequest =
     { writeAttributes : Maybe ClientPermissionListType
     , userPoolId : UserPoolIdType
@@ -5006,18 +5776,26 @@ type alias UpdateUserPoolClientRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserPoolClientResponse =
     { userPoolClient : Maybe UserPoolClientType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserPoolDomainRequest =
     { userPoolId : UserPoolIdType, domain : DomainType, customDomainConfig : CustomDomainConfigType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserPoolDomainResponse =
     { cloudFrontDomain : Maybe DomainType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserPoolRequest =
     { verificationMessageTemplate : Maybe VerificationMessageTemplateType
     , userPoolTags : Maybe UserPoolTagsType
@@ -5038,10 +5816,14 @@ type alias UpdateUserPoolRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UpdateUserPoolResponse =
     {}
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserContextDataType =
     { encodedData : Maybe String }
 
@@ -5050,6 +5832,8 @@ type UserFilterType
     = UserFilterType String
 
 
+{-| Some type - blah blah blah.
+-}
 userFilterType : Refined String UserFilterType StringError
 userFilterType =
     let
@@ -5066,6 +5850,8 @@ type UserImportJobIdType
     = UserImportJobIdType String
 
 
+{-| Some type - blah blah blah.
+-}
 userImportJobIdType : Refined String UserImportJobIdType StringError
 userImportJobIdType =
     let
@@ -5085,6 +5871,8 @@ type UserImportJobNameType
     = UserImportJobNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 userImportJobNameType : Refined String UserImportJobNameType StringError
 userImportJobNameType =
     let
@@ -5100,6 +5888,8 @@ userImportJobNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type UserImportJobStatusType
     = UserImportJobStatusTypeCreated
     | UserImportJobStatusTypePending
@@ -5111,6 +5901,8 @@ type UserImportJobStatusType
     | UserImportJobStatusTypeSucceeded
 
 
+{-| Some type - blah blah blah.
+-}
 userImportJobStatusType : Enum UserImportJobStatusType
 userImportJobStatusType =
     Enum.define
@@ -5151,6 +5943,8 @@ userImportJobStatusType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserImportJobType =
     { userPoolId : Maybe UserPoolIdType
     , status : Maybe UserImportJobStatusType
@@ -5168,26 +5962,38 @@ type alias UserImportJobType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserImportJobsListType =
     List UserImportJobType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserMfasettingListType =
     List String
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolAddOnsType =
     { advancedSecurityMode : AdvancedSecurityModeType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolClientDescription =
     { userPoolId : Maybe UserPoolIdType, clientName : Maybe ClientNameType, clientId : Maybe ClientIdType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolClientListType =
     List UserPoolClientDescription
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolClientType =
     { writeAttributes : Maybe ClientPermissionListType
     , userPoolId : Maybe UserPoolIdType
@@ -5210,6 +6016,8 @@ type alias UserPoolClientType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolDescriptionType =
     { status : Maybe StatusType
     , name : Maybe UserPoolNameType
@@ -5224,6 +6032,8 @@ type UserPoolIdType
     = UserPoolIdType String
 
 
+{-| Some type - blah blah blah.
+-}
 userPoolIdType : Refined String UserPoolIdType StringError
 userPoolIdType =
     let
@@ -5239,16 +6049,22 @@ userPoolIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolListType =
     List UserPoolDescriptionType
 
 
+{-| Some type - blah blah blah.
+-}
 type UserPoolMfaType
     = UserPoolMfaTypeOff
     | UserPoolMfaTypeOn
     | UserPoolMfaTypeOptional
 
 
+{-| Some type - blah blah blah.
+-}
 userPoolMfaType : Enum UserPoolMfaType
 userPoolMfaType =
     Enum.define
@@ -5270,6 +6086,8 @@ type UserPoolNameType
     = UserPoolNameType String
 
 
+{-| Some type - blah blah blah.
+-}
 userPoolNameType : Refined String UserPoolNameType StringError
 userPoolNameType =
     let
@@ -5285,18 +6103,26 @@ userPoolNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolPolicyType =
     { passwordPolicy : Maybe PasswordPolicyType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolTagsListType =
     List TagKeysType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolTagsType =
     Dict.Refined.Dict String TagKeysType TagValueType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserPoolType =
     { verificationMessageTemplate : Maybe VerificationMessageTemplateType
     , usernameAttributes : Maybe UsernameAttributesListType
@@ -5330,6 +6156,8 @@ type alias UserPoolType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type UserStatusType
     = UserStatusTypeUnconfirmed
     | UserStatusTypeConfirmed
@@ -5340,6 +6168,8 @@ type UserStatusType
     | UserStatusTypeForceChangePassword
 
 
+{-| Some type - blah blah blah.
+-}
 userStatusType : Enum UserStatusType
 userStatusType =
     Enum.define
@@ -5376,6 +6206,8 @@ userStatusType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UserType =
     { username : Maybe UsernameType
     , userStatus : Maybe UserStatusType
@@ -5387,11 +6219,15 @@ type alias UserType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type UsernameAttributeType
     = UsernameAttributeTypePhoneNumber
     | UsernameAttributeTypeEmail
 
 
+{-| Some type - blah blah blah.
+-}
 usernameAttributeType : Enum UsernameAttributeType
 usernameAttributeType =
     Enum.define
@@ -5406,6 +6242,8 @@ usernameAttributeType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UsernameAttributesListType =
     List UsernameAttributeType
 
@@ -5414,6 +6252,8 @@ type UsernameType
     = UsernameType String
 
 
+{-| Some type - blah blah blah.
+-}
 usernameType : Refined String UsernameType StringError
 usernameType =
     let
@@ -5429,10 +6269,14 @@ usernameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| Some type - blah blah blah.
+-}
 type alias UsersListType =
     List UserType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias VerificationMessageTemplateType =
     { smsMessage : Maybe SmsVerificationMessageType
     , emailSubjectByLink : Maybe EmailVerificationSubjectByLinkType
@@ -5443,11 +6287,15 @@ type alias VerificationMessageTemplateType =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type VerifiedAttributeType
     = VerifiedAttributeTypePhoneNumber
     | VerifiedAttributeTypeEmail
 
 
+{-| Some type - blah blah blah.
+-}
 verifiedAttributeType : Enum VerifiedAttributeType
 verifiedAttributeType =
     Enum.define
@@ -5462,10 +6310,14 @@ verifiedAttributeType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias VerifiedAttributesListType =
     List VerifiedAttributeType
 
 
+{-| Some type - blah blah blah.
+-}
 type alias VerifySoftwareTokenRequest =
     { userCode : SoftwareTokenMfauserCodeType
     , session : Maybe SessionType
@@ -5474,15 +6326,21 @@ type alias VerifySoftwareTokenRequest =
     }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias VerifySoftwareTokenResponse =
     { status : Maybe VerifySoftwareTokenResponseType, session : Maybe SessionType }
 
 
+{-| Some type - blah blah blah.
+-}
 type VerifySoftwareTokenResponseType
     = VerifySoftwareTokenResponseTypeSuccess
     | VerifySoftwareTokenResponseTypeError
 
 
+{-| Some type - blah blah blah.
+-}
 verifySoftwareTokenResponseType : Enum VerifySoftwareTokenResponseType
 verifySoftwareTokenResponseType =
     Enum.define
@@ -5497,10 +6355,14 @@ verifySoftwareTokenResponseType =
         )
 
 
+{-| Some type - blah blah blah.
+-}
 type alias VerifyUserAttributeRequest =
     { code : ConfirmationCodeType, attributeName : AttributeNameType, accessToken : TokenModelType }
 
 
+{-| Some type - blah blah blah.
+-}
 type alias VerifyUserAttributeResponse =
     {}
 
