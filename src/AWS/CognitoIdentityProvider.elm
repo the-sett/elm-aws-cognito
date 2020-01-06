@@ -1,9 +1,230 @@
-module AWS.CognitoIdentityProvider exposing (AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType(..), AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest, AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest, AdminCreateUserResponse, AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResponse, AdminDeleteUserRequest, AdminDisableProviderForUserRequest, AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse, AdminEnableUserRequest, AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse, AdminGetUserRequest, AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest, AdminLinkProviderForUserResponse, AdminListDevicesRequest, AdminListDevicesResponse, AdminListGroupsForUserRequest, AdminListGroupsForUserResponse, AdminListUserAuthEventsRequest, AdminListUserAuthEventsResponse, AdminRemoveUserFromGroupRequest, AdminResetUserPasswordRequest, AdminResetUserPasswordResponse, AdminRespondToAuthChallengeRequest, AdminRespondToAuthChallengeResponse, AdminSetUserMfapreferenceRequest, AdminSetUserMfapreferenceResponse, AdminSetUserPasswordRequest, AdminSetUserPasswordResponse, AdminSetUserSettingsRequest, AdminSetUserSettingsResponse, AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResponse, AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResponse, AdminUpdateUserAttributesRequest, AdminUpdateUserAttributesResponse, AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResponse, AdvancedSecurityModeType(..), AliasAttributeType(..), AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, AssociateSoftwareTokenRequest, AssociateSoftwareTokenResponse, AttributeDataType(..), AttributeListType, AttributeMappingType, AttributeNameListType, AttributeType, AuthEventType, AuthEventsType, AuthFlowType(..), AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType, BooleanType, CallbackUrlsListType, ChallengeName(..), ChallengeNameType(..), ChallengeParametersType, ChallengeResponse(..), ChallengeResponseListType, ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientMetadataType, ClientPermissionListType, CodeDeliveryDetailsListType, CodeDeliveryDetailsType, CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType(..), CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest, ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse, ContextDataType, CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse, CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest, CreateUserImportJobResponse, CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest, CreateUserPoolDomainResponse, CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributesListType, CustomDomainConfigType, DateType, DefaultEmailOptionType(..), DeleteGroupRequest, DeleteIdentityProviderRequest, DeleteResourceServerRequest, DeleteUserAttributesRequest, DeleteUserAttributesResponse, DeleteUserPoolClientRequest, DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse, DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType, DeliveryMediumType(..), DescribeIdentityProviderRequest, DescribeIdentityProviderResponse, DescribeResourceServerRequest, DescribeResourceServerResponse, DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse, DescribeUserImportJobRequest, DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse, DescribeUserPoolDomainRequest, DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse, DeviceConfigurationType, DeviceListType, DeviceRememberedStatusType(..), DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType(..), EmailConfigurationType, EmailSendingAccountType(..), EventContextDataType, EventFeedbackType, EventFilterType(..), EventFiltersType, EventResponseType(..), EventRiskType, EventType(..), ExplicitAuthFlowsListType, ExplicitAuthFlowsType(..), FeedbackValueType(..), ForceAliasCreation, ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret, GetCsvheaderRequest, GetCsvheaderResponse, GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest, GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest, GetSigningCertificateResponse, GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest, GetUserAttributeVerificationCodeResponse, GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResponse, GetUserRequest, GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupType, HttpHeader, HttpHeaderList, IdentityProviderType, IdentityProviderTypeType(..), IdpIdentifiersListType, ImageFileType, ImageUrlType, InitiateAuthRequest, InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse, ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes, ListResourceServersRequest, ListResourceServersResponse, ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest, ListUserImportJobsResponse, ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse, ListUsersInGroupRequest, ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType, MessageActionType(..), MessageTemplateType, MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType, NotifyEmailType, NumberAttributeConstraintsType, OauthFlowType(..), OauthFlowsType, PasswordPolicyType, ProviderDescription, ProviderDetailsType, ProviderUserIdentifierType, ProvidersListType, ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerScopeListType, ResourceServerScopeType, ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse, RiskConfigurationType, RiskDecisionType(..), RiskExceptionConfigurationType, RiskLevelType(..), SchemaAttributeType, SchemaAttributesListType, ScopeListType, SearchedAttributeNamesListType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest, SetUicustomizationResponse, SetUserMfapreferenceRequest, SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest, SetUserPoolMfaConfigResponse, SetUserSettingsRequest, SetUserSettingsResponse, SignUpRequest, SignUpResponse, SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsmfaSettingsType, SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, StartUserImportJobRequest, StartUserImportJobResponse, StatusType(..), StopUserImportJobRequest, StopUserImportJobResponse, StringAttributeConstraintsType, StringType, SupportedIdentityProvidersListType, TagResourceRequest, TagResourceResponse, UicustomizationType, UntagResourceRequest, UntagResourceResponse, UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse, UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest, UpdateIdentityProviderResponse, UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest, UpdateUserAttributesResponse, UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse, UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserImportJobStatusType(..), UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType, UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolListType, UserPoolMfaType(..), UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType(..), UserType, UsernameAttributeType(..), UsernameAttributesListType, UsersListType, VerificationMessageTemplateType, VerifiedAttributeType(..), VerifiedAttributesListType, VerifySoftwareTokenRequest, VerifySoftwareTokenResponse, VerifySoftwareTokenResponseType(..), VerifyUserAttributeRequest, VerifyUserAttributeResponse, accountTakeoverActionNotifyTypeCodec, accountTakeoverActionTypeCodec, accountTakeoverActionsTypeCodec, accountTakeoverEventActionType, accountTakeoverEventActionTypeCodec, accountTakeoverRiskConfigurationTypeCodec, addCustomAttributes, addCustomAttributesRequestCodec, addCustomAttributesResponseCodec, adminAddUserToGroup, adminAddUserToGroupRequestCodec, adminConfirmSignUp, adminConfirmSignUpRequestCodec, adminConfirmSignUpResponseCodec, adminCreateUser, adminCreateUserConfigTypeCodec, adminCreateUserRequestCodec, adminCreateUserResponseCodec, adminCreateUserUnusedAccountValidityDaysType, adminCreateUserUnusedAccountValidityDaysTypeCodec, adminDeleteUser, adminDeleteUserAttributes, adminDeleteUserAttributesRequestCodec, adminDeleteUserAttributesResponseCodec, adminDeleteUserRequestCodec, adminDisableProviderForUser, adminDisableProviderForUserRequestCodec, adminDisableProviderForUserResponseCodec, adminDisableUser, adminDisableUserRequestCodec, adminDisableUserResponseCodec, adminEnableUser, adminEnableUserRequestCodec, adminEnableUserResponseCodec, adminForgetDevice, adminForgetDeviceRequestCodec, adminGetDevice, adminGetDeviceRequestCodec, adminGetDeviceResponseCodec, adminGetUser, adminGetUserRequestCodec, adminGetUserResponseCodec, adminInitiateAuth, adminInitiateAuthRequestCodec, adminInitiateAuthResponseCodec, adminLinkProviderForUser, adminLinkProviderForUserRequestCodec, adminLinkProviderForUserResponseCodec, adminListDevices, adminListDevicesRequestCodec, adminListDevicesResponseCodec, adminListGroupsForUser, adminListGroupsForUserRequestCodec, adminListGroupsForUserResponseCodec, adminListUserAuthEvents, adminListUserAuthEventsRequestCodec, adminListUserAuthEventsResponseCodec, adminRemoveUserFromGroup, adminRemoveUserFromGroupRequestCodec, adminResetUserPassword, adminResetUserPasswordRequestCodec, adminResetUserPasswordResponseCodec, adminRespondToAuthChallenge, adminRespondToAuthChallengeRequestCodec, adminRespondToAuthChallengeResponseCodec, adminSetUserMfapreference, adminSetUserMfapreferenceRequestCodec, adminSetUserMfapreferenceResponseCodec, adminSetUserPassword, adminSetUserPasswordRequestCodec, adminSetUserPasswordResponseCodec, adminSetUserSettings, adminSetUserSettingsRequestCodec, adminSetUserSettingsResponseCodec, adminUpdateAuthEventFeedback, adminUpdateAuthEventFeedbackRequestCodec, adminUpdateAuthEventFeedbackResponseCodec, adminUpdateDeviceStatus, adminUpdateDeviceStatusRequestCodec, adminUpdateDeviceStatusResponseCodec, adminUpdateUserAttributes, adminUpdateUserAttributesRequestCodec, adminUpdateUserAttributesResponseCodec, adminUserGlobalSignOut, adminUserGlobalSignOutRequestCodec, adminUserGlobalSignOutResponseCodec, advancedSecurityModeType, advancedSecurityModeTypeCodec, aliasAttributeType, aliasAttributeTypeCodec, aliasAttributesListTypeCodec, analyticsConfigurationTypeCodec, analyticsMetadataTypeCodec, arnType, arnTypeCodec, associateSoftwareToken, associateSoftwareTokenRequestCodec, associateSoftwareTokenResponseCodec, attributeDataType, attributeDataTypeCodec, attributeListTypeCodec, attributeMappingKeyType, attributeMappingKeyTypeCodec, attributeMappingTypeCodec, attributeNameListTypeCodec, attributeNameType, attributeNameTypeCodec, attributeTypeCodec, attributeValueType, attributeValueTypeCodec, authEventTypeCodec, authEventsTypeCodec, authFlowType, authFlowTypeCodec, authParametersTypeCodec, authenticationResultTypeCodec, awsaccountIdTypeCodec, blockedIprangeListTypeCodec, booleanTypeCodec, callbackUrlsListTypeCodec, challengeName, challengeNameCodec, challengeNameType, challengeNameTypeCodec, challengeParametersTypeCodec, challengeResponse, challengeResponseCodec, challengeResponseListTypeCodec, challengeResponseTypeCodec, challengeResponsesTypeCodec, changePassword, changePasswordRequestCodec, changePasswordResponseCodec, clientIdType, clientIdTypeCodec, clientMetadataTypeCodec, clientNameType, clientNameTypeCodec, clientPermissionListTypeCodec, clientPermissionType, clientPermissionTypeCodec, clientSecretType, clientSecretTypeCodec, codeDeliveryDetailsListTypeCodec, codeDeliveryDetailsTypeCodec, completionMessageType, completionMessageTypeCodec, compromisedCredentialsActionsTypeCodec, compromisedCredentialsEventActionType, compromisedCredentialsEventActionTypeCodec, compromisedCredentialsRiskConfigurationTypeCodec, confirmDevice, confirmDeviceRequestCodec, confirmDeviceResponseCodec, confirmForgotPassword, confirmForgotPasswordRequestCodec, confirmForgotPasswordResponseCodec, confirmSignUp, confirmSignUpRequestCodec, confirmSignUpResponseCodec, confirmationCodeType, confirmationCodeTypeCodec, contextDataTypeCodec, createGroup, createGroupRequestCodec, createGroupResponseCodec, createIdentityProvider, createIdentityProviderRequestCodec, createIdentityProviderResponseCodec, createResourceServer, createResourceServerRequestCodec, createResourceServerResponseCodec, createUserImportJob, createUserImportJobRequestCodec, createUserImportJobResponseCodec, createUserPool, createUserPoolClient, createUserPoolClientRequestCodec, createUserPoolClientResponseCodec, createUserPoolDomain, createUserPoolDomainRequestCodec, createUserPoolDomainResponseCodec, createUserPoolRequestCodec, createUserPoolResponseCodec, csstypeCodec, cssversionTypeCodec, customAttributeNameType, customAttributeNameTypeCodec, customAttributesListTypeCodec, customDomainConfigTypeCodec, dateTypeCodec, defaultEmailOptionType, defaultEmailOptionTypeCodec, deleteGroup, deleteGroupRequestCodec, deleteIdentityProvider, deleteIdentityProviderRequestCodec, deleteResourceServer, deleteResourceServerRequestCodec, deleteUser, deleteUserAttributes, deleteUserAttributesRequestCodec, deleteUserAttributesResponseCodec, deleteUserPool, deleteUserPoolClient, deleteUserPoolClientRequestCodec, deleteUserPoolDomain, deleteUserPoolDomainRequestCodec, deleteUserPoolDomainResponseCodec, deleteUserPoolRequestCodec, deleteUserRequestCodec, deliveryMediumListTypeCodec, deliveryMediumType, deliveryMediumTypeCodec, describeIdentityProvider, describeIdentityProviderRequestCodec, describeIdentityProviderResponseCodec, describeResourceServer, describeResourceServerRequestCodec, describeResourceServerResponseCodec, describeRiskConfiguration, describeRiskConfigurationRequestCodec, describeRiskConfigurationResponseCodec, describeUserImportJob, describeUserImportJobRequestCodec, describeUserImportJobResponseCodec, describeUserPool, describeUserPoolClient, describeUserPoolClientRequestCodec, describeUserPoolClientResponseCodec, describeUserPoolDomain, describeUserPoolDomainRequestCodec, describeUserPoolDomainResponseCodec, describeUserPoolRequestCodec, describeUserPoolResponseCodec, descriptionType, descriptionTypeCodec, deviceConfigurationTypeCodec, deviceKeyType, deviceKeyTypeCodec, deviceListTypeCodec, deviceNameType, deviceNameTypeCodec, deviceRememberedStatusType, deviceRememberedStatusTypeCodec, deviceSecretVerifierConfigTypeCodec, deviceTypeCodec, domainDescriptionTypeCodec, domainStatusType, domainStatusTypeCodec, domainType, domainTypeCodec, domainVersionType, domainVersionTypeCodec, emailAddressType, emailAddressTypeCodec, emailConfigurationTypeCodec, emailNotificationBodyType, emailNotificationBodyTypeCodec, emailNotificationSubjectType, emailNotificationSubjectTypeCodec, emailSendingAccountType, emailSendingAccountTypeCodec, emailVerificationMessageByLinkType, emailVerificationMessageByLinkTypeCodec, emailVerificationMessageType, emailVerificationMessageTypeCodec, emailVerificationSubjectByLinkType, emailVerificationSubjectByLinkTypeCodec, emailVerificationSubjectType, emailVerificationSubjectTypeCodec, eventContextDataTypeCodec, eventFeedbackTypeCodec, eventFilterType, eventFilterTypeCodec, eventFiltersTypeCodec, eventIdType, eventIdTypeCodec, eventResponseType, eventResponseTypeCodec, eventRiskTypeCodec, eventType, eventTypeCodec, explicitAuthFlowsListTypeCodec, explicitAuthFlowsType, explicitAuthFlowsTypeCodec, feedbackValueType, feedbackValueTypeCodec, forceAliasCreationCodec, forgetDevice, forgetDeviceRequestCodec, forgotPassword, forgotPasswordRequestCodec, forgotPasswordResponseCodec, generateSecretCodec, getCsvheader, getCsvheaderRequestCodec, getCsvheaderResponseCodec, getDevice, getDeviceRequestCodec, getDeviceResponseCodec, getGroup, getGroupRequestCodec, getGroupResponseCodec, getIdentityProviderByIdentifier, getIdentityProviderByIdentifierRequestCodec, getIdentityProviderByIdentifierResponseCodec, getSigningCertificate, getSigningCertificateRequestCodec, getSigningCertificateResponseCodec, getUicustomization, getUicustomizationRequestCodec, getUicustomizationResponseCodec, getUser, getUserAttributeVerificationCode, getUserAttributeVerificationCodeRequestCodec, getUserAttributeVerificationCodeResponseCodec, getUserPoolMfaConfig, getUserPoolMfaConfigRequestCodec, getUserPoolMfaConfigResponseCodec, getUserRequestCodec, getUserResponseCodec, globalSignOut, globalSignOutRequestCodec, globalSignOutResponseCodec, groupListTypeCodec, groupNameType, groupNameTypeCodec, groupTypeCodec, hexStringType, hexStringTypeCodec, httpHeaderCodec, httpHeaderListCodec, identityProviderTypeCodec, identityProviderTypeType, identityProviderTypeTypeCodec, idpIdentifierType, idpIdentifierTypeCodec, idpIdentifiersListTypeCodec, imageFileTypeCodec, imageUrlTypeCodec, initiateAuth, initiateAuthRequestCodec, initiateAuthResponseCodec, integerTypeCodec, lambdaConfigTypeCodec, listDevices, listDevicesRequestCodec, listDevicesResponseCodec, listGroups, listGroupsRequestCodec, listGroupsResponseCodec, listIdentityProviders, listIdentityProvidersRequestCodec, listIdentityProvidersResponseCodec, listOfStringTypesCodec, listProvidersLimitType, listProvidersLimitTypeCodec, listResourceServers, listResourceServersLimitType, listResourceServersLimitTypeCodec, listResourceServersRequestCodec, listResourceServersResponseCodec, listTagsForResource, listTagsForResourceRequestCodec, listTagsForResourceResponseCodec, listUserImportJobs, listUserImportJobsRequestCodec, listUserImportJobsResponseCodec, listUserPoolClients, listUserPoolClientsRequestCodec, listUserPoolClientsResponseCodec, listUserPools, listUserPoolsRequestCodec, listUserPoolsResponseCodec, listUsers, listUsersInGroup, listUsersInGroupRequestCodec, listUsersInGroupResponseCodec, listUsersRequestCodec, listUsersResponseCodec, logoutUrlsListTypeCodec, longTypeCodec, messageActionType, messageActionTypeCodec, messageTemplateTypeCodec, mfaoptionListTypeCodec, mfaoptionTypeCodec, newDeviceMetadataTypeCodec, notifyConfigurationTypeCodec, notifyEmailTypeCodec, numberAttributeConstraintsTypeCodec, oauthFlowType, oauthFlowTypeCodec, oauthFlowsTypeCodec, paginationKey, paginationKeyCodec, paginationKeyType, paginationKeyTypeCodec, passwordPolicyMinLengthType, passwordPolicyMinLengthTypeCodec, passwordPolicyTypeCodec, passwordType, passwordTypeCodec, poolQueryLimitType, poolQueryLimitTypeCodec, preSignedUrlType, preSignedUrlTypeCodec, precedenceType, precedenceTypeCodec, providerDescriptionCodec, providerDetailsTypeCodec, providerNameType, providerNameTypeCodec, providerNameTypeV1, providerNameTypeV1Codec, providerUserIdentifierTypeCodec, providersListTypeCodec, queryLimit, queryLimitCodec, queryLimitType, queryLimitTypeCodec, redirectUrlType, redirectUrlTypeCodec, refreshTokenValidityType, refreshTokenValidityTypeCodec, resendConfirmationCode, resendConfirmationCodeRequestCodec, resendConfirmationCodeResponseCodec, resourceServerIdentifierType, resourceServerIdentifierTypeCodec, resourceServerNameType, resourceServerNameTypeCodec, resourceServerScopeDescriptionType, resourceServerScopeDescriptionTypeCodec, resourceServerScopeListTypeCodec, resourceServerScopeNameType, resourceServerScopeNameTypeCodec, resourceServerScopeTypeCodec, resourceServerTypeCodec, resourceServersListTypeCodec, respondToAuthChallenge, respondToAuthChallengeRequestCodec, respondToAuthChallengeResponseCodec, riskConfigurationTypeCodec, riskDecisionType, riskDecisionTypeCodec, riskExceptionConfigurationTypeCodec, riskLevelType, riskLevelTypeCodec, s3BucketType, s3BucketTypeCodec, schemaAttributeTypeCodec, schemaAttributesListTypeCodec, scopeListTypeCodec, scopeType, scopeTypeCodec, searchPaginationTokenType, searchPaginationTokenTypeCodec, searchedAttributeNamesListTypeCodec, secretCodeType, secretCodeTypeCodec, secretHashType, secretHashTypeCodec, service, sessionType, sessionTypeCodec, setRiskConfiguration, setRiskConfigurationRequestCodec, setRiskConfigurationResponseCodec, setUicustomization, setUicustomizationRequestCodec, setUicustomizationResponseCodec, setUserMfapreference, setUserMfapreferenceRequestCodec, setUserMfapreferenceResponseCodec, setUserPoolMfaConfig, setUserPoolMfaConfigRequestCodec, setUserPoolMfaConfigResponseCodec, setUserSettings, setUserSettingsRequestCodec, setUserSettingsResponseCodec, signUp, signUpRequestCodec, signUpResponseCodec, skippedIprangeListTypeCodec, smsConfigurationTypeCodec, smsMfaConfigTypeCodec, smsVerificationMessageType, smsVerificationMessageTypeCodec, smsmfaSettingsTypeCodec, softwareTokenMfaConfigTypeCodec, softwareTokenMfaSettingsTypeCodec, softwareTokenMfauserCodeType, softwareTokenMfauserCodeTypeCodec, startUserImportJob, startUserImportJobRequestCodec, startUserImportJobResponseCodec, statusType, statusTypeCodec, stopUserImportJob, stopUserImportJobRequestCodec, stopUserImportJobResponseCodec, stringAttributeConstraintsTypeCodec, stringTypeCodec, supportedIdentityProvidersListTypeCodec, tagKeysType, tagKeysTypeCodec, tagResource, tagResourceRequestCodec, tagResourceResponseCodec, tagValueType, tagValueTypeCodec, temporaryPasswordValidityDaysType, temporaryPasswordValidityDaysTypeCodec, tokenModelType, tokenModelTypeCodec, uicustomizationTypeCodec, untagResource, untagResourceRequestCodec, untagResourceResponseCodec, updateAuthEventFeedback, updateAuthEventFeedbackRequestCodec, updateAuthEventFeedbackResponseCodec, updateDeviceStatus, updateDeviceStatusRequestCodec, updateDeviceStatusResponseCodec, updateGroup, updateGroupRequestCodec, updateGroupResponseCodec, updateIdentityProvider, updateIdentityProviderRequestCodec, updateIdentityProviderResponseCodec, updateResourceServer, updateResourceServerRequestCodec, updateResourceServerResponseCodec, updateUserAttributes, updateUserAttributesRequestCodec, updateUserAttributesResponseCodec, updateUserPool, updateUserPoolClient, updateUserPoolClientRequestCodec, updateUserPoolClientResponseCodec, updateUserPoolDomain, updateUserPoolDomainRequestCodec, updateUserPoolDomainResponseCodec, updateUserPoolRequestCodec, updateUserPoolResponseCodec, userContextDataTypeCodec, userFilterType, userFilterTypeCodec, userImportJobIdType, userImportJobIdTypeCodec, userImportJobNameType, userImportJobNameTypeCodec, userImportJobStatusType, userImportJobStatusTypeCodec, userImportJobTypeCodec, userImportJobsListTypeCodec, userMfasettingListTypeCodec, userPoolAddOnsTypeCodec, userPoolClientDescriptionCodec, userPoolClientListTypeCodec, userPoolClientTypeCodec, userPoolDescriptionTypeCodec, userPoolIdType, userPoolIdTypeCodec, userPoolListTypeCodec, userPoolMfaType, userPoolMfaTypeCodec, userPoolNameType, userPoolNameTypeCodec, userPoolPolicyTypeCodec, userPoolTagsListTypeCodec, userPoolTagsTypeCodec, userPoolTypeCodec, userStatusType, userStatusTypeCodec, userTypeCodec, usernameAttributeType, usernameAttributeTypeCodec, usernameAttributesListTypeCodec, usernameType, usernameTypeCodec, usersListTypeCodec, verificationMessageTemplateTypeCodec, verifiedAttributeType, verifiedAttributeTypeCodec, verifiedAttributesListTypeCodec, verifySoftwareToken, verifySoftwareTokenRequestCodec, verifySoftwareTokenResponseCodec, verifySoftwareTokenResponseType, verifySoftwareTokenResponseTypeCodec, verifyUserAttribute, verifyUserAttributeRequestCodec, verifyUserAttributeResponseCodec)
+module AWS.CognitoIdentityProvider exposing
+    ( service
+    , addCustomAttributes, adminAddUserToGroup, adminConfirmSignUp, adminCreateUser, adminDeleteUser, adminDeleteUserAttributes
+    , adminDisableProviderForUser, adminDisableUser, adminEnableUser, adminForgetDevice, adminGetDevice, adminGetUser, adminInitiateAuth
+    , adminLinkProviderForUser, adminListDevices, adminListGroupsForUser, adminListUserAuthEvents, adminRemoveUserFromGroup
+    , adminResetUserPassword, adminRespondToAuthChallenge, adminSetUserMfapreference, adminSetUserPassword, adminSetUserSettings
+    , adminUpdateAuthEventFeedback, adminUpdateDeviceStatus, adminUpdateUserAttributes, adminUserGlobalSignOut, associateSoftwareToken
+    , changePassword, confirmDevice, confirmForgotPassword, confirmSignUp, createGroup, createIdentityProvider, createResourceServer
+    , createUserImportJob, createUserPool, createUserPoolClient, createUserPoolDomain, deleteGroup, deleteIdentityProvider
+    , deleteResourceServer, deleteUser, deleteUserAttributes, deleteUserPool, deleteUserPoolClient, deleteUserPoolDomain
+    , describeIdentityProvider, describeResourceServer, describeRiskConfiguration, describeUserImportJob, describeUserPool
+    , describeUserPoolClient, describeUserPoolDomain, forgetDevice, forgotPassword, getCsvheader, getDevice, getGroup
+    , getIdentityProviderByIdentifier, getSigningCertificate, getUicustomization, getUser, getUserAttributeVerificationCode
+    , getUserPoolMfaConfig, globalSignOut, initiateAuth, listDevices, listGroups, listIdentityProviders, listResourceServers
+    , listTagsForResource, listUserImportJobs, listUserPoolClients, listUserPools, listUsers, listUsersInGroup, resendConfirmationCode
+    , respondToAuthChallenge, setRiskConfiguration, setUicustomization, setUserMfapreference, setUserPoolMfaConfig, setUserSettings
+    , signUp, startUserImportJob, stopUserImportJob, tagResource, untagResource, updateAuthEventFeedback, updateDeviceStatus, updateGroup
+    , updateIdentityProvider, updateResourceServer, updateUserAttributes, updateUserPool, updateUserPoolClient, updateUserPoolDomain
+    , verifySoftwareToken, verifyUserAttribute
+    , AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType(..)
+    , AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest
+    , AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest
+    , AdminCreateUserResponse, AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResponse, AdminDeleteUserRequest
+    , AdminDisableProviderForUserRequest, AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse
+    , AdminEnableUserRequest, AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse
+    , AdminGetUserRequest, AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
+    , AdminLinkProviderForUserResponse, AdminListDevicesRequest, AdminListDevicesResponse, AdminListGroupsForUserRequest
+    , AdminListGroupsForUserResponse, AdminListUserAuthEventsRequest, AdminListUserAuthEventsResponse
+    , AdminRemoveUserFromGroupRequest, AdminResetUserPasswordRequest, AdminResetUserPasswordResponse
+    , AdminRespondToAuthChallengeRequest, AdminRespondToAuthChallengeResponse, AdminSetUserMfapreferenceRequest
+    , AdminSetUserMfapreferenceResponse, AdminSetUserPasswordRequest, AdminSetUserPasswordResponse, AdminSetUserSettingsRequest
+    , AdminSetUserSettingsResponse, AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResponse
+    , AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResponse, AdminUpdateUserAttributesRequest
+    , AdminUpdateUserAttributesResponse, AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResponse, AdvancedSecurityModeType(..)
+    , AliasAttributeType(..), AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, AssociateSoftwareTokenRequest
+    , AssociateSoftwareTokenResponse, AttributeDataType(..), AttributeListType, AttributeMappingType, AttributeNameListType, AttributeType
+    , AuthEventType, AuthEventsType, AuthFlowType(..), AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType
+    , BooleanType, CallbackUrlsListType, ChallengeName(..), ChallengeNameType(..), ChallengeParametersType, ChallengeResponse(..)
+    , ChallengeResponseListType, ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse
+    , ClientMetadataType, ClientPermissionListType, CodeDeliveryDetailsListType, CodeDeliveryDetailsType
+    , CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType(..), CompromisedCredentialsRiskConfigurationType
+    , ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest, ConfirmForgotPasswordResponse, ConfirmSignUpRequest
+    , ConfirmSignUpResponse, ContextDataType, CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest
+    , CreateIdentityProviderResponse, CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest
+    , CreateUserImportJobResponse, CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest
+    , CreateUserPoolDomainResponse, CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributesListType
+    , CustomDomainConfigType, DateType, DefaultEmailOptionType(..), DeleteGroupRequest, DeleteIdentityProviderRequest
+    , DeleteResourceServerRequest, DeleteUserAttributesRequest, DeleteUserAttributesResponse, DeleteUserPoolClientRequest
+    , DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse, DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType
+    , DeliveryMediumType(..), DescribeIdentityProviderRequest, DescribeIdentityProviderResponse, DescribeResourceServerRequest
+    , DescribeResourceServerResponse, DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse
+    , DescribeUserImportJobRequest, DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse
+    , DescribeUserPoolDomainRequest, DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse
+    , DeviceConfigurationType, DeviceListType, DeviceRememberedStatusType(..), DeviceSecretVerifierConfigType, DeviceType
+    , DomainDescriptionType, DomainStatusType(..), EmailConfigurationType, EmailSendingAccountType(..), EventContextDataType, EventFeedbackType
+    , EventFilterType(..), EventFiltersType, EventResponseType(..), EventRiskType, EventType(..), ExplicitAuthFlowsListType, ExplicitAuthFlowsType(..)
+    , FeedbackValueType(..), ForceAliasCreation, ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret
+    , GetCsvheaderRequest, GetCsvheaderResponse, GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse
+    , GetIdentityProviderByIdentifierRequest, GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest
+    , GetSigningCertificateResponse, GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
+    , GetUserAttributeVerificationCodeResponse, GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResponse, GetUserRequest
+    , GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupType, HttpHeader, HttpHeaderList
+    , IdentityProviderType, IdentityProviderTypeType(..), IdpIdentifiersListType, ImageFileType, ImageUrlType, InitiateAuthRequest
+    , InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse, ListGroupsRequest, ListGroupsResponse
+    , ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes, ListResourceServersRequest
+    , ListResourceServersResponse, ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest
+    , ListUserImportJobsResponse, ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse
+    , ListUsersInGroupRequest, ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType
+    , MessageActionType(..), MessageTemplateType, MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType
+    , NotifyEmailType, NumberAttributeConstraintsType, OauthFlowType(..), OauthFlowsType, PasswordPolicyType, ProviderDescription
+    , ProviderDetailsType, ProviderUserIdentifierType, ProvidersListType, ResendConfirmationCodeRequest
+    , ResendConfirmationCodeResponse, ResourceServerScopeListType, ResourceServerScopeType, ResourceServerType
+    , ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse, RiskConfigurationType, RiskDecisionType(..)
+    , RiskExceptionConfigurationType, RiskLevelType(..), SchemaAttributeType, SchemaAttributesListType, ScopeListType
+    , SearchedAttributeNamesListType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
+    , SetUicustomizationResponse, SetUserMfapreferenceRequest, SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest
+    , SetUserPoolMfaConfigResponse, SetUserSettingsRequest, SetUserSettingsResponse, SignUpRequest, SignUpResponse
+    , SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsmfaSettingsType, SoftwareTokenMfaConfigType
+    , SoftwareTokenMfaSettingsType, StartUserImportJobRequest, StartUserImportJobResponse, StatusType(..), StopUserImportJobRequest
+    , StopUserImportJobResponse, StringAttributeConstraintsType, StringType, SupportedIdentityProvidersListType, TagResourceRequest
+    , TagResourceResponse, UicustomizationType, UntagResourceRequest, UntagResourceResponse, UpdateAuthEventFeedbackRequest
+    , UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse, UpdateGroupRequest, UpdateGroupResponse
+    , UpdateIdentityProviderRequest, UpdateIdentityProviderResponse, UpdateResourceServerRequest, UpdateResourceServerResponse
+    , UpdateUserAttributesRequest, UpdateUserAttributesResponse, UpdateUserPoolClientRequest, UpdateUserPoolClientResponse
+    , UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse, UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType
+    , UserImportJobStatusType(..), UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType
+    , UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolListType, UserPoolMfaType(..)
+    , UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType(..), UserType, UsernameAttributeType(..)
+    , UsernameAttributesListType, UsersListType, VerificationMessageTemplateType, VerifiedAttributeType(..), VerifiedAttributesListType
+    , VerifySoftwareTokenRequest, VerifySoftwareTokenResponse, VerifySoftwareTokenResponseType(..), VerifyUserAttributeRequest
+    , VerifyUserAttributeResponse, accountTakeoverEventActionType, adminCreateUserUnusedAccountValidityDaysType
+    , advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType, attributeMappingKeyType, attributeNameType
+    , attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse, clientIdType, clientNameType
+    , clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType, confirmationCodeType
+    , customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType, deviceNameType
+    , deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType, emailNotificationBodyType
+    , emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType, emailVerificationMessageType
+    , emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType, eventResponseType, eventType
+    , explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType, idpIdentifierType
+    , listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey, paginationKeyType
+    , passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
+    , providerNameTypeV1, queryLimit, queryLimitType, redirectUrlType, refreshTokenValidityType, resourceServerIdentifierType
+    , resourceServerNameType, resourceServerScopeDescriptionType, resourceServerScopeNameType, riskDecisionType, riskLevelType
+    , s3BucketType, scopeType, searchPaginationTokenType, secretCodeType, secretHashType, sessionType, smsVerificationMessageType
+    , softwareTokenMfauserCodeType, statusType, tagKeysType, tagValueType, temporaryPasswordValidityDaysType, tokenModelType
+    , userFilterType, userImportJobIdType, userImportJobNameType, userImportJobStatusType, userPoolIdType, userPoolMfaType
+    , userPoolNameType, userStatusType, usernameAttributeType, usernameType, verifiedAttributeType, verifySoftwareTokenResponseType
+    , accountTakeoverActionNotifyTypeCodec, accountTakeoverActionTypeCodec, accountTakeoverActionsTypeCodec
+    , accountTakeoverEventActionTypeCodec, accountTakeoverRiskConfigurationTypeCodec, addCustomAttributesRequestCodec
+    , addCustomAttributesResponseCodec, adminAddUserToGroupRequestCodec, adminConfirmSignUpRequestCodec
+    , adminConfirmSignUpResponseCodec, adminCreateUserConfigTypeCodec, adminCreateUserRequestCodec, adminCreateUserResponseCodec
+    , adminCreateUserUnusedAccountValidityDaysTypeCodec, adminDeleteUserAttributesRequestCodec
+    , adminDeleteUserAttributesResponseCodec, adminDeleteUserRequestCodec, adminDisableProviderForUserRequestCodec
+    , adminDisableProviderForUserResponseCodec, adminDisableUserRequestCodec, adminDisableUserResponseCodec
+    , adminEnableUserRequestCodec, adminEnableUserResponseCodec, adminForgetDeviceRequestCodec, adminGetDeviceRequestCodec
+    , adminGetDeviceResponseCodec, adminGetUserRequestCodec, adminGetUserResponseCodec, adminInitiateAuthRequestCodec
+    , adminInitiateAuthResponseCodec, adminLinkProviderForUserRequestCodec, adminLinkProviderForUserResponseCodec
+    , adminListDevicesRequestCodec, adminListDevicesResponseCodec, adminListGroupsForUserRequestCodec
+    , adminListGroupsForUserResponseCodec, adminListUserAuthEventsRequestCodec, adminListUserAuthEventsResponseCodec
+    , adminRemoveUserFromGroupRequestCodec, adminResetUserPasswordRequestCodec, adminResetUserPasswordResponseCodec
+    , adminRespondToAuthChallengeRequestCodec, adminRespondToAuthChallengeResponseCodec, adminSetUserMfapreferenceRequestCodec
+    , adminSetUserMfapreferenceResponseCodec, adminSetUserPasswordRequestCodec, adminSetUserPasswordResponseCodec
+    , adminSetUserSettingsRequestCodec, adminSetUserSettingsResponseCodec, adminUpdateAuthEventFeedbackRequestCodec
+    , adminUpdateAuthEventFeedbackResponseCodec, adminUpdateDeviceStatusRequestCodec, adminUpdateDeviceStatusResponseCodec
+    , adminUpdateUserAttributesRequestCodec, adminUpdateUserAttributesResponseCodec, adminUserGlobalSignOutRequestCodec
+    , adminUserGlobalSignOutResponseCodec, advancedSecurityModeTypeCodec, aliasAttributeTypeCodec, aliasAttributesListTypeCodec
+    , analyticsConfigurationTypeCodec, analyticsMetadataTypeCodec, arnTypeCodec, associateSoftwareTokenRequestCodec
+    , associateSoftwareTokenResponseCodec, attributeDataTypeCodec, attributeListTypeCodec, attributeMappingKeyTypeCodec
+    , attributeMappingTypeCodec, attributeNameListTypeCodec, attributeNameTypeCodec, attributeTypeCodec, attributeValueTypeCodec
+    , authEventTypeCodec, authEventsTypeCodec, authFlowTypeCodec, authParametersTypeCodec, authenticationResultTypeCodec
+    , awsaccountIdTypeCodec, blockedIprangeListTypeCodec, booleanTypeCodec, callbackUrlsListTypeCodec, challengeNameCodec
+    , challengeNameTypeCodec, challengeParametersTypeCodec, challengeResponseCodec, challengeResponseListTypeCodec
+    , challengeResponseTypeCodec, challengeResponsesTypeCodec, changePasswordRequestCodec, changePasswordResponseCodec
+    , clientIdTypeCodec, clientMetadataTypeCodec, clientNameTypeCodec, clientPermissionListTypeCodec, clientPermissionTypeCodec
+    , clientSecretTypeCodec, codeDeliveryDetailsListTypeCodec, codeDeliveryDetailsTypeCodec, completionMessageTypeCodec
+    , compromisedCredentialsActionsTypeCodec, compromisedCredentialsEventActionTypeCodec
+    , compromisedCredentialsRiskConfigurationTypeCodec, confirmDeviceRequestCodec, confirmDeviceResponseCodec
+    , confirmForgotPasswordRequestCodec, confirmForgotPasswordResponseCodec, confirmSignUpRequestCodec, confirmSignUpResponseCodec
+    , confirmationCodeTypeCodec, contextDataTypeCodec, createGroupRequestCodec, createGroupResponseCodec
+    , createIdentityProviderRequestCodec, createIdentityProviderResponseCodec, createResourceServerRequestCodec
+    , createResourceServerResponseCodec, createUserImportJobRequestCodec, createUserImportJobResponseCodec
+    , createUserPoolClientRequestCodec, createUserPoolClientResponseCodec, createUserPoolDomainRequestCodec
+    , createUserPoolDomainResponseCodec, createUserPoolRequestCodec, createUserPoolResponseCodec, csstypeCodec, cssversionTypeCodec
+    , customAttributeNameTypeCodec, customAttributesListTypeCodec, customDomainConfigTypeCodec, dateTypeCodec
+    , defaultEmailOptionTypeCodec, deleteGroupRequestCodec, deleteIdentityProviderRequestCodec, deleteResourceServerRequestCodec
+    , deleteUserAttributesRequestCodec, deleteUserAttributesResponseCodec, deleteUserPoolClientRequestCodec
+    , deleteUserPoolDomainRequestCodec, deleteUserPoolDomainResponseCodec, deleteUserPoolRequestCodec, deleteUserRequestCodec
+    , deliveryMediumListTypeCodec, deliveryMediumTypeCodec, describeIdentityProviderRequestCodec
+    , describeIdentityProviderResponseCodec, describeResourceServerRequestCodec, describeResourceServerResponseCodec
+    , describeRiskConfigurationRequestCodec, describeRiskConfigurationResponseCodec, describeUserImportJobRequestCodec
+    , describeUserImportJobResponseCodec, describeUserPoolClientRequestCodec, describeUserPoolClientResponseCodec
+    , describeUserPoolDomainRequestCodec, describeUserPoolDomainResponseCodec, describeUserPoolRequestCodec
+    , describeUserPoolResponseCodec, descriptionTypeCodec, deviceConfigurationTypeCodec, deviceKeyTypeCodec, deviceListTypeCodec
+    , deviceNameTypeCodec, deviceRememberedStatusTypeCodec, deviceSecretVerifierConfigTypeCodec, deviceTypeCodec
+    , domainDescriptionTypeCodec, domainStatusTypeCodec, domainTypeCodec, domainVersionTypeCodec, emailAddressTypeCodec
+    , emailConfigurationTypeCodec, emailNotificationBodyTypeCodec, emailNotificationSubjectTypeCodec, emailSendingAccountTypeCodec
+    , emailVerificationMessageByLinkTypeCodec, emailVerificationMessageTypeCodec, emailVerificationSubjectByLinkTypeCodec
+    , emailVerificationSubjectTypeCodec, eventContextDataTypeCodec, eventFeedbackTypeCodec, eventFilterTypeCodec
+    , eventFiltersTypeCodec, eventIdTypeCodec, eventResponseTypeCodec, eventRiskTypeCodec, eventTypeCodec
+    , explicitAuthFlowsListTypeCodec, explicitAuthFlowsTypeCodec, feedbackValueTypeCodec, forceAliasCreationCodec
+    , forgetDeviceRequestCodec, forgotPasswordRequestCodec, forgotPasswordResponseCodec, generateSecretCodec, getCsvheaderRequestCodec
+    , getCsvheaderResponseCodec, getDeviceRequestCodec, getDeviceResponseCodec, getGroupRequestCodec, getGroupResponseCodec
+    , getIdentityProviderByIdentifierRequestCodec, getIdentityProviderByIdentifierResponseCodec, getSigningCertificateRequestCodec
+    , getSigningCertificateResponseCodec, getUicustomizationRequestCodec, getUicustomizationResponseCodec
+    , getUserAttributeVerificationCodeRequestCodec, getUserAttributeVerificationCodeResponseCodec
+    , getUserPoolMfaConfigRequestCodec, getUserPoolMfaConfigResponseCodec, getUserRequestCodec, getUserResponseCodec
+    , globalSignOutRequestCodec, globalSignOutResponseCodec, groupListTypeCodec, groupNameTypeCodec, groupTypeCodec, hexStringTypeCodec
+    , httpHeaderCodec, httpHeaderListCodec, identityProviderTypeCodec, identityProviderTypeTypeCodec, idpIdentifierTypeCodec
+    , idpIdentifiersListTypeCodec, imageFileTypeCodec, imageUrlTypeCodec, initiateAuthRequestCodec, initiateAuthResponseCodec
+    , integerTypeCodec, lambdaConfigTypeCodec, listDevicesRequestCodec, listDevicesResponseCodec, listGroupsRequestCodec
+    , listGroupsResponseCodec, listIdentityProvidersRequestCodec, listIdentityProvidersResponseCodec, listOfStringTypesCodec
+    , listProvidersLimitTypeCodec, listResourceServersLimitTypeCodec, listResourceServersRequestCodec
+    , listResourceServersResponseCodec, listTagsForResourceRequestCodec, listTagsForResourceResponseCodec
+    , listUserImportJobsRequestCodec, listUserImportJobsResponseCodec, listUserPoolClientsRequestCodec
+    , listUserPoolClientsResponseCodec, listUserPoolsRequestCodec, listUserPoolsResponseCodec, listUsersInGroupRequestCodec
+    , listUsersInGroupResponseCodec, listUsersRequestCodec, listUsersResponseCodec, logoutUrlsListTypeCodec, longTypeCodec
+    , messageActionTypeCodec, messageTemplateTypeCodec, mfaoptionListTypeCodec, mfaoptionTypeCodec, newDeviceMetadataTypeCodec
+    , notifyConfigurationTypeCodec, notifyEmailTypeCodec, numberAttributeConstraintsTypeCodec, oauthFlowTypeCodec, oauthFlowsTypeCodec
+    , paginationKeyCodec, paginationKeyTypeCodec, passwordPolicyMinLengthTypeCodec, passwordPolicyTypeCodec, passwordTypeCodec
+    , poolQueryLimitTypeCodec, preSignedUrlTypeCodec, precedenceTypeCodec, providerDescriptionCodec, providerDetailsTypeCodec
+    , providerNameTypeCodec, providerNameTypeV1Codec, providerUserIdentifierTypeCodec, providersListTypeCodec, queryLimitCodec
+    , queryLimitTypeCodec, redirectUrlTypeCodec, refreshTokenValidityTypeCodec, resendConfirmationCodeRequestCodec
+    , resendConfirmationCodeResponseCodec, resourceServerIdentifierTypeCodec, resourceServerNameTypeCodec
+    , resourceServerScopeDescriptionTypeCodec, resourceServerScopeListTypeCodec, resourceServerScopeNameTypeCodec
+    , resourceServerScopeTypeCodec, resourceServerTypeCodec, resourceServersListTypeCodec, respondToAuthChallengeRequestCodec
+    , respondToAuthChallengeResponseCodec, riskConfigurationTypeCodec, riskDecisionTypeCodec, riskExceptionConfigurationTypeCodec
+    , riskLevelTypeCodec, s3BucketTypeCodec, schemaAttributeTypeCodec, schemaAttributesListTypeCodec, scopeListTypeCodec, scopeTypeCodec
+    , searchPaginationTokenTypeCodec, searchedAttributeNamesListTypeCodec, secretCodeTypeCodec, secretHashTypeCodec, sessionTypeCodec
+    , setRiskConfigurationRequestCodec, setRiskConfigurationResponseCodec, setUicustomizationRequestCodec
+    , setUicustomizationResponseCodec, setUserMfapreferenceRequestCodec, setUserMfapreferenceResponseCodec
+    , setUserPoolMfaConfigRequestCodec, setUserPoolMfaConfigResponseCodec, setUserSettingsRequestCodec, setUserSettingsResponseCodec
+    , signUpRequestCodec, signUpResponseCodec, skippedIprangeListTypeCodec, smsConfigurationTypeCodec, smsMfaConfigTypeCodec
+    , smsVerificationMessageTypeCodec, smsmfaSettingsTypeCodec, softwareTokenMfaConfigTypeCodec, softwareTokenMfaSettingsTypeCodec
+    , softwareTokenMfauserCodeTypeCodec, startUserImportJobRequestCodec, startUserImportJobResponseCodec, statusTypeCodec
+    , stopUserImportJobRequestCodec, stopUserImportJobResponseCodec, stringAttributeConstraintsTypeCodec, stringTypeCodec
+    , supportedIdentityProvidersListTypeCodec, tagKeysTypeCodec, tagResourceRequestCodec, tagResourceResponseCodec, tagValueTypeCodec
+    , temporaryPasswordValidityDaysTypeCodec, tokenModelTypeCodec, uicustomizationTypeCodec, untagResourceRequestCodec
+    , untagResourceResponseCodec, updateAuthEventFeedbackRequestCodec, updateAuthEventFeedbackResponseCodec
+    , updateDeviceStatusRequestCodec, updateDeviceStatusResponseCodec, updateGroupRequestCodec, updateGroupResponseCodec
+    , updateIdentityProviderRequestCodec, updateIdentityProviderResponseCodec, updateResourceServerRequestCodec
+    , updateResourceServerResponseCodec, updateUserAttributesRequestCodec, updateUserAttributesResponseCodec
+    , updateUserPoolClientRequestCodec, updateUserPoolClientResponseCodec, updateUserPoolDomainRequestCodec
+    , updateUserPoolDomainResponseCodec, updateUserPoolRequestCodec, updateUserPoolResponseCodec, userContextDataTypeCodec
+    , userFilterTypeCodec, userImportJobIdTypeCodec, userImportJobNameTypeCodec, userImportJobStatusTypeCodec, userImportJobTypeCodec
+    , userImportJobsListTypeCodec, userMfasettingListTypeCodec, userPoolAddOnsTypeCodec, userPoolClientDescriptionCodec
+    , userPoolClientListTypeCodec, userPoolClientTypeCodec, userPoolDescriptionTypeCodec, userPoolIdTypeCodec, userPoolListTypeCodec
+    , userPoolMfaTypeCodec, userPoolNameTypeCodec, userPoolPolicyTypeCodec, userPoolTagsListTypeCodec, userPoolTagsTypeCodec
+    , userPoolTypeCodec, userStatusTypeCodec, userTypeCodec, usernameAttributeTypeCodec, usernameAttributesListTypeCodec
+    , usernameTypeCodec, usersListTypeCodec, verificationMessageTemplateTypeCodec, verifiedAttributeTypeCodec
+    , verifiedAttributesListTypeCodec, verifySoftwareTokenRequestCodec, verifySoftwareTokenResponseCodec
+    , verifySoftwareTokenResponseTypeCodec, verifyUserAttributeRequestCodec, verifyUserAttributeResponseCodec
+    )
 
-{-| <p>Using the Amazon Cognito User Pools API, you can create a user pool to manage directories and users. You can authenticate a user to obtain tokens related to user identity and access policies.</p> <p>This API reference provides information about user pools in Amazon Cognito User Pools.</p> <p>For more information, see the Amazon Cognito Documentation.</p>
+{-| Using the Amazon Cognito User Pools API, you can create a user pool to manage directories and users. You can authenticate a user to obtain tokens related to user identity and access policies.
+
+This API reference provides information about user pools in Amazon Cognito User Pools.
+
+For more information, see the Amazon Cognito Documentation.
+
+
 # Service definition.
+
 @docs service
+
+
 # Service endpoints.
+
 @docs addCustomAttributes, adminAddUserToGroup, adminConfirmSignUp, adminCreateUser, adminDeleteUser, adminDeleteUserAttributes
 @docs adminDisableProviderForUser, adminDisableUser, adminEnableUser, adminForgetDevice, adminGetDevice, adminGetUser, adminInitiateAuth
 @docs adminLinkProviderForUser, adminListDevices, adminListGroupsForUser, adminListUserAuthEvents, adminRemoveUserFromGroup
@@ -21,7 +242,10 @@ module AWS.CognitoIdentityProvider exposing (AccountTakeoverActionNotifyType, Ac
 @docs signUp, startUserImportJob, stopUserImportJob, tagResource, untagResource, updateAuthEventFeedback, updateDeviceStatus, updateGroup
 @docs updateIdentityProvider, updateResourceServer, updateUserAttributes, updateUserPool, updateUserPoolClient, updateUserPoolDomain
 @docs verifySoftwareToken, verifyUserAttribute
+
+
 # API data model.
+
 @docs AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType
 @docs AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest
 @docs AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest
@@ -110,7 +334,10 @@ module AWS.CognitoIdentityProvider exposing (AccountTakeoverActionNotifyType, Ac
 @docs softwareTokenMfauserCodeType, statusType, tagKeysType, tagValueType, temporaryPasswordValidityDaysType, tokenModelType
 @docs userFilterType, userImportJobIdType, userImportJobNameType, userImportJobStatusType, userPoolIdType, userPoolMfaType
 @docs userPoolNameType, userStatusType, usernameAttributeType, usernameType, verifiedAttributeType, verifySoftwareTokenResponseType
+
+
 # Codecs for the data model.
+
 @docs accountTakeoverActionNotifyTypeCodec, accountTakeoverActionTypeCodec, accountTakeoverActionsTypeCodec
 @docs accountTakeoverEventActionTypeCodec, accountTakeoverRiskConfigurationTypeCodec, addCustomAttributesRequestCodec
 @docs addCustomAttributesResponseCodec, adminAddUserToGroupRequestCodec, adminConfirmSignUpRequestCodec
@@ -215,6 +442,7 @@ module AWS.CognitoIdentityProvider exposing (AccountTakeoverActionNotifyType, Ac
 @docs usernameTypeCodec, usersListTypeCodec, verificationMessageTemplateTypeCodec, verifiedAttributeTypeCodec
 @docs verifiedAttributesListTypeCodec, verifySoftwareTokenRequestCodec, verifySoftwareTokenResponseCodec
 @docs verifySoftwareTokenResponseTypeCodec, verifyUserAttributeRequestCodec, verifyUserAttributeResponseCodec
+
 -}
 
 import AWS.Core.Decode
@@ -241,7 +469,7 @@ service =
     AWS.Core.Service.defineRegional "cognito-idp" "2016-04-18" AWS.Core.Service.JSON AWS.Core.Service.SignV4 optionsFn
 
 
-{-| <p>Verifies the specified user attributes in the user pool.</p>
+{-| Verifies the specified user attributes in the user pool.
 -}
 verifyUserAttribute : VerifyUserAttributeRequest -> AWS.Core.Http.Request VerifyUserAttributeResponse
 verifyUserAttribute req =
@@ -255,7 +483,7 @@ verifyUserAttribute req =
     AWS.Core.Http.request "VerifyUserAttribute" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Use this API to register a user's entered TOTP code and mark the user's software token MFA status as "verified" if successful. The request takes an access token or a session string, but not both.</p>
+{-| Use this API to register a user's entered TOTP code and mark the user's software token MFA status as "verified" if successful. The request takes an access token or a session string, but not both.
 -}
 verifySoftwareToken : VerifySoftwareTokenRequest -> AWS.Core.Http.Request VerifySoftwareTokenResponse
 verifySoftwareToken req =
@@ -269,7 +497,24 @@ verifySoftwareToken req =
     AWS.Core.Http.request "VerifySoftwareToken" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.</p> <p>You can use this operation to provide the Amazon Resource Name (ARN) of a new certificate to Amazon Cognito. You cannot use it to change the domain for a user pool.</p> <p>A custom domain is used to host the Amazon Cognito hosted UI, which provides sign-up and sign-in pages for your application. When you set up a custom domain, you provide a certificate that you manage with AWS Certificate Manager (ACM). When necessary, you can use this operation to change the certificate that you applied to your custom domain.</p> <p>Usually, this is unnecessary following routine certificate renewal with ACM. When you renew your existing certificate in ACM, the ARN for your certificate remains the same, and your custom domain uses the new certificate automatically.</p> <p>However, if you replace your existing certificate with a new one, ACM gives the new certificate a new ARN. To apply the new certificate to your custom domain, you must provide this ARN to Amazon Cognito.</p> <p>When you add your new certificate in ACM, you must choose US East (N. Virginia) as the AWS Region.</p> <p>After you submit your request, Amazon Cognito requires up to 1 hour to distribute your new certificate to your custom domain.</p> <p>For more information about adding a custom domain to your user pool, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html">Using Your Own Domain for the Hosted UI</a>.</p>
+{-| Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
+
+You can use this operation to provide the Amazon Resource Name (ARN) of a new certificate to Amazon Cognito. You cannot use it to change the domain for a user pool.
+
+A custom domain is used to host the Amazon Cognito hosted UI, which provides sign-up and sign-in pages for your application. When you set up a custom domain, you provide a certificate that you manage with AWS Certificate Manager (ACM). When necessary, you can use this operation to change the certificate that you applied to your custom domain.
+
+Usually, this is unnecessary following routine certificate renewal with ACM. When you renew your existing certificate in ACM, the ARN for your certificate remains the same, and your custom domain uses the new certificate automatically.
+
+However, if you replace your existing certificate with a new one, ACM gives the new certificate a new ARN. To apply the new certificate to your custom domain, you must provide this ARN to Amazon Cognito.
+
+When you add your new certificate in ACM, you must choose US East (N. Virginia) as the AWS Region.
+
+After you submit your request, Amazon Cognito requires up to 1 hour to distribute your new certificate to your custom domain.
+
+For more information about adding a custom domain to your user pool, see
+Using Your Own Domain for the Hosted UI
+.
+
 -}
 updateUserPoolDomain : UpdateUserPoolDomainRequest -> AWS.Core.Http.Request UpdateUserPoolDomainResponse
 updateUserPoolDomain req =
@@ -283,7 +528,7 @@ updateUserPoolDomain req =
     AWS.Core.Http.request "UpdateUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the specified user pool app client with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool app client settings with .</p>
+{-| Updates the specified user pool app client with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool app client settings with .
 -}
 updateUserPoolClient : UpdateUserPoolClientRequest -> AWS.Core.Http.Request UpdateUserPoolClientResponse
 updateUserPoolClient req =
@@ -297,7 +542,7 @@ updateUserPoolClient req =
     AWS.Core.Http.request "UpdateUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the specified user pool with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool settings with .</p>
+{-| Updates the specified user pool with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool settings with .
 -}
 updateUserPool : UpdateUserPoolRequest -> AWS.Core.Http.Request UpdateUserPoolResponse
 updateUserPool req =
@@ -311,7 +556,7 @@ updateUserPool req =
     AWS.Core.Http.request "UpdateUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Allows a user to update a specific attribute (one at a time).</p>
+{-| Allows a user to update a specific attribute (one at a time).
 -}
 updateUserAttributes : UpdateUserAttributesRequest -> AWS.Core.Http.Request UpdateUserAttributesResponse
 updateUserAttributes req =
@@ -325,7 +570,7 @@ updateUserAttributes req =
     AWS.Core.Http.request "UpdateUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the name and scopes of resource server. All other fields are read-only.</p>
+{-| Updates the name and scopes of resource server. All other fields are read-only.
 -}
 updateResourceServer : UpdateResourceServerRequest -> AWS.Core.Http.Request UpdateResourceServerResponse
 updateResourceServer req =
@@ -339,7 +584,7 @@ updateResourceServer req =
     AWS.Core.Http.request "UpdateResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates identity provider information for a user pool.</p>
+{-| Updates identity provider information for a user pool.
 -}
 updateIdentityProvider : UpdateIdentityProviderRequest -> AWS.Core.Http.Request UpdateIdentityProviderResponse
 updateIdentityProvider req =
@@ -353,7 +598,10 @@ updateIdentityProvider req =
     AWS.Core.Http.request "UpdateIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the specified group with the specified attributes.</p> <p>Requires developer credentials.</p>
+{-| Updates the specified group with the specified attributes.
+
+Requires developer credentials.
+
 -}
 updateGroup : UpdateGroupRequest -> AWS.Core.Http.Request UpdateGroupResponse
 updateGroup req =
@@ -367,7 +615,7 @@ updateGroup req =
     AWS.Core.Http.request "UpdateGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the device status.</p>
+{-| Updates the device status.
 -}
 updateDeviceStatus : UpdateDeviceStatusRequest -> AWS.Core.Http.Request UpdateDeviceStatusResponse
 updateDeviceStatus req =
@@ -381,7 +629,7 @@ updateDeviceStatus req =
     AWS.Core.Http.request "UpdateDeviceStatus" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Provides the feedback for an authentication event whether it was from a valid user or not. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.</p>
+{-| Provides the feedback for an authentication event whether it was from a valid user or not. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
 -}
 updateAuthEventFeedback : UpdateAuthEventFeedbackRequest -> AWS.Core.Http.Request UpdateAuthEventFeedbackResponse
 updateAuthEventFeedback req =
@@ -395,7 +643,7 @@ updateAuthEventFeedback req =
     AWS.Core.Http.request "UpdateAuthEventFeedback" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second, per account</p>
+{-| Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second, per account
 -}
 untagResource : UntagResourceRequest -> AWS.Core.Http.Request UntagResourceResponse
 untagResource req =
@@ -409,7 +657,20 @@ untagResource req =
     AWS.Core.Http.request "UntagResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.</p> <p>Each tag consists of a key and value, both of which you define. A key is a general category for more specific values. For example, if you have two versions of a user pool, one for testing and another for production, you might assign an <code>Environment</code> tag key to both user pools. The value of this key might be <code>Test</code> for one user pool and <code>Production</code> for the other.</p> <p>Tags are useful for cost tracking and access control. You can activate your tags so that they appear on the Billing and Cost Management console, where you can track the costs associated with your user pools. In an IAM policy, you can constrain permissions for user pools based on specific tags or tag values.</p> <p>You can use this action up to 5 times per second, per account. A user pool can have as many as 50 tags.</p>
+{-| Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.
+
+Each tag consists of a key and value, both of which you define. A key is a general category for more specific values. For example, if you have two versions of a user pool, one for testing and another for production, you might assign an
+Environment
+tag key to both user pools. The value of this key might be
+Test
+for one user pool and
+Production
+for the other.
+
+Tags are useful for cost tracking and access control. You can activate your tags so that they appear on the Billing and Cost Management console, where you can track the costs associated with your user pools. In an IAM policy, you can constrain permissions for user pools based on specific tags or tag values.
+
+You can use this action up to 5 times per second, per account. A user pool can have as many as 50 tags.
+
 -}
 tagResource : TagResourceRequest -> AWS.Core.Http.Request TagResourceResponse
 tagResource req =
@@ -423,7 +684,7 @@ tagResource req =
     AWS.Core.Http.request "TagResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Stops the user import job.</p>
+{-| Stops the user import job.
 -}
 stopUserImportJob : StopUserImportJobRequest -> AWS.Core.Http.Request StopUserImportJobResponse
 stopUserImportJob req =
@@ -437,7 +698,7 @@ stopUserImportJob req =
     AWS.Core.Http.request "StopUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Starts the user import.</p>
+{-| Starts the user import.
 -}
 startUserImportJob : StartUserImportJobRequest -> AWS.Core.Http.Request StartUserImportJobResponse
 startUserImportJob req =
@@ -451,7 +712,7 @@ startUserImportJob req =
     AWS.Core.Http.request "StartUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Registers the user in the specified user pool and creates a user name, password, and user attributes.</p>
+{-| Registers the user in the specified user pool and creates a user name, password, and user attributes.
 -}
 signUp : SignUpRequest -> AWS.Core.Http.Request SignUpResponse
 signUp req =
@@ -465,7 +726,7 @@ signUp req =
     AWS.Core.Http.request "SignUp" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Sets the user settings like multi-factor authentication (MFA). If MFA is to be removed for a particular attribute pass the attribute with code delivery as null. If null list is passed, all MFA options are removed.</p>
+{-| Sets the user settings like multi-factor authentication (MFA). If MFA is to be removed for a particular attribute pass the attribute with code delivery as null. If null list is passed, all MFA options are removed.
 -}
 setUserSettings : SetUserSettingsRequest -> AWS.Core.Http.Request SetUserSettingsResponse
 setUserSettings req =
@@ -479,7 +740,7 @@ setUserSettings req =
     AWS.Core.Http.request "SetUserSettings" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Set the user pool MFA configuration.</p>
+{-| Set the user pool MFA configuration.
 -}
 setUserPoolMfaConfig : SetUserPoolMfaConfigRequest -> AWS.Core.Http.Request SetUserPoolMfaConfigResponse
 setUserPoolMfaConfig req =
@@ -493,7 +754,7 @@ setUserPoolMfaConfig req =
     AWS.Core.Http.request "SetUserPoolMfaConfig" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Set the user's multi-factor authentication (MFA) method preference.</p>
+{-| Set the user's multi-factor authentication (MFA) method preference.
 -}
 setUserMfapreference : SetUserMfapreferenceRequest -> AWS.Core.Http.Request SetUserMfapreferenceResponse
 setUserMfapreference req =
@@ -507,7 +768,22 @@ setUserMfapreference req =
     AWS.Core.Http.request "SetUserMfapreference" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Sets the UI customization information for a user pool's built-in app UI.</p> <p>You can specify app UI customization settings for a single client (with a specific <code>clientId</code>) or for all clients (by setting the <code>clientId</code> to <code>ALL</code>). If you specify <code>ALL</code>, the default configuration will be used for every client that has no UI customization set previously. If you specify UI customization settings for a particular client, it will no longer fall back to the <code>ALL</code> configuration. </p> <note> <p>To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the app's pages, and the service will throw an error.</p> </note>
+{-| Sets the UI customization information for a user pool's built-in app UI.
+
+You can specify app UI customization settings for a single client (with a specific
+clientId
+) or for all clients (by setting the
+clientId
+to
+ALL
+). If you specify
+ALL
+, the default configuration will be used for every client that has no UI customization set previously. If you specify UI customization settings for a particular client, it will no longer fall back to the
+ALL
+configuration.
+
+To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the app's pages, and the service will throw an error.
+
 -}
 setUicustomization : SetUicustomizationRequest -> AWS.Core.Http.Request SetUicustomizationResponse
 setUicustomization req =
@@ -521,7 +797,20 @@ setUicustomization req =
     AWS.Core.Http.request "SetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Configures actions on detected risks. To delete the risk configuration for <code>UserPoolId</code> or <code>ClientId</code>, pass null values for all four configuration types.</p> <p>To enable Amazon Cognito advanced security features, update the user pool to include the <code>UserPoolAddOns</code> key<code>AdvancedSecurityMode</code>.</p> <p>See .</p>
+{-| Configures actions on detected risks. To delete the risk configuration for
+UserPoolId
+or
+ClientId
+, pass null values for all four configuration types.
+
+To enable Amazon Cognito advanced security features, update the user pool to include the
+UserPoolAddOns
+key
+AdvancedSecurityMode
+.
+
+See .
+
 -}
 setRiskConfiguration : SetRiskConfigurationRequest -> AWS.Core.Http.Request SetRiskConfigurationResponse
 setRiskConfiguration req =
@@ -535,7 +824,7 @@ setRiskConfiguration req =
     AWS.Core.Http.request "SetRiskConfiguration" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Responds to the authentication challenge.</p>
+{-| Responds to the authentication challenge.
 -}
 respondToAuthChallenge : RespondToAuthChallengeRequest -> AWS.Core.Http.Request RespondToAuthChallengeResponse
 respondToAuthChallenge req =
@@ -549,7 +838,7 @@ respondToAuthChallenge req =
     AWS.Core.Http.request "RespondToAuthChallenge" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Resends the confirmation (for confirmation of registration) to a specific user in the user pool.</p>
+{-| Resends the confirmation (for confirmation of registration) to a specific user in the user pool.
 -}
 resendConfirmationCode : ResendConfirmationCodeRequest -> AWS.Core.Http.Request ResendConfirmationCodeResponse
 resendConfirmationCode req =
@@ -563,7 +852,10 @@ resendConfirmationCode req =
     AWS.Core.Http.request "ResendConfirmationCode" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the users in the specified group.</p> <p>Requires developer credentials.</p>
+{-| Lists the users in the specified group.
+
+Requires developer credentials.
+
 -}
 listUsersInGroup : ListUsersInGroupRequest -> AWS.Core.Http.Request ListUsersInGroupResponse
 listUsersInGroup req =
@@ -577,7 +869,7 @@ listUsersInGroup req =
     AWS.Core.Http.request "ListUsersInGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the users in the Amazon Cognito user pool.</p>
+{-| Lists the users in the Amazon Cognito user pool.
 -}
 listUsers : ListUsersRequest -> AWS.Core.Http.Request ListUsersResponse
 listUsers req =
@@ -591,7 +883,7 @@ listUsers req =
     AWS.Core.Http.request "ListUsers" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the user pools associated with an AWS account.</p>
+{-| Lists the user pools associated with an AWS account.
 -}
 listUserPools : ListUserPoolsRequest -> AWS.Core.Http.Request ListUserPoolsResponse
 listUserPools req =
@@ -605,7 +897,7 @@ listUserPools req =
     AWS.Core.Http.request "ListUserPools" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the clients that have been created for the specified user pool.</p>
+{-| Lists the clients that have been created for the specified user pool.
 -}
 listUserPoolClients : ListUserPoolClientsRequest -> AWS.Core.Http.Request ListUserPoolClientsResponse
 listUserPoolClients req =
@@ -619,7 +911,7 @@ listUserPoolClients req =
     AWS.Core.Http.request "ListUserPoolClients" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the user import jobs.</p>
+{-| Lists the user import jobs.
 -}
 listUserImportJobs : ListUserImportJobsRequest -> AWS.Core.Http.Request ListUserImportJobsResponse
 listUserImportJobs req =
@@ -633,7 +925,12 @@ listUserImportJobs req =
     AWS.Core.Http.request "ListUserImportJobs" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the tags that are assigned to an Amazon Cognito user pool.</p> <p>A tag is a label that you can apply to user pools to categorize and manage them in different ways, such as by purpose, owner, environment, or other criteria.</p> <p>You can use this action up to 10 times per second, per account.</p>
+{-| Lists the tags that are assigned to an Amazon Cognito user pool.
+
+A tag is a label that you can apply to user pools to categorize and manage them in different ways, such as by purpose, owner, environment, or other criteria.
+
+You can use this action up to 10 times per second, per account.
+
 -}
 listTagsForResource : ListTagsForResourceRequest -> AWS.Core.Http.Request ListTagsForResourceResponse
 listTagsForResource req =
@@ -647,7 +944,7 @@ listTagsForResource req =
     AWS.Core.Http.request "ListTagsForResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the resource servers for a user pool.</p>
+{-| Lists the resource servers for a user pool.
 -}
 listResourceServers : ListResourceServersRequest -> AWS.Core.Http.Request ListResourceServersResponse
 listResourceServers req =
@@ -661,7 +958,7 @@ listResourceServers req =
     AWS.Core.Http.request "ListResourceServers" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists information about all identity providers for a user pool.</p>
+{-| Lists information about all identity providers for a user pool.
 -}
 listIdentityProviders : ListIdentityProvidersRequest -> AWS.Core.Http.Request ListIdentityProvidersResponse
 listIdentityProviders req =
@@ -675,7 +972,10 @@ listIdentityProviders req =
     AWS.Core.Http.request "ListIdentityProviders" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the groups associated with a user pool.</p> <p>Requires developer credentials.</p>
+{-| Lists the groups associated with a user pool.
+
+Requires developer credentials.
+
 -}
 listGroups : ListGroupsRequest -> AWS.Core.Http.Request ListGroupsResponse
 listGroups req =
@@ -689,7 +989,7 @@ listGroups req =
     AWS.Core.Http.request "ListGroups" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the devices.</p>
+{-| Lists the devices.
 -}
 listDevices : ListDevicesRequest -> AWS.Core.Http.Request ListDevicesResponse
 listDevices req =
@@ -703,7 +1003,7 @@ listDevices req =
     AWS.Core.Http.request "ListDevices" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Initiates the authentication flow.</p>
+{-| Initiates the authentication flow.
 -}
 initiateAuth : InitiateAuthRequest -> AWS.Core.Http.Request InitiateAuthResponse
 initiateAuth req =
@@ -717,7 +1017,7 @@ initiateAuth req =
     AWS.Core.Http.request "InitiateAuth" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Signs out users from all devices.</p>
+{-| Signs out users from all devices.
 -}
 globalSignOut : GlobalSignOutRequest -> AWS.Core.Http.Request GlobalSignOutResponse
 globalSignOut req =
@@ -731,7 +1031,7 @@ globalSignOut req =
     AWS.Core.Http.request "GlobalSignOut" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the user pool multi-factor authentication (MFA) configuration.</p>
+{-| Gets the user pool multi-factor authentication (MFA) configuration.
 -}
 getUserPoolMfaConfig : GetUserPoolMfaConfigRequest -> AWS.Core.Http.Request GetUserPoolMfaConfigResponse
 getUserPoolMfaConfig req =
@@ -745,10 +1045,9 @@ getUserPoolMfaConfig req =
     AWS.Core.Http.request "GetUserPoolMfaConfig" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the user attribute verification code for the specified attribute name.</p>
+{-| Gets the user attribute verification code for the specified attribute name.
 -}
-getUserAttributeVerificationCode :
-    GetUserAttributeVerificationCodeRequest -> AWS.Core.Http.Request GetUserAttributeVerificationCodeResponse
+getUserAttributeVerificationCode : GetUserAttributeVerificationCodeRequest -> AWS.Core.Http.Request GetUserAttributeVerificationCodeResponse
 getUserAttributeVerificationCode req =
     let
         jsonBody =
@@ -760,7 +1059,7 @@ getUserAttributeVerificationCode req =
     AWS.Core.Http.request "GetUserAttributeVerificationCode" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the user attributes and metadata for a user.</p>
+{-| Gets the user attributes and metadata for a user.
 -}
 getUser : GetUserRequest -> AWS.Core.Http.Request GetUserResponse
 getUser req =
@@ -774,7 +1073,11 @@ getUser req =
     AWS.Core.Http.request "GetUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app <code>clientId</code> will be <code>ALL</code>), then that is returned. If nothing is present, then an empty shape is returned.</p>
+{-| Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app
+clientId
+will be
+ALL
+), then that is returned. If nothing is present, then an empty shape is returned.
 -}
 getUicustomization : GetUicustomizationRequest -> AWS.Core.Http.Request GetUicustomizationResponse
 getUicustomization req =
@@ -788,7 +1091,7 @@ getUicustomization req =
     AWS.Core.Http.request "GetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>This method takes a user pool ID, and returns the signing certificate.</p>
+{-| This method takes a user pool ID, and returns the signing certificate.
 -}
 getSigningCertificate : GetSigningCertificateRequest -> AWS.Core.Http.Request GetSigningCertificateResponse
 getSigningCertificate req =
@@ -802,10 +1105,9 @@ getSigningCertificate req =
     AWS.Core.Http.request "GetSigningCertificate" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the specified identity provider.</p>
+{-| Gets the specified identity provider.
 -}
-getIdentityProviderByIdentifier :
-    GetIdentityProviderByIdentifierRequest -> AWS.Core.Http.Request GetIdentityProviderByIdentifierResponse
+getIdentityProviderByIdentifier : GetIdentityProviderByIdentifierRequest -> AWS.Core.Http.Request GetIdentityProviderByIdentifierResponse
 getIdentityProviderByIdentifier req =
     let
         jsonBody =
@@ -817,7 +1119,10 @@ getIdentityProviderByIdentifier req =
     AWS.Core.Http.request "GetIdentityProviderByIdentifier" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets a group.</p> <p>Requires developer credentials.</p>
+{-| Gets a group.
+
+Requires developer credentials.
+
 -}
 getGroup : GetGroupRequest -> AWS.Core.Http.Request GetGroupResponse
 getGroup req =
@@ -831,7 +1136,7 @@ getGroup req =
     AWS.Core.Http.request "GetGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the device.</p>
+{-| Gets the device.
 -}
 getDevice : GetDeviceRequest -> AWS.Core.Http.Request GetDeviceResponse
 getDevice req =
@@ -845,7 +1150,7 @@ getDevice req =
     AWS.Core.Http.request "GetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the header information for the .csv file to be used as input for the user import job.</p>
+{-| Gets the header information for the .csv file to be used as input for the user import job.
 -}
 getCsvheader : GetCsvheaderRequest -> AWS.Core.Http.Request GetCsvheaderResponse
 getCsvheader req =
@@ -859,7 +1164,11 @@ getCsvheader req =
     AWS.Core.Http.request "GetCsvheader" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the <code>Username</code> parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists, <code>InvalidParameterException</code> is thrown. To use the confirmation code for resetting the password, call .</p>
+{-| Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the
+Username
+parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists,
+InvalidParameterException
+is thrown. To use the confirmation code for resetting the password, call .
 -}
 forgotPassword : ForgotPasswordRequest -> AWS.Core.Http.Request ForgotPasswordResponse
 forgotPassword req =
@@ -873,7 +1182,7 @@ forgotPassword req =
     AWS.Core.Http.request "ForgotPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Forgets the specified device.</p>
+{-| Forgets the specified device.
 -}
 forgetDevice : ForgetDeviceRequest -> AWS.Core.Http.Request ()
 forgetDevice req =
@@ -887,7 +1196,7 @@ forgetDevice req =
     AWS.Core.Http.request "ForgetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets information about a domain.</p>
+{-| Gets information about a domain.
 -}
 describeUserPoolDomain : DescribeUserPoolDomainRequest -> AWS.Core.Http.Request DescribeUserPoolDomainResponse
 describeUserPoolDomain req =
@@ -901,7 +1210,7 @@ describeUserPoolDomain req =
     AWS.Core.Http.request "DescribeUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Client method for returning the configuration information and metadata of the specified user pool app client.</p>
+{-| Client method for returning the configuration information and metadata of the specified user pool app client.
 -}
 describeUserPoolClient : DescribeUserPoolClientRequest -> AWS.Core.Http.Request DescribeUserPoolClientResponse
 describeUserPoolClient req =
@@ -915,7 +1224,7 @@ describeUserPoolClient req =
     AWS.Core.Http.request "DescribeUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Returns the configuration information and metadata of the specified user pool.</p>
+{-| Returns the configuration information and metadata of the specified user pool.
 -}
 describeUserPool : DescribeUserPoolRequest -> AWS.Core.Http.Request DescribeUserPoolResponse
 describeUserPool req =
@@ -929,7 +1238,7 @@ describeUserPool req =
     AWS.Core.Http.request "DescribeUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Describes the user import job.</p>
+{-| Describes the user import job.
 -}
 describeUserImportJob : DescribeUserImportJobRequest -> AWS.Core.Http.Request DescribeUserImportJobResponse
 describeUserImportJob req =
@@ -943,7 +1252,7 @@ describeUserImportJob req =
     AWS.Core.Http.request "DescribeUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Describes the risk configuration.</p>
+{-| Describes the risk configuration.
 -}
 describeRiskConfiguration : DescribeRiskConfigurationRequest -> AWS.Core.Http.Request DescribeRiskConfigurationResponse
 describeRiskConfiguration req =
@@ -957,7 +1266,7 @@ describeRiskConfiguration req =
     AWS.Core.Http.request "DescribeRiskConfiguration" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Describes a resource server.</p>
+{-| Describes a resource server.
 -}
 describeResourceServer : DescribeResourceServerRequest -> AWS.Core.Http.Request DescribeResourceServerResponse
 describeResourceServer req =
@@ -971,7 +1280,7 @@ describeResourceServer req =
     AWS.Core.Http.request "DescribeResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets information about a specific identity provider.</p>
+{-| Gets information about a specific identity provider.
 -}
 describeIdentityProvider : DescribeIdentityProviderRequest -> AWS.Core.Http.Request DescribeIdentityProviderResponse
 describeIdentityProvider req =
@@ -985,7 +1294,7 @@ describeIdentityProvider req =
     AWS.Core.Http.request "DescribeIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes a domain for a user pool.</p>
+{-| Deletes a domain for a user pool.
 -}
 deleteUserPoolDomain : DeleteUserPoolDomainRequest -> AWS.Core.Http.Request DeleteUserPoolDomainResponse
 deleteUserPoolDomain req =
@@ -999,7 +1308,7 @@ deleteUserPoolDomain req =
     AWS.Core.Http.request "DeleteUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Allows the developer to delete the user pool client.</p>
+{-| Allows the developer to delete the user pool client.
 -}
 deleteUserPoolClient : DeleteUserPoolClientRequest -> AWS.Core.Http.Request ()
 deleteUserPoolClient req =
@@ -1013,7 +1322,7 @@ deleteUserPoolClient req =
     AWS.Core.Http.request "DeleteUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes the specified Amazon Cognito user pool.</p>
+{-| Deletes the specified Amazon Cognito user pool.
 -}
 deleteUserPool : DeleteUserPoolRequest -> AWS.Core.Http.Request ()
 deleteUserPool req =
@@ -1027,7 +1336,7 @@ deleteUserPool req =
     AWS.Core.Http.request "DeleteUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes the attributes for a user.</p>
+{-| Deletes the attributes for a user.
 -}
 deleteUserAttributes : DeleteUserAttributesRequest -> AWS.Core.Http.Request DeleteUserAttributesResponse
 deleteUserAttributes req =
@@ -1041,7 +1350,7 @@ deleteUserAttributes req =
     AWS.Core.Http.request "DeleteUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Allows a user to delete himself or herself.</p>
+{-| Allows a user to delete himself or herself.
 -}
 deleteUser : DeleteUserRequest -> AWS.Core.Http.Request ()
 deleteUser req =
@@ -1055,7 +1364,7 @@ deleteUser req =
     AWS.Core.Http.request "DeleteUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes a resource server.</p>
+{-| Deletes a resource server.
 -}
 deleteResourceServer : DeleteResourceServerRequest -> AWS.Core.Http.Request ()
 deleteResourceServer req =
@@ -1069,7 +1378,7 @@ deleteResourceServer req =
     AWS.Core.Http.request "DeleteResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes an identity provider for a user pool.</p>
+{-| Deletes an identity provider for a user pool.
 -}
 deleteIdentityProvider : DeleteIdentityProviderRequest -> AWS.Core.Http.Request ()
 deleteIdentityProvider req =
@@ -1083,7 +1392,10 @@ deleteIdentityProvider req =
     AWS.Core.Http.request "DeleteIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes a group. Currently only groups with no members can be deleted.</p> <p>Requires developer credentials.</p>
+{-| Deletes a group. Currently only groups with no members can be deleted.
+
+Requires developer credentials.
+
 -}
 deleteGroup : DeleteGroupRequest -> AWS.Core.Http.Request ()
 deleteGroup req =
@@ -1097,7 +1409,7 @@ deleteGroup req =
     AWS.Core.Http.request "DeleteGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates a new domain for a user pool.</p>
+{-| Creates a new domain for a user pool.
 -}
 createUserPoolDomain : CreateUserPoolDomainRequest -> AWS.Core.Http.Request CreateUserPoolDomainResponse
 createUserPoolDomain req =
@@ -1111,7 +1423,7 @@ createUserPoolDomain req =
     AWS.Core.Http.request "CreateUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates the user pool client.</p>
+{-| Creates the user pool client.
 -}
 createUserPoolClient : CreateUserPoolClientRequest -> AWS.Core.Http.Request CreateUserPoolClientResponse
 createUserPoolClient req =
@@ -1125,7 +1437,7 @@ createUserPoolClient req =
     AWS.Core.Http.request "CreateUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates a new Amazon Cognito user pool and sets the password policy for the pool.</p>
+{-| Creates a new Amazon Cognito user pool and sets the password policy for the pool.
 -}
 createUserPool : CreateUserPoolRequest -> AWS.Core.Http.Request CreateUserPoolResponse
 createUserPool req =
@@ -1139,7 +1451,7 @@ createUserPool req =
     AWS.Core.Http.request "CreateUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates the user import job.</p>
+{-| Creates the user import job.
 -}
 createUserImportJob : CreateUserImportJobRequest -> AWS.Core.Http.Request CreateUserImportJobResponse
 createUserImportJob req =
@@ -1153,7 +1465,7 @@ createUserImportJob req =
     AWS.Core.Http.request "CreateUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates a new OAuth2.0 resource server and defines custom scopes in it.</p>
+{-| Creates a new OAuth2.0 resource server and defines custom scopes in it.
 -}
 createResourceServer : CreateResourceServerRequest -> AWS.Core.Http.Request CreateResourceServerResponse
 createResourceServer req =
@@ -1167,7 +1479,7 @@ createResourceServer req =
     AWS.Core.Http.request "CreateResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates an identity provider for a user pool.</p>
+{-| Creates an identity provider for a user pool.
 -}
 createIdentityProvider : CreateIdentityProviderRequest -> AWS.Core.Http.Request CreateIdentityProviderResponse
 createIdentityProvider req =
@@ -1181,7 +1493,10 @@ createIdentityProvider req =
     AWS.Core.Http.request "CreateIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates a new group in the specified user pool.</p> <p>Requires developer credentials.</p>
+{-| Creates a new group in the specified user pool.
+
+Requires developer credentials.
+
 -}
 createGroup : CreateGroupRequest -> AWS.Core.Http.Request CreateGroupResponse
 createGroup req =
@@ -1195,7 +1510,7 @@ createGroup req =
     AWS.Core.Http.request "CreateGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Confirms registration of a user and handles the existing alias from a previous user.</p>
+{-| Confirms registration of a user and handles the existing alias from a previous user.
 -}
 confirmSignUp : ConfirmSignUpRequest -> AWS.Core.Http.Request ConfirmSignUpResponse
 confirmSignUp req =
@@ -1209,7 +1524,7 @@ confirmSignUp req =
     AWS.Core.Http.request "ConfirmSignUp" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Allows a user to enter a confirmation code to reset a forgotten password.</p>
+{-| Allows a user to enter a confirmation code to reset a forgotten password.
 -}
 confirmForgotPassword : ConfirmForgotPasswordRequest -> AWS.Core.Http.Request ConfirmForgotPasswordResponse
 confirmForgotPassword req =
@@ -1223,7 +1538,7 @@ confirmForgotPassword req =
     AWS.Core.Http.request "ConfirmForgotPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Confirms tracking of the device. This API call is the call that begins device tracking.</p>
+{-| Confirms tracking of the device. This API call is the call that begins device tracking.
 -}
 confirmDevice : ConfirmDeviceRequest -> AWS.Core.Http.Request ConfirmDeviceResponse
 confirmDevice req =
@@ -1237,7 +1552,7 @@ confirmDevice req =
     AWS.Core.Http.request "ConfirmDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Changes the password for a specified user in a user pool.</p>
+{-| Changes the password for a specified user in a user pool.
 -}
 changePassword : ChangePasswordRequest -> AWS.Core.Http.Request ChangePasswordResponse
 changePassword req =
@@ -1251,7 +1566,7 @@ changePassword req =
     AWS.Core.Http.request "ChangePassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Returns a unique generated shared secret key code for the user account. The request takes an access token or a session string, but not both.</p>
+{-| Returns a unique generated shared secret key code for the user account. The request takes an access token or a session string, but not both.
 -}
 associateSoftwareToken : AssociateSoftwareTokenRequest -> AWS.Core.Http.Request AssociateSoftwareTokenResponse
 associateSoftwareToken req =
@@ -1265,7 +1580,10 @@ associateSoftwareToken req =
     AWS.Core.Http.request "AssociateSoftwareToken" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Signs out users from all devices, as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Signs out users from all devices, as an administrator.
+
+Requires developer credentials.
+
 -}
 adminUserGlobalSignOut : AdminUserGlobalSignOutRequest -> AWS.Core.Http.Request AdminUserGlobalSignOutResponse
 adminUserGlobalSignOut req =
@@ -1279,7 +1597,16 @@ adminUserGlobalSignOut req =
     AWS.Core.Http.request "AdminUserGlobalSignOut" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.</p> <p>For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute name.</p> <p>In addition to updating user attributes, this API can also be used to mark phone and email as verified.</p> <p>Requires developer credentials.</p>
+{-| Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
+
+For custom attributes, you must prepend the
+custom:
+prefix to the attribute name.
+
+In addition to updating user attributes, this API can also be used to mark phone and email as verified.
+
+Requires developer credentials.
+
 -}
 adminUpdateUserAttributes : AdminUpdateUserAttributesRequest -> AWS.Core.Http.Request AdminUpdateUserAttributesResponse
 adminUpdateUserAttributes req =
@@ -1293,7 +1620,10 @@ adminUpdateUserAttributes req =
     AWS.Core.Http.request "AdminUpdateUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Updates the device status as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Updates the device status as an administrator.
+
+Requires developer credentials.
+
 -}
 adminUpdateDeviceStatus : AdminUpdateDeviceStatusRequest -> AWS.Core.Http.Request AdminUpdateDeviceStatusResponse
 adminUpdateDeviceStatus req =
@@ -1307,10 +1637,9 @@ adminUpdateDeviceStatus req =
     AWS.Core.Http.request "AdminUpdateDeviceStatus" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.</p>
+{-| Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
 -}
-adminUpdateAuthEventFeedback :
-    AdminUpdateAuthEventFeedbackRequest -> AWS.Core.Http.Request AdminUpdateAuthEventFeedbackResponse
+adminUpdateAuthEventFeedback : AdminUpdateAuthEventFeedbackRequest -> AWS.Core.Http.Request AdminUpdateAuthEventFeedbackResponse
 adminUpdateAuthEventFeedback req =
     let
         jsonBody =
@@ -1322,7 +1651,10 @@ adminUpdateAuthEventFeedback req =
     AWS.Core.Http.request "AdminUpdateAuthEventFeedback" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Sets all the user settings for a specified user name. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Sets all the user settings for a specified user name. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminSetUserSettings : AdminSetUserSettingsRequest -> AWS.Core.Http.Request AdminSetUserSettingsResponse
 adminSetUserSettings req =
@@ -1336,8 +1668,7 @@ adminSetUserSettings req =
     AWS.Core.Http.request "AdminSetUserSettings" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| AWS Endpoint.
--}
+{-| -}
 adminSetUserPassword : AdminSetUserPasswordRequest -> AWS.Core.Http.Request AdminSetUserPasswordResponse
 adminSetUserPassword req =
     let
@@ -1350,7 +1681,7 @@ adminSetUserPassword req =
     AWS.Core.Http.request "AdminSetUserPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Sets the user's multi-factor authentication (MFA) preference.</p>
+{-| Sets the user's multi-factor authentication (MFA) preference.
 -}
 adminSetUserMfapreference : AdminSetUserMfapreferenceRequest -> AWS.Core.Http.Request AdminSetUserMfapreferenceResponse
 adminSetUserMfapreference req =
@@ -1364,10 +1695,12 @@ adminSetUserMfapreference req =
     AWS.Core.Http.request "AdminSetUserMfapreference" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Responds to an authentication challenge, as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Responds to an authentication challenge, as an administrator.
+
+Requires developer credentials.
+
 -}
-adminRespondToAuthChallenge :
-    AdminRespondToAuthChallengeRequest -> AWS.Core.Http.Request AdminRespondToAuthChallengeResponse
+adminRespondToAuthChallenge : AdminRespondToAuthChallengeRequest -> AWS.Core.Http.Request AdminRespondToAuthChallengeResponse
 adminRespondToAuthChallenge req =
     let
         jsonBody =
@@ -1379,7 +1712,12 @@ adminRespondToAuthChallenge req =
     AWS.Core.Http.request "AdminRespondToAuthChallenge" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Resets the specified user's password in a user pool as an administrator. Works on any user.</p> <p>When a developer calls this API, the current password is invalidated, so it must be changed. If a user tries to sign in after the API is called, the app will get a PasswordResetRequiredException exception back and should direct the user down the flow to reset the password, which is the same as the forgot password flow. In addition, if the user pool has phone verification selected and a verified phone number exists for the user, or if email verification is selected and a verified email exists for the user, calling this API will also result in sending a message to the end user with the code to change their password.</p> <p>Requires developer credentials.</p>
+{-| Resets the specified user's password in a user pool as an administrator. Works on any user.
+
+When a developer calls this API, the current password is invalidated, so it must be changed. If a user tries to sign in after the API is called, the app will get a PasswordResetRequiredException exception back and should direct the user down the flow to reset the password, which is the same as the forgot password flow. In addition, if the user pool has phone verification selected and a verified phone number exists for the user, or if email verification is selected and a verified email exists for the user, calling this API will also result in sending a message to the end user with the code to change their password.
+
+Requires developer credentials.
+
 -}
 adminResetUserPassword : AdminResetUserPasswordRequest -> AWS.Core.Http.Request AdminResetUserPasswordResponse
 adminResetUserPassword req =
@@ -1393,7 +1731,10 @@ adminResetUserPassword req =
     AWS.Core.Http.request "AdminResetUserPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Removes the specified user from the specified group.</p> <p>Requires developer credentials.</p>
+{-| Removes the specified user from the specified group.
+
+Requires developer credentials.
+
 -}
 adminRemoveUserFromGroup : AdminRemoveUserFromGroupRequest -> AWS.Core.Http.Request ()
 adminRemoveUserFromGroup req =
@@ -1407,7 +1748,7 @@ adminRemoveUserFromGroup req =
     AWS.Core.Http.request "AdminRemoveUserFromGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists a history of user activity and any risks detected as part of Amazon Cognito advanced security.</p>
+{-| Lists a history of user activity and any risks detected as part of Amazon Cognito advanced security.
 -}
 adminListUserAuthEvents : AdminListUserAuthEventsRequest -> AWS.Core.Http.Request AdminListUserAuthEventsResponse
 adminListUserAuthEvents req =
@@ -1421,7 +1762,10 @@ adminListUserAuthEvents req =
     AWS.Core.Http.request "AdminListUserAuthEvents" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists the groups that the user belongs to.</p> <p>Requires developer credentials.</p>
+{-| Lists the groups that the user belongs to.
+
+Requires developer credentials.
+
 -}
 adminListGroupsForUser : AdminListGroupsForUserRequest -> AWS.Core.Http.Request AdminListGroupsForUserResponse
 adminListGroupsForUser req =
@@ -1435,7 +1779,10 @@ adminListGroupsForUser req =
     AWS.Core.Http.request "AdminListGroupsForUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Lists devices, as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Lists devices, as an administrator.
+
+Requires developer credentials.
+
 -}
 adminListDevices : AdminListDevicesRequest -> AWS.Core.Http.Request AdminListDevicesResponse
 adminListDevices req =
@@ -1449,7 +1796,20 @@ adminListDevices req =
     AWS.Core.Http.request "AdminListDevices" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Links an existing user account in a user pool (<code>DestinationUser</code>) to an identity from an external identity provider (<code>SourceUser</code>) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account. </p> <p> For example, if there is an existing user with a username and password, this API links that user to a federated user identity, so that when the federated user identity is used, the user signs in as the existing user account. </p> <important> <p>Because this API allows a user with an external federated identity to sign in as an existing user in the user pool, it is critical that it only be used with external identity providers and provider attributes that have been trusted by the application owner.</p> </important> <p>See also .</p> <p>This action is enabled only for admin access and requires developer credentials.</p>
+{-| Links an existing user account in a user pool (
+DestinationUser
+) to an identity from an external identity provider (
+SourceUser
+) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
+
+For example, if there is an existing user with a username and password, this API links that user to a federated user identity, so that when the federated user identity is used, the user signs in as the existing user account.
+
+Because this API allows a user with an external federated identity to sign in as an existing user in the user pool, it is critical that it only be used with external identity providers and provider attributes that have been trusted by the application owner.
+
+See also .
+
+This action is enabled only for admin access and requires developer credentials.
+
 -}
 adminLinkProviderForUser : AdminLinkProviderForUserRequest -> AWS.Core.Http.Request AdminLinkProviderForUserResponse
 adminLinkProviderForUser req =
@@ -1463,7 +1823,10 @@ adminLinkProviderForUser req =
     AWS.Core.Http.request "AdminLinkProviderForUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Initiates the authentication flow, as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Initiates the authentication flow, as an administrator.
+
+Requires developer credentials.
+
 -}
 adminInitiateAuth : AdminInitiateAuthRequest -> AWS.Core.Http.Request AdminInitiateAuthResponse
 adminInitiateAuth req =
@@ -1477,7 +1840,10 @@ adminInitiateAuth req =
     AWS.Core.Http.request "AdminInitiateAuth" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the specified user by user name in a user pool as an administrator. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Gets the specified user by user name in a user pool as an administrator. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminGetUser : AdminGetUserRequest -> AWS.Core.Http.Request AdminGetUserResponse
 adminGetUser req =
@@ -1491,7 +1857,10 @@ adminGetUser req =
     AWS.Core.Http.request "AdminGetUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Gets the device, as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Gets the device, as an administrator.
+
+Requires developer credentials.
+
 -}
 adminGetDevice : AdminGetDeviceRequest -> AWS.Core.Http.Request AdminGetDeviceResponse
 adminGetDevice req =
@@ -1505,7 +1874,10 @@ adminGetDevice req =
     AWS.Core.Http.request "AdminGetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Forgets the device, as an administrator.</p> <p>Requires developer credentials.</p>
+{-| Forgets the device, as an administrator.
+
+Requires developer credentials.
+
 -}
 adminForgetDevice : AdminForgetDeviceRequest -> AWS.Core.Http.Request ()
 adminForgetDevice req =
@@ -1519,7 +1891,10 @@ adminForgetDevice req =
     AWS.Core.Http.request "AdminForgetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Enables the specified user as an administrator. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Enables the specified user as an administrator. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminEnableUser : AdminEnableUserRequest -> AWS.Core.Http.Request AdminEnableUserResponse
 adminEnableUser req =
@@ -1533,7 +1908,10 @@ adminEnableUser req =
     AWS.Core.Http.request "AdminEnableUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Disables the specified user as an administrator. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Disables the specified user as an administrator. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminDisableUser : AdminDisableUserRequest -> AWS.Core.Http.Request AdminDisableUserResponse
 adminDisableUser req =
@@ -1547,10 +1925,56 @@ adminDisableUser req =
     AWS.Core.Http.request "AdminDisableUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked <code>DestinationUser</code>) signs in, they must create a new user account. See .</p> <p>This action is enabled only for admin access and requires developer credentials.</p> <p>The <code>ProviderName</code> must match the value specified when creating an IdP for the pool. </p> <p>To disable a native username + password user, the <code>ProviderName</code> value must be <code>Cognito</code> and the <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code>, with the <code>ProviderAttributeValue</code> being the name that is used in the user pool for the user.</p> <p>The <code>ProviderAttributeName</code> must always be <code>Cognito_Subject</code> for social identity providers. The <code>ProviderAttributeValue</code> must always be the exact subject that was used when the user was originally linked as a source user.</p> <p>For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the <code>ProviderAttributeName</code> and <code>ProviderAttributeValue</code> must be the same values that were used for the <code>SourceUser</code> when the identities were originally linked in the call. (If the linking was done with <code>ProviderAttributeName</code> set to <code>Cognito_Subject</code>, the same applies here). However, if the user has already signed in, the <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code> and <code>ProviderAttributeValue</code> must be the subject of the SAML assertion.</p>
+{-| Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked
+DestinationUser
+) signs in, they must create a new user account. See .
+
+This action is enabled only for admin access and requires developer credentials.
+
+The
+ProviderName
+must match the value specified when creating an IdP for the pool.
+
+To disable a native username + password user, the
+ProviderName
+value must be
+Cognito
+and the
+ProviderAttributeName
+must be
+Cognito\_Subject
+, with the
+ProviderAttributeValue
+being the name that is used in the user pool for the user.
+
+The
+ProviderAttributeName
+must always be
+Cognito\_Subject
+for social identity providers. The
+ProviderAttributeValue
+must always be the exact subject that was used when the user was originally linked as a source user.
+
+For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the
+ProviderAttributeName
+and
+ProviderAttributeValue
+must be the same values that were used for the
+SourceUser
+when the identities were originally linked in the call. (If the linking was done with
+ProviderAttributeName
+set to
+Cognito\_Subject
+, the same applies here). However, if the user has already signed in, the
+ProviderAttributeName
+must be
+Cognito\_Subject
+and
+ProviderAttributeValue
+must be the subject of the SAML assertion.
+
 -}
-adminDisableProviderForUser :
-    AdminDisableProviderForUserRequest -> AWS.Core.Http.Request AdminDisableProviderForUserResponse
+adminDisableProviderForUser : AdminDisableProviderForUserRequest -> AWS.Core.Http.Request AdminDisableProviderForUserResponse
 adminDisableProviderForUser req =
     let
         jsonBody =
@@ -1562,7 +1986,10 @@ adminDisableProviderForUser req =
     AWS.Core.Http.request "AdminDisableProviderForUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes the user attributes in a user pool as an administrator. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Deletes the user attributes in a user pool as an administrator. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminDeleteUserAttributes : AdminDeleteUserAttributesRequest -> AWS.Core.Http.Request AdminDeleteUserAttributesResponse
 adminDeleteUserAttributes req =
@@ -1576,7 +2003,10 @@ adminDeleteUserAttributes req =
     AWS.Core.Http.request "AdminDeleteUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Deletes a user as an administrator. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Deletes a user as an administrator. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminDeleteUser : AdminDeleteUserRequest -> AWS.Core.Http.Request ()
 adminDeleteUser req =
@@ -1590,7 +2020,24 @@ adminDeleteUser req =
     AWS.Core.Http.request "AdminDeleteUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Creates a new user in the specified user pool.</p> <p>If <code>MessageAction</code> is not set, the default is to send a welcome message via email or phone (SMS).</p> <note> <p>This message is based on a template that you configured in your call to or . This template includes your custom sign-up instructions and placeholders for user name and temporary password.</p> </note> <p>Alternatively, you can call AdminCreateUser with “SUPPRESS” for the <code>MessageAction</code> parameter, and Amazon Cognito will not send any email. </p> <p>In either case, the user will be in the <code>FORCE_CHANGE_PASSWORD</code> state until they sign in and change their password.</p> <p>AdminCreateUser requires developer credentials.</p>
+{-| Creates a new user in the specified user pool.
+
+If
+MessageAction
+is not set, the default is to send a welcome message via email or phone (SMS).
+
+This message is based on a template that you configured in your call to or . This template includes your custom sign-up instructions and placeholders for user name and temporary password.
+
+Alternatively, you can call AdminCreateUser with “SUPPRESS” for the
+MessageAction
+parameter, and Amazon Cognito will not send any email.
+
+In either case, the user will be in the
+FORCE\_CHANGE\_PASSWORD
+state until they sign in and change their password.
+
+AdminCreateUser requires developer credentials.
+
 -}
 adminCreateUser : AdminCreateUserRequest -> AWS.Core.Http.Request AdminCreateUserResponse
 adminCreateUser req =
@@ -1604,7 +2051,10 @@ adminCreateUser req =
     AWS.Core.Http.request "AdminCreateUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Confirms user registration as an admin without using a confirmation code. Works on any user.</p> <p>Requires developer credentials.</p>
+{-| Confirms user registration as an admin without using a confirmation code. Works on any user.
+
+Requires developer credentials.
+
 -}
 adminConfirmSignUp : AdminConfirmSignUpRequest -> AWS.Core.Http.Request AdminConfirmSignUpResponse
 adminConfirmSignUp req =
@@ -1618,7 +2068,10 @@ adminConfirmSignUp req =
     AWS.Core.Http.request "AdminConfirmSignUp" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Adds the specified user to the specified group.</p> <p>Requires developer credentials.</p>
+{-| Adds the specified user to the specified group.
+
+Requires developer credentials.
+
 -}
 adminAddUserToGroup : AdminAddUserToGroupRequest -> AWS.Core.Http.Request ()
 adminAddUserToGroup req =
@@ -1632,7 +2085,7 @@ adminAddUserToGroup req =
     AWS.Core.Http.request "AdminAddUserToGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| <p>Adds additional user attributes to the user pool schema.</p>
+{-| Adds additional user attributes to the user pool schema.
 -}
 addCustomAttributes : AddCustomAttributesRequest -> AWS.Core.Http.Request AddCustomAttributesResponse
 addCustomAttributes req =
