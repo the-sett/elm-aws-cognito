@@ -592,7 +592,7 @@ type Arnstring
     = Arnstring String
 
 
-{-| Some type - blah blah blah.
+{-| The Arnstring data model.
 -}
 arnstring : Refined String Arnstring StringError
 arnstring =
@@ -606,7 +606,7 @@ arnstring =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AccessKeyString data model.
 -}
 type alias AccessKeyString =
     String
@@ -616,7 +616,7 @@ type AccountId
     = AccountId String
 
 
-{-| Some type - blah blah blah.
+{-| The AccountId data model.
 -}
 accountId : Refined String AccountId StringError
 accountId =
@@ -633,14 +633,14 @@ accountId =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AmbiguousRoleResolutionType data model.
 -}
 type AmbiguousRoleResolutionType
     = AmbiguousRoleResolutionTypeAuthenticatedRole
     | AmbiguousRoleResolutionTypeDeny
 
 
-{-| Some type - blah blah blah.
+{-| The AmbiguousRoleResolutionType data model.
 -}
 ambiguousRoleResolutionType : Enum AmbiguousRoleResolutionType
 ambiguousRoleResolutionType =
@@ -660,7 +660,7 @@ type ClaimName
     = ClaimName String
 
 
-{-| Some type - blah blah blah.
+{-| The ClaimName data model.
 -}
 claimName : Refined String ClaimName StringError
 claimName =
@@ -681,7 +681,7 @@ type ClaimValue
     = ClaimValue String
 
 
-{-| Some type - blah blah blah.
+{-| The ClaimValue data model.
 -}
 claimValue : Refined String ClaimValue StringError
 claimValue =
@@ -695,7 +695,7 @@ claimValue =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The CognitoIdentityProvider data model.
 -}
 type alias CognitoIdentityProvider =
     { serverSideTokenCheck : Maybe Bool
@@ -708,7 +708,7 @@ type CognitoIdentityProviderClientId
     = CognitoIdentityProviderClientId String
 
 
-{-| Some type - blah blah blah.
+{-| The CognitoIdentityProviderClientId data model.
 -}
 cognitoIdentityProviderClientId : Refined String CognitoIdentityProviderClientId StringError
 cognitoIdentityProviderClientId =
@@ -725,7 +725,7 @@ cognitoIdentityProviderClientId =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The CognitoIdentityProviderList data model.
 -}
 type alias CognitoIdentityProviderList =
     List CognitoIdentityProvider
@@ -735,7 +735,7 @@ type CognitoIdentityProviderName
     = CognitoIdentityProviderName String
 
 
-{-| Some type - blah blah blah.
+{-| The CognitoIdentityProviderName data model.
 -}
 cognitoIdentityProviderName : Refined String CognitoIdentityProviderName StringError
 cognitoIdentityProviderName =
@@ -752,13 +752,13 @@ cognitoIdentityProviderName =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The CognitoIdentityProviderTokenCheck data model.
 -}
 type alias CognitoIdentityProviderTokenCheck =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The CreateIdentityPoolInput data model.
 -}
 type alias CreateIdentityPoolInput =
     { supportedLoginProviders : Maybe IdentityProviders
@@ -772,43 +772,43 @@ type alias CreateIdentityPoolInput =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The Credentials data model.
 -}
 type alias Credentials =
     { sessionToken : Maybe String, secretKey : Maybe String, expiration : Maybe DateType, accessKeyId : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The DateType data model.
 -}
 type alias DateType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteIdentitiesInput data model.
 -}
 type alias DeleteIdentitiesInput =
     { identityIdsToDelete : IdentityIdList }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteIdentitiesResponse data model.
 -}
 type alias DeleteIdentitiesResponse =
     { unprocessedIdentityIds : Maybe UnprocessedIdentityIdList }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteIdentityPoolInput data model.
 -}
 type alias DeleteIdentityPoolInput =
     { identityPoolId : IdentityPoolId }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeIdentityInput data model.
 -}
 type alias DescribeIdentityInput =
     { identityId : IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeIdentityPoolInput data model.
 -}
 type alias DescribeIdentityPoolInput =
     { identityPoolId : IdentityPoolId }
@@ -818,7 +818,7 @@ type DeveloperProviderName
     = DeveloperProviderName String
 
 
-{-| Some type - blah blah blah.
+{-| The DeveloperProviderName data model.
 -}
 developerProviderName : Refined String DeveloperProviderName StringError
 developerProviderName =
@@ -839,7 +839,7 @@ type DeveloperUserIdentifier
     = DeveloperUserIdentifier String
 
 
-{-| Some type - blah blah blah.
+{-| The DeveloperUserIdentifier data model.
 -}
 developerUserIdentifier : Refined String DeveloperUserIdentifier StringError
 developerUserIdentifier =
@@ -853,20 +853,20 @@ developerUserIdentifier =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The DeveloperUserIdentifierList data model.
 -}
 type alias DeveloperUserIdentifierList =
     List DeveloperUserIdentifier
 
 
-{-| Some type - blah blah blah.
+{-| The ErrorCode data model.
 -}
 type ErrorCode
     = ErrorCodeAccessDenied
     | ErrorCodeInternalServerError
 
 
-{-| Some type - blah blah blah.
+{-| The ErrorCode data model.
 -}
 errorCode : Enum ErrorCode
 errorCode =
@@ -882,79 +882,79 @@ errorCode =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The GetCredentialsForIdentityInput data model.
 -}
 type alias GetCredentialsForIdentityInput =
     { logins : Maybe LoginsMap, identityId : IdentityId, customRoleArn : Maybe Arnstring }
 
 
-{-| Some type - blah blah blah.
+{-| The GetCredentialsForIdentityResponse data model.
 -}
 type alias GetCredentialsForIdentityResponse =
     { identityId : Maybe IdentityId, credentials : Maybe Credentials }
 
 
-{-| Some type - blah blah blah.
+{-| The GetIdInput data model.
 -}
 type alias GetIdInput =
     { logins : Maybe LoginsMap, identityPoolId : IdentityPoolId, accountId : Maybe AccountId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetIdResponse data model.
 -}
 type alias GetIdResponse =
     { identityId : Maybe IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetIdentityPoolRolesInput data model.
 -}
 type alias GetIdentityPoolRolesInput =
     { identityPoolId : IdentityPoolId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetIdentityPoolRolesResponse data model.
 -}
 type alias GetIdentityPoolRolesResponse =
     { roles : Maybe RolesMap, roleMappings : Maybe RoleMappingMap, identityPoolId : Maybe IdentityPoolId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetOpenIdTokenForDeveloperIdentityInput data model.
 -}
 type alias GetOpenIdTokenForDeveloperIdentityInput =
     { tokenDuration : Maybe Int, logins : LoginsMap, identityPoolId : IdentityPoolId, identityId : Maybe IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetOpenIdTokenForDeveloperIdentityResponse data model.
 -}
 type alias GetOpenIdTokenForDeveloperIdentityResponse =
     { token : Maybe String, identityId : Maybe IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetOpenIdTokenInput data model.
 -}
 type alias GetOpenIdTokenInput =
     { logins : Maybe LoginsMap, identityId : IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The GetOpenIdTokenResponse data model.
 -}
 type alias GetOpenIdTokenResponse =
     { token : Maybe String, identityId : Maybe IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The HideDisabled data model.
 -}
 type alias HideDisabled =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The IdentitiesList data model.
 -}
 type alias IdentitiesList =
     List IdentityDescription
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityDescription data model.
 -}
 type alias IdentityDescription =
     { logins : Maybe LoginsList
@@ -968,7 +968,7 @@ type IdentityId
     = IdentityId String
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityId data model.
 -}
 identityId : Refined String IdentityId StringError
 identityId =
@@ -985,13 +985,13 @@ identityId =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityIdList data model.
 -}
 type alias IdentityIdList =
     List IdentityId
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPool data model.
 -}
 type alias IdentityPool =
     { supportedLoginProviders : Maybe IdentityProviders
@@ -1010,7 +1010,7 @@ type IdentityPoolId
     = IdentityPoolId String
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolId data model.
 -}
 identityPoolId : Refined String IdentityPoolId StringError
 identityPoolId =
@@ -1031,7 +1031,7 @@ type IdentityPoolName
     = IdentityPoolName String
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolName data model.
 -}
 identityPoolName : Refined String IdentityPoolName StringError
 identityPoolName =
@@ -1048,31 +1048,31 @@ identityPoolName =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolShortDescription data model.
 -}
 type alias IdentityPoolShortDescription =
     { identityPoolName : Maybe IdentityPoolName, identityPoolId : Maybe IdentityPoolId }
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolTagsListType data model.
 -}
 type alias IdentityPoolTagsListType =
     List TagKeysType
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolTagsType data model.
 -}
 type alias IdentityPoolTagsType =
     Dict.Refined.Dict String TagKeysType TagValueType
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolUnauthenticated data model.
 -}
 type alias IdentityPoolUnauthenticated =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityPoolsList data model.
 -}
 type alias IdentityPoolsList =
     List IdentityPoolShortDescription
@@ -1082,7 +1082,7 @@ type IdentityProviderId
     = IdentityProviderId String
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviderId data model.
 -}
 identityProviderId : Refined String IdentityProviderId StringError
 identityProviderId =
@@ -1103,7 +1103,7 @@ type IdentityProviderName
     = IdentityProviderName String
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviderName data model.
 -}
 identityProviderName : Refined String IdentityProviderName StringError
 identityProviderName =
@@ -1121,7 +1121,7 @@ type IdentityProviderToken
     = IdentityProviderToken String
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviderToken data model.
 -}
 identityProviderToken : Refined String IdentityProviderToken StringError
 identityProviderToken =
@@ -1135,13 +1135,13 @@ identityProviderToken =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviders data model.
 -}
 type alias IdentityProviders =
     Dict.Refined.Dict String IdentityProviderName IdentityProviderId
 
 
-{-| Some type - blah blah blah.
+{-| The ListIdentitiesInput data model.
 -}
 type alias ListIdentitiesInput =
     { nextToken : Maybe PaginationKey
@@ -1151,49 +1151,49 @@ type alias ListIdentitiesInput =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ListIdentitiesResponse data model.
 -}
 type alias ListIdentitiesResponse =
     { nextToken : Maybe PaginationKey, identityPoolId : Maybe IdentityPoolId, identities : Maybe IdentitiesList }
 
 
-{-| Some type - blah blah blah.
+{-| The ListIdentityPoolsInput data model.
 -}
 type alias ListIdentityPoolsInput =
     { nextToken : Maybe PaginationKey, maxResults : QueryLimit }
 
 
-{-| Some type - blah blah blah.
+{-| The ListIdentityPoolsResponse data model.
 -}
 type alias ListIdentityPoolsResponse =
     { nextToken : Maybe PaginationKey, identityPools : Maybe IdentityPoolsList }
 
 
-{-| Some type - blah blah blah.
+{-| The ListTagsForResourceInput data model.
 -}
 type alias ListTagsForResourceInput =
     { resourceArn : Arnstring }
 
 
-{-| Some type - blah blah blah.
+{-| The ListTagsForResourceResponse data model.
 -}
 type alias ListTagsForResourceResponse =
     { tags : Maybe IdentityPoolTagsType }
 
 
-{-| Some type - blah blah blah.
+{-| The LoginsList data model.
 -}
 type alias LoginsList =
     List IdentityProviderName
 
 
-{-| Some type - blah blah blah.
+{-| The LoginsMap data model.
 -}
 type alias LoginsMap =
     Dict.Refined.Dict String IdentityProviderName IdentityProviderToken
 
 
-{-| Some type - blah blah blah.
+{-| The LookupDeveloperIdentityInput data model.
 -}
 type alias LookupDeveloperIdentityInput =
     { nextToken : Maybe PaginationKey
@@ -1204,7 +1204,7 @@ type alias LookupDeveloperIdentityInput =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The LookupDeveloperIdentityResponse data model.
 -}
 type alias LookupDeveloperIdentityResponse =
     { nextToken : Maybe PaginationKey
@@ -1213,13 +1213,13 @@ type alias LookupDeveloperIdentityResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The MappingRule data model.
 -}
 type alias MappingRule =
     { value : ClaimValue, roleArn : Arnstring, matchType : MappingRuleMatchType, claim : ClaimName }
 
 
-{-| Some type - blah blah blah.
+{-| The MappingRuleMatchType data model.
 -}
 type MappingRuleMatchType
     = MappingRuleMatchTypeEquals
@@ -1228,7 +1228,7 @@ type MappingRuleMatchType
     | MappingRuleMatchTypeNotEqual
 
 
-{-| Some type - blah blah blah.
+{-| The MappingRuleMatchType data model.
 -}
 mappingRuleMatchType : Enum MappingRuleMatchType
 mappingRuleMatchType =
@@ -1254,13 +1254,13 @@ mappingRuleMatchType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The MappingRulesList data model.
 -}
 type alias MappingRulesList =
     List MappingRule
 
 
-{-| Some type - blah blah blah.
+{-| The MergeDeveloperIdentitiesInput data model.
 -}
 type alias MergeDeveloperIdentitiesInput =
     { sourceUserIdentifier : DeveloperUserIdentifier
@@ -1270,19 +1270,19 @@ type alias MergeDeveloperIdentitiesInput =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The MergeDeveloperIdentitiesResponse data model.
 -}
 type alias MergeDeveloperIdentitiesResponse =
     { identityId : Maybe IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The OidcproviderList data model.
 -}
 type alias OidcproviderList =
     List Arnstring
 
 
-{-| Some type - blah blah blah.
+{-| The Oidctoken data model.
 -}
 type alias Oidctoken =
     String
@@ -1292,7 +1292,7 @@ type PaginationKey
     = PaginationKey String
 
 
-{-| Some type - blah blah blah.
+{-| The PaginationKey data model.
 -}
 paginationKey : Refined String PaginationKey StringError
 paginationKey =
@@ -1310,7 +1310,7 @@ type QueryLimit
     = QueryLimit Int
 
 
-{-| Some type - blah blah blah.
+{-| The QueryLimit data model.
 -}
 queryLimit : Refined Int QueryLimit IntError
 queryLimit =
@@ -1324,7 +1324,7 @@ queryLimit =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The RoleMapping data model.
 -}
 type alias RoleMapping =
     { type_ : RoleMappingType
@@ -1333,20 +1333,20 @@ type alias RoleMapping =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The RoleMappingMap data model.
 -}
 type alias RoleMappingMap =
     Dict.Refined.Dict String IdentityProviderName RoleMapping
 
 
-{-| Some type - blah blah blah.
+{-| The RoleMappingType data model.
 -}
 type RoleMappingType
     = RoleMappingTypeToken
     | RoleMappingTypeRules
 
 
-{-| Some type - blah blah blah.
+{-| The RoleMappingType data model.
 -}
 roleMappingType : Enum RoleMappingType
 roleMappingType =
@@ -1366,7 +1366,7 @@ type RoleType
     = RoleType String
 
 
-{-| Some type - blah blah blah.
+{-| The RoleType data model.
 -}
 roleType : Refined String RoleType StringError
 roleType =
@@ -1380,37 +1380,37 @@ roleType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The RolesMap data model.
 -}
 type alias RolesMap =
     Dict.Refined.Dict String RoleType Arnstring
 
 
-{-| Some type - blah blah blah.
+{-| The RulesConfigurationType data model.
 -}
 type alias RulesConfigurationType =
     { rules : MappingRulesList }
 
 
-{-| Some type - blah blah blah.
+{-| The SamlproviderList data model.
 -}
 type alias SamlproviderList =
     List Arnstring
 
 
-{-| Some type - blah blah blah.
+{-| The SecretKeyString data model.
 -}
 type alias SecretKeyString =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The SessionTokenString data model.
 -}
 type alias SessionTokenString =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The SetIdentityPoolRolesInput data model.
 -}
 type alias SetIdentityPoolRolesInput =
     { roles : RolesMap, roleMappings : Maybe RoleMappingMap, identityPoolId : IdentityPoolId }
@@ -1420,7 +1420,7 @@ type TagKeysType
     = TagKeysType String
 
 
-{-| Some type - blah blah blah.
+{-| The TagKeysType data model.
 -}
 tagKeysType : Refined String TagKeysType StringError
 tagKeysType =
@@ -1434,13 +1434,13 @@ tagKeysType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The TagResourceInput data model.
 -}
 type alias TagResourceInput =
     { tags : Maybe IdentityPoolTagsType, resourceArn : Arnstring }
 
 
-{-| Some type - blah blah blah.
+{-| The TagResourceResponse data model.
 -}
 type alias TagResourceResponse =
     {}
@@ -1450,7 +1450,7 @@ type TagValueType
     = TagValueType String
 
 
-{-| Some type - blah blah blah.
+{-| The TagValueType data model.
 -}
 tagValueType : Refined String TagValueType StringError
 tagValueType =
@@ -1464,13 +1464,13 @@ tagValueType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The TokenDuration data model.
 -}
 type alias TokenDuration =
     Int
 
 
-{-| Some type - blah blah blah.
+{-| The UnlinkDeveloperIdentityInput data model.
 -}
 type alias UnlinkDeveloperIdentityInput =
     { identityPoolId : IdentityPoolId
@@ -1480,31 +1480,31 @@ type alias UnlinkDeveloperIdentityInput =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UnlinkIdentityInput data model.
 -}
 type alias UnlinkIdentityInput =
     { loginsToRemove : LoginsList, logins : LoginsMap, identityId : IdentityId }
 
 
-{-| Some type - blah blah blah.
+{-| The UnprocessedIdentityId data model.
 -}
 type alias UnprocessedIdentityId =
     { identityId : Maybe IdentityId, errorCode : Maybe ErrorCode }
 
 
-{-| Some type - blah blah blah.
+{-| The UnprocessedIdentityIdList data model.
 -}
 type alias UnprocessedIdentityIdList =
     List UnprocessedIdentityId
 
 
-{-| Some type - blah blah blah.
+{-| The UntagResourceInput data model.
 -}
 type alias UntagResourceInput =
     { tagKeys : Maybe IdentityPoolTagsListType, resourceArn : Arnstring }
 
 
-{-| Some type - blah blah blah.
+{-| The UntagResourceResponse data model.
 -}
 type alias UntagResourceResponse =
     {}

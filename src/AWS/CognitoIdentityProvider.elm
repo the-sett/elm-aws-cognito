@@ -2099,25 +2099,25 @@ addCustomAttributes req =
     AWS.Core.Http.request "AddCustomAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Some type - blah blah blah.
+{-| The AwsaccountIdType data model.
 -}
 type alias AwsaccountIdType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The AccountTakeoverActionNotifyType data model.
 -}
 type alias AccountTakeoverActionNotifyType =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The AccountTakeoverActionType data model.
 -}
 type alias AccountTakeoverActionType =
     { notify : Bool, eventAction : AccountTakeoverEventActionType }
 
 
-{-| Some type - blah blah blah.
+{-| The AccountTakeoverActionsType data model.
 -}
 type alias AccountTakeoverActionsType =
     { mediumAction : Maybe AccountTakeoverActionType
@@ -2126,7 +2126,7 @@ type alias AccountTakeoverActionsType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AccountTakeoverEventActionType data model.
 -}
 type AccountTakeoverEventActionType
     = AccountTakeoverEventActionTypeBlock
@@ -2135,7 +2135,7 @@ type AccountTakeoverEventActionType
     | AccountTakeoverEventActionTypeNoAction
 
 
-{-| Some type - blah blah blah.
+{-| The AccountTakeoverEventActionType data model.
 -}
 accountTakeoverEventActionType : Enum AccountTakeoverEventActionType
 accountTakeoverEventActionType =
@@ -2161,43 +2161,43 @@ accountTakeoverEventActionType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The AccountTakeoverRiskConfigurationType data model.
 -}
 type alias AccountTakeoverRiskConfigurationType =
     { notifyConfiguration : Maybe NotifyConfigurationType, actions : AccountTakeoverActionsType }
 
 
-{-| Some type - blah blah blah.
+{-| The AddCustomAttributesRequest data model.
 -}
 type alias AddCustomAttributesRequest =
     { userPoolId : UserPoolIdType, customAttributes : CustomAttributesListType }
 
 
-{-| Some type - blah blah blah.
+{-| The AddCustomAttributesResponse data model.
 -}
 type alias AddCustomAttributesResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminAddUserToGroupRequest data model.
 -}
 type alias AdminAddUserToGroupRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminConfirmSignUpRequest data model.
 -}
 type alias AdminConfirmSignUpRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminConfirmSignUpResponse data model.
 -}
 type alias AdminConfirmSignUpResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminCreateUserConfigType data model.
 -}
 type alias AdminCreateUserConfigType =
     { unusedAccountValidityDays : Maybe AdminCreateUserUnusedAccountValidityDaysType
@@ -2206,7 +2206,7 @@ type alias AdminCreateUserConfigType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminCreateUserRequest data model.
 -}
 type alias AdminCreateUserRequest =
     { validationData : Maybe AttributeListType
@@ -2220,7 +2220,7 @@ type alias AdminCreateUserRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminCreateUserResponse data model.
 -}
 type alias AdminCreateUserResponse =
     { user : Maybe UserType }
@@ -2230,7 +2230,7 @@ type AdminCreateUserUnusedAccountValidityDaysType
     = AdminCreateUserUnusedAccountValidityDaysType Int
 
 
-{-| Some type - blah blah blah.
+{-| The AdminCreateUserUnusedAccountValidityDaysType data model.
 -}
 adminCreateUserUnusedAccountValidityDaysType : Refined Int AdminCreateUserUnusedAccountValidityDaysType IntError
 adminCreateUserUnusedAccountValidityDaysType =
@@ -2246,85 +2246,85 @@ adminCreateUserUnusedAccountValidityDaysType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDeleteUserAttributesRequest data model.
 -}
 type alias AdminDeleteUserAttributesRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, userAttributeNames : AttributeNameListType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDeleteUserAttributesResponse data model.
 -}
 type alias AdminDeleteUserAttributesResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDeleteUserRequest data model.
 -}
 type alias AdminDeleteUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDisableProviderForUserRequest data model.
 -}
 type alias AdminDisableProviderForUserRequest =
     { userPoolId : String, user : ProviderUserIdentifierType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDisableProviderForUserResponse data model.
 -}
 type alias AdminDisableProviderForUserResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDisableUserRequest data model.
 -}
 type alias AdminDisableUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminDisableUserResponse data model.
 -}
 type alias AdminDisableUserResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminEnableUserRequest data model.
 -}
 type alias AdminEnableUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminEnableUserResponse data model.
 -}
 type alias AdminEnableUserResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminForgetDeviceRequest data model.
 -}
 type alias AdminForgetDeviceRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, deviceKey : DeviceKeyType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminGetDeviceRequest data model.
 -}
 type alias AdminGetDeviceRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, deviceKey : DeviceKeyType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminGetDeviceResponse data model.
 -}
 type alias AdminGetDeviceResponse =
     { device : DeviceType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminGetUserRequest data model.
 -}
 type alias AdminGetUserRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminGetUserResponse data model.
 -}
 type alias AdminGetUserResponse =
     { username : UsernameType
@@ -2339,7 +2339,7 @@ type alias AdminGetUserResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminInitiateAuthRequest data model.
 -}
 type alias AdminInitiateAuthRequest =
     { userPoolId : UserPoolIdType
@@ -2352,7 +2352,7 @@ type alias AdminInitiateAuthRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminInitiateAuthResponse data model.
 -}
 type alias AdminInitiateAuthResponse =
     { session : Maybe SessionType
@@ -2362,19 +2362,19 @@ type alias AdminInitiateAuthResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminLinkProviderForUserRequest data model.
 -}
 type alias AdminLinkProviderForUserRequest =
     { userPoolId : String, sourceUser : ProviderUserIdentifierType, destinationUser : ProviderUserIdentifierType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminLinkProviderForUserResponse data model.
 -}
 type alias AdminLinkProviderForUserResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminListDevicesRequest data model.
 -}
 type alias AdminListDevicesRequest =
     { username : UsernameType
@@ -2384,13 +2384,13 @@ type alias AdminListDevicesRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminListDevicesResponse data model.
 -}
 type alias AdminListDevicesResponse =
     { paginationToken : Maybe SearchPaginationTokenType, devices : Maybe DeviceListType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminListGroupsForUserRequest data model.
 -}
 type alias AdminListGroupsForUserRequest =
     { username : UsernameType
@@ -2400,13 +2400,13 @@ type alias AdminListGroupsForUserRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminListGroupsForUserResponse data model.
 -}
 type alias AdminListGroupsForUserResponse =
     { nextToken : Maybe PaginationKey, groups : Maybe GroupListType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminListUserAuthEventsRequest data model.
 -}
 type alias AdminListUserAuthEventsRequest =
     { username : UsernameType
@@ -2416,31 +2416,31 @@ type alias AdminListUserAuthEventsRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminListUserAuthEventsResponse data model.
 -}
 type alias AdminListUserAuthEventsResponse =
     { nextToken : Maybe PaginationKey, authEvents : Maybe AuthEventsType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminRemoveUserFromGroupRequest data model.
 -}
 type alias AdminRemoveUserFromGroupRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminResetUserPasswordRequest data model.
 -}
 type alias AdminResetUserPasswordRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminResetUserPasswordResponse data model.
 -}
 type alias AdminResetUserPasswordResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminRespondToAuthChallengeRequest data model.
 -}
 type alias AdminRespondToAuthChallengeRequest =
     { userPoolId : UserPoolIdType
@@ -2453,7 +2453,7 @@ type alias AdminRespondToAuthChallengeRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminRespondToAuthChallengeResponse data model.
 -}
 type alias AdminRespondToAuthChallengeResponse =
     { session : Maybe SessionType
@@ -2463,7 +2463,7 @@ type alias AdminRespondToAuthChallengeResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminSetUserMfapreferenceRequest data model.
 -}
 type alias AdminSetUserMfapreferenceRequest =
     { username : UsernameType
@@ -2473,49 +2473,49 @@ type alias AdminSetUserMfapreferenceRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminSetUserMfapreferenceResponse data model.
 -}
 type alias AdminSetUserMfapreferenceResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminSetUserPasswordRequest data model.
 -}
 type alias AdminSetUserPasswordRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, permanent : Maybe Bool, password : PasswordType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminSetUserPasswordResponse data model.
 -}
 type alias AdminSetUserPasswordResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminSetUserSettingsRequest data model.
 -}
 type alias AdminSetUserSettingsRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, mfaoptions : MfaoptionListType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminSetUserSettingsResponse data model.
 -}
 type alias AdminSetUserSettingsResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUpdateAuthEventFeedbackRequest data model.
 -}
 type alias AdminUpdateAuthEventFeedbackRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, feedbackValue : FeedbackValueType, eventId : EventIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUpdateAuthEventFeedbackResponse data model.
 -}
 type alias AdminUpdateAuthEventFeedbackResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUpdateDeviceStatusRequest data model.
 -}
 type alias AdminUpdateDeviceStatusRequest =
     { username : UsernameType
@@ -2525,37 +2525,37 @@ type alias AdminUpdateDeviceStatusRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUpdateDeviceStatusResponse data model.
 -}
 type alias AdminUpdateDeviceStatusResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUpdateUserAttributesRequest data model.
 -}
 type alias AdminUpdateUserAttributesRequest =
     { username : UsernameType, userPoolId : UserPoolIdType, userAttributes : AttributeListType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUpdateUserAttributesResponse data model.
 -}
 type alias AdminUpdateUserAttributesResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUserGlobalSignOutRequest data model.
 -}
 type alias AdminUserGlobalSignOutRequest =
     { username : UsernameType, userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The AdminUserGlobalSignOutResponse data model.
 -}
 type alias AdminUserGlobalSignOutResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The AdvancedSecurityModeType data model.
 -}
 type AdvancedSecurityModeType
     = AdvancedSecurityModeTypeOff
@@ -2563,7 +2563,7 @@ type AdvancedSecurityModeType
     | AdvancedSecurityModeTypeEnforced
 
 
-{-| Some type - blah blah blah.
+{-| The AdvancedSecurityModeType data model.
 -}
 advancedSecurityModeType : Enum AdvancedSecurityModeType
 advancedSecurityModeType =
@@ -2582,7 +2582,7 @@ advancedSecurityModeType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The AliasAttributeType data model.
 -}
 type AliasAttributeType
     = AliasAttributeTypePhoneNumber
@@ -2590,7 +2590,7 @@ type AliasAttributeType
     | AliasAttributeTypePreferredUsername
 
 
-{-| Some type - blah blah blah.
+{-| The AliasAttributeType data model.
 -}
 aliasAttributeType : Enum AliasAttributeType
 aliasAttributeType =
@@ -2609,19 +2609,19 @@ aliasAttributeType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The AliasAttributesListType data model.
 -}
 type alias AliasAttributesListType =
     List AliasAttributeType
 
 
-{-| Some type - blah blah blah.
+{-| The AnalyticsConfigurationType data model.
 -}
 type alias AnalyticsConfigurationType =
     { userDataShared : Maybe Bool, roleArn : ArnType, externalId : String, applicationId : HexStringType }
 
 
-{-| Some type - blah blah blah.
+{-| The AnalyticsMetadataType data model.
 -}
 type alias AnalyticsMetadataType =
     { analyticsEndpointId : Maybe String }
@@ -2631,7 +2631,7 @@ type ArnType
     = ArnType String
 
 
-{-| Some type - blah blah blah.
+{-| The ArnType data model.
 -}
 arnType : Refined String ArnType StringError
 arnType =
@@ -2651,19 +2651,19 @@ arnType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AssociateSoftwareTokenRequest data model.
 -}
 type alias AssociateSoftwareTokenRequest =
     { session : Maybe SessionType, accessToken : Maybe TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The AssociateSoftwareTokenResponse data model.
 -}
 type alias AssociateSoftwareTokenResponse =
     { session : Maybe SessionType, secretCode : Maybe SecretCodeType }
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeDataType data model.
 -}
 type AttributeDataType
     = AttributeDataTypeString_
@@ -2672,7 +2672,7 @@ type AttributeDataType
     | AttributeDataTypeBoolean
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeDataType data model.
 -}
 attributeDataType : Enum AttributeDataType
 attributeDataType =
@@ -2694,7 +2694,7 @@ attributeDataType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeListType data model.
 -}
 type alias AttributeListType =
     List AttributeType
@@ -2704,7 +2704,7 @@ type AttributeMappingKeyType
     = AttributeMappingKeyType String
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeMappingKeyType data model.
 -}
 attributeMappingKeyType : Refined String AttributeMappingKeyType StringError
 attributeMappingKeyType =
@@ -2718,13 +2718,13 @@ attributeMappingKeyType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeMappingType data model.
 -}
 type alias AttributeMappingType =
     Dict.Refined.Dict String AttributeMappingKeyType String
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeNameListType data model.
 -}
 type alias AttributeNameListType =
     List AttributeNameType
@@ -2734,7 +2734,7 @@ type AttributeNameType
     = AttributeNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeNameType data model.
 -}
 attributeNameType : Refined String AttributeNameType StringError
 attributeNameType =
@@ -2751,7 +2751,7 @@ attributeNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeType data model.
 -}
 type alias AttributeType =
     { value : Maybe AttributeValueType, name : AttributeNameType }
@@ -2761,7 +2761,7 @@ type AttributeValueType
     = AttributeValueType String
 
 
-{-| Some type - blah blah blah.
+{-| The AttributeValueType data model.
 -}
 attributeValueType : Refined String AttributeValueType StringError
 attributeValueType =
@@ -2775,7 +2775,7 @@ attributeValueType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The AuthEventType data model.
 -}
 type alias AuthEventType =
     { eventType : Maybe EventType
@@ -2789,13 +2789,13 @@ type alias AuthEventType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The AuthEventsType data model.
 -}
 type alias AuthEventsType =
     List AuthEventType
 
 
-{-| Some type - blah blah blah.
+{-| The AuthFlowType data model.
 -}
 type AuthFlowType
     = AuthFlowTypeUserSrpAuth
@@ -2806,7 +2806,7 @@ type AuthFlowType
     | AuthFlowTypeUserPasswordAuth
 
 
-{-| Some type - blah blah blah.
+{-| The AuthFlowType data model.
 -}
 authFlowType : Enum AuthFlowType
 authFlowType =
@@ -2840,13 +2840,13 @@ authFlowType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The AuthParametersType data model.
 -}
 type alias AuthParametersType =
     Dict String String
 
 
-{-| Some type - blah blah blah.
+{-| The AuthenticationResultType data model.
 -}
 type alias AuthenticationResultType =
     { tokenType : Maybe String
@@ -2858,44 +2858,44 @@ type alias AuthenticationResultType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The BlockedIprangeListType data model.
 -}
 type alias BlockedIprangeListType =
     List String
 
 
-{-| Some type - blah blah blah.
+{-| The BooleanType data model.
 -}
 type alias BooleanType =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The Csstype data model.
 -}
 type alias Csstype =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The CssversionType data model.
 -}
 type alias CssversionType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The CallbackUrlsListType data model.
 -}
 type alias CallbackUrlsListType =
     List RedirectUrlType
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeName data model.
 -}
 type ChallengeName
     = ChallengeNamePassword
     | ChallengeNameMfa
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeName data model.
 -}
 challengeName : Enum ChallengeName
 challengeName =
@@ -2911,7 +2911,7 @@ challengeName =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeNameType data model.
 -}
 type ChallengeNameType
     = ChallengeNameTypeSmsMfa
@@ -2926,7 +2926,7 @@ type ChallengeNameType
     | ChallengeNameTypeNewPasswordRequired
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeNameType data model.
 -}
 challengeNameType : Enum ChallengeNameType
 challengeNameType =
@@ -2976,20 +2976,20 @@ challengeNameType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeParametersType data model.
 -}
 type alias ChallengeParametersType =
     Dict String String
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeResponse data model.
 -}
 type ChallengeResponse
     = ChallengeResponseSuccess
     | ChallengeResponseFailure
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeResponse data model.
 -}
 challengeResponse : Enum ChallengeResponse
 challengeResponse =
@@ -3005,31 +3005,31 @@ challengeResponse =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeResponseListType data model.
 -}
 type alias ChallengeResponseListType =
     List ChallengeResponseType
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeResponseType data model.
 -}
 type alias ChallengeResponseType =
     { challengeResponse : Maybe ChallengeResponse, challengeName : Maybe ChallengeName }
 
 
-{-| Some type - blah blah blah.
+{-| The ChallengeResponsesType data model.
 -}
 type alias ChallengeResponsesType =
     Dict String String
 
 
-{-| Some type - blah blah blah.
+{-| The ChangePasswordRequest data model.
 -}
 type alias ChangePasswordRequest =
     { proposedPassword : PasswordType, previousPassword : PasswordType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The ChangePasswordResponse data model.
 -}
 type alias ChangePasswordResponse =
     {}
@@ -3039,7 +3039,7 @@ type ClientIdType
     = ClientIdType String
 
 
-{-| Some type - blah blah blah.
+{-| The ClientIdType data model.
 -}
 clientIdType : Refined String ClientIdType StringError
 clientIdType =
@@ -3056,7 +3056,7 @@ clientIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ClientMetadataType data model.
 -}
 type alias ClientMetadataType =
     Dict String String
@@ -3066,7 +3066,7 @@ type ClientNameType
     = ClientNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The ClientNameType data model.
 -}
 clientNameType : Refined String ClientNameType StringError
 clientNameType =
@@ -3083,7 +3083,7 @@ clientNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ClientPermissionListType data model.
 -}
 type alias ClientPermissionListType =
     List ClientPermissionType
@@ -3093,7 +3093,7 @@ type ClientPermissionType
     = ClientPermissionType String
 
 
-{-| Some type - blah blah blah.
+{-| The ClientPermissionType data model.
 -}
 clientPermissionType : Refined String ClientPermissionType StringError
 clientPermissionType =
@@ -3111,7 +3111,7 @@ type ClientSecretType
     = ClientSecretType String
 
 
-{-| Some type - blah blah blah.
+{-| The ClientSecretType data model.
 -}
 clientSecretType : Refined String ClientSecretType StringError
 clientSecretType =
@@ -3128,13 +3128,13 @@ clientSecretType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The CodeDeliveryDetailsListType data model.
 -}
 type alias CodeDeliveryDetailsListType =
     List CodeDeliveryDetailsType
 
 
-{-| Some type - blah blah blah.
+{-| The CodeDeliveryDetailsType data model.
 -}
 type alias CodeDeliveryDetailsType =
     { destination : Maybe String, deliveryMedium : Maybe DeliveryMediumType, attributeName : Maybe AttributeNameType }
@@ -3144,7 +3144,7 @@ type CompletionMessageType
     = CompletionMessageType String
 
 
-{-| Some type - blah blah blah.
+{-| The CompletionMessageType data model.
 -}
 completionMessageType : Refined String CompletionMessageType StringError
 completionMessageType =
@@ -3161,20 +3161,20 @@ completionMessageType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The CompromisedCredentialsActionsType data model.
 -}
 type alias CompromisedCredentialsActionsType =
     { eventAction : CompromisedCredentialsEventActionType }
 
 
-{-| Some type - blah blah blah.
+{-| The CompromisedCredentialsEventActionType data model.
 -}
 type CompromisedCredentialsEventActionType
     = CompromisedCredentialsEventActionTypeBlock
     | CompromisedCredentialsEventActionTypeNoAction
 
 
-{-| Some type - blah blah blah.
+{-| The CompromisedCredentialsEventActionType data model.
 -}
 compromisedCredentialsEventActionType : Enum CompromisedCredentialsEventActionType
 compromisedCredentialsEventActionType =
@@ -3190,13 +3190,13 @@ compromisedCredentialsEventActionType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The CompromisedCredentialsRiskConfigurationType data model.
 -}
 type alias CompromisedCredentialsRiskConfigurationType =
     { eventFilter : Maybe EventFiltersType, actions : CompromisedCredentialsActionsType }
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmDeviceRequest data model.
 -}
 type alias ConfirmDeviceRequest =
     { deviceSecretVerifierConfig : Maybe DeviceSecretVerifierConfigType
@@ -3206,13 +3206,13 @@ type alias ConfirmDeviceRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmDeviceResponse data model.
 -}
 type alias ConfirmDeviceResponse =
     { userConfirmationNecessary : Maybe Bool }
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmForgotPasswordRequest data model.
 -}
 type alias ConfirmForgotPasswordRequest =
     { username : UsernameType
@@ -3225,13 +3225,13 @@ type alias ConfirmForgotPasswordRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmForgotPasswordResponse data model.
 -}
 type alias ConfirmForgotPasswordResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmSignUpRequest data model.
 -}
 type alias ConfirmSignUpRequest =
     { username : UsernameType
@@ -3244,7 +3244,7 @@ type alias ConfirmSignUpRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmSignUpResponse data model.
 -}
 type alias ConfirmSignUpResponse =
     {}
@@ -3254,7 +3254,7 @@ type ConfirmationCodeType
     = ConfirmationCodeType String
 
 
-{-| Some type - blah blah blah.
+{-| The ConfirmationCodeType data model.
 -}
 confirmationCodeType : Refined String ConfirmationCodeType StringError
 confirmationCodeType =
@@ -3271,7 +3271,7 @@ confirmationCodeType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ContextDataType data model.
 -}
 type alias ContextDataType =
     { serverPath : String
@@ -3282,7 +3282,7 @@ type alias ContextDataType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateGroupRequest data model.
 -}
 type alias CreateGroupRequest =
     { userPoolId : UserPoolIdType
@@ -3293,13 +3293,13 @@ type alias CreateGroupRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateGroupResponse data model.
 -}
 type alias CreateGroupResponse =
     { group : Maybe GroupType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateIdentityProviderRequest data model.
 -}
 type alias CreateIdentityProviderRequest =
     { userPoolId : UserPoolIdType
@@ -3311,13 +3311,13 @@ type alias CreateIdentityProviderRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateIdentityProviderResponse data model.
 -}
 type alias CreateIdentityProviderResponse =
     { identityProvider : IdentityProviderType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateResourceServerRequest data model.
 -}
 type alias CreateResourceServerRequest =
     { userPoolId : UserPoolIdType
@@ -3327,25 +3327,25 @@ type alias CreateResourceServerRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateResourceServerResponse data model.
 -}
 type alias CreateResourceServerResponse =
     { resourceServer : ResourceServerType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserImportJobRequest data model.
 -}
 type alias CreateUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobName : UserImportJobNameType, cloudWatchLogsRoleArn : ArnType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserImportJobResponse data model.
 -}
 type alias CreateUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserPoolClientRequest data model.
 -}
 type alias CreateUserPoolClientRequest =
     { writeAttributes : Maybe ClientPermissionListType
@@ -3366,25 +3366,25 @@ type alias CreateUserPoolClientRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserPoolClientResponse data model.
 -}
 type alias CreateUserPoolClientResponse =
     { userPoolClient : Maybe UserPoolClientType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserPoolDomainRequest data model.
 -}
 type alias CreateUserPoolDomainRequest =
     { userPoolId : UserPoolIdType, domain : DomainType, customDomainConfig : Maybe CustomDomainConfigType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserPoolDomainResponse data model.
 -}
 type alias CreateUserPoolDomainResponse =
     { cloudFrontDomain : Maybe DomainType }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserPoolRequest data model.
 -}
 type alias CreateUserPoolRequest =
     { verificationMessageTemplate : Maybe VerificationMessageTemplateType
@@ -3409,7 +3409,7 @@ type alias CreateUserPoolRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The CreateUserPoolResponse data model.
 -}
 type alias CreateUserPoolResponse =
     { userPool : Maybe UserPoolType }
@@ -3419,7 +3419,7 @@ type CustomAttributeNameType
     = CustomAttributeNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The CustomAttributeNameType data model.
 -}
 customAttributeNameType : Refined String CustomAttributeNameType StringError
 customAttributeNameType =
@@ -3436,32 +3436,32 @@ customAttributeNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The CustomAttributesListType data model.
 -}
 type alias CustomAttributesListType =
     List SchemaAttributeType
 
 
-{-| Some type - blah blah blah.
+{-| The CustomDomainConfigType data model.
 -}
 type alias CustomDomainConfigType =
     { certificateArn : ArnType }
 
 
-{-| Some type - blah blah blah.
+{-| The DateType data model.
 -}
 type alias DateType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The DefaultEmailOptionType data model.
 -}
 type DefaultEmailOptionType
     = DefaultEmailOptionTypeConfirmWithLink
     | DefaultEmailOptionTypeConfirmWithCode
 
 
-{-| Some type - blah blah blah.
+{-| The DefaultEmailOptionType data model.
 -}
 defaultEmailOptionType : Enum DefaultEmailOptionType
 defaultEmailOptionType =
@@ -3477,80 +3477,80 @@ defaultEmailOptionType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteGroupRequest data model.
 -}
 type alias DeleteGroupRequest =
     { userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteIdentityProviderRequest data model.
 -}
 type alias DeleteIdentityProviderRequest =
     { userPoolId : UserPoolIdType, providerName : ProviderNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteResourceServerRequest data model.
 -}
 type alias DeleteResourceServerRequest =
     { userPoolId : UserPoolIdType, identifier : ResourceServerIdentifierType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserAttributesRequest data model.
 -}
 type alias DeleteUserAttributesRequest =
     { userAttributeNames : AttributeNameListType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserAttributesResponse data model.
 -}
 type alias DeleteUserAttributesResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserPoolClientRequest data model.
 -}
 type alias DeleteUserPoolClientRequest =
     { userPoolId : UserPoolIdType, clientId : ClientIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserPoolDomainRequest data model.
 -}
 type alias DeleteUserPoolDomainRequest =
     { userPoolId : UserPoolIdType, domain : DomainType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserPoolDomainResponse data model.
 -}
 type alias DeleteUserPoolDomainResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserPoolRequest data model.
 -}
 type alias DeleteUserPoolRequest =
     { userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeleteUserRequest data model.
 -}
 type alias DeleteUserRequest =
     { accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The DeliveryMediumListType data model.
 -}
 type alias DeliveryMediumListType =
     List DeliveryMediumType
 
 
-{-| Some type - blah blah blah.
+{-| The DeliveryMediumType data model.
 -}
 type DeliveryMediumType
     = DeliveryMediumTypeSms
     | DeliveryMediumTypeEmail
 
 
-{-| Some type - blah blah blah.
+{-| The DeliveryMediumType data model.
 -}
 deliveryMediumType : Enum DeliveryMediumType
 deliveryMediumType =
@@ -3566,85 +3566,85 @@ deliveryMediumType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeIdentityProviderRequest data model.
 -}
 type alias DescribeIdentityProviderRequest =
     { userPoolId : UserPoolIdType, providerName : ProviderNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeIdentityProviderResponse data model.
 -}
 type alias DescribeIdentityProviderResponse =
     { identityProvider : IdentityProviderType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeResourceServerRequest data model.
 -}
 type alias DescribeResourceServerRequest =
     { userPoolId : UserPoolIdType, identifier : ResourceServerIdentifierType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeResourceServerResponse data model.
 -}
 type alias DescribeResourceServerResponse =
     { resourceServer : ResourceServerType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeRiskConfigurationRequest data model.
 -}
 type alias DescribeRiskConfigurationRequest =
     { userPoolId : UserPoolIdType, clientId : Maybe ClientIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeRiskConfigurationResponse data model.
 -}
 type alias DescribeRiskConfigurationResponse =
     { riskConfiguration : RiskConfigurationType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserImportJobRequest data model.
 -}
 type alias DescribeUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobId : UserImportJobIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserImportJobResponse data model.
 -}
 type alias DescribeUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserPoolClientRequest data model.
 -}
 type alias DescribeUserPoolClientRequest =
     { userPoolId : UserPoolIdType, clientId : ClientIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserPoolClientResponse data model.
 -}
 type alias DescribeUserPoolClientResponse =
     { userPoolClient : Maybe UserPoolClientType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserPoolDomainRequest data model.
 -}
 type alias DescribeUserPoolDomainRequest =
     { domain : DomainType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserPoolDomainResponse data model.
 -}
 type alias DescribeUserPoolDomainResponse =
     { domainDescription : Maybe DomainDescriptionType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserPoolRequest data model.
 -}
 type alias DescribeUserPoolRequest =
     { userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The DescribeUserPoolResponse data model.
 -}
 type alias DescribeUserPoolResponse =
     { userPool : Maybe UserPoolType }
@@ -3654,7 +3654,7 @@ type DescriptionType
     = DescriptionType String
 
 
-{-| Some type - blah blah blah.
+{-| The DescriptionType data model.
 -}
 descriptionType : Refined String DescriptionType StringError
 descriptionType =
@@ -3668,7 +3668,7 @@ descriptionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceConfigurationType data model.
 -}
 type alias DeviceConfigurationType =
     { deviceOnlyRememberedOnUserPrompt : Maybe Bool, challengeRequiredOnNewDevice : Maybe Bool }
@@ -3678,7 +3678,7 @@ type DeviceKeyType
     = DeviceKeyType String
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceKeyType data model.
 -}
 deviceKeyType : Refined String DeviceKeyType StringError
 deviceKeyType =
@@ -3695,7 +3695,7 @@ deviceKeyType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceListType data model.
 -}
 type alias DeviceListType =
     List DeviceType
@@ -3705,7 +3705,7 @@ type DeviceNameType
     = DeviceNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceNameType data model.
 -}
 deviceNameType : Refined String DeviceNameType StringError
 deviceNameType =
@@ -3719,14 +3719,14 @@ deviceNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceRememberedStatusType data model.
 -}
 type DeviceRememberedStatusType
     = DeviceRememberedStatusTypeRemembered
     | DeviceRememberedStatusTypeNotRemembered
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceRememberedStatusType data model.
 -}
 deviceRememberedStatusType : Enum DeviceRememberedStatusType
 deviceRememberedStatusType =
@@ -3742,13 +3742,13 @@ deviceRememberedStatusType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceSecretVerifierConfigType data model.
 -}
 type alias DeviceSecretVerifierConfigType =
     { salt : Maybe String, passwordVerifier : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The DeviceType data model.
 -}
 type alias DeviceType =
     { deviceLastModifiedDate : Maybe DateType
@@ -3759,7 +3759,7 @@ type alias DeviceType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The DomainDescriptionType data model.
 -}
 type alias DomainDescriptionType =
     { version : Maybe DomainVersionType
@@ -3773,7 +3773,7 @@ type alias DomainDescriptionType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The DomainStatusType data model.
 -}
 type DomainStatusType
     = DomainStatusTypeCreating
@@ -3783,7 +3783,7 @@ type DomainStatusType
     | DomainStatusTypeFailed
 
 
-{-| Some type - blah blah blah.
+{-| The DomainStatusType data model.
 -}
 domainStatusType : Enum DomainStatusType
 domainStatusType =
@@ -3817,7 +3817,7 @@ type DomainType
     = DomainType String
 
 
-{-| Some type - blah blah blah.
+{-| The DomainType data model.
 -}
 domainType : Refined String DomainType StringError
 domainType =
@@ -3838,7 +3838,7 @@ type DomainVersionType
     = DomainVersionType String
 
 
-{-| Some type - blah blah blah.
+{-| The DomainVersionType data model.
 -}
 domainVersionType : Refined String DomainVersionType StringError
 domainVersionType =
@@ -3856,7 +3856,7 @@ type EmailAddressType
     = EmailAddressType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailAddressType data model.
 -}
 emailAddressType : Refined String EmailAddressType StringError
 emailAddressType =
@@ -3871,7 +3871,7 @@ emailAddressType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The EmailConfigurationType data model.
 -}
 type alias EmailConfigurationType =
     { sourceArn : Maybe ArnType
@@ -3884,7 +3884,7 @@ type EmailNotificationBodyType
     = EmailNotificationBodyType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailNotificationBodyType data model.
 -}
 emailNotificationBodyType : Refined String EmailNotificationBodyType StringError
 emailNotificationBodyType =
@@ -3905,7 +3905,7 @@ type EmailNotificationSubjectType
     = EmailNotificationSubjectType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailNotificationSubjectType data model.
 -}
 emailNotificationSubjectType : Refined String EmailNotificationSubjectType StringError
 emailNotificationSubjectType =
@@ -3922,14 +3922,14 @@ emailNotificationSubjectType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The EmailSendingAccountType data model.
 -}
 type EmailSendingAccountType
     = EmailSendingAccountTypeCognitoDefault
     | EmailSendingAccountTypeDeveloper
 
 
-{-| Some type - blah blah blah.
+{-| The EmailSendingAccountType data model.
 -}
 emailSendingAccountType : Enum EmailSendingAccountType
 emailSendingAccountType =
@@ -3949,7 +3949,7 @@ type EmailVerificationMessageByLinkType
     = EmailVerificationMessageByLinkType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailVerificationMessageByLinkType data model.
 -}
 emailVerificationMessageByLinkType : Refined String EmailVerificationMessageByLinkType StringError
 emailVerificationMessageByLinkType =
@@ -3973,7 +3973,7 @@ type EmailVerificationMessageType
     = EmailVerificationMessageType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailVerificationMessageType data model.
 -}
 emailVerificationMessageType : Refined String EmailVerificationMessageType StringError
 emailVerificationMessageType =
@@ -3997,7 +3997,7 @@ type EmailVerificationSubjectByLinkType
     = EmailVerificationSubjectByLinkType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailVerificationSubjectByLinkType data model.
 -}
 emailVerificationSubjectByLinkType : Refined String EmailVerificationSubjectByLinkType StringError
 emailVerificationSubjectByLinkType =
@@ -4018,7 +4018,7 @@ type EmailVerificationSubjectType
     = EmailVerificationSubjectType String
 
 
-{-| Some type - blah blah blah.
+{-| The EmailVerificationSubjectType data model.
 -}
 emailVerificationSubjectType : Refined String EmailVerificationSubjectType StringError
 emailVerificationSubjectType =
@@ -4035,7 +4035,7 @@ emailVerificationSubjectType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The EventContextDataType data model.
 -}
 type alias EventContextDataType =
     { timezone : Maybe String
@@ -4046,13 +4046,13 @@ type alias EventContextDataType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The EventFeedbackType data model.
 -}
 type alias EventFeedbackType =
     { provider : String, feedbackValue : FeedbackValueType, feedbackDate : Maybe DateType }
 
 
-{-| Some type - blah blah blah.
+{-| The EventFilterType data model.
 -}
 type EventFilterType
     = EventFilterTypeSignIn
@@ -4060,7 +4060,7 @@ type EventFilterType
     | EventFilterTypeSignUp
 
 
-{-| Some type - blah blah blah.
+{-| The EventFilterType data model.
 -}
 eventFilterType : Enum EventFilterType
 eventFilterType =
@@ -4079,7 +4079,7 @@ eventFilterType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The EventFiltersType data model.
 -}
 type alias EventFiltersType =
     List EventFilterType
@@ -4089,7 +4089,7 @@ type EventIdType
     = EventIdType String
 
 
-{-| Some type - blah blah blah.
+{-| The EventIdType data model.
 -}
 eventIdType : Refined String EventIdType StringError
 eventIdType =
@@ -4106,14 +4106,14 @@ eventIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The EventResponseType data model.
 -}
 type EventResponseType
     = EventResponseTypeSuccess
     | EventResponseTypeFailure
 
 
-{-| Some type - blah blah blah.
+{-| The EventResponseType data model.
 -}
 eventResponseType : Enum EventResponseType
 eventResponseType =
@@ -4129,13 +4129,13 @@ eventResponseType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The EventRiskType data model.
 -}
 type alias EventRiskType =
     { riskLevel : Maybe RiskLevelType, riskDecision : Maybe RiskDecisionType }
 
 
-{-| Some type - blah blah blah.
+{-| The EventType data model.
 -}
 type EventType
     = EventTypeSignIn
@@ -4143,7 +4143,7 @@ type EventType
     | EventTypeForgotPassword
 
 
-{-| Some type - blah blah blah.
+{-| The EventType data model.
 -}
 eventType : Enum EventType
 eventType =
@@ -4162,13 +4162,13 @@ eventType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The ExplicitAuthFlowsListType data model.
 -}
 type alias ExplicitAuthFlowsListType =
     List ExplicitAuthFlowsType
 
 
-{-| Some type - blah blah blah.
+{-| The ExplicitAuthFlowsType data model.
 -}
 type ExplicitAuthFlowsType
     = ExplicitAuthFlowsTypeAdminNoSrpAuth
@@ -4176,7 +4176,7 @@ type ExplicitAuthFlowsType
     | ExplicitAuthFlowsTypeUserPasswordAuth
 
 
-{-| Some type - blah blah blah.
+{-| The ExplicitAuthFlowsType data model.
 -}
 explicitAuthFlowsType : Enum ExplicitAuthFlowsType
 explicitAuthFlowsType =
@@ -4198,14 +4198,14 @@ explicitAuthFlowsType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The FeedbackValueType data model.
 -}
 type FeedbackValueType
     = FeedbackValueTypeValid
     | FeedbackValueTypeInvalid
 
 
-{-| Some type - blah blah blah.
+{-| The FeedbackValueType data model.
 -}
 feedbackValueType : Enum FeedbackValueType
 feedbackValueType =
@@ -4221,19 +4221,19 @@ feedbackValueType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The ForceAliasCreation data model.
 -}
 type alias ForceAliasCreation =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The ForgetDeviceRequest data model.
 -}
 type alias ForgetDeviceRequest =
     { deviceKey : DeviceKeyType, accessToken : Maybe TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The ForgotPasswordRequest data model.
 -}
 type alias ForgotPasswordRequest =
     { username : UsernameType
@@ -4244,109 +4244,109 @@ type alias ForgotPasswordRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ForgotPasswordResponse data model.
 -}
 type alias ForgotPasswordResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
-{-| Some type - blah blah blah.
+{-| The GenerateSecret data model.
 -}
 type alias GenerateSecret =
     Bool
 
 
-{-| Some type - blah blah blah.
+{-| The GetCsvheaderRequest data model.
 -}
 type alias GetCsvheaderRequest =
     { userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetCsvheaderResponse data model.
 -}
 type alias GetCsvheaderResponse =
     { userPoolId : Maybe UserPoolIdType, csvheader : Maybe ListOfStringTypes }
 
 
-{-| Some type - blah blah blah.
+{-| The GetDeviceRequest data model.
 -}
 type alias GetDeviceRequest =
     { deviceKey : DeviceKeyType, accessToken : Maybe TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetDeviceResponse data model.
 -}
 type alias GetDeviceResponse =
     { device : DeviceType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetGroupRequest data model.
 -}
 type alias GetGroupRequest =
     { userPoolId : UserPoolIdType, groupName : GroupNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetGroupResponse data model.
 -}
 type alias GetGroupResponse =
     { group : Maybe GroupType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetIdentityProviderByIdentifierRequest data model.
 -}
 type alias GetIdentityProviderByIdentifierRequest =
     { userPoolId : UserPoolIdType, idpIdentifier : IdpIdentifierType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetIdentityProviderByIdentifierResponse data model.
 -}
 type alias GetIdentityProviderByIdentifierResponse =
     { identityProvider : IdentityProviderType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetSigningCertificateRequest data model.
 -}
 type alias GetSigningCertificateRequest =
     { userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetSigningCertificateResponse data model.
 -}
 type alias GetSigningCertificateResponse =
     { certificate : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUicustomizationRequest data model.
 -}
 type alias GetUicustomizationRequest =
     { userPoolId : UserPoolIdType, clientId : Maybe ClientIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUicustomizationResponse data model.
 -}
 type alias GetUicustomizationResponse =
     { uicustomization : UicustomizationType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUserAttributeVerificationCodeRequest data model.
 -}
 type alias GetUserAttributeVerificationCodeRequest =
     { attributeName : AttributeNameType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUserAttributeVerificationCodeResponse data model.
 -}
 type alias GetUserAttributeVerificationCodeResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUserPoolMfaConfigRequest data model.
 -}
 type alias GetUserPoolMfaConfigRequest =
     { userPoolId : UserPoolIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUserPoolMfaConfigResponse data model.
 -}
 type alias GetUserPoolMfaConfigResponse =
     { softwareTokenMfaConfiguration : Maybe SoftwareTokenMfaConfigType
@@ -4355,13 +4355,13 @@ type alias GetUserPoolMfaConfigResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUserRequest data model.
 -}
 type alias GetUserRequest =
     { accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The GetUserResponse data model.
 -}
 type alias GetUserResponse =
     { username : UsernameType
@@ -4372,19 +4372,19 @@ type alias GetUserResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The GlobalSignOutRequest data model.
 -}
 type alias GlobalSignOutRequest =
     { accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The GlobalSignOutResponse data model.
 -}
 type alias GlobalSignOutResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The GroupListType data model.
 -}
 type alias GroupListType =
     List GroupType
@@ -4394,7 +4394,7 @@ type GroupNameType
     = GroupNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The GroupNameType data model.
 -}
 groupNameType : Refined String GroupNameType StringError
 groupNameType =
@@ -4411,7 +4411,7 @@ groupNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The GroupType data model.
 -}
 type alias GroupType =
     { userPoolId : Maybe UserPoolIdType
@@ -4428,7 +4428,7 @@ type HexStringType
     = HexStringType String
 
 
-{-| Some type - blah blah blah.
+{-| The HexStringType data model.
 -}
 hexStringType : Refined String HexStringType StringError
 hexStringType =
@@ -4442,19 +4442,19 @@ hexStringType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The HttpHeader data model.
 -}
 type alias HttpHeader =
     { headerValue : Maybe String, headerName : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The HttpHeaderList data model.
 -}
 type alias HttpHeaderList =
     List HttpHeader
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviderType data model.
 -}
 type alias IdentityProviderType =
     { userPoolId : Maybe UserPoolIdType
@@ -4468,7 +4468,7 @@ type alias IdentityProviderType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviderTypeType data model.
 -}
 type IdentityProviderTypeType
     = IdentityProviderTypeTypeSaml
@@ -4478,7 +4478,7 @@ type IdentityProviderTypeType
     | IdentityProviderTypeTypeOidc
 
 
-{-| Some type - blah blah blah.
+{-| The IdentityProviderTypeType data model.
 -}
 identityProviderTypeType : Enum IdentityProviderTypeType
 identityProviderTypeType =
@@ -4512,7 +4512,7 @@ type IdpIdentifierType
     = IdpIdentifierType String
 
 
-{-| Some type - blah blah blah.
+{-| The IdpIdentifierType data model.
 -}
 idpIdentifierType : Refined String IdpIdentifierType StringError
 idpIdentifierType =
@@ -4529,25 +4529,25 @@ idpIdentifierType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The IdpIdentifiersListType data model.
 -}
 type alias IdpIdentifiersListType =
     List IdpIdentifierType
 
 
-{-| Some type - blah blah blah.
+{-| The ImageFileType data model.
 -}
 type alias ImageFileType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The ImageUrlType data model.
 -}
 type alias ImageUrlType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The InitiateAuthRequest data model.
 -}
 type alias InitiateAuthRequest =
     { userContextData : Maybe UserContextDataType
@@ -4559,7 +4559,7 @@ type alias InitiateAuthRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The InitiateAuthResponse data model.
 -}
 type alias InitiateAuthResponse =
     { session : Maybe SessionType
@@ -4569,13 +4569,13 @@ type alias InitiateAuthResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The IntegerType data model.
 -}
 type alias IntegerType =
     Int
 
 
-{-| Some type - blah blah blah.
+{-| The LambdaConfigType data model.
 -}
 type alias LambdaConfigType =
     { verifyAuthChallengeResponse : Maybe ArnType
@@ -4591,43 +4591,43 @@ type alias LambdaConfigType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ListDevicesRequest data model.
 -}
 type alias ListDevicesRequest =
     { paginationToken : Maybe SearchPaginationTokenType, limit : Maybe QueryLimitType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListDevicesResponse data model.
 -}
 type alias ListDevicesResponse =
     { paginationToken : Maybe SearchPaginationTokenType, devices : Maybe DeviceListType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListGroupsRequest data model.
 -}
 type alias ListGroupsRequest =
     { userPoolId : UserPoolIdType, nextToken : Maybe PaginationKey, limit : Maybe QueryLimitType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListGroupsResponse data model.
 -}
 type alias ListGroupsResponse =
     { nextToken : Maybe PaginationKey, groups : Maybe GroupListType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListIdentityProvidersRequest data model.
 -}
 type alias ListIdentityProvidersRequest =
     { userPoolId : UserPoolIdType, nextToken : Maybe PaginationKeyType, maxResults : Maybe ListProvidersLimitType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListIdentityProvidersResponse data model.
 -}
 type alias ListIdentityProvidersResponse =
     { providers : ProvidersListType, nextToken : Maybe PaginationKeyType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListOfStringTypes data model.
 -}
 type alias ListOfStringTypes =
     List String
@@ -4637,7 +4637,7 @@ type ListProvidersLimitType
     = ListProvidersLimitType Int
 
 
-{-| Some type - blah blah blah.
+{-| The ListProvidersLimitType data model.
 -}
 listProvidersLimitType : Refined Int ListProvidersLimitType IntError
 listProvidersLimitType =
@@ -4655,7 +4655,7 @@ type ListResourceServersLimitType
     = ListResourceServersLimitType Int
 
 
-{-| Some type - blah blah blah.
+{-| The ListResourceServersLimitType data model.
 -}
 listResourceServersLimitType : Refined Int ListResourceServersLimitType IntError
 listResourceServersLimitType =
@@ -4669,7 +4669,7 @@ listResourceServersLimitType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ListResourceServersRequest data model.
 -}
 type alias ListResourceServersRequest =
     { userPoolId : UserPoolIdType
@@ -4678,61 +4678,61 @@ type alias ListResourceServersRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ListResourceServersResponse data model.
 -}
 type alias ListResourceServersResponse =
     { resourceServers : ResourceServersListType, nextToken : Maybe PaginationKeyType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListTagsForResourceRequest data model.
 -}
 type alias ListTagsForResourceRequest =
     { resourceArn : ArnType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListTagsForResourceResponse data model.
 -}
 type alias ListTagsForResourceResponse =
     { tags : Maybe UserPoolTagsType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUserImportJobsRequest data model.
 -}
 type alias ListUserImportJobsRequest =
     { userPoolId : UserPoolIdType, paginationToken : Maybe PaginationKeyType, maxResults : PoolQueryLimitType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUserImportJobsResponse data model.
 -}
 type alias ListUserImportJobsResponse =
     { userImportJobs : Maybe UserImportJobsListType, paginationToken : Maybe PaginationKeyType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUserPoolClientsRequest data model.
 -}
 type alias ListUserPoolClientsRequest =
     { userPoolId : UserPoolIdType, nextToken : Maybe PaginationKey, maxResults : Maybe QueryLimit }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUserPoolClientsResponse data model.
 -}
 type alias ListUserPoolClientsResponse =
     { userPoolClients : Maybe UserPoolClientListType, nextToken : Maybe PaginationKey }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUserPoolsRequest data model.
 -}
 type alias ListUserPoolsRequest =
     { nextToken : Maybe PaginationKeyType, maxResults : PoolQueryLimitType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUserPoolsResponse data model.
 -}
 type alias ListUserPoolsResponse =
     { userPools : Maybe UserPoolListType, nextToken : Maybe PaginationKeyType }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUsersInGroupRequest data model.
 -}
 type alias ListUsersInGroupRequest =
     { userPoolId : UserPoolIdType
@@ -4742,13 +4742,13 @@ type alias ListUsersInGroupRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUsersInGroupResponse data model.
 -}
 type alias ListUsersInGroupResponse =
     { users : Maybe UsersListType, nextToken : Maybe PaginationKey }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUsersRequest data model.
 -}
 type alias ListUsersRequest =
     { userPoolId : UserPoolIdType
@@ -4759,44 +4759,44 @@ type alias ListUsersRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ListUsersResponse data model.
 -}
 type alias ListUsersResponse =
     { users : Maybe UsersListType, paginationToken : Maybe SearchPaginationTokenType }
 
 
-{-| Some type - blah blah blah.
+{-| The LogoutUrlsListType data model.
 -}
 type alias LogoutUrlsListType =
     List RedirectUrlType
 
 
-{-| Some type - blah blah blah.
+{-| The LongType data model.
 -}
 type alias LongType =
     Int
 
 
-{-| Some type - blah blah blah.
+{-| The MfaoptionListType data model.
 -}
 type alias MfaoptionListType =
     List MfaoptionType
 
 
-{-| Some type - blah blah blah.
+{-| The MfaoptionType data model.
 -}
 type alias MfaoptionType =
     { deliveryMedium : Maybe DeliveryMediumType, attributeName : Maybe AttributeNameType }
 
 
-{-| Some type - blah blah blah.
+{-| The MessageActionType data model.
 -}
 type MessageActionType
     = MessageActionTypeResend
     | MessageActionTypeSuppress
 
 
-{-| Some type - blah blah blah.
+{-| The MessageActionType data model.
 -}
 messageActionType : Enum MessageActionType
 messageActionType =
@@ -4812,7 +4812,7 @@ messageActionType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The MessageTemplateType data model.
 -}
 type alias MessageTemplateType =
     { smsmessage : Maybe SmsVerificationMessageType
@@ -4821,13 +4821,13 @@ type alias MessageTemplateType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The NewDeviceMetadataType data model.
 -}
 type alias NewDeviceMetadataType =
     { deviceKey : Maybe DeviceKeyType, deviceGroupKey : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The NotifyConfigurationType data model.
 -}
 type alias NotifyConfigurationType =
     { sourceArn : ArnType
@@ -4839,7 +4839,7 @@ type alias NotifyConfigurationType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The NotifyEmailType data model.
 -}
 type alias NotifyEmailType =
     { textBody : Maybe EmailNotificationBodyType
@@ -4848,13 +4848,13 @@ type alias NotifyEmailType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The NumberAttributeConstraintsType data model.
 -}
 type alias NumberAttributeConstraintsType =
     { minValue : Maybe String, maxValue : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The OauthFlowType data model.
 -}
 type OauthFlowType
     = OauthFlowTypeCode
@@ -4862,7 +4862,7 @@ type OauthFlowType
     | OauthFlowTypeClientCredentials
 
 
-{-| Some type - blah blah blah.
+{-| The OauthFlowType data model.
 -}
 oauthFlowType : Enum OauthFlowType
 oauthFlowType =
@@ -4881,7 +4881,7 @@ oauthFlowType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The OauthFlowsType data model.
 -}
 type alias OauthFlowsType =
     List OauthFlowType
@@ -4891,7 +4891,7 @@ type PaginationKey
     = PaginationKey String
 
 
-{-| Some type - blah blah blah.
+{-| The PaginationKey data model.
 -}
 paginationKey : Refined String PaginationKey StringError
 paginationKey =
@@ -4909,7 +4909,7 @@ type PaginationKeyType
     = PaginationKeyType String
 
 
-{-| Some type - blah blah blah.
+{-| The PaginationKeyType data model.
 -}
 paginationKeyType : Refined String PaginationKeyType StringError
 paginationKeyType =
@@ -4927,7 +4927,7 @@ type PasswordPolicyMinLengthType
     = PasswordPolicyMinLengthType Int
 
 
-{-| Some type - blah blah blah.
+{-| The PasswordPolicyMinLengthType data model.
 -}
 passwordPolicyMinLengthType : Refined Int PasswordPolicyMinLengthType IntError
 passwordPolicyMinLengthType =
@@ -4941,7 +4941,7 @@ passwordPolicyMinLengthType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The PasswordPolicyType data model.
 -}
 type alias PasswordPolicyType =
     { temporaryPasswordValidityDays : Maybe TemporaryPasswordValidityDaysType
@@ -4957,7 +4957,7 @@ type PasswordType
     = PasswordType String
 
 
-{-| Some type - blah blah blah.
+{-| The PasswordType data model.
 -}
 passwordType : Refined String PasswordType StringError
 passwordType =
@@ -4978,7 +4978,7 @@ type PoolQueryLimitType
     = PoolQueryLimitType Int
 
 
-{-| Some type - blah blah blah.
+{-| The PoolQueryLimitType data model.
 -}
 poolQueryLimitType : Refined Int PoolQueryLimitType IntError
 poolQueryLimitType =
@@ -4996,7 +4996,7 @@ type PreSignedUrlType
     = PreSignedUrlType String
 
 
-{-| Some type - blah blah blah.
+{-| The PreSignedUrlType data model.
 -}
 preSignedUrlType : Refined String PreSignedUrlType StringError
 preSignedUrlType =
@@ -5014,7 +5014,7 @@ type PrecedenceType
     = PrecedenceType Int
 
 
-{-| Some type - blah blah blah.
+{-| The PrecedenceType data model.
 -}
 precedenceType : Refined Int PrecedenceType IntError
 precedenceType =
@@ -5028,7 +5028,7 @@ precedenceType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ProviderDescription data model.
 -}
 type alias ProviderDescription =
     { providerType : Maybe IdentityProviderTypeType
@@ -5038,7 +5038,7 @@ type alias ProviderDescription =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ProviderDetailsType data model.
 -}
 type alias ProviderDetailsType =
     Dict String String
@@ -5048,7 +5048,7 @@ type ProviderNameType
     = ProviderNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The ProviderNameType data model.
 -}
 providerNameType : Refined String ProviderNameType StringError
 providerNameType =
@@ -5069,7 +5069,7 @@ type ProviderNameTypeV1
     = ProviderNameTypeV1 String
 
 
-{-| Some type - blah blah blah.
+{-| The ProviderNameTypeV1 data model.
 -}
 providerNameTypeV1 : Refined String ProviderNameTypeV1 StringError
 providerNameTypeV1 =
@@ -5086,7 +5086,7 @@ providerNameTypeV1 =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ProviderUserIdentifierType data model.
 -}
 type alias ProviderUserIdentifierType =
     { providerName : Maybe ProviderNameType
@@ -5095,7 +5095,7 @@ type alias ProviderUserIdentifierType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ProvidersListType data model.
 -}
 type alias ProvidersListType =
     List ProviderDescription
@@ -5105,7 +5105,7 @@ type QueryLimit
     = QueryLimit Int
 
 
-{-| Some type - blah blah blah.
+{-| The QueryLimit data model.
 -}
 queryLimit : Refined Int QueryLimit IntError
 queryLimit =
@@ -5123,7 +5123,7 @@ type QueryLimitType
     = QueryLimitType Int
 
 
-{-| Some type - blah blah blah.
+{-| The QueryLimitType data model.
 -}
 queryLimitType : Refined Int QueryLimitType IntError
 queryLimitType =
@@ -5141,7 +5141,7 @@ type RedirectUrlType
     = RedirectUrlType String
 
 
-{-| Some type - blah blah blah.
+{-| The RedirectUrlType data model.
 -}
 redirectUrlType : Refined String RedirectUrlType StringError
 redirectUrlType =
@@ -5162,7 +5162,7 @@ type RefreshTokenValidityType
     = RefreshTokenValidityType Int
 
 
-{-| Some type - blah blah blah.
+{-| The RefreshTokenValidityType data model.
 -}
 refreshTokenValidityType : Refined Int RefreshTokenValidityType IntError
 refreshTokenValidityType =
@@ -5176,7 +5176,7 @@ refreshTokenValidityType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ResendConfirmationCodeRequest data model.
 -}
 type alias ResendConfirmationCodeRequest =
     { username : UsernameType
@@ -5187,7 +5187,7 @@ type alias ResendConfirmationCodeRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ResendConfirmationCodeResponse data model.
 -}
 type alias ResendConfirmationCodeResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
@@ -5197,7 +5197,7 @@ type ResourceServerIdentifierType
     = ResourceServerIdentifierType String
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerIdentifierType data model.
 -}
 resourceServerIdentifierType : Refined String ResourceServerIdentifierType StringError
 resourceServerIdentifierType =
@@ -5218,7 +5218,7 @@ type ResourceServerNameType
     = ResourceServerNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerNameType data model.
 -}
 resourceServerNameType : Refined String ResourceServerNameType StringError
 resourceServerNameType =
@@ -5239,7 +5239,7 @@ type ResourceServerScopeDescriptionType
     = ResourceServerScopeDescriptionType String
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerScopeDescriptionType data model.
 -}
 resourceServerScopeDescriptionType : Refined String ResourceServerScopeDescriptionType StringError
 resourceServerScopeDescriptionType =
@@ -5255,7 +5255,7 @@ resourceServerScopeDescriptionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerScopeListType data model.
 -}
 type alias ResourceServerScopeListType =
     List ResourceServerScopeType
@@ -5265,7 +5265,7 @@ type ResourceServerScopeNameType
     = ResourceServerScopeNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerScopeNameType data model.
 -}
 resourceServerScopeNameType : Refined String ResourceServerScopeNameType StringError
 resourceServerScopeNameType =
@@ -5282,13 +5282,13 @@ resourceServerScopeNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerScopeType data model.
 -}
 type alias ResourceServerScopeType =
     { scopeName : ResourceServerScopeNameType, scopeDescription : ResourceServerScopeDescriptionType }
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServerType data model.
 -}
 type alias ResourceServerType =
     { userPoolId : Maybe UserPoolIdType
@@ -5298,13 +5298,13 @@ type alias ResourceServerType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The ResourceServersListType data model.
 -}
 type alias ResourceServersListType =
     List ResourceServerType
 
 
-{-| Some type - blah blah blah.
+{-| The RespondToAuthChallengeRequest data model.
 -}
 type alias RespondToAuthChallengeRequest =
     { userContextData : Maybe UserContextDataType
@@ -5316,7 +5316,7 @@ type alias RespondToAuthChallengeRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The RespondToAuthChallengeResponse data model.
 -}
 type alias RespondToAuthChallengeResponse =
     { session : Maybe SessionType
@@ -5326,7 +5326,7 @@ type alias RespondToAuthChallengeResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The RiskConfigurationType data model.
 -}
 type alias RiskConfigurationType =
     { userPoolId : Maybe UserPoolIdType
@@ -5338,7 +5338,7 @@ type alias RiskConfigurationType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The RiskDecisionType data model.
 -}
 type RiskDecisionType
     = RiskDecisionTypeNoRisk
@@ -5346,7 +5346,7 @@ type RiskDecisionType
     | RiskDecisionTypeBlock
 
 
-{-| Some type - blah blah blah.
+{-| The RiskDecisionType data model.
 -}
 riskDecisionType : Enum RiskDecisionType
 riskDecisionType =
@@ -5365,13 +5365,13 @@ riskDecisionType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The RiskExceptionConfigurationType data model.
 -}
 type alias RiskExceptionConfigurationType =
     { skippedIprangeList : Maybe SkippedIprangeListType, blockedIprangeList : Maybe BlockedIprangeListType }
 
 
-{-| Some type - blah blah blah.
+{-| The RiskLevelType data model.
 -}
 type RiskLevelType
     = RiskLevelTypeLow
@@ -5379,7 +5379,7 @@ type RiskLevelType
     | RiskLevelTypeHigh
 
 
-{-| Some type - blah blah blah.
+{-| The RiskLevelType data model.
 -}
 riskLevelType : Enum RiskLevelType
 riskLevelType =
@@ -5402,7 +5402,7 @@ type S3BucketType
     = S3BucketType String
 
 
-{-| Some type - blah blah blah.
+{-| The S3BucketType data model.
 -}
 s3BucketType : Refined String S3BucketType StringError
 s3BucketType =
@@ -5419,13 +5419,13 @@ s3BucketType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The SmsmfaSettingsType data model.
 -}
 type alias SmsmfaSettingsType =
     { preferredMfa : Maybe Bool, enabled : Maybe Bool }
 
 
-{-| Some type - blah blah blah.
+{-| The SchemaAttributeType data model.
 -}
 type alias SchemaAttributeType =
     { stringAttributeConstraints : Maybe StringAttributeConstraintsType
@@ -5438,13 +5438,13 @@ type alias SchemaAttributeType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The SchemaAttributesListType data model.
 -}
 type alias SchemaAttributesListType =
     List SchemaAttributeType
 
 
-{-| Some type - blah blah blah.
+{-| The ScopeListType data model.
 -}
 type alias ScopeListType =
     List ScopeType
@@ -5454,7 +5454,7 @@ type ScopeType
     = ScopeType String
 
 
-{-| Some type - blah blah blah.
+{-| The ScopeType data model.
 -}
 scopeType : Refined String ScopeType StringError
 scopeType =
@@ -5475,7 +5475,7 @@ type SearchPaginationTokenType
     = SearchPaginationTokenType String
 
 
-{-| Some type - blah blah blah.
+{-| The SearchPaginationTokenType data model.
 -}
 searchPaginationTokenType : Refined String SearchPaginationTokenType StringError
 searchPaginationTokenType =
@@ -5491,7 +5491,7 @@ searchPaginationTokenType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The SearchedAttributeNamesListType data model.
 -}
 type alias SearchedAttributeNamesListType =
     List AttributeNameType
@@ -5501,7 +5501,7 @@ type SecretCodeType
     = SecretCodeType String
 
 
-{-| Some type - blah blah blah.
+{-| The SecretCodeType data model.
 -}
 secretCodeType : Refined String SecretCodeType StringError
 secretCodeType =
@@ -5519,7 +5519,7 @@ type SecretHashType
     = SecretHashType String
 
 
-{-| Some type - blah blah blah.
+{-| The SecretHashType data model.
 -}
 secretHashType : Refined String SecretHashType StringError
 secretHashType =
@@ -5540,7 +5540,7 @@ type SessionType
     = SessionType String
 
 
-{-| Some type - blah blah blah.
+{-| The SessionType data model.
 -}
 sessionType : Refined String SessionType StringError
 sessionType =
@@ -5554,7 +5554,7 @@ sessionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The SetRiskConfigurationRequest data model.
 -}
 type alias SetRiskConfigurationRequest =
     { userPoolId : UserPoolIdType
@@ -5565,25 +5565,25 @@ type alias SetRiskConfigurationRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The SetRiskConfigurationResponse data model.
 -}
 type alias SetRiskConfigurationResponse =
     { riskConfiguration : RiskConfigurationType }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUicustomizationRequest data model.
 -}
 type alias SetUicustomizationRequest =
     { userPoolId : UserPoolIdType, imageFile : Maybe String, clientId : Maybe ClientIdType, css : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUicustomizationResponse data model.
 -}
 type alias SetUicustomizationResponse =
     { uicustomization : UicustomizationType }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUserMfapreferenceRequest data model.
 -}
 type alias SetUserMfapreferenceRequest =
     { softwareTokenMfaSettings : Maybe SoftwareTokenMfaSettingsType
@@ -5592,13 +5592,13 @@ type alias SetUserMfapreferenceRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUserMfapreferenceResponse data model.
 -}
 type alias SetUserMfapreferenceResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The SetUserPoolMfaConfigRequest data model.
 -}
 type alias SetUserPoolMfaConfigRequest =
     { userPoolId : UserPoolIdType
@@ -5608,7 +5608,7 @@ type alias SetUserPoolMfaConfigRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUserPoolMfaConfigResponse data model.
 -}
 type alias SetUserPoolMfaConfigResponse =
     { softwareTokenMfaConfiguration : Maybe SoftwareTokenMfaConfigType
@@ -5617,19 +5617,19 @@ type alias SetUserPoolMfaConfigResponse =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUserSettingsRequest data model.
 -}
 type alias SetUserSettingsRequest =
     { mfaoptions : MfaoptionListType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The SetUserSettingsResponse data model.
 -}
 type alias SetUserSettingsResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The SignUpRequest data model.
 -}
 type alias SignUpRequest =
     { validationData : Maybe AttributeListType
@@ -5643,25 +5643,25 @@ type alias SignUpRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The SignUpResponse data model.
 -}
 type alias SignUpResponse =
     { userSub : String, userConfirmed : Bool, codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
-{-| Some type - blah blah blah.
+{-| The SkippedIprangeListType data model.
 -}
 type alias SkippedIprangeListType =
     List String
 
 
-{-| Some type - blah blah blah.
+{-| The SmsConfigurationType data model.
 -}
 type alias SmsConfigurationType =
     { snsCallerArn : ArnType, externalId : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The SmsMfaConfigType data model.
 -}
 type alias SmsMfaConfigType =
     { smsConfiguration : Maybe SmsConfigurationType, smsAuthenticationMessage : Maybe SmsVerificationMessageType }
@@ -5671,7 +5671,7 @@ type SmsVerificationMessageType
     = SmsVerificationMessageType String
 
 
-{-| Some type - blah blah blah.
+{-| The SmsVerificationMessageType data model.
 -}
 smsVerificationMessageType : Refined String SmsVerificationMessageType StringError
 smsVerificationMessageType =
@@ -5692,7 +5692,7 @@ type SoftwareTokenMfauserCodeType
     = SoftwareTokenMfauserCodeType String
 
 
-{-| Some type - blah blah blah.
+{-| The SoftwareTokenMfauserCodeType data model.
 -}
 softwareTokenMfauserCodeType : Refined String SoftwareTokenMfauserCodeType StringError
 softwareTokenMfauserCodeType =
@@ -5709,38 +5709,38 @@ softwareTokenMfauserCodeType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The SoftwareTokenMfaConfigType data model.
 -}
 type alias SoftwareTokenMfaConfigType =
     { enabled : Maybe Bool }
 
 
-{-| Some type - blah blah blah.
+{-| The SoftwareTokenMfaSettingsType data model.
 -}
 type alias SoftwareTokenMfaSettingsType =
     { preferredMfa : Maybe Bool, enabled : Maybe Bool }
 
 
-{-| Some type - blah blah blah.
+{-| The StartUserImportJobRequest data model.
 -}
 type alias StartUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobId : UserImportJobIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The StartUserImportJobResponse data model.
 -}
 type alias StartUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
-{-| Some type - blah blah blah.
+{-| The StatusType data model.
 -}
 type StatusType
     = StatusTypeEnabled
     | StatusTypeDisabled
 
 
-{-| Some type - blah blah blah.
+{-| The StatusType data model.
 -}
 statusType : Enum StatusType
 statusType =
@@ -5756,31 +5756,31 @@ statusType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The StopUserImportJobRequest data model.
 -}
 type alias StopUserImportJobRequest =
     { userPoolId : UserPoolIdType, jobId : UserImportJobIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The StopUserImportJobResponse data model.
 -}
 type alias StopUserImportJobResponse =
     { userImportJob : Maybe UserImportJobType }
 
 
-{-| Some type - blah blah blah.
+{-| The StringAttributeConstraintsType data model.
 -}
 type alias StringAttributeConstraintsType =
     { minLength : Maybe String, maxLength : Maybe String }
 
 
-{-| Some type - blah blah blah.
+{-| The StringType data model.
 -}
 type alias StringType =
     String
 
 
-{-| Some type - blah blah blah.
+{-| The SupportedIdentityProvidersListType data model.
 -}
 type alias SupportedIdentityProvidersListType =
     List ProviderNameType
@@ -5790,7 +5790,7 @@ type TagKeysType
     = TagKeysType String
 
 
-{-| Some type - blah blah blah.
+{-| The TagKeysType data model.
 -}
 tagKeysType : Refined String TagKeysType StringError
 tagKeysType =
@@ -5804,13 +5804,13 @@ tagKeysType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The TagResourceRequest data model.
 -}
 type alias TagResourceRequest =
     { tags : Maybe UserPoolTagsType, resourceArn : ArnType }
 
 
-{-| Some type - blah blah blah.
+{-| The TagResourceResponse data model.
 -}
 type alias TagResourceResponse =
     {}
@@ -5820,7 +5820,7 @@ type TagValueType
     = TagValueType String
 
 
-{-| Some type - blah blah blah.
+{-| The TagValueType data model.
 -}
 tagValueType : Refined String TagValueType StringError
 tagValueType =
@@ -5838,7 +5838,7 @@ type TemporaryPasswordValidityDaysType
     = TemporaryPasswordValidityDaysType Int
 
 
-{-| Some type - blah blah blah.
+{-| The TemporaryPasswordValidityDaysType data model.
 -}
 temporaryPasswordValidityDaysType : Refined Int TemporaryPasswordValidityDaysType IntError
 temporaryPasswordValidityDaysType =
@@ -5856,7 +5856,7 @@ type TokenModelType
     = TokenModelType String
 
 
-{-| Some type - blah blah blah.
+{-| The TokenModelType data model.
 -}
 tokenModelType : Refined String TokenModelType StringError
 tokenModelType =
@@ -5870,7 +5870,7 @@ tokenModelType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The UicustomizationType data model.
 -}
 type alias UicustomizationType =
     { userPoolId : Maybe UserPoolIdType
@@ -5883,19 +5883,19 @@ type alias UicustomizationType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UntagResourceRequest data model.
 -}
 type alias UntagResourceRequest =
     { tagKeys : Maybe UserPoolTagsListType, resourceArn : ArnType }
 
 
-{-| Some type - blah blah blah.
+{-| The UntagResourceResponse data model.
 -}
 type alias UntagResourceResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateAuthEventFeedbackRequest data model.
 -}
 type alias UpdateAuthEventFeedbackRequest =
     { username : UsernameType
@@ -5906,13 +5906,13 @@ type alias UpdateAuthEventFeedbackRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateAuthEventFeedbackResponse data model.
 -}
 type alias UpdateAuthEventFeedbackResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateDeviceStatusRequest data model.
 -}
 type alias UpdateDeviceStatusRequest =
     { deviceRememberedStatus : Maybe DeviceRememberedStatusType
@@ -5921,13 +5921,13 @@ type alias UpdateDeviceStatusRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateDeviceStatusResponse data model.
 -}
 type alias UpdateDeviceStatusResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateGroupRequest data model.
 -}
 type alias UpdateGroupRequest =
     { userPoolId : UserPoolIdType
@@ -5938,13 +5938,13 @@ type alias UpdateGroupRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateGroupResponse data model.
 -}
 type alias UpdateGroupResponse =
     { group : Maybe GroupType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateIdentityProviderRequest data model.
 -}
 type alias UpdateIdentityProviderRequest =
     { userPoolId : UserPoolIdType
@@ -5955,13 +5955,13 @@ type alias UpdateIdentityProviderRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateIdentityProviderResponse data model.
 -}
 type alias UpdateIdentityProviderResponse =
     { identityProvider : IdentityProviderType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateResourceServerRequest data model.
 -}
 type alias UpdateResourceServerRequest =
     { userPoolId : UserPoolIdType
@@ -5971,25 +5971,25 @@ type alias UpdateResourceServerRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateResourceServerResponse data model.
 -}
 type alias UpdateResourceServerResponse =
     { resourceServer : ResourceServerType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserAttributesRequest data model.
 -}
 type alias UpdateUserAttributesRequest =
     { userAttributes : AttributeListType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserAttributesResponse data model.
 -}
 type alias UpdateUserAttributesResponse =
     { codeDeliveryDetailsList : Maybe CodeDeliveryDetailsListType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserPoolClientRequest data model.
 -}
 type alias UpdateUserPoolClientRequest =
     { writeAttributes : Maybe ClientPermissionListType
@@ -6010,25 +6010,25 @@ type alias UpdateUserPoolClientRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserPoolClientResponse data model.
 -}
 type alias UpdateUserPoolClientResponse =
     { userPoolClient : Maybe UserPoolClientType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserPoolDomainRequest data model.
 -}
 type alias UpdateUserPoolDomainRequest =
     { userPoolId : UserPoolIdType, domain : DomainType, customDomainConfig : CustomDomainConfigType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserPoolDomainResponse data model.
 -}
 type alias UpdateUserPoolDomainResponse =
     { cloudFrontDomain : Maybe DomainType }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserPoolRequest data model.
 -}
 type alias UpdateUserPoolRequest =
     { verificationMessageTemplate : Maybe VerificationMessageTemplateType
@@ -6050,13 +6050,13 @@ type alias UpdateUserPoolRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UpdateUserPoolResponse data model.
 -}
 type alias UpdateUserPoolResponse =
     {}
 
 
-{-| Some type - blah blah blah.
+{-| The UserContextDataType data model.
 -}
 type alias UserContextDataType =
     { encodedData : Maybe String }
@@ -6066,7 +6066,7 @@ type UserFilterType
     = UserFilterType String
 
 
-{-| Some type - blah blah blah.
+{-| The UserFilterType data model.
 -}
 userFilterType : Refined String UserFilterType StringError
 userFilterType =
@@ -6084,7 +6084,7 @@ type UserImportJobIdType
     = UserImportJobIdType String
 
 
-{-| Some type - blah blah blah.
+{-| The UserImportJobIdType data model.
 -}
 userImportJobIdType : Refined String UserImportJobIdType StringError
 userImportJobIdType =
@@ -6105,7 +6105,7 @@ type UserImportJobNameType
     = UserImportJobNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The UserImportJobNameType data model.
 -}
 userImportJobNameType : Refined String UserImportJobNameType StringError
 userImportJobNameType =
@@ -6122,7 +6122,7 @@ userImportJobNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The UserImportJobStatusType data model.
 -}
 type UserImportJobStatusType
     = UserImportJobStatusTypeCreated
@@ -6135,7 +6135,7 @@ type UserImportJobStatusType
     | UserImportJobStatusTypeSucceeded
 
 
-{-| Some type - blah blah blah.
+{-| The UserImportJobStatusType data model.
 -}
 userImportJobStatusType : Enum UserImportJobStatusType
 userImportJobStatusType =
@@ -6177,7 +6177,7 @@ userImportJobStatusType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The UserImportJobType data model.
 -}
 type alias UserImportJobType =
     { userPoolId : Maybe UserPoolIdType
@@ -6196,37 +6196,37 @@ type alias UserImportJobType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UserImportJobsListType data model.
 -}
 type alias UserImportJobsListType =
     List UserImportJobType
 
 
-{-| Some type - blah blah blah.
+{-| The UserMfasettingListType data model.
 -}
 type alias UserMfasettingListType =
     List String
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolAddOnsType data model.
 -}
 type alias UserPoolAddOnsType =
     { advancedSecurityMode : AdvancedSecurityModeType }
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolClientDescription data model.
 -}
 type alias UserPoolClientDescription =
     { userPoolId : Maybe UserPoolIdType, clientName : Maybe ClientNameType, clientId : Maybe ClientIdType }
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolClientListType data model.
 -}
 type alias UserPoolClientListType =
     List UserPoolClientDescription
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolClientType data model.
 -}
 type alias UserPoolClientType =
     { writeAttributes : Maybe ClientPermissionListType
@@ -6250,7 +6250,7 @@ type alias UserPoolClientType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolDescriptionType data model.
 -}
 type alias UserPoolDescriptionType =
     { status : Maybe StatusType
@@ -6266,7 +6266,7 @@ type UserPoolIdType
     = UserPoolIdType String
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolIdType data model.
 -}
 userPoolIdType : Refined String UserPoolIdType StringError
 userPoolIdType =
@@ -6283,13 +6283,13 @@ userPoolIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolListType data model.
 -}
 type alias UserPoolListType =
     List UserPoolDescriptionType
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolMfaType data model.
 -}
 type UserPoolMfaType
     = UserPoolMfaTypeOff
@@ -6297,7 +6297,7 @@ type UserPoolMfaType
     | UserPoolMfaTypeOptional
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolMfaType data model.
 -}
 userPoolMfaType : Enum UserPoolMfaType
 userPoolMfaType =
@@ -6320,7 +6320,7 @@ type UserPoolNameType
     = UserPoolNameType String
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolNameType data model.
 -}
 userPoolNameType : Refined String UserPoolNameType StringError
 userPoolNameType =
@@ -6337,25 +6337,25 @@ userPoolNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolPolicyType data model.
 -}
 type alias UserPoolPolicyType =
     { passwordPolicy : Maybe PasswordPolicyType }
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolTagsListType data model.
 -}
 type alias UserPoolTagsListType =
     List TagKeysType
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolTagsType data model.
 -}
 type alias UserPoolTagsType =
     Dict.Refined.Dict String TagKeysType TagValueType
 
 
-{-| Some type - blah blah blah.
+{-| The UserPoolType data model.
 -}
 type alias UserPoolType =
     { verificationMessageTemplate : Maybe VerificationMessageTemplateType
@@ -6390,7 +6390,7 @@ type alias UserPoolType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UserStatusType data model.
 -}
 type UserStatusType
     = UserStatusTypeUnconfirmed
@@ -6402,7 +6402,7 @@ type UserStatusType
     | UserStatusTypeForceChangePassword
 
 
-{-| Some type - blah blah blah.
+{-| The UserStatusType data model.
 -}
 userStatusType : Enum UserStatusType
 userStatusType =
@@ -6440,7 +6440,7 @@ userStatusType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The UserType data model.
 -}
 type alias UserType =
     { username : Maybe UsernameType
@@ -6453,14 +6453,14 @@ type alias UserType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The UsernameAttributeType data model.
 -}
 type UsernameAttributeType
     = UsernameAttributeTypePhoneNumber
     | UsernameAttributeTypeEmail
 
 
-{-| Some type - blah blah blah.
+{-| The UsernameAttributeType data model.
 -}
 usernameAttributeType : Enum UsernameAttributeType
 usernameAttributeType =
@@ -6476,7 +6476,7 @@ usernameAttributeType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The UsernameAttributesListType data model.
 -}
 type alias UsernameAttributesListType =
     List UsernameAttributeType
@@ -6486,7 +6486,7 @@ type UsernameType
     = UsernameType String
 
 
-{-| Some type - blah blah blah.
+{-| The UsernameType data model.
 -}
 usernameType : Refined String UsernameType StringError
 usernameType =
@@ -6503,13 +6503,13 @@ usernameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
-{-| Some type - blah blah blah.
+{-| The UsersListType data model.
 -}
 type alias UsersListType =
     List UserType
 
 
-{-| Some type - blah blah blah.
+{-| The VerificationMessageTemplateType data model.
 -}
 type alias VerificationMessageTemplateType =
     { smsMessage : Maybe SmsVerificationMessageType
@@ -6521,14 +6521,14 @@ type alias VerificationMessageTemplateType =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The VerifiedAttributeType data model.
 -}
 type VerifiedAttributeType
     = VerifiedAttributeTypePhoneNumber
     | VerifiedAttributeTypeEmail
 
 
-{-| Some type - blah blah blah.
+{-| The VerifiedAttributeType data model.
 -}
 verifiedAttributeType : Enum VerifiedAttributeType
 verifiedAttributeType =
@@ -6544,13 +6544,13 @@ verifiedAttributeType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The VerifiedAttributesListType data model.
 -}
 type alias VerifiedAttributesListType =
     List VerifiedAttributeType
 
 
-{-| Some type - blah blah blah.
+{-| The VerifySoftwareTokenRequest data model.
 -}
 type alias VerifySoftwareTokenRequest =
     { userCode : SoftwareTokenMfauserCodeType
@@ -6560,20 +6560,20 @@ type alias VerifySoftwareTokenRequest =
     }
 
 
-{-| Some type - blah blah blah.
+{-| The VerifySoftwareTokenResponse data model.
 -}
 type alias VerifySoftwareTokenResponse =
     { status : Maybe VerifySoftwareTokenResponseType, session : Maybe SessionType }
 
 
-{-| Some type - blah blah blah.
+{-| The VerifySoftwareTokenResponseType data model.
 -}
 type VerifySoftwareTokenResponseType
     = VerifySoftwareTokenResponseTypeSuccess
     | VerifySoftwareTokenResponseTypeError
 
 
-{-| Some type - blah blah blah.
+{-| The VerifySoftwareTokenResponseType data model.
 -}
 verifySoftwareTokenResponseType : Enum VerifySoftwareTokenResponseType
 verifySoftwareTokenResponseType =
@@ -6589,13 +6589,13 @@ verifySoftwareTokenResponseType =
         )
 
 
-{-| Some type - blah blah blah.
+{-| The VerifyUserAttributeRequest data model.
 -}
 type alias VerifyUserAttributeRequest =
     { code : ConfirmationCodeType, attributeName : AttributeNameType, accessToken : TokenModelType }
 
 
-{-| Some type - blah blah blah.
+{-| The VerifyUserAttributeResponse data model.
 -}
 type alias VerifyUserAttributeResponse =
     {}
