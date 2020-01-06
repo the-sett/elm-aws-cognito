@@ -3,7 +3,7 @@
     "name": "the-sett/elm-aws-cognito",
     "summary": "Elm client for the AWS Cognito services for managing user identities.",
     "license": "BSD-3-Clause",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "exposed-modules": [
         "AWS.CognitoIdentity",
         "AWS.CognitoIdentityProvider"
