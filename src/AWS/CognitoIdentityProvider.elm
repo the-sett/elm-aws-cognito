@@ -212,9 +212,7 @@ module AWS.CognitoIdentityProvider exposing
     )
 
 {-| Using the Amazon Cognito User Pools API, you can create a user pool to manage directories and users. You can authenticate a user to obtain tokens related to user identity and access policies.
-
 This API reference provides information about user pools in Amazon Cognito User Pools.
-
 For more information, see the Amazon Cognito Documentation.
 
 
@@ -498,23 +496,13 @@ verifySoftwareToken req =
 
 
 {-| Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
-
 You can use this operation to provide the Amazon Resource Name (ARN) of a new certificate to Amazon Cognito. You cannot use it to change the domain for a user pool.
-
 A custom domain is used to host the Amazon Cognito hosted UI, which provides sign-up and sign-in pages for your application. When you set up a custom domain, you provide a certificate that you manage with AWS Certificate Manager (ACM). When necessary, you can use this operation to change the certificate that you applied to your custom domain.
-
 Usually, this is unnecessary following routine certificate renewal with ACM. When you renew your existing certificate in ACM, the ARN for your certificate remains the same, and your custom domain uses the new certificate automatically.
-
 However, if you replace your existing certificate with a new one, ACM gives the new certificate a new ARN. To apply the new certificate to your custom domain, you must provide this ARN to Amazon Cognito.
-
 When you add your new certificate in ACM, you must choose US East (N. Virginia) as the AWS Region.
-
 After you submit your request, Amazon Cognito requires up to 1 hour to distribute your new certificate to your custom domain.
-
-For more information about adding a custom domain to your user pool, see
-Using Your Own Domain for the Hosted UI
-.
-
+For more information about adding a custom domain to your user pool, see Using Your Own Domain for the Hosted UI.
 -}
 updateUserPoolDomain : UpdateUserPoolDomainRequest -> AWS.Core.Http.Request UpdateUserPoolDomainResponse
 updateUserPoolDomain req =
@@ -599,9 +587,7 @@ updateIdentityProvider req =
 
 
 {-| Updates the specified group with the specified attributes.
-
 Requires developer credentials.
-
 -}
 updateGroup : UpdateGroupRequest -> AWS.Core.Http.Request UpdateGroupResponse
 updateGroup req =
@@ -658,19 +644,9 @@ untagResource req =
 
 
 {-| Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.
-
-Each tag consists of a key and value, both of which you define. A key is a general category for more specific values. For example, if you have two versions of a user pool, one for testing and another for production, you might assign an
-Environment
-tag key to both user pools. The value of this key might be
-Test
-for one user pool and
-Production
-for the other.
-
+Each tag consists of a key and value, both of which you define. A key is a general category for more specific values. For example, if you have two versions of a user pool, one for testing and another for production, you might assign an `Environment` tag key to both user pools. The value of this key might be `Test` for one user pool and `Production` for the other.
 Tags are useful for cost tracking and access control. You can activate your tags so that they appear on the Billing and Cost Management console, where you can track the costs associated with your user pools. In an IAM policy, you can constrain permissions for user pools based on specific tags or tag values.
-
 You can use this action up to 5 times per second, per account. A user pool can have as many as 50 tags.
-
 -}
 tagResource : TagResourceRequest -> AWS.Core.Http.Request TagResourceResponse
 tagResource req =
@@ -769,21 +745,8 @@ setUserMfapreference req =
 
 
 {-| Sets the UI customization information for a user pool's built-in app UI.
-
-You can specify app UI customization settings for a single client (with a specific
-clientId
-) or for all clients (by setting the
-clientId
-to
-ALL
-). If you specify
-ALL
-, the default configuration will be used for every client that has no UI customization set previously. If you specify UI customization settings for a particular client, it will no longer fall back to the
-ALL
-configuration.
-
+You can specify app UI customization settings for a single client (with a specific `clientId`) or for all clients (by setting the `clientId` to `ALL`). If you specify `ALL`, the default configuration will be used for every client that has no UI customization set previously. If you specify UI customization settings for a particular client, it will no longer fall back to the `ALL` configuration.
 To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the app's pages, and the service will throw an error.
-
 -}
 setUicustomization : SetUicustomizationRequest -> AWS.Core.Http.Request SetUicustomizationResponse
 setUicustomization req =
@@ -797,20 +760,9 @@ setUicustomization req =
     AWS.Core.Http.request "SetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Configures actions on detected risks. To delete the risk configuration for
-UserPoolId
-or
-ClientId
-, pass null values for all four configuration types.
-
-To enable Amazon Cognito advanced security features, update the user pool to include the
-UserPoolAddOns
-key
-AdvancedSecurityMode
-.
-
+{-| Configures actions on detected risks. To delete the risk configuration for `UserPoolId` or `ClientId`, pass null values for all four configuration types.
+To enable Amazon Cognito advanced security features, update the user pool to include the `UserPoolAddOns` key`AdvancedSecurityMode`.
 See .
-
 -}
 setRiskConfiguration : SetRiskConfigurationRequest -> AWS.Core.Http.Request SetRiskConfigurationResponse
 setRiskConfiguration req =
@@ -853,9 +805,7 @@ resendConfirmationCode req =
 
 
 {-| Lists the users in the specified group.
-
 Requires developer credentials.
-
 -}
 listUsersInGroup : ListUsersInGroupRequest -> AWS.Core.Http.Request ListUsersInGroupResponse
 listUsersInGroup req =
@@ -926,11 +876,8 @@ listUserImportJobs req =
 
 
 {-| Lists the tags that are assigned to an Amazon Cognito user pool.
-
 A tag is a label that you can apply to user pools to categorize and manage them in different ways, such as by purpose, owner, environment, or other criteria.
-
 You can use this action up to 10 times per second, per account.
-
 -}
 listTagsForResource : ListTagsForResourceRequest -> AWS.Core.Http.Request ListTagsForResourceResponse
 listTagsForResource req =
@@ -973,9 +920,7 @@ listIdentityProviders req =
 
 
 {-| Lists the groups associated with a user pool.
-
 Requires developer credentials.
-
 -}
 listGroups : ListGroupsRequest -> AWS.Core.Http.Request ListGroupsResponse
 listGroups req =
@@ -1073,11 +1018,7 @@ getUser req =
     AWS.Core.Http.request "GetUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app
-clientId
-will be
-ALL
-), then that is returned. If nothing is present, then an empty shape is returned.
+{-| Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app `clientId` will be `ALL`), then that is returned. If nothing is present, then an empty shape is returned.
 -}
 getUicustomization : GetUicustomizationRequest -> AWS.Core.Http.Request GetUicustomizationResponse
 getUicustomization req =
@@ -1120,9 +1061,7 @@ getIdentityProviderByIdentifier req =
 
 
 {-| Gets a group.
-
 Requires developer credentials.
-
 -}
 getGroup : GetGroupRequest -> AWS.Core.Http.Request GetGroupResponse
 getGroup req =
@@ -1164,11 +1103,7 @@ getCsvheader req =
     AWS.Core.Http.request "GetCsvheader" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the
-Username
-parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists,
-InvalidParameterException
-is thrown. To use the confirmation code for resetting the password, call .
+{-| Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the `Username` parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists, `InvalidParameterException` is thrown. To use the confirmation code for resetting the password, call .
 -}
 forgotPassword : ForgotPasswordRequest -> AWS.Core.Http.Request ForgotPasswordResponse
 forgotPassword req =
@@ -1393,9 +1328,7 @@ deleteIdentityProvider req =
 
 
 {-| Deletes a group. Currently only groups with no members can be deleted.
-
 Requires developer credentials.
-
 -}
 deleteGroup : DeleteGroupRequest -> AWS.Core.Http.Request ()
 deleteGroup req =
@@ -1494,9 +1427,7 @@ createIdentityProvider req =
 
 
 {-| Creates a new group in the specified user pool.
-
 Requires developer credentials.
-
 -}
 createGroup : CreateGroupRequest -> AWS.Core.Http.Request CreateGroupResponse
 createGroup req =
@@ -1581,9 +1512,7 @@ associateSoftwareToken req =
 
 
 {-| Signs out users from all devices, as an administrator.
-
 Requires developer credentials.
-
 -}
 adminUserGlobalSignOut : AdminUserGlobalSignOutRequest -> AWS.Core.Http.Request AdminUserGlobalSignOutResponse
 adminUserGlobalSignOut req =
@@ -1598,15 +1527,9 @@ adminUserGlobalSignOut req =
 
 
 {-| Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
-
-For custom attributes, you must prepend the
-custom:
-prefix to the attribute name.
-
+For custom attributes, you must prepend the `custom:` prefix to the attribute name.
 In addition to updating user attributes, this API can also be used to mark phone and email as verified.
-
 Requires developer credentials.
-
 -}
 adminUpdateUserAttributes : AdminUpdateUserAttributesRequest -> AWS.Core.Http.Request AdminUpdateUserAttributesResponse
 adminUpdateUserAttributes req =
@@ -1621,9 +1544,7 @@ adminUpdateUserAttributes req =
 
 
 {-| Updates the device status as an administrator.
-
 Requires developer credentials.
-
 -}
 adminUpdateDeviceStatus : AdminUpdateDeviceStatusRequest -> AWS.Core.Http.Request AdminUpdateDeviceStatusResponse
 adminUpdateDeviceStatus req =
@@ -1652,9 +1573,7 @@ adminUpdateAuthEventFeedback req =
 
 
 {-| Sets all the user settings for a specified user name. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminSetUserSettings : AdminSetUserSettingsRequest -> AWS.Core.Http.Request AdminSetUserSettingsResponse
 adminSetUserSettings req =
@@ -1696,9 +1615,7 @@ adminSetUserMfapreference req =
 
 
 {-| Responds to an authentication challenge, as an administrator.
-
 Requires developer credentials.
-
 -}
 adminRespondToAuthChallenge : AdminRespondToAuthChallengeRequest -> AWS.Core.Http.Request AdminRespondToAuthChallengeResponse
 adminRespondToAuthChallenge req =
@@ -1713,11 +1630,8 @@ adminRespondToAuthChallenge req =
 
 
 {-| Resets the specified user's password in a user pool as an administrator. Works on any user.
-
 When a developer calls this API, the current password is invalidated, so it must be changed. If a user tries to sign in after the API is called, the app will get a PasswordResetRequiredException exception back and should direct the user down the flow to reset the password, which is the same as the forgot password flow. In addition, if the user pool has phone verification selected and a verified phone number exists for the user, or if email verification is selected and a verified email exists for the user, calling this API will also result in sending a message to the end user with the code to change their password.
-
 Requires developer credentials.
-
 -}
 adminResetUserPassword : AdminResetUserPasswordRequest -> AWS.Core.Http.Request AdminResetUserPasswordResponse
 adminResetUserPassword req =
@@ -1732,9 +1646,7 @@ adminResetUserPassword req =
 
 
 {-| Removes the specified user from the specified group.
-
 Requires developer credentials.
-
 -}
 adminRemoveUserFromGroup : AdminRemoveUserFromGroupRequest -> AWS.Core.Http.Request ()
 adminRemoveUserFromGroup req =
@@ -1763,9 +1675,7 @@ adminListUserAuthEvents req =
 
 
 {-| Lists the groups that the user belongs to.
-
 Requires developer credentials.
-
 -}
 adminListGroupsForUser : AdminListGroupsForUserRequest -> AWS.Core.Http.Request AdminListGroupsForUserResponse
 adminListGroupsForUser req =
@@ -1780,9 +1690,7 @@ adminListGroupsForUser req =
 
 
 {-| Lists devices, as an administrator.
-
 Requires developer credentials.
-
 -}
 adminListDevices : AdminListDevicesRequest -> AWS.Core.Http.Request AdminListDevicesResponse
 adminListDevices req =
@@ -1796,20 +1704,11 @@ adminListDevices req =
     AWS.Core.Http.request "AdminListDevices" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Links an existing user account in a user pool (
-DestinationUser
-) to an identity from an external identity provider (
-SourceUser
-) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
-
+{-| Links an existing user account in a user pool (`DestinationUser`) to an identity from an external identity provider (`SourceUser`) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
 For example, if there is an existing user with a username and password, this API links that user to a federated user identity, so that when the federated user identity is used, the user signs in as the existing user account.
-
 Because this API allows a user with an external federated identity to sign in as an existing user in the user pool, it is critical that it only be used with external identity providers and provider attributes that have been trusted by the application owner.
-
 See also .
-
 This action is enabled only for admin access and requires developer credentials.
-
 -}
 adminLinkProviderForUser : AdminLinkProviderForUserRequest -> AWS.Core.Http.Request AdminLinkProviderForUserResponse
 adminLinkProviderForUser req =
@@ -1824,9 +1723,7 @@ adminLinkProviderForUser req =
 
 
 {-| Initiates the authentication flow, as an administrator.
-
 Requires developer credentials.
-
 -}
 adminInitiateAuth : AdminInitiateAuthRequest -> AWS.Core.Http.Request AdminInitiateAuthResponse
 adminInitiateAuth req =
@@ -1841,9 +1738,7 @@ adminInitiateAuth req =
 
 
 {-| Gets the specified user by user name in a user pool as an administrator. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminGetUser : AdminGetUserRequest -> AWS.Core.Http.Request AdminGetUserResponse
 adminGetUser req =
@@ -1858,9 +1753,7 @@ adminGetUser req =
 
 
 {-| Gets the device, as an administrator.
-
 Requires developer credentials.
-
 -}
 adminGetDevice : AdminGetDeviceRequest -> AWS.Core.Http.Request AdminGetDeviceResponse
 adminGetDevice req =
@@ -1875,9 +1768,7 @@ adminGetDevice req =
 
 
 {-| Forgets the device, as an administrator.
-
 Requires developer credentials.
-
 -}
 adminForgetDevice : AdminForgetDeviceRequest -> AWS.Core.Http.Request ()
 adminForgetDevice req =
@@ -1892,9 +1783,7 @@ adminForgetDevice req =
 
 
 {-| Enables the specified user as an administrator. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminEnableUser : AdminEnableUserRequest -> AWS.Core.Http.Request AdminEnableUserResponse
 adminEnableUser req =
@@ -1909,9 +1798,7 @@ adminEnableUser req =
 
 
 {-| Disables the specified user as an administrator. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminDisableUser : AdminDisableUserRequest -> AWS.Core.Http.Request AdminDisableUserResponse
 adminDisableUser req =
@@ -1925,54 +1812,12 @@ adminDisableUser req =
     AWS.Core.Http.request "AdminDisableUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked
-DestinationUser
-) signs in, they must create a new user account. See .
-
+{-| Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked `DestinationUser`) signs in, they must create a new user account. See .
 This action is enabled only for admin access and requires developer credentials.
-
-The
-ProviderName
-must match the value specified when creating an IdP for the pool.
-
-To disable a native username + password user, the
-ProviderName
-value must be
-Cognito
-and the
-ProviderAttributeName
-must be
-Cognito\_Subject
-, with the
-ProviderAttributeValue
-being the name that is used in the user pool for the user.
-
-The
-ProviderAttributeName
-must always be
-Cognito\_Subject
-for social identity providers. The
-ProviderAttributeValue
-must always be the exact subject that was used when the user was originally linked as a source user.
-
-For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the
-ProviderAttributeName
-and
-ProviderAttributeValue
-must be the same values that were used for the
-SourceUser
-when the identities were originally linked in the call. (If the linking was done with
-ProviderAttributeName
-set to
-Cognito\_Subject
-, the same applies here). However, if the user has already signed in, the
-ProviderAttributeName
-must be
-Cognito\_Subject
-and
-ProviderAttributeValue
-must be the subject of the SAML assertion.
-
+The `ProviderName` must match the value specified when creating an IdP for the pool.
+To disable a native username + password user, the `ProviderName` value must be `Cognito` and the `ProviderAttributeName` must be `Cognito_Subject`, with the `ProviderAttributeValue` being the name that is used in the user pool for the user.
+The `ProviderAttributeName` must always be `Cognito_Subject` for social identity providers. The `ProviderAttributeValue` must always be the exact subject that was used when the user was originally linked as a source user.
+For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the `ProviderAttributeName` and `ProviderAttributeValue` must be the same values that were used for the `SourceUser` when the identities were originally linked in the call. (If the linking was done with `ProviderAttributeName` set to `Cognito_Subject`, the same applies here). However, if the user has already signed in, the `ProviderAttributeName` must be `Cognito_Subject` and `ProviderAttributeValue` must be the subject of the SAML assertion.
 -}
 adminDisableProviderForUser : AdminDisableProviderForUserRequest -> AWS.Core.Http.Request AdminDisableProviderForUserResponse
 adminDisableProviderForUser req =
@@ -1987,9 +1832,7 @@ adminDisableProviderForUser req =
 
 
 {-| Deletes the user attributes in a user pool as an administrator. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminDeleteUserAttributes : AdminDeleteUserAttributesRequest -> AWS.Core.Http.Request AdminDeleteUserAttributesResponse
 adminDeleteUserAttributes req =
@@ -2004,9 +1847,7 @@ adminDeleteUserAttributes req =
 
 
 {-| Deletes a user as an administrator. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminDeleteUser : AdminDeleteUserRequest -> AWS.Core.Http.Request ()
 adminDeleteUser req =
@@ -2021,23 +1862,11 @@ adminDeleteUser req =
 
 
 {-| Creates a new user in the specified user pool.
-
-If
-MessageAction
-is not set, the default is to send a welcome message via email or phone (SMS).
-
+If `MessageAction` is not set, the default is to send a welcome message via email or phone (SMS).
 This message is based on a template that you configured in your call to or . This template includes your custom sign-up instructions and placeholders for user name and temporary password.
-
-Alternatively, you can call AdminCreateUser with “SUPPRESS” for the
-MessageAction
-parameter, and Amazon Cognito will not send any email.
-
-In either case, the user will be in the
-FORCE\_CHANGE\_PASSWORD
-state until they sign in and change their password.
-
+Alternatively, you can call AdminCreateUser with “SUPPRESS” for the `MessageAction` parameter, and Amazon Cognito will not send any email.
+In either case, the user will be in the `FORCE_CHANGE_PASSWORD` state until they sign in and change their password.
 AdminCreateUser requires developer credentials.
-
 -}
 adminCreateUser : AdminCreateUserRequest -> AWS.Core.Http.Request AdminCreateUserResponse
 adminCreateUser req =
@@ -2052,9 +1881,7 @@ adminCreateUser req =
 
 
 {-| Confirms user registration as an admin without using a confirmation code. Works on any user.
-
 Requires developer credentials.
-
 -}
 adminConfirmSignUp : AdminConfirmSignUpRequest -> AWS.Core.Http.Request AdminConfirmSignUpResponse
 adminConfirmSignUp req =
@@ -2069,9 +1896,7 @@ adminConfirmSignUp req =
 
 
 {-| Adds the specified user to the specified group.
-
 Requires developer credentials.
-
 -}
 adminAddUserToGroup : AdminAddUserToGroupRequest -> AWS.Core.Http.Request ()
 adminAddUserToGroup req =
