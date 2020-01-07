@@ -46,8 +46,8 @@ module AWS.CognitoIdentity exposing
 
 {-| Amazon Cognito Federated Identities Amazon Cognito Federated Identities is a web service that delivers scoped temporary credentials to mobile devices and other untrusted environments. It uniquely identifies a device and supplies the user with a consistent identity over the lifetime of an application.
 Using Amazon Cognito Federated Identities, you can enable authentication with one or more third-party identity providers (Facebook, Google, or Login with Amazon) or an Amazon Cognito user pool, and you can also choose to support unauthenticated access from your app. Cognito delivers a unique identifier for each user and acts as an OpenID token provider trusted by AWS Security Token Service (STS) to access temporary, limited-privilege AWS credentials.
-For a description of the authentication flow from the Amazon Cognito Developer Guide see Authentication Flow.
-For more information see Amazon Cognito Federated Identities.
+For a description of the authentication flow from the Amazon Cognito Developer Guide see `Authentication Flow`.
+For more information see `Amazon Cognito Federated Identities`.
 
 
 # Service definition.
@@ -213,7 +213,7 @@ tagResource req =
     AWS.Core.Http.request "TagResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Sets the roles for an identity pool. These roles are used when making calls to GetCredentialsForIdentity action.
+{-| Sets the roles for an identity pool. These roles are used when making calls to `GetCredentialsForIdentity` action.
 You must use AWS Developer credentials to call this API.
 -}
 setIdentityPoolRoles : SetIdentityPoolRolesInput -> AWS.Core.Http.Request ()
@@ -245,7 +245,7 @@ mergeDeveloperIdentities req =
 
 
 {-| Retrieves the `IdentityID` associated with a `DeveloperUserIdentifier` or the list of `DeveloperUserIdentifier` values associated with an `IdentityId` for an existing identity. Either `IdentityID` or `DeveloperUserIdentifier` must not be null. If you supply only one of these values, the other value will be searched in the database and returned as a part of the response. If you supply both, `DeveloperUserIdentifier` will be matched against `IdentityID`. If the values are verified against the database, the response returns both values and is the same as the request. Otherwise a `ResourceConflictException` is thrown.
-`LookupDeveloperIdentity` is intended for low-throughput control plane operations: for example, to enable customer service to locate an identity ID by username. If you are using it for higher-volume operations such as user authentication, your requests are likely to be throttled. GetOpenIdTokenForDeveloperIdentity is a better option for higher-volume operations for user authentication.
+`LookupDeveloperIdentity` is intended for low-throughput control plane operations: for example, to enable customer service to locate an identity ID by username. If you are using it for higher-volume operations such as user authentication, your requests are likely to be throttled. `GetOpenIdTokenForDeveloperIdentity` is a better option for higher-volume operations for user authentication.
 You must use AWS Developer credentials to call this API.
 -}
 lookupDeveloperIdentity : LookupDeveloperIdentityInput -> AWS.Core.Http.Request LookupDeveloperIdentityResponse
@@ -322,7 +322,7 @@ getOpenIdTokenForDeveloperIdentity req =
     AWS.Core.Http.request "GetOpenIdTokenForDeveloperIdentity" AWS.Core.Http.POST "/" jsonBody decoder
 
 
-{-| Gets an OpenID token, using a known Cognito ID. This known Cognito ID is returned by GetId. You can optionally add additional logins for the identity. Supplying multiple logins creates an implicit link.
+{-| Gets an OpenID token, using a known Cognito ID. This known Cognito ID is returned by `GetId`. You can optionally add additional logins for the identity. Supplying multiple logins creates an implicit link.
 The OpenId token is valid for 10 minutes.
 This is a public API. You do not need any credentials to call this API.
 -}

@@ -502,7 +502,7 @@ Usually, this is unnecessary following routine certificate renewal with ACM. Whe
 However, if you replace your existing certificate with a new one, ACM gives the new certificate a new ARN. To apply the new certificate to your custom domain, you must provide this ARN to Amazon Cognito.
 When you add your new certificate in ACM, you must choose US East (N. Virginia) as the AWS Region.
 After you submit your request, Amazon Cognito requires up to 1 hour to distribute your new certificate to your custom domain.
-For more information about adding a custom domain to your user pool, see Using Your Own Domain for the Hosted UI.
+For more information about adding a custom domain to your user pool, see `Using Your Own Domain for the Hosted UI`.
 -}
 updateUserPoolDomain : UpdateUserPoolDomainRequest -> AWS.Core.Http.Request UpdateUserPoolDomainResponse
 updateUserPoolDomain req =
