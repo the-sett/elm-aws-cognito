@@ -1,5 +1,7 @@
 module Auth exposing (..)
 
+import AWS.CognitoIdentityProvider as CIP
+
 
 type alias Model =
     ()
