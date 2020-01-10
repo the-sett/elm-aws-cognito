@@ -76,10 +76,7 @@ from a refresh token held as a cookie, without needing the user to log in.
 init : flags -> ( Model, Cmd Msg )
 init _ =
     ( { laf = Laf.init
-      , auth =
-            Auth.init
-                { authApiRoot = config.authRoot
-                }
+      , auth = Auth.init { clientId = "" }
       , session = Initial
       , username = ""
       , password = ""

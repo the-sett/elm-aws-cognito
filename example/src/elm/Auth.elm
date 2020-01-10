@@ -1,12 +1,31 @@
-module Auth exposing (..)
+module Auth exposing
+    ( Config, Credentials, Status(..)
+    , login, refresh, logout, unauthed
+    , Model, Msg, init, update
+    )
+
+{-| Manages the state of the authentication process, and provides an API
+to request authentication operations.
+
+@docs Config, Credentials, Status
+@docs login, refresh, logout, unauthed
+@docs Model, Msg, init, update
+
+-}
 
 import AWS.CognitoIdentityProvider as CIP
+import AWS.Core.Service
+import Task.Extra
+
+
+service =
+    CIP.service
 
 
 {-| The configuration specifying the API root to authenticate against.
 -}
 type alias Config =
-    { authApiRoot : String
+    { clientId : String
     }
 
 
@@ -19,11 +38,21 @@ type alias Credentials =
 
 
 type alias Model =
-    {}
+    { config : Config
+    }
 
 
-type alias Msg =
-    ()
+type Msg
+    = LogIn Credentials
+
+
+
+-- | Refresh
+-- | LogOut
+-- | NotAuthed
+-- | LogInResponse (Result.Result Http.Error Model.AuthResponse)
+-- | RefreshResponse (Result.Result Http.Error Model.AuthResponse)
+-- | LogOutResponse (Result.Result Http.Error ())
 
 
 type Status
@@ -33,8 +62,8 @@ type Status
 
 
 init : Config -> Model
-init _ =
-    {}
+init config =
+    { config = config }
 
 
 unauthed : Cmd Msg
@@ -48,8 +77,8 @@ logout =
 
 
 login : Credentials -> Cmd Msg
-login _ =
-    Cmd.none
+login credentials =
+    LogIn credentials |> Task.Extra.message
 
 
 refresh : Cmd Msg
