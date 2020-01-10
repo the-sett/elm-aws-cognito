@@ -63,16 +63,21 @@ type Status
     | LoggedIn { scopes : List String, subject : String }
 
 
-init : Config -> Model
+init : Config -> Result String Model
 init config =
     let
-        clientId =
+        clientIdResult =
             Refined.build CIP.clientIdType config.clientId
     in
-    { clientId = clientId
-    , userPoolId = config.userPoolId
-    , region = config.region
-    }
+    case clientIdResult of
+        Ok clientId ->
+            { clientId = clientId
+            , userPoolId = config.userPoolId
+            , region = config.region
+            }
+
+        Err strErr ->
+            Refined.stringErrorToString strErr |> Err
 
 
 unauthed : Cmd Msg
