@@ -22,6 +22,7 @@ import Task.Extra
 -}
 type alias Config =
     { clientId : String
+    , userPoolId : String
     , region : Region
     }
 

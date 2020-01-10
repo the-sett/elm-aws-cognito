@@ -79,6 +79,7 @@ init _ =
       , auth =
             Auth.init
                 { clientId = ""
+                , userPoolId = ""
                 , region = "us-east-1"
                 }
       , session = Initial
