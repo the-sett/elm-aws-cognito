@@ -38,7 +38,6 @@ type alias Model =
     , session : Session
     , username : String
     , password : String
-    , debugStyle : Bool
     }
 
 
@@ -62,7 +61,6 @@ type Msg
     | TryAgain
     | UpdateUsername String
     | UpdatePassword String
-    | ToggleGrid
 
 
 
@@ -85,7 +83,6 @@ init _ =
       , session = Initial
       , username = ""
       , password = ""
-      , debugStyle = False
       }
     , Process.sleep 1000 |> Task.perform (always InitialTimeout)
     )
@@ -116,9 +113,6 @@ update action model =
 
         UpdatePassword str ->
             ( { model | password = str }, Cmd.none )
-
-        ToggleGrid ->
-            ( { model | debugStyle = not model.debugStyle }, Cmd.none )
 
 
 authStatusToSession : Auth.Status -> Session
@@ -203,12 +197,7 @@ styledBody model =
             Css.Global.global <|
                 TheSett.Debug.global Laf.devices
     in
-    case model.debugStyle of
-        True ->
-            div [] (debugStyle :: innerView)
-
-        False ->
-            div [] innerView
+    div [] innerView
 
 
 initialView : Html.Styled.Html Msg
@@ -375,20 +364,7 @@ card imageUrl title cardBody controls devices =
                 , Css.height <| Css.pct 100
                 ]
                 []
-                [ Buttons.button
-                    [ sm
-                        [ Styles.styles
-                            [ Css.position Css.absolute
-                            , Css.bottom <| Css.em -3.5
-                            , Css.right <| Css.em 2
-                            , Css.backgroundColor <| Css.rgb 160 220 180
-                            ]
-                        ]
-                    ]
-                    [ onClick ToggleGrid ]
-                    [ text "Grid" ]
-                    devices
-                ]
+                []
             ]
         , Cards.title title
         , Cards.body cardBody
