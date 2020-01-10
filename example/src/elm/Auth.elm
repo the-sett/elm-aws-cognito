@@ -71,10 +71,11 @@ init config =
     in
     case clientIdResult of
         Ok clientId ->
-            { clientId = clientId
-            , userPoolId = config.userPoolId
-            , region = config.region
-            }
+            Ok
+                { clientId = clientId
+                , userPoolId = config.userPoolId
+                , region = config.region
+                }
 
         Err strErr ->
             Refined.stringErrorToString strErr |> Err
@@ -115,7 +116,7 @@ update msg model =
                         { userContextData = Nothing
                         , clientMetadata = Nothing
                         , clientId = model.clientId
-                        , authParameters = authParams
+                        , authParameters = Just authParams
                         , authFlow = CIP.AuthFlowTypeUserPasswordAuth
                         , analyticsMetadata = Nothing
                         }

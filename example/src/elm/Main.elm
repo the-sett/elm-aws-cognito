@@ -32,7 +32,12 @@ import ViewUtils
 
 {-| The content editor program model.
 -}
-type alias Model =
+type Model
+    = Error String
+    | Initialized InitializedModel
+
+
+type alias InitializedModel =
     { laf : Laf.Model
     , auth : Auth.Model
     , session : Session
@@ -75,23 +80,43 @@ from a refresh token held as a cookie, without needing the user to log in.
 -}
 init : flags -> ( Model, Cmd Msg )
 init _ =
-    ( { laf = Laf.init
-      , auth =
+    let
+        authInitResult =
             Auth.init
                 { clientId = ""
                 , userPoolId = ""
                 , region = "us-east-1"
                 }
-      , session = Initial
-      , username = ""
-      , password = ""
-      }
-    , Process.sleep 1000 |> Task.perform (always InitialTimeout)
-    )
+    in
+    case authInitResult of
+        Ok authInit ->
+            ( Initialized
+                { laf = Laf.init
+                , auth = authInit
+                , session = Initial
+                , username = ""
+                , password = ""
+                }
+            , Process.sleep 1000 |> Task.perform (always InitialTimeout)
+            )
+
+        Err errMsg ->
+            ( Error errMsg, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update action model =
+    case model of
+        Error _ ->
+            ( model, Cmd.none )
+
+        Initialized initModel ->
+            updateInitialized action initModel
+                |> Tuple.mapFirst Initialized
+
+
+updateInitialized : Msg -> InitializedModel -> ( InitializedModel, Cmd Msg )
+updateInitialized action model =
     case Debug.log "msg" action of
         LafMsg lafMsg ->
             Laf.update LafMsg lafMsg model.laf
@@ -181,18 +206,12 @@ styledBody model =
             , fonts
             , Laf.style devices
             , Css.Global.global global
-            , case model.session of
-                Initial ->
-                    initialView
+            , case model of
+                Error errMsg ->
+                    errorView errMsg
 
-                LoggedOut ->
-                    loginView model
-
-                FailedAuth ->
-                    notPermittedView model
-
-                LoggedIn state ->
-                    authenticatedView model state
+                Initialized initModel ->
+                    initializedView initModel
             ]
 
         debugStyle =
@@ -200,6 +219,31 @@ styledBody model =
                 TheSett.Debug.global Laf.devices
     in
     div [] innerView
+
+
+errorView errMsg =
+    framing <|
+        [ card "images/data_center-large.png"
+            "Initialization Error"
+            [ text ("App failed to initialize: " ++ errMsg) ]
+            []
+            devices
+        ]
+
+
+initializedView model =
+    case model.session of
+        Initial ->
+            initialView
+
+        LoggedOut ->
+            loginView model
+
+        FailedAuth ->
+            notPermittedView model
+
+        LoggedIn state ->
+            authenticatedView model state
 
 
 initialView : Html.Styled.Html Msg
