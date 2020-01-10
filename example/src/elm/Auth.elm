@@ -78,7 +78,7 @@ init config =
                 }
 
         Err strErr ->
-            Refined.stringErrorToString strErr |> Err
+            "clientId " ++ Refined.stringErrorToString strErr |> Err
 
 
 unauthed : Cmd Msg
