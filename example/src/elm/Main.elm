@@ -76,7 +76,11 @@ from a refresh token held as a cookie, without needing the user to log in.
 init : flags -> ( Model, Cmd Msg )
 init _ =
     ( { laf = Laf.init
-      , auth = Auth.init { clientId = "" }
+      , auth =
+            Auth.init
+                { clientId = ""
+                , region = "us-east-1"
+                }
       , session = Initial
       , username = ""
       , password = ""

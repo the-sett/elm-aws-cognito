@@ -14,18 +14,15 @@ to request authentication operations.
 -}
 
 import AWS.CognitoIdentityProvider as CIP
-import AWS.Core.Service
+import AWS.Core.Service exposing (Region)
 import Task.Extra
-
-
-service =
-    CIP.service
 
 
 {-| The configuration specifying the API root to authenticate against.
 -}
 type alias Config =
     { clientId : String
+    , region : Region
     }
 
 
@@ -44,12 +41,12 @@ type alias Model =
 
 type Msg
     = LogIn Credentials
+    | Refresh
+    | LogOut
+    | NotAuthed
 
 
 
--- | Refresh
--- | LogOut
--- | NotAuthed
 -- | LogInResponse (Result.Result Http.Error Model.AuthResponse)
 -- | RefreshResponse (Result.Result Http.Error Model.AuthResponse)
 -- | LogOutResponse (Result.Result Http.Error ())
@@ -83,9 +80,17 @@ login credentials =
 
 refresh : Cmd Msg
 refresh =
-    Cmd.none
+    Refresh |> Task.Extra.message
 
 
 update : Msg -> Model -> ( Model, Cmd Msg, Maybe Status )
 update msg model =
-    ( model, Cmd.none, Nothing )
+    case msg of
+        LogIn credentials ->
+            ( model, Cmd.none, Nothing )
+
+        Refresh ->
+            ( model, Cmd.none, Just LoggedOut )
+
+        _ ->
+            ( model, Cmd.none, Nothing )
