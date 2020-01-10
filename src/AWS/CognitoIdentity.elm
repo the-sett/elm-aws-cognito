@@ -4,23 +4,25 @@ module AWS.CognitoIdentity exposing
     , getIdentityPoolRoles, getOpenIdToken, getOpenIdTokenForDeveloperIdentity, listIdentities, listIdentityPools, listTagsForResource
     , lookupDeveloperIdentity, mergeDeveloperIdentities, setIdentityPoolRoles, tagResource, unlinkDeveloperIdentity, unlinkIdentity
     , untagResource, updateIdentityPool
-    , AccessKeyString, AmbiguousRoleResolutionType(..), CognitoIdentityProvider, CognitoIdentityProviderList
-    , CognitoIdentityProviderTokenCheck, CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse
-    , DeleteIdentityPoolInput, DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperUserIdentifierList, ErrorCode(..)
-    , GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
+    , AccessKeyString, AccountId, AmbiguousRoleResolutionType(..), Arnstring, ClaimName, ClaimValue, CognitoIdentityProvider
+    , CognitoIdentityProviderClientId, CognitoIdentityProviderList, CognitoIdentityProviderName, CognitoIdentityProviderTokenCheck
+    , CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput
+    , DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperProviderName, DeveloperUserIdentifier, DeveloperUserIdentifierList
+    , ErrorCode(..), GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
     , GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput, GetOpenIdTokenForDeveloperIdentityResponse
-    , GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityIdList, IdentityPool
-    , IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType, IdentityPoolUnauthenticated, IdentityPoolsList
-    , IdentityProviders, ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse
-    , ListTagsForResourceInput, ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput
-    , LookupDeveloperIdentityResponse, MappingRule, MappingRuleMatchType(..), MappingRulesList, MergeDeveloperIdentitiesInput
-    , MergeDeveloperIdentitiesResponse, OidcproviderList, Oidctoken, RoleMapping, RoleMappingMap, RoleMappingType(..), RolesMap
-    , RulesConfigurationType, SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagResourceInput
-    , TagResourceResponse, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId
-    , UnprocessedIdentityIdList, UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName
-    , claimValue, cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier
-    , errorCode, identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken
-    , mappingRuleMatchType, paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
+    , GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityId, IdentityIdList
+    , IdentityPool, IdentityPoolId, IdentityPoolName, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType
+    , IdentityPoolUnauthenticated, IdentityPoolsList, IdentityProviderId, IdentityProviderName, IdentityProviderToken, IdentityProviders
+    , ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse, ListTagsForResourceInput
+    , ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput, LookupDeveloperIdentityResponse, MappingRule
+    , MappingRuleMatchType(..), MappingRulesList, MergeDeveloperIdentitiesInput, MergeDeveloperIdentitiesResponse, OidcproviderList
+    , Oidctoken, PaginationKey, QueryLimit, RoleMapping, RoleMappingMap, RoleMappingType(..), RoleType, RolesMap, RulesConfigurationType
+    , SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagKeysType, TagResourceInput, TagResourceResponse
+    , TagValueType, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList
+    , UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName, claimValue
+    , cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier, errorCode
+    , identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken, mappingRuleMatchType
+    , paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
     , accessKeyStringCodec, accountIdCodec, ambiguousRoleResolutionTypeCodec, arnstringCodec, claimNameCodec, claimValueCodec
     , cognitoIdentityProviderClientIdCodec, cognitoIdentityProviderCodec, cognitoIdentityProviderListCodec
     , cognitoIdentityProviderNameCodec, cognitoIdentityProviderTokenCheckCodec, createIdentityPoolInputCodec, credentialsCodec
@@ -73,23 +75,25 @@ For more information see `Amazon Cognito Federated Identities`.
 
 # API data model.
 
-@docs AccessKeyString, AmbiguousRoleResolutionType, CognitoIdentityProvider, CognitoIdentityProviderList
-@docs CognitoIdentityProviderTokenCheck, CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse
-@docs DeleteIdentityPoolInput, DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperUserIdentifierList, ErrorCode
-@docs GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
+@docs AccessKeyString, AccountId, AmbiguousRoleResolutionType, Arnstring, ClaimName, ClaimValue, CognitoIdentityProvider
+@docs CognitoIdentityProviderClientId, CognitoIdentityProviderList, CognitoIdentityProviderName, CognitoIdentityProviderTokenCheck
+@docs CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput
+@docs DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperProviderName, DeveloperUserIdentifier, DeveloperUserIdentifierList
+@docs ErrorCode, GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
 @docs GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput, GetOpenIdTokenForDeveloperIdentityResponse
-@docs GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityIdList, IdentityPool
-@docs IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType, IdentityPoolUnauthenticated, IdentityPoolsList
-@docs IdentityProviders, ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse
-@docs ListTagsForResourceInput, ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput
-@docs LookupDeveloperIdentityResponse, MappingRule, MappingRuleMatchType, MappingRulesList, MergeDeveloperIdentitiesInput
-@docs MergeDeveloperIdentitiesResponse, OidcproviderList, Oidctoken, RoleMapping, RoleMappingMap, RoleMappingType, RolesMap
-@docs RulesConfigurationType, SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagResourceInput
-@docs TagResourceResponse, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId
-@docs UnprocessedIdentityIdList, UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName
-@docs claimValue, cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier
-@docs errorCode, identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken
-@docs mappingRuleMatchType, paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
+@docs GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityId, IdentityIdList
+@docs IdentityPool, IdentityPoolId, IdentityPoolName, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType
+@docs IdentityPoolUnauthenticated, IdentityPoolsList, IdentityProviderId, IdentityProviderName, IdentityProviderToken, IdentityProviders
+@docs ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse, ListTagsForResourceInput
+@docs ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput, LookupDeveloperIdentityResponse, MappingRule
+@docs MappingRuleMatchType, MappingRulesList, MergeDeveloperIdentitiesInput, MergeDeveloperIdentitiesResponse, OidcproviderList
+@docs Oidctoken, PaginationKey, QueryLimit, RoleMapping, RoleMappingMap, RoleMappingType, RoleType, RolesMap, RulesConfigurationType
+@docs SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagKeysType, TagResourceInput, TagResourceResponse
+@docs TagValueType, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList
+@docs UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName, claimValue
+@docs cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier, errorCode
+@docs identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken, mappingRuleMatchType
+@docs paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
 
 
 # Codecs for the data model.
@@ -498,7 +502,7 @@ deleteIdentities req =
 
 {-| Creates a new identity pool. The identity pool is a store of user identity information that is specific to your AWS account. The limit on identity pools is 60 per account. The keys for `SupportedLoginProviders` are as follows:
 
-Facebook: `graph.facebook.com` - Google: `accounts.google.com` - Amazon: `www.amazon.com` - Twitter: `api.twitter.com` - Digits: `www.digits.com` -
+  - Facebook: `graph.facebook.com` Google: `accounts.google.com` Amazon: `www.amazon.com` Twitter: `api.twitter.com` Digits: `www.digits.com`
 
 You must use AWS Developer credentials to call this API.
 
