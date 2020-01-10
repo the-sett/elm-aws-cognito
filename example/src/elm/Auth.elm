@@ -15,6 +15,8 @@ to request authentication operations.
 
 import AWS.CognitoIdentityProvider as CIP
 import AWS.Core.Service exposing (Region)
+import Dict exposing (Dict)
+import Refined
 import Task.Extra
 
 
@@ -36,7 +38,9 @@ type alias Credentials =
 
 
 type alias Model =
-    { config : Config
+    { clientId : CIP.ClientIdType
+    , userPoolId : String
+    , region : Region
     }
 
 
@@ -61,7 +65,14 @@ type Status
 
 init : Config -> Model
 init config =
-    { config = config }
+    let
+        clientId =
+            Refined.build CIP.clientIdType config.clientId
+    in
+    { clientId = clientId
+    , userPoolId = config.userPoolId
+    , region = config.region
+    }
 
 
 unauthed : Cmd Msg
@@ -88,6 +99,22 @@ update : Msg -> Model -> ( Model, Cmd Msg, Maybe Status )
 update msg model =
     case msg of
         LogIn credentials ->
+            let
+                authParams =
+                    Dict.empty
+                        |> Dict.insert "USERNAME" credentials.username
+                        |> Dict.insert "PASSWORD" credentials.password
+
+                authRequest =
+                    CIP.initiateAuth
+                        { userContextData = Nothing
+                        , clientMetadata = Nothing
+                        , clientId = model.clientId
+                        , authParameters = authParams
+                        , authFlow = CIP.AuthFlowTypeUserPasswordAuth
+                        , analyticsMetadata = Nothing
+                        }
+            in
             ( model, Cmd.none, Nothing )
 
         Refresh ->
