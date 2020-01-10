@@ -228,12 +228,11 @@ loginView model =
                     ]
                     [ text "Username" ]
                     devices
-                , Textfield.text
+                , Textfield.password
                     LafMsg
                     [ 2 ]
                     model.laf
-                    [ Textfield.disabled
-                    , Textfield.value model.password
+                    [ Textfield.value model.password
                     ]
                     [ onInput UpdatePassword
                     ]
