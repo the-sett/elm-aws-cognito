@@ -14,9 +14,13 @@ to request authentication operations.
 -}
 
 import AWS.CognitoIdentityProvider as CIP
-import AWS.Core.Service exposing (Region)
+import AWS.Core.Credentials
+import AWS.Core.Http
+import AWS.Core.Service exposing (Region, Service)
 import Dict exposing (Dict)
+import Http
 import Refined
+import Task
 import Task.Extra
 
 
@@ -49,10 +53,10 @@ type Msg
     | Refresh
     | LogOut
     | NotAuthed
+    | LogInResponse (Result.Result Http.Error CIP.InitiateAuthResponse)
 
 
 
--- | LogInResponse (Result.Result Http.Error Model.AuthResponse)
 -- | RefreshResponse (Result.Result Http.Error Model.AuthResponse)
 -- | LogOutResponse (Result.Result Http.Error ())
 
@@ -120,11 +124,23 @@ update msg model =
                         , authFlow = CIP.AuthFlowTypeUserPasswordAuth
                         , analyticsMetadata = Nothing
                         }
+
+                authCmd =
+                    authRequest
+                        |> AWS.Core.Http.send (cipService model.region) (AWS.Core.Credentials.fromAccessKeys "" "")
+                        |> Task.attempt LogInResponse
             in
-            ( model, Cmd.none, Nothing )
+            ( model, authCmd, Nothing )
 
         Refresh ->
             ( model, Cmd.none, Just LoggedOut )
 
         _ ->
             ( model, Cmd.none, Nothing )
+
+
+{-| Provides the service handle for a specified region.
+-}
+cipService : String -> Service
+cipService awsRegion =
+    CIP.service awsRegion
