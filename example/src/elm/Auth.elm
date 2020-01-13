@@ -185,6 +185,7 @@ update msg model =
             noop model
 
 
+updateLogin : Credentials -> Model -> ( Model, Cmd Msg, Maybe Status )
 updateLogin credentials model =
     let
         authParams =
@@ -210,6 +211,11 @@ updateLogin credentials model =
     ( model, authCmd, Nothing )
 
 
+updateChallengeResponse :
+    { s | session : CIP.SessionType, challenge : CIP.ChallengeNameType, username : String }
+    -> Dict String String
+    -> Model
+    -> ( Model, Cmd Msg, Maybe Status )
 updateChallengeResponse { session, challenge, username } responseParams model =
     let
         preparedParams =
@@ -218,8 +224,6 @@ updateChallengeResponse { session, challenge, username } responseParams model =
         challengeRequest =
             CIP.respondToAuthChallenge
                 { userContextData = Nothing
-
-                -- Maybe UserContextDataType
                 , session = Just session
                 , clientId = model.clientId
                 , challengeResponses = Just preparedParams
@@ -235,6 +239,10 @@ updateChallengeResponse { session, challenge, username } responseParams model =
     ( model, challengeCmd, Nothing )
 
 
+updateInitiateAuthResponse :
+    Result.Result Http.Error CIP.InitiateAuthResponse
+    -> Model
+    -> ( Model, Cmd Msg, Maybe Status )
 updateInitiateAuthResponse loginResult model =
     case Debug.log "loginResult" loginResult of
         Err httpErr ->
@@ -259,6 +267,12 @@ updateInitiateAuthResponse loginResult model =
                     failed model
 
 
+handleChallenge :
+    CIP.SessionType
+    -> Dict String String
+    -> CIP.ChallengeNameType
+    -> Model
+    -> ( Model, Cmd Msg, Maybe Status )
 handleChallenge session parameters challengeType model =
     let
         maybeUsername =
