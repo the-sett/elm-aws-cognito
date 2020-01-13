@@ -2,7 +2,7 @@ module Auth exposing
     ( Config, Credentials, Status(..)
     , login, refresh, logout, unauthed
     , Model, Msg, init, update
-    , Challenge(..)
+    , Challenge(..), requiredNewPassword
     )
 
 {-| Manages the state of the authentication process, and provides an API
@@ -11,6 +11,8 @@ to request authentication operations.
 @docs Config, Credentials, Status
 @docs login, refresh, logout, unauthed
 @docs Model, Msg, init, update
+
+@docs Challenge, requiredNewPassword
 
 -}
 
@@ -56,6 +58,7 @@ type Private
         { session : CIP.SessionType
         , challenge : CIP.ChallengeNameType
         , parameters : CIP.ChallengeParametersType
+        , username : String
         }
 
 
@@ -151,7 +154,7 @@ requiredNewPassword new =
 
 
 failed model =
-    failed model
+    ( model, Cmd.none, Just Failed )
 
 
 noop model =
@@ -164,13 +167,13 @@ update msg model =
         LogIn credentials ->
             updateLogin credentials model
 
-        RespondToChallenge params ->
+        RespondToChallenge responseParams ->
             case model.innerModel of
                 Uninitialized ->
                     failed model
 
-                RespondingToChallenges { session, challenge, parameters } ->
-                    updateChallengeResponse session challenge parameters model
+                RespondingToChallenges challengeState ->
+                    updateChallengeResponse challengeState responseParams model
 
         InitiateAuthResponse loginResult ->
             updateInitiateAuthResponse loginResult model
@@ -207,10 +210,10 @@ updateLogin credentials model =
     ( model, authCmd, Nothing )
 
 
-updateChallengeResponse session challenge parameters model =
+updateChallengeResponse { session, challenge, username } responseParams model =
     let
-        challengeResponses =
-            parameters
+        preparedParams =
+            Dict.insert "USERNAME" username responseParams
 
         challengeRequest =
             CIP.respondToAuthChallenge
@@ -219,7 +222,7 @@ updateChallengeResponse session challenge parameters model =
                 -- Maybe UserContextDataType
                 , session = Just session
                 , clientId = model.clientId
-                , challengeResponses = Just challengeResponses
+                , challengeResponses = Just preparedParams
                 , challengeName = CIP.ChallengeNameTypeNewPasswordRequired
                 , analyticsMetadata = Nothing
                 }
@@ -247,28 +250,37 @@ updateInitiateAuthResponse loginResult model =
                         )
                     of
                         ( Just session, Just parameters, Just challengeType ) ->
-                            case challengeType of
-                                CIP.ChallengeNameTypeNewPasswordRequired ->
-                                    ( { model
-                                        | innerModel =
-                                            RespondingToChallenges
-                                                { session = session
-                                                , challenge = challengeType
-                                                , parameters = parameters
-                                                }
-                                      }
-                                    , Cmd.none
-                                    , Challenged NewPasswordRequired |> Just
-                                    )
-
-                                _ ->
-                                    failed model
+                            handleChallenge session parameters challengeType model
 
                         ( _, _, _ ) ->
                             failed model
 
                 Just _ ->
                     failed model
+
+
+handleChallenge session parameters challengeType model =
+    let
+        maybeUsername =
+            Dict.get "USER_ID_FOR_SRP" parameters
+    in
+    case ( challengeType, maybeUsername ) of
+        ( CIP.ChallengeNameTypeNewPasswordRequired, Just username ) ->
+            ( { model
+                | innerModel =
+                    RespondingToChallenges
+                        { session = session
+                        , challenge = challengeType
+                        , parameters = parameters
+                        , username = username
+                        }
+              }
+            , Cmd.none
+            , Challenged NewPasswordRequired |> Just
+            )
+
+        _ ->
+            failed model
 
 
 {-| Provides the service handle for a specified region.

@@ -65,9 +65,11 @@ type Msg
     | AuthMsg Auth.Msg
     | InitialTimeout
     | LogIn
+    | RespondWithNewPassword
     | TryAgain
     | UpdateUsername String
     | UpdatePassword String
+    | UpdatePasswordVerificiation String
 
 
 
@@ -135,6 +137,14 @@ updateInitialized action model =
         LogIn ->
             ( model, Auth.login { username = model.username, password = model.password } |> Cmd.map AuthMsg )
 
+        RespondWithNewPassword ->
+            case model.password of
+                "" ->
+                    ( model, Cmd.none )
+
+                newPassword ->
+                    ( model, Auth.requiredNewPassword newPassword |> Cmd.map AuthMsg )
+
         TryAgain ->
             ( { model | username = "", password = "" }, Auth.unauthed |> Cmd.map AuthMsg )
 
@@ -143,6 +153,9 @@ updateInitialized action model =
 
         UpdatePassword str ->
             ( { model | password = str }, Cmd.none )
+
+        UpdatePasswordVerificiation str ->
+            ( { model | passwordVerify = str }, Cmd.none )
 
 
 authStatusToSession : Auth.Status -> Session
@@ -373,7 +386,7 @@ requiresNewPasswordView model =
                     [ 1 ]
                     model.laf
                     [ Textfield.value model.password ]
-                    [ onInput UpdateUsername
+                    [ onInput UpdatePassword
                     ]
                     [ text "Password" ]
                     devices
@@ -383,13 +396,13 @@ requiresNewPasswordView model =
                     model.laf
                     [ Textfield.value model.passwordVerify
                     ]
-                    [ onInput UpdatePassword
+                    [ onInput UpdatePasswordVerificiation
                     ]
                     [ text "Password Confirmation" ]
                     devices
                 ]
             ]
-            [ Buttons.button [] [ onClick LogIn ] [ text "Set Password" ] devices
+            [ Buttons.button [] [ onClick RespondWithNewPassword ] [ text "Set Password" ] devices
             ]
             devices
         ]
