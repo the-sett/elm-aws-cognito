@@ -2,6 +2,7 @@ module Auth exposing
     ( Config, Credentials, Status(..)
     , login, refresh, logout, unauthed
     , Model, Msg, init, update
+    , Challenge(..)
     )
 
 {-| Manages the state of the authentication process, and provides an API
@@ -45,7 +46,17 @@ type alias Model =
     { clientId : CIP.ClientIdType
     , userPoolId : String
     , region : Region
+    , innerModel : Private
     }
+
+
+type Private
+    = Uninitialized
+    | RespondingToChallenges
+        { session : CIP.SessionType
+        , challenge : CIP.ChallengeNameType
+        , parameters : CIP.ChallengeParametersType
+        }
 
 
 type Msg
@@ -53,7 +64,9 @@ type Msg
     | Refresh
     | LogOut
     | NotAuthed
-    | LogInResponse (Result.Result Http.Error CIP.InitiateAuthResponse)
+    | RespondToChallenge (Dict String String)
+    | InitiateAuthResponse (Result.Result Http.Error CIP.InitiateAuthResponse)
+    | RespondToChallengeResponse (Result.Result Http.Error CIP.RespondToAuthChallengeResponse)
 
 
 
@@ -65,6 +78,23 @@ type Status
     = LoggedOut
     | Failed
     | LoggedIn { scopes : List String, subject : String }
+    | Challenged Challenge
+
+
+type Challenge
+    = NewPasswordRequired
+
+
+
+-- | SmsMfa
+-- | SoftwareTokenMfa
+-- | SelectMfaType
+-- | MfaSetup
+-- | PasswordVerifier
+-- | CustomChallenge
+-- | DeviceSrpAuth
+-- | DevicePasswordVerifier
+-- | AdminNoSrpAuth
 
 
 init : Config -> Result String Model
@@ -79,6 +109,7 @@ init config =
                 { clientId = clientId
                 , userPoolId = config.userPoolId
                 , region = config.region
+                , innerModel = Uninitialized
                 }
 
         Err strErr ->
@@ -105,38 +136,139 @@ refresh =
     Refresh |> Task.Extra.message
 
 
+requiredNewPassword : String -> Cmd Msg
+requiredNewPassword new =
+    let
+        challengeParams =
+            Dict.empty
+                |> Dict.insert "NEW_PASSWORD" new
+    in
+    RespondToChallenge challengeParams |> Task.Extra.message
+
+
+
+-- Processing of auth related requests and internal auth state.
+
+
+failed model =
+    failed model
+
+
+noop model =
+    ( model, Cmd.none, Nothing )
+
+
 update : Msg -> Model -> ( Model, Cmd Msg, Maybe Status )
 update msg model =
     case msg of
         LogIn credentials ->
-            let
-                authParams =
-                    Dict.empty
-                        |> Dict.insert "USERNAME" credentials.username
-                        |> Dict.insert "PASSWORD" credentials.password
+            updateLogin credentials model
 
-                authRequest =
-                    CIP.initiateAuth
-                        { userContextData = Nothing
-                        , clientMetadata = Nothing
-                        , clientId = model.clientId
-                        , authParameters = Just authParams
-                        , authFlow = CIP.AuthFlowTypeUserPasswordAuth
-                        , analyticsMetadata = Nothing
-                        }
+        RespondToChallenge params ->
+            case model.innerModel of
+                Uninitialized ->
+                    failed model
 
-                authCmd =
-                    authRequest
-                        |> AWS.Core.Http.send (cipService model.region) (AWS.Core.Credentials.fromAccessKeys "" "")
-                        |> Task.attempt LogInResponse
-            in
-            ( model, authCmd, Nothing )
+                RespondingToChallenges { session, challenge, parameters } ->
+                    updateChallengeResponse session challenge parameters model
+
+        InitiateAuthResponse loginResult ->
+            updateInitiateAuthResponse loginResult model
 
         Refresh ->
             ( model, Cmd.none, Just LoggedOut )
 
         _ ->
-            ( model, Cmd.none, Nothing )
+            noop model
+
+
+updateLogin credentials model =
+    let
+        authParams =
+            Dict.empty
+                |> Dict.insert "USERNAME" credentials.username
+                |> Dict.insert "PASSWORD" credentials.password
+
+        authRequest =
+            CIP.initiateAuth
+                { userContextData = Nothing
+                , clientMetadata = Nothing
+                , clientId = model.clientId
+                , authParameters = Just authParams
+                , authFlow = CIP.AuthFlowTypeUserPasswordAuth
+                , analyticsMetadata = Nothing
+                }
+
+        authCmd =
+            authRequest
+                |> AWS.Core.Http.sendUnsigned (cipService model.region)
+                |> Task.attempt InitiateAuthResponse
+    in
+    ( model, authCmd, Nothing )
+
+
+updateChallengeResponse session challenge parameters model =
+    let
+        challengeResponses =
+            parameters
+
+        challengeRequest =
+            CIP.respondToAuthChallenge
+                { userContextData = Nothing
+
+                -- Maybe UserContextDataType
+                , session = Just session
+                , clientId = model.clientId
+                , challengeResponses = Just challengeResponses
+                , challengeName = CIP.ChallengeNameTypeNewPasswordRequired
+                , analyticsMetadata = Nothing
+                }
+
+        challengeCmd =
+            challengeRequest
+                |> AWS.Core.Http.sendUnsigned (cipService model.region)
+                |> Task.attempt RespondToChallengeResponse
+    in
+    ( model, challengeCmd, Nothing )
+
+
+updateInitiateAuthResponse loginResult model =
+    case Debug.log "loginResult" loginResult of
+        Err httpErr ->
+            failed model
+
+        Ok authResponse ->
+            case authResponse.authenticationResult of
+                Nothing ->
+                    case
+                        ( authResponse.session
+                        , authResponse.challengeParameters
+                        , authResponse.challengeName
+                        )
+                    of
+                        ( Just session, Just parameters, Just challengeType ) ->
+                            case challengeType of
+                                CIP.ChallengeNameTypeNewPasswordRequired ->
+                                    ( { model
+                                        | innerModel =
+                                            RespondingToChallenges
+                                                { session = session
+                                                , challenge = challengeType
+                                                , parameters = parameters
+                                                }
+                                      }
+                                    , Cmd.none
+                                    , Challenged NewPasswordRequired |> Just
+                                    )
+
+                                _ ->
+                                    failed model
+
+                        ( _, _, _ ) ->
+                            failed model
+
+                Just _ ->
+                    failed model
 
 
 {-| Provides the service handle for a specified region.

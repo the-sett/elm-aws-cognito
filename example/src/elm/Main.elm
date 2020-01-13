@@ -43,6 +43,7 @@ type alias InitializedModel =
     , session : Session
     , username : String
     , password : String
+    , passwordVerify : String
     }
 
 
@@ -54,6 +55,7 @@ type Session
         { scopes : List String
         , subject : String
         }
+    | RequiresNewPassword
 
 
 {-| The content editor program top-level message types.
@@ -83,8 +85,8 @@ init _ =
     let
         authInitResult =
             Auth.init
-                { clientId = ""
-                , userPoolId = ""
+                { clientId = "2gr0fdlr647skqqghtau04vuct"
+                , userPoolId = "us-east-1_LzM42GX6Q"
                 , region = "us-east-1"
                 }
     in
@@ -96,6 +98,7 @@ init _ =
                 , session = Initial
                 , username = ""
                 , password = ""
+                , passwordVerify = ""
                 }
             , Process.sleep 1000 |> Task.perform (always InitialTimeout)
             )
@@ -150,6 +153,11 @@ authStatusToSession status =
 
         Auth.Failed ->
             FailedAuth
+
+        Auth.Challenged challenge ->
+            case challenge of
+                Auth.NewPasswordRequired ->
+                    RequiresNewPassword
 
         Auth.LoggedIn access ->
             LoggedIn access
@@ -244,6 +252,9 @@ initializedView model =
 
         LoggedIn state ->
             authenticatedView model state
+
+        RequiresNewPassword ->
+            requiresNewPasswordView model
 
 
 initialView : Html.Styled.Html Msg
@@ -347,6 +358,39 @@ authenticatedView model user =
                 ]
             ]
             [ Buttons.button [] [ onClick TryAgain ] [ text "Log Out" ] devices ]
+            devices
+        ]
+
+
+requiresNewPasswordView : { a | laf : Laf.Model, password : String, passwordVerify : String } -> Html.Styled.Html Msg
+requiresNewPasswordView model =
+    framing <|
+        [ card "images/data_center-large.png"
+            "New Password Required"
+            [ form []
+                [ Textfield.password
+                    LafMsg
+                    [ 1 ]
+                    model.laf
+                    [ Textfield.value model.password ]
+                    [ onInput UpdateUsername
+                    ]
+                    [ text "Password" ]
+                    devices
+                , Textfield.password
+                    LafMsg
+                    [ 2 ]
+                    model.laf
+                    [ Textfield.value model.passwordVerify
+                    ]
+                    [ onInput UpdatePassword
+                    ]
+                    [ text "Password Confirmation" ]
+                    devices
+                ]
+            ]
+            [ Buttons.button [] [ onClick LogIn ] [ text "Set Password" ] devices
+            ]
             devices
         ]
 
