@@ -22,6 +22,7 @@ import AWS.Core.Http
 import AWS.Core.Service exposing (Region, Service)
 import Dict exposing (Dict)
 import Http
+import Jwt exposing (Token)
 import Refined
 import Task
 import Task.Extra
@@ -59,6 +60,11 @@ type Private
         , challenge : CIP.ChallengeNameType
         , parameters : CIP.ChallengeParametersType
         , username : String
+        }
+    | Authenticated
+        { refreshToken : CIP.TokenModelType
+        , idToken : CIP.TokenModelType
+        , accessToken : CIP.TokenModelType
         }
 
 
@@ -169,11 +175,11 @@ update msg model =
 
         RespondToChallenge responseParams ->
             case model.innerModel of
-                Uninitialized ->
-                    failed model
-
                 RespondingToChallenges challengeState ->
                     updateChallengeResponse challengeState responseParams model
+
+                _ ->
+                    failed model
 
         InitiateAuthResponse loginResult ->
             updateInitiateAuthResponse loginResult model
@@ -263,8 +269,40 @@ updateInitiateAuthResponse loginResult model =
                         ( _, _, _ ) ->
                             failed model
 
-                Just _ ->
-                    failed model
+                Just authResult ->
+                    handleAuthResult authResult model
+
+
+handleAuthResult : CIP.AuthenticationResultType -> Model -> ( Model, Cmd Msg, Maybe Status )
+handleAuthResult authResult model =
+    case ( authResult.refreshToken, authResult.idToken, authResult.accessToken ) of
+        ( Just refreshToken, Just idToken, Just accessToken ) ->
+            let
+                _ =
+                    Refined.unbox CIP.tokenModelType accessToken
+                        |> Jwt.decodeWithErrors
+                        |> Debug.log "accessToken"
+
+                _ =
+                    Refined.unbox CIP.tokenModelType idToken
+                        |> Jwt.decodeWithErrors
+                        |> Debug.log "idToken"
+            in
+            ( { model
+                | innerModel =
+                    Authenticated
+                        { refreshToken = refreshToken
+                        , idToken = idToken
+                        , accessToken = accessToken
+                        }
+              }
+            , Cmd.none
+            , LoggedIn { scopes = [], subject = "" }
+                |> Just
+            )
+
+        _ ->
+            failed model
 
 
 handleChallenge :

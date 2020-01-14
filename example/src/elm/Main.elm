@@ -146,7 +146,7 @@ updateInitialized action model =
                     ( model, Auth.requiredNewPassword newPassword |> Cmd.map AuthMsg )
 
         TryAgain ->
-            ( { model | username = "", password = "" }, Auth.unauthed |> Cmd.map AuthMsg )
+            ( clear { model | session = LoggedOut }, Auth.unauthed |> Cmd.map AuthMsg )
 
         UpdateUsername str ->
             ( { model | username = str }, Cmd.none )
@@ -156,6 +156,11 @@ updateInitialized action model =
 
         UpdatePasswordVerificiation str ->
             ( { model | passwordVerify = str }, Cmd.none )
+
+
+clear : InitializedModel -> InitializedModel
+clear model =
+    { model | username = "", password = "", passwordVerify = "" }
 
 
 authStatusToSession : Auth.Status -> Session
@@ -324,12 +329,14 @@ notPermittedView model =
                     LafMsg
                     [ 1 ]
                     model.laf
-                    [ Textfield.value model.username ]
+                    [ Textfield.disabled
+                    , Textfield.value model.username
+                    ]
                     [ onInput UpdateUsername
                     ]
                     [ text "Username" ]
                     devices
-                , Textfield.text
+                , Textfield.password
                     LafMsg
                     [ 2 ]
                     model.laf
