@@ -20,11 +20,10 @@ module AWS.CognitoIdentityProvider exposing
     , AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType(..)
     , AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest
     , AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest
-    , AdminCreateUserResponse, AdminCreateUserUnusedAccountValidityDaysType, AdminDeleteUserAttributesRequest
-    , AdminDeleteUserAttributesResponse, AdminDeleteUserRequest, AdminDisableProviderForUserRequest
-    , AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse, AdminEnableUserRequest
-    , AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse, AdminGetUserRequest
-    , AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
+    , AdminCreateUserResponse, AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResponse, AdminDeleteUserRequest
+    , AdminDisableProviderForUserRequest, AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse
+    , AdminEnableUserRequest, AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse
+    , AdminGetUserRequest, AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
     , AdminLinkProviderForUserResponse, AdminListDevicesRequest, AdminListDevicesResponse, AdminListGroupsForUserRequest
     , AdminListGroupsForUserResponse, AdminListUserAuthEventsRequest, AdminListUserAuthEventsResponse
     , AdminRemoveUserFromGroupRequest, AdminResetUserPasswordRequest, AdminResetUserPasswordResponse
@@ -33,20 +32,18 @@ module AWS.CognitoIdentityProvider exposing
     , AdminSetUserSettingsResponse, AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResponse
     , AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResponse, AdminUpdateUserAttributesRequest
     , AdminUpdateUserAttributesResponse, AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResponse, AdvancedSecurityModeType(..)
-    , AliasAttributeType(..), AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, ArnType
-    , AssociateSoftwareTokenRequest, AssociateSoftwareTokenResponse, AttributeDataType(..), AttributeListType, AttributeMappingKeyType
-    , AttributeMappingType, AttributeNameListType, AttributeNameType, AttributeType, AttributeValueType, AuthEventType, AuthEventsType
-    , AuthFlowType(..), AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType, BooleanType
-    , CallbackUrlsListType, ChallengeName(..), ChallengeNameType(..), ChallengeParametersType, ChallengeResponse(..), ChallengeResponseListType
-    , ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientIdType, ClientMetadataType
-    , ClientNameType, ClientPermissionListType, ClientPermissionType, ClientSecretType, CodeDeliveryDetailsListType
-    , CodeDeliveryDetailsType, CompletionMessageType, CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType(..)
-    , CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest
-    , ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse, ConfirmationCodeType, ContextDataType
-    , CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse
-    , CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest, CreateUserImportJobResponse
-    , CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest, CreateUserPoolDomainResponse
-    , CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributeNameType, CustomAttributesListType
+    , AliasAttributeType(..), AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, AssociateSoftwareTokenRequest
+    , AssociateSoftwareTokenResponse, AttributeDataType(..), AttributeListType, AttributeMappingType, AttributeNameListType, AttributeType
+    , AuthEventType, AuthEventsType, AuthFlowType(..), AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType
+    , BooleanType, CallbackUrlsListType, ChallengeName(..), ChallengeNameType(..), ChallengeParametersType, ChallengeResponse(..)
+    , ChallengeResponseListType, ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse
+    , ClientMetadataType, ClientPermissionListType, CodeDeliveryDetailsListType, CodeDeliveryDetailsType
+    , CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType(..), CompromisedCredentialsRiskConfigurationType
+    , ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest, ConfirmForgotPasswordResponse, ConfirmSignUpRequest
+    , ConfirmSignUpResponse, ContextDataType, CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest
+    , CreateIdentityProviderResponse, CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest
+    , CreateUserImportJobResponse, CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest
+    , CreateUserPoolDomainResponse, CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributesListType
     , CustomDomainConfigType, DateType, DefaultEmailOptionType(..), DeleteGroupRequest, DeleteIdentityProviderRequest
     , DeleteResourceServerRequest, DeleteUserAttributesRequest, DeleteUserAttributesResponse, DeleteUserPoolClientRequest
     , DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse, DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType
@@ -54,63 +51,54 @@ module AWS.CognitoIdentityProvider exposing
     , DescribeResourceServerResponse, DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse
     , DescribeUserImportJobRequest, DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse
     , DescribeUserPoolDomainRequest, DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse
-    , DescriptionType, DeviceConfigurationType, DeviceKeyType, DeviceListType, DeviceNameType, DeviceRememberedStatusType(..)
-    , DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType(..), DomainType, DomainVersionType, EmailAddressType
-    , EmailConfigurationType, EmailNotificationBodyType, EmailNotificationSubjectType, EmailSendingAccountType(..)
-    , EmailVerificationMessageByLinkType, EmailVerificationMessageType, EmailVerificationSubjectByLinkType
-    , EmailVerificationSubjectType, EventContextDataType, EventFeedbackType, EventFilterType(..), EventFiltersType, EventIdType
-    , EventResponseType(..), EventRiskType, EventType(..), ExplicitAuthFlowsListType, ExplicitAuthFlowsType(..), FeedbackValueType(..), ForceAliasCreation
-    , ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret, GetCsvheaderRequest, GetCsvheaderResponse
-    , GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest
-    , GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest, GetSigningCertificateResponse
-    , GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
+    , DeviceConfigurationType, DeviceListType, DeviceRememberedStatusType(..), DeviceSecretVerifierConfigType, DeviceType
+    , DomainDescriptionType, DomainStatusType(..), EmailConfigurationType, EmailSendingAccountType(..), EventContextDataType, EventFeedbackType
+    , EventFilterType(..), EventFiltersType, EventResponseType(..), EventRiskType, EventType(..), ExplicitAuthFlowsListType, ExplicitAuthFlowsType(..)
+    , FeedbackValueType(..), ForceAliasCreation, ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret
+    , GetCsvheaderRequest, GetCsvheaderResponse, GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse
+    , GetIdentityProviderByIdentifierRequest, GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest
+    , GetSigningCertificateResponse, GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
     , GetUserAttributeVerificationCodeResponse, GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResponse, GetUserRequest
-    , GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupNameType, GroupType, HexStringType, HttpHeader
-    , HttpHeaderList, IdentityProviderType, IdentityProviderTypeType(..), IdpIdentifierType, IdpIdentifiersListType, ImageFileType
-    , ImageUrlType, InitiateAuthRequest, InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse
-    , ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes
-    , ListProvidersLimitType, ListResourceServersLimitType, ListResourceServersRequest, ListResourceServersResponse
-    , ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest, ListUserImportJobsResponse
-    , ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse, ListUsersInGroupRequest
-    , ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType, MessageActionType(..), MessageTemplateType
-    , MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType, NotifyEmailType, NumberAttributeConstraintsType
-    , OauthFlowType(..), OauthFlowsType, PaginationKey, PaginationKeyType, PasswordPolicyMinLengthType, PasswordPolicyType, PasswordType
-    , PoolQueryLimitType, PreSignedUrlType, PrecedenceType, ProviderDescription, ProviderDetailsType, ProviderNameType, ProviderNameTypeV1
-    , ProviderUserIdentifierType, ProvidersListType, QueryLimit, QueryLimitType, RedirectUrlType, RefreshTokenValidityType
-    , ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerIdentifierType, ResourceServerNameType
-    , ResourceServerScopeDescriptionType, ResourceServerScopeListType, ResourceServerScopeNameType, ResourceServerScopeType
-    , ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse
-    , RiskConfigurationType, RiskDecisionType(..), RiskExceptionConfigurationType, RiskLevelType(..), S3BucketType, SchemaAttributeType
-    , SchemaAttributesListType, ScopeListType, ScopeType, SearchPaginationTokenType, SearchedAttributeNamesListType, SecretCodeType
-    , SecretHashType, SessionType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
+    , GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupType, HttpHeader, HttpHeaderList
+    , IdentityProviderType, IdentityProviderTypeType(..), IdpIdentifiersListType, ImageFileType, ImageUrlType, InitiateAuthRequest
+    , InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse, ListGroupsRequest, ListGroupsResponse
+    , ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes, ListResourceServersRequest
+    , ListResourceServersResponse, ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest
+    , ListUserImportJobsResponse, ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse
+    , ListUsersInGroupRequest, ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType
+    , MessageActionType(..), MessageTemplateType, MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType
+    , NotifyEmailType, NumberAttributeConstraintsType, OauthFlowType(..), OauthFlowsType, PasswordPolicyType, ProviderDescription
+    , ProviderDetailsType, ProviderUserIdentifierType, ProvidersListType, ResendConfirmationCodeRequest
+    , ResendConfirmationCodeResponse, ResourceServerScopeListType, ResourceServerScopeType, ResourceServerType
+    , ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse, RiskConfigurationType, RiskDecisionType(..)
+    , RiskExceptionConfigurationType, RiskLevelType(..), SchemaAttributeType, SchemaAttributesListType, ScopeListType
+    , SearchedAttributeNamesListType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
     , SetUicustomizationResponse, SetUserMfapreferenceRequest, SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest
     , SetUserPoolMfaConfigResponse, SetUserSettingsRequest, SetUserSettingsResponse, SignUpRequest, SignUpResponse
-    , SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsVerificationMessageType, SmsmfaSettingsType
-    , SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, SoftwareTokenMfauserCodeType, StartUserImportJobRequest
-    , StartUserImportJobResponse, StatusType(..), StopUserImportJobRequest, StopUserImportJobResponse, StringAttributeConstraintsType
-    , StringType, SupportedIdentityProvidersListType, TagKeysType, TagResourceRequest, TagResourceResponse, TagValueType
-    , TemporaryPasswordValidityDaysType, TokenModelType, UicustomizationType, UntagResourceRequest, UntagResourceResponse
-    , UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse
-    , UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest, UpdateIdentityProviderResponse
-    , UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest, UpdateUserAttributesResponse
-    , UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse
-    , UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserFilterType, UserImportJobIdType, UserImportJobNameType
+    , SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsmfaSettingsType, SoftwareTokenMfaConfigType
+    , SoftwareTokenMfaSettingsType, StartUserImportJobRequest, StartUserImportJobResponse, StatusType(..), StopUserImportJobRequest
+    , StopUserImportJobResponse, StringAttributeConstraintsType, StringType, SupportedIdentityProvidersListType, TagResourceRequest
+    , TagResourceResponse, UicustomizationType, UntagResourceRequest, UntagResourceResponse, UpdateAuthEventFeedbackRequest
+    , UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse, UpdateGroupRequest, UpdateGroupResponse
+    , UpdateIdentityProviderRequest, UpdateIdentityProviderResponse, UpdateResourceServerRequest, UpdateResourceServerResponse
+    , UpdateUserAttributesRequest, UpdateUserAttributesResponse, UpdateUserPoolClientRequest, UpdateUserPoolClientResponse
+    , UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse, UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType
     , UserImportJobStatusType(..), UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType
-    , UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolIdType, UserPoolListType
-    , UserPoolMfaType(..), UserPoolNameType, UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType(..), UserType
-    , UsernameAttributeType(..), UsernameAttributesListType, UsernameType, UsersListType, VerificationMessageTemplateType
-    , VerifiedAttributeType(..), VerifiedAttributesListType, VerifySoftwareTokenRequest, VerifySoftwareTokenResponse
-    , VerifySoftwareTokenResponseType(..), VerifyUserAttributeRequest, VerifyUserAttributeResponse, accountTakeoverEventActionType
-    , adminCreateUserUnusedAccountValidityDaysType, advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType
-    , attributeMappingKeyType, attributeNameType, attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse
-    , clientIdType, clientNameType, clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType
-    , confirmationCodeType, customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType
-    , deviceNameType, deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType
-    , emailNotificationBodyType, emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType
-    , emailVerificationMessageType, emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType
-    , eventResponseType, eventType, explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType
-    , idpIdentifierType, listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey
-    , paginationKeyType, passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
+    , UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolListType, UserPoolMfaType(..)
+    , UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType(..), UserType, UsernameAttributeType(..)
+    , UsernameAttributesListType, UsersListType, VerificationMessageTemplateType, VerifiedAttributeType(..), VerifiedAttributesListType
+    , VerifySoftwareTokenRequest, VerifySoftwareTokenResponse, VerifySoftwareTokenResponseType(..), VerifyUserAttributeRequest
+    , VerifyUserAttributeResponse, accountTakeoverEventActionType, adminCreateUserUnusedAccountValidityDaysType
+    , advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType, attributeMappingKeyType, attributeNameType
+    , attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse, clientIdType, clientNameType
+    , clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType, confirmationCodeType
+    , customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType, deviceNameType
+    , deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType, emailNotificationBodyType
+    , emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType, emailVerificationMessageType
+    , emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType, eventResponseType, eventType
+    , explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType, idpIdentifierType
+    , listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey, paginationKeyType
+    , passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
     , providerNameTypeV1, queryLimit, queryLimitType, redirectUrlType, refreshTokenValidityType, resourceServerIdentifierType
     , resourceServerNameType, resourceServerScopeDescriptionType, resourceServerScopeNameType, riskDecisionType, riskLevelType
     , s3BucketType, scopeType, searchPaginationTokenType, secretCodeType, secretHashType, sessionType, smsVerificationMessageType
@@ -261,11 +249,10 @@ For more information, see the Amazon Cognito Documentation.
 @docs AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType
 @docs AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest
 @docs AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest
-@docs AdminCreateUserResponse, AdminCreateUserUnusedAccountValidityDaysType, AdminDeleteUserAttributesRequest
-@docs AdminDeleteUserAttributesResponse, AdminDeleteUserRequest, AdminDisableProviderForUserRequest
-@docs AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse, AdminEnableUserRequest
-@docs AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse, AdminGetUserRequest
-@docs AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
+@docs AdminCreateUserResponse, AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResponse, AdminDeleteUserRequest
+@docs AdminDisableProviderForUserRequest, AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse
+@docs AdminEnableUserRequest, AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse
+@docs AdminGetUserRequest, AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
 @docs AdminLinkProviderForUserResponse, AdminListDevicesRequest, AdminListDevicesResponse, AdminListGroupsForUserRequest
 @docs AdminListGroupsForUserResponse, AdminListUserAuthEventsRequest, AdminListUserAuthEventsResponse
 @docs AdminRemoveUserFromGroupRequest, AdminResetUserPasswordRequest, AdminResetUserPasswordResponse
@@ -274,20 +261,18 @@ For more information, see the Amazon Cognito Documentation.
 @docs AdminSetUserSettingsResponse, AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResponse
 @docs AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResponse, AdminUpdateUserAttributesRequest
 @docs AdminUpdateUserAttributesResponse, AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResponse, AdvancedSecurityModeType
-@docs AliasAttributeType, AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, ArnType
-@docs AssociateSoftwareTokenRequest, AssociateSoftwareTokenResponse, AttributeDataType, AttributeListType, AttributeMappingKeyType
-@docs AttributeMappingType, AttributeNameListType, AttributeNameType, AttributeType, AttributeValueType, AuthEventType, AuthEventsType
-@docs AuthFlowType, AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType, BooleanType
-@docs CallbackUrlsListType, ChallengeName, ChallengeNameType, ChallengeParametersType, ChallengeResponse, ChallengeResponseListType
-@docs ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientIdType, ClientMetadataType
-@docs ClientNameType, ClientPermissionListType, ClientPermissionType, ClientSecretType, CodeDeliveryDetailsListType
-@docs CodeDeliveryDetailsType, CompletionMessageType, CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType
-@docs CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest
-@docs ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse, ConfirmationCodeType, ContextDataType
-@docs CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse
-@docs CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest, CreateUserImportJobResponse
-@docs CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest, CreateUserPoolDomainResponse
-@docs CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributeNameType, CustomAttributesListType
+@docs AliasAttributeType, AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, AssociateSoftwareTokenRequest
+@docs AssociateSoftwareTokenResponse, AttributeDataType, AttributeListType, AttributeMappingType, AttributeNameListType, AttributeType
+@docs AuthEventType, AuthEventsType, AuthFlowType, AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType
+@docs BooleanType, CallbackUrlsListType, ChallengeName, ChallengeNameType, ChallengeParametersType, ChallengeResponse
+@docs ChallengeResponseListType, ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse
+@docs ClientMetadataType, ClientPermissionListType, CodeDeliveryDetailsListType, CodeDeliveryDetailsType
+@docs CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType, CompromisedCredentialsRiskConfigurationType
+@docs ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest, ConfirmForgotPasswordResponse, ConfirmSignUpRequest
+@docs ConfirmSignUpResponse, ContextDataType, CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest
+@docs CreateIdentityProviderResponse, CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest
+@docs CreateUserImportJobResponse, CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest
+@docs CreateUserPoolDomainResponse, CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributesListType
 @docs CustomDomainConfigType, DateType, DefaultEmailOptionType, DeleteGroupRequest, DeleteIdentityProviderRequest
 @docs DeleteResourceServerRequest, DeleteUserAttributesRequest, DeleteUserAttributesResponse, DeleteUserPoolClientRequest
 @docs DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse, DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType
@@ -295,63 +280,54 @@ For more information, see the Amazon Cognito Documentation.
 @docs DescribeResourceServerResponse, DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse
 @docs DescribeUserImportJobRequest, DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse
 @docs DescribeUserPoolDomainRequest, DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse
-@docs DescriptionType, DeviceConfigurationType, DeviceKeyType, DeviceListType, DeviceNameType, DeviceRememberedStatusType
-@docs DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType, DomainType, DomainVersionType, EmailAddressType
-@docs EmailConfigurationType, EmailNotificationBodyType, EmailNotificationSubjectType, EmailSendingAccountType
-@docs EmailVerificationMessageByLinkType, EmailVerificationMessageType, EmailVerificationSubjectByLinkType
-@docs EmailVerificationSubjectType, EventContextDataType, EventFeedbackType, EventFilterType, EventFiltersType, EventIdType
-@docs EventResponseType, EventRiskType, EventType, ExplicitAuthFlowsListType, ExplicitAuthFlowsType, FeedbackValueType, ForceAliasCreation
-@docs ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret, GetCsvheaderRequest, GetCsvheaderResponse
-@docs GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest
-@docs GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest, GetSigningCertificateResponse
-@docs GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
+@docs DeviceConfigurationType, DeviceListType, DeviceRememberedStatusType, DeviceSecretVerifierConfigType, DeviceType
+@docs DomainDescriptionType, DomainStatusType, EmailConfigurationType, EmailSendingAccountType, EventContextDataType, EventFeedbackType
+@docs EventFilterType, EventFiltersType, EventResponseType, EventRiskType, EventType, ExplicitAuthFlowsListType, ExplicitAuthFlowsType
+@docs FeedbackValueType, ForceAliasCreation, ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret
+@docs GetCsvheaderRequest, GetCsvheaderResponse, GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse
+@docs GetIdentityProviderByIdentifierRequest, GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest
+@docs GetSigningCertificateResponse, GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
 @docs GetUserAttributeVerificationCodeResponse, GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResponse, GetUserRequest
-@docs GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupNameType, GroupType, HexStringType, HttpHeader
-@docs HttpHeaderList, IdentityProviderType, IdentityProviderTypeType, IdpIdentifierType, IdpIdentifiersListType, ImageFileType
-@docs ImageUrlType, InitiateAuthRequest, InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse
-@docs ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes
-@docs ListProvidersLimitType, ListResourceServersLimitType, ListResourceServersRequest, ListResourceServersResponse
-@docs ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest, ListUserImportJobsResponse
-@docs ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse, ListUsersInGroupRequest
-@docs ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType, MessageActionType, MessageTemplateType
-@docs MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType, NotifyEmailType, NumberAttributeConstraintsType
-@docs OauthFlowType, OauthFlowsType, PaginationKey, PaginationKeyType, PasswordPolicyMinLengthType, PasswordPolicyType, PasswordType
-@docs PoolQueryLimitType, PreSignedUrlType, PrecedenceType, ProviderDescription, ProviderDetailsType, ProviderNameType, ProviderNameTypeV1
-@docs ProviderUserIdentifierType, ProvidersListType, QueryLimit, QueryLimitType, RedirectUrlType, RefreshTokenValidityType
-@docs ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerIdentifierType, ResourceServerNameType
-@docs ResourceServerScopeDescriptionType, ResourceServerScopeListType, ResourceServerScopeNameType, ResourceServerScopeType
-@docs ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse
-@docs RiskConfigurationType, RiskDecisionType, RiskExceptionConfigurationType, RiskLevelType, S3BucketType, SchemaAttributeType
-@docs SchemaAttributesListType, ScopeListType, ScopeType, SearchPaginationTokenType, SearchedAttributeNamesListType, SecretCodeType
-@docs SecretHashType, SessionType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
+@docs GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupType, HttpHeader, HttpHeaderList
+@docs IdentityProviderType, IdentityProviderTypeType, IdpIdentifiersListType, ImageFileType, ImageUrlType, InitiateAuthRequest
+@docs InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse, ListGroupsRequest, ListGroupsResponse
+@docs ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes, ListResourceServersRequest
+@docs ListResourceServersResponse, ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest
+@docs ListUserImportJobsResponse, ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse
+@docs ListUsersInGroupRequest, ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType
+@docs MessageActionType, MessageTemplateType, MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType
+@docs NotifyEmailType, NumberAttributeConstraintsType, OauthFlowType, OauthFlowsType, PasswordPolicyType, ProviderDescription
+@docs ProviderDetailsType, ProviderUserIdentifierType, ProvidersListType, ResendConfirmationCodeRequest
+@docs ResendConfirmationCodeResponse, ResourceServerScopeListType, ResourceServerScopeType, ResourceServerType
+@docs ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse, RiskConfigurationType, RiskDecisionType
+@docs RiskExceptionConfigurationType, RiskLevelType, SchemaAttributeType, SchemaAttributesListType, ScopeListType
+@docs SearchedAttributeNamesListType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
 @docs SetUicustomizationResponse, SetUserMfapreferenceRequest, SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest
 @docs SetUserPoolMfaConfigResponse, SetUserSettingsRequest, SetUserSettingsResponse, SignUpRequest, SignUpResponse
-@docs SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsVerificationMessageType, SmsmfaSettingsType
-@docs SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, SoftwareTokenMfauserCodeType, StartUserImportJobRequest
-@docs StartUserImportJobResponse, StatusType, StopUserImportJobRequest, StopUserImportJobResponse, StringAttributeConstraintsType
-@docs StringType, SupportedIdentityProvidersListType, TagKeysType, TagResourceRequest, TagResourceResponse, TagValueType
-@docs TemporaryPasswordValidityDaysType, TokenModelType, UicustomizationType, UntagResourceRequest, UntagResourceResponse
-@docs UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse
-@docs UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest, UpdateIdentityProviderResponse
-@docs UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest, UpdateUserAttributesResponse
-@docs UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse
-@docs UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserFilterType, UserImportJobIdType, UserImportJobNameType
+@docs SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsmfaSettingsType, SoftwareTokenMfaConfigType
+@docs SoftwareTokenMfaSettingsType, StartUserImportJobRequest, StartUserImportJobResponse, StatusType, StopUserImportJobRequest
+@docs StopUserImportJobResponse, StringAttributeConstraintsType, StringType, SupportedIdentityProvidersListType, TagResourceRequest
+@docs TagResourceResponse, UicustomizationType, UntagResourceRequest, UntagResourceResponse, UpdateAuthEventFeedbackRequest
+@docs UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse, UpdateGroupRequest, UpdateGroupResponse
+@docs UpdateIdentityProviderRequest, UpdateIdentityProviderResponse, UpdateResourceServerRequest, UpdateResourceServerResponse
+@docs UpdateUserAttributesRequest, UpdateUserAttributesResponse, UpdateUserPoolClientRequest, UpdateUserPoolClientResponse
+@docs UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse, UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType
 @docs UserImportJobStatusType, UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType
-@docs UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolIdType, UserPoolListType
-@docs UserPoolMfaType, UserPoolNameType, UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType, UserType
-@docs UsernameAttributeType, UsernameAttributesListType, UsernameType, UsersListType, VerificationMessageTemplateType
-@docs VerifiedAttributeType, VerifiedAttributesListType, VerifySoftwareTokenRequest, VerifySoftwareTokenResponse
-@docs VerifySoftwareTokenResponseType, VerifyUserAttributeRequest, VerifyUserAttributeResponse, accountTakeoverEventActionType
-@docs adminCreateUserUnusedAccountValidityDaysType, advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType
-@docs attributeMappingKeyType, attributeNameType, attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse
-@docs clientIdType, clientNameType, clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType
-@docs confirmationCodeType, customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType
-@docs deviceNameType, deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType
-@docs emailNotificationBodyType, emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType
-@docs emailVerificationMessageType, emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType
-@docs eventResponseType, eventType, explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType
-@docs idpIdentifierType, listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey
-@docs paginationKeyType, passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
+@docs UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolListType, UserPoolMfaType
+@docs UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType, UserType, UsernameAttributeType
+@docs UsernameAttributesListType, UsersListType, VerificationMessageTemplateType, VerifiedAttributeType, VerifiedAttributesListType
+@docs VerifySoftwareTokenRequest, VerifySoftwareTokenResponse, VerifySoftwareTokenResponseType, VerifyUserAttributeRequest
+@docs VerifyUserAttributeResponse, accountTakeoverEventActionType, adminCreateUserUnusedAccountValidityDaysType
+@docs advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType, attributeMappingKeyType, attributeNameType
+@docs attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse, clientIdType, clientNameType
+@docs clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType, confirmationCodeType
+@docs customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType, deviceNameType
+@docs deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType, emailNotificationBodyType
+@docs emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType, emailVerificationMessageType
+@docs emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType, eventResponseType, eventType
+@docs explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType, idpIdentifierType
+@docs listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey, paginationKeyType
+@docs passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
 @docs providerNameTypeV1, queryLimit, queryLimitType, redirectUrlType, refreshTokenValidityType, resourceServerIdentifierType
 @docs resourceServerNameType, resourceServerScopeDescriptionType, resourceServerScopeNameType, riskDecisionType, riskLevelType
 @docs s3BucketType, scopeType, searchPaginationTokenType, secretCodeType, secretHashType, sessionType, smsVerificationMessageType
@@ -2168,6 +2144,8 @@ type alias AdminCreateUserResponse =
     { user : Maybe UserType }
 
 
+{-| The AdminCreateUserUnusedAccountValidityDaysType data model.
+-}
 type AdminCreateUserUnusedAccountValidityDaysType
     = AdminCreateUserUnusedAccountValidityDaysType Int
 
@@ -2569,6 +2547,8 @@ type alias AnalyticsMetadataType =
     { analyticsEndpointId : Maybe String }
 
 
+{-| The ArnType data model.
+-}
 type ArnType
     = ArnType String
 
@@ -2642,6 +2622,8 @@ type alias AttributeListType =
     List AttributeType
 
 
+{-| The AttributeMappingKeyType data model.
+-}
 type AttributeMappingKeyType
     = AttributeMappingKeyType String
 
@@ -2672,6 +2654,8 @@ type alias AttributeNameListType =
     List AttributeNameType
 
 
+{-| The AttributeNameType data model.
+-}
 type AttributeNameType
     = AttributeNameType String
 
@@ -2699,6 +2683,8 @@ type alias AttributeType =
     { value : Maybe AttributeValueType, name : AttributeNameType }
 
 
+{-| The AttributeValueType data model.
+-}
 type AttributeValueType
     = AttributeValueType String
 
@@ -2977,6 +2963,8 @@ type alias ChangePasswordResponse =
     {}
 
 
+{-| The ClientIdType data model.
+-}
 type ClientIdType
     = ClientIdType String
 
@@ -3004,6 +2992,8 @@ type alias ClientMetadataType =
     Dict String String
 
 
+{-| The ClientNameType data model.
+-}
 type ClientNameType
     = ClientNameType String
 
@@ -3031,6 +3021,8 @@ type alias ClientPermissionListType =
     List ClientPermissionType
 
 
+{-| The ClientPermissionType data model.
+-}
 type ClientPermissionType
     = ClientPermissionType String
 
@@ -3049,6 +3041,8 @@ clientPermissionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The ClientSecretType data model.
+-}
 type ClientSecretType
     = ClientSecretType String
 
@@ -3082,6 +3076,8 @@ type alias CodeDeliveryDetailsType =
     { destination : Maybe String, deliveryMedium : Maybe DeliveryMediumType, attributeName : Maybe AttributeNameType }
 
 
+{-| The CompletionMessageType data model.
+-}
 type CompletionMessageType
     = CompletionMessageType String
 
@@ -3192,6 +3188,8 @@ type alias ConfirmSignUpResponse =
     {}
 
 
+{-| The ConfirmationCodeType data model.
+-}
 type ConfirmationCodeType
     = ConfirmationCodeType String
 
@@ -3357,6 +3355,8 @@ type alias CreateUserPoolResponse =
     { userPool : Maybe UserPoolType }
 
 
+{-| The CustomAttributeNameType data model.
+-}
 type CustomAttributeNameType
     = CustomAttributeNameType String
 
@@ -3592,6 +3592,8 @@ type alias DescribeUserPoolResponse =
     { userPool : Maybe UserPoolType }
 
 
+{-| The DescriptionType data model.
+-}
 type DescriptionType
     = DescriptionType String
 
@@ -3616,6 +3618,8 @@ type alias DeviceConfigurationType =
     { deviceOnlyRememberedOnUserPrompt : Maybe Bool, challengeRequiredOnNewDevice : Maybe Bool }
 
 
+{-| The DeviceKeyType data model.
+-}
 type DeviceKeyType
     = DeviceKeyType String
 
@@ -3643,6 +3647,8 @@ type alias DeviceListType =
     List DeviceType
 
 
+{-| The DeviceNameType data model.
+-}
 type DeviceNameType
     = DeviceNameType String
 
@@ -3755,6 +3761,8 @@ domainStatusType =
         )
 
 
+{-| The DomainType data model.
+-}
 type DomainType
     = DomainType String
 
@@ -3776,6 +3784,8 @@ domainType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The DomainVersionType data model.
+-}
 type DomainVersionType
     = DomainVersionType String
 
@@ -3794,6 +3804,8 @@ domainVersionType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The EmailAddressType data model.
+-}
 type EmailAddressType
     = EmailAddressType String
 
@@ -3822,6 +3834,8 @@ type alias EmailConfigurationType =
     }
 
 
+{-| The EmailNotificationBodyType data model.
+-}
 type EmailNotificationBodyType
     = EmailNotificationBodyType String
 
@@ -3843,6 +3857,8 @@ emailNotificationBodyType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The EmailNotificationSubjectType data model.
+-}
 type EmailNotificationSubjectType
     = EmailNotificationSubjectType String
 
@@ -3887,6 +3903,8 @@ emailSendingAccountType =
         )
 
 
+{-| The EmailVerificationMessageByLinkType data model.
+-}
 type EmailVerificationMessageByLinkType
     = EmailVerificationMessageByLinkType String
 
@@ -3911,6 +3929,8 @@ emailVerificationMessageByLinkType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The EmailVerificationMessageType data model.
+-}
 type EmailVerificationMessageType
     = EmailVerificationMessageType String
 
@@ -3935,6 +3955,8 @@ emailVerificationMessageType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The EmailVerificationSubjectByLinkType data model.
+-}
 type EmailVerificationSubjectByLinkType
     = EmailVerificationSubjectByLinkType String
 
@@ -3956,6 +3978,8 @@ emailVerificationSubjectByLinkType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The EmailVerificationSubjectType data model.
+-}
 type EmailVerificationSubjectType
     = EmailVerificationSubjectType String
 
@@ -4027,6 +4051,8 @@ type alias EventFiltersType =
     List EventFilterType
 
 
+{-| The EventIdType data model.
+-}
 type EventIdType
     = EventIdType String
 
@@ -4332,6 +4358,8 @@ type alias GroupListType =
     List GroupType
 
 
+{-| The GroupNameType data model.
+-}
 type GroupNameType
     = GroupNameType String
 
@@ -4366,6 +4394,8 @@ type alias GroupType =
     }
 
 
+{-| The HexStringType data model.
+-}
 type HexStringType
     = HexStringType String
 
@@ -4450,6 +4480,8 @@ identityProviderTypeType =
         )
 
 
+{-| The IdpIdentifierType data model.
+-}
 type IdpIdentifierType
     = IdpIdentifierType String
 
@@ -4575,6 +4607,8 @@ type alias ListOfStringTypes =
     List String
 
 
+{-| The ListProvidersLimitType data model.
+-}
 type ListProvidersLimitType
     = ListProvidersLimitType Int
 
@@ -4593,6 +4627,8 @@ listProvidersLimitType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| The ListResourceServersLimitType data model.
+-}
 type ListResourceServersLimitType
     = ListResourceServersLimitType Int
 
@@ -4829,6 +4865,8 @@ type alias OauthFlowsType =
     List OauthFlowType
 
 
+{-| The PaginationKey data model.
+-}
 type PaginationKey
     = PaginationKey String
 
@@ -4847,6 +4885,8 @@ paginationKey =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The PaginationKeyType data model.
+-}
 type PaginationKeyType
     = PaginationKeyType String
 
@@ -4865,6 +4905,8 @@ paginationKeyType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The PasswordPolicyMinLengthType data model.
+-}
 type PasswordPolicyMinLengthType
     = PasswordPolicyMinLengthType Int
 
@@ -4895,6 +4937,8 @@ type alias PasswordPolicyType =
     }
 
 
+{-| The PasswordType data model.
+-}
 type PasswordType
     = PasswordType String
 
@@ -4916,6 +4960,8 @@ passwordType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The PoolQueryLimitType data model.
+-}
 type PoolQueryLimitType
     = PoolQueryLimitType Int
 
@@ -4934,6 +4980,8 @@ poolQueryLimitType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| The PreSignedUrlType data model.
+-}
 type PreSignedUrlType
     = PreSignedUrlType String
 
@@ -4952,6 +5000,8 @@ preSignedUrlType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The PrecedenceType data model.
+-}
 type PrecedenceType
     = PrecedenceType Int
 
@@ -4986,6 +5036,8 @@ type alias ProviderDetailsType =
     Dict String String
 
 
+{-| The ProviderNameType data model.
+-}
 type ProviderNameType
     = ProviderNameType String
 
@@ -5007,6 +5059,8 @@ providerNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The ProviderNameTypeV1 data model.
+-}
 type ProviderNameTypeV1
     = ProviderNameTypeV1 String
 
@@ -5043,6 +5097,8 @@ type alias ProvidersListType =
     List ProviderDescription
 
 
+{-| The QueryLimit data model.
+-}
 type QueryLimit
     = QueryLimit Int
 
@@ -5061,6 +5117,8 @@ queryLimit =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| The QueryLimitType data model.
+-}
 type QueryLimitType
     = QueryLimitType Int
 
@@ -5079,6 +5137,8 @@ queryLimitType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| The RedirectUrlType data model.
+-}
 type RedirectUrlType
     = RedirectUrlType String
 
@@ -5100,6 +5160,8 @@ redirectUrlType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The RefreshTokenValidityType data model.
+-}
 type RefreshTokenValidityType
     = RefreshTokenValidityType Int
 
@@ -5135,6 +5197,8 @@ type alias ResendConfirmationCodeResponse =
     { codeDeliveryDetails : Maybe CodeDeliveryDetailsType }
 
 
+{-| The ResourceServerIdentifierType data model.
+-}
 type ResourceServerIdentifierType
     = ResourceServerIdentifierType String
 
@@ -5156,6 +5220,8 @@ resourceServerIdentifierType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The ResourceServerNameType data model.
+-}
 type ResourceServerNameType
     = ResourceServerNameType String
 
@@ -5177,6 +5243,8 @@ resourceServerNameType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The ResourceServerScopeDescriptionType data model.
+-}
 type ResourceServerScopeDescriptionType
     = ResourceServerScopeDescriptionType String
 
@@ -5203,6 +5271,8 @@ type alias ResourceServerScopeListType =
     List ResourceServerScopeType
 
 
+{-| The ResourceServerScopeNameType data model.
+-}
 type ResourceServerScopeNameType
     = ResourceServerScopeNameType String
 
@@ -5340,6 +5410,8 @@ riskLevelType =
         )
 
 
+{-| The S3BucketType data model.
+-}
 type S3BucketType
     = S3BucketType String
 
@@ -5392,6 +5464,8 @@ type alias ScopeListType =
     List ScopeType
 
 
+{-| The ScopeType data model.
+-}
 type ScopeType
     = ScopeType String
 
@@ -5413,6 +5487,8 @@ scopeType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The SearchPaginationTokenType data model.
+-}
 type SearchPaginationTokenType
     = SearchPaginationTokenType String
 
@@ -5439,6 +5515,8 @@ type alias SearchedAttributeNamesListType =
     List AttributeNameType
 
 
+{-| The SecretCodeType data model.
+-}
 type SecretCodeType
     = SecretCodeType String
 
@@ -5457,6 +5535,8 @@ secretCodeType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The SecretHashType data model.
+-}
 type SecretHashType
     = SecretHashType String
 
@@ -5478,6 +5558,8 @@ secretHashType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The SessionType data model.
+-}
 type SessionType
     = SessionType String
 
@@ -5609,6 +5691,8 @@ type alias SmsMfaConfigType =
     { smsConfiguration : Maybe SmsConfigurationType, smsAuthenticationMessage : Maybe SmsVerificationMessageType }
 
 
+{-| The SmsVerificationMessageType data model.
+-}
 type SmsVerificationMessageType
     = SmsVerificationMessageType String
 
@@ -5630,6 +5714,8 @@ smsVerificationMessageType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The SoftwareTokenMfauserCodeType data model.
+-}
 type SoftwareTokenMfauserCodeType
     = SoftwareTokenMfauserCodeType String
 
@@ -5728,6 +5814,8 @@ type alias SupportedIdentityProvidersListType =
     List ProviderNameType
 
 
+{-| The TagKeysType data model.
+-}
 type TagKeysType
     = TagKeysType String
 
@@ -5758,6 +5846,8 @@ type alias TagResourceResponse =
     {}
 
 
+{-| The TagValueType data model.
+-}
 type TagValueType
     = TagValueType String
 
@@ -5776,6 +5866,8 @@ tagValueType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The TemporaryPasswordValidityDaysType data model.
+-}
 type TemporaryPasswordValidityDaysType
     = TemporaryPasswordValidityDaysType Int
 
@@ -5794,6 +5886,8 @@ temporaryPasswordValidityDaysType =
     Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
+{-| The TokenModelType data model.
+-}
 type TokenModelType
     = TokenModelType String
 
@@ -6004,6 +6098,8 @@ type alias UserContextDataType =
     { encodedData : Maybe String }
 
 
+{-| The UserFilterType data model.
+-}
 type UserFilterType
     = UserFilterType String
 
@@ -6022,6 +6118,8 @@ userFilterType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The UserImportJobIdType data model.
+-}
 type UserImportJobIdType
     = UserImportJobIdType String
 
@@ -6043,6 +6141,8 @@ userImportJobIdType =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The UserImportJobNameType data model.
+-}
 type UserImportJobNameType
     = UserImportJobNameType String
 
@@ -6204,6 +6304,8 @@ type alias UserPoolDescriptionType =
     }
 
 
+{-| The UserPoolIdType data model.
+-}
 type UserPoolIdType
     = UserPoolIdType String
 
@@ -6258,6 +6360,8 @@ userPoolMfaType =
         )
 
 
+{-| The UserPoolNameType data model.
+-}
 type UserPoolNameType
     = UserPoolNameType String
 
@@ -6424,6 +6528,8 @@ type alias UsernameAttributesListType =
     List UsernameAttributeType
 
 
+{-| The UsernameType data model.
+-}
 type UsernameType
     = UsernameType String
 

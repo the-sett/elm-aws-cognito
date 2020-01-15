@@ -4,25 +4,23 @@ module AWS.CognitoIdentity exposing
     , getIdentityPoolRoles, getOpenIdToken, getOpenIdTokenForDeveloperIdentity, listIdentities, listIdentityPools, listTagsForResource
     , lookupDeveloperIdentity, mergeDeveloperIdentities, setIdentityPoolRoles, tagResource, unlinkDeveloperIdentity, unlinkIdentity
     , untagResource, updateIdentityPool
-    , AccessKeyString, AccountId, AmbiguousRoleResolutionType(..), Arnstring, ClaimName, ClaimValue, CognitoIdentityProvider
-    , CognitoIdentityProviderClientId, CognitoIdentityProviderList, CognitoIdentityProviderName, CognitoIdentityProviderTokenCheck
-    , CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput
-    , DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperProviderName, DeveloperUserIdentifier, DeveloperUserIdentifierList
-    , ErrorCode(..), GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
+    , AccessKeyString, AmbiguousRoleResolutionType(..), CognitoIdentityProvider, CognitoIdentityProviderList
+    , CognitoIdentityProviderTokenCheck, CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse
+    , DeleteIdentityPoolInput, DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperUserIdentifierList, ErrorCode(..)
+    , GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
     , GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput, GetOpenIdTokenForDeveloperIdentityResponse
-    , GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityId, IdentityIdList
-    , IdentityPool, IdentityPoolId, IdentityPoolName, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType
-    , IdentityPoolUnauthenticated, IdentityPoolsList, IdentityProviderId, IdentityProviderName, IdentityProviderToken, IdentityProviders
-    , ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse, ListTagsForResourceInput
-    , ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput, LookupDeveloperIdentityResponse, MappingRule
-    , MappingRuleMatchType(..), MappingRulesList, MergeDeveloperIdentitiesInput, MergeDeveloperIdentitiesResponse, OidcproviderList
-    , Oidctoken, PaginationKey, QueryLimit, RoleMapping, RoleMappingMap, RoleMappingType(..), RoleType, RolesMap, RulesConfigurationType
-    , SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagKeysType, TagResourceInput, TagResourceResponse
-    , TagValueType, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList
-    , UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName, claimValue
-    , cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier, errorCode
-    , identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken, mappingRuleMatchType
-    , paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
+    , GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityIdList, IdentityPool
+    , IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType, IdentityPoolUnauthenticated, IdentityPoolsList
+    , IdentityProviders, ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse
+    , ListTagsForResourceInput, ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput
+    , LookupDeveloperIdentityResponse, MappingRule, MappingRuleMatchType(..), MappingRulesList, MergeDeveloperIdentitiesInput
+    , MergeDeveloperIdentitiesResponse, OidcproviderList, Oidctoken, RoleMapping, RoleMappingMap, RoleMappingType(..), RolesMap
+    , RulesConfigurationType, SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagResourceInput
+    , TagResourceResponse, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId
+    , UnprocessedIdentityIdList, UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName
+    , claimValue, cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier
+    , errorCode, identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken
+    , mappingRuleMatchType, paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
     , accessKeyStringCodec, accountIdCodec, ambiguousRoleResolutionTypeCodec, arnstringCodec, claimNameCodec, claimValueCodec
     , cognitoIdentityProviderClientIdCodec, cognitoIdentityProviderCodec, cognitoIdentityProviderListCodec
     , cognitoIdentityProviderNameCodec, cognitoIdentityProviderTokenCheckCodec, createIdentityPoolInputCodec, credentialsCodec
@@ -75,25 +73,23 @@ For more information see `Amazon Cognito Federated Identities`.
 
 # API data model.
 
-@docs AccessKeyString, AccountId, AmbiguousRoleResolutionType, Arnstring, ClaimName, ClaimValue, CognitoIdentityProvider
-@docs CognitoIdentityProviderClientId, CognitoIdentityProviderList, CognitoIdentityProviderName, CognitoIdentityProviderTokenCheck
-@docs CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput
-@docs DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperProviderName, DeveloperUserIdentifier, DeveloperUserIdentifierList
-@docs ErrorCode, GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
+@docs AccessKeyString, AmbiguousRoleResolutionType, CognitoIdentityProvider, CognitoIdentityProviderList
+@docs CognitoIdentityProviderTokenCheck, CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse
+@docs DeleteIdentityPoolInput, DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperUserIdentifierList, ErrorCode
+@docs GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
 @docs GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput, GetOpenIdTokenForDeveloperIdentityResponse
-@docs GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityId, IdentityIdList
-@docs IdentityPool, IdentityPoolId, IdentityPoolName, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType
-@docs IdentityPoolUnauthenticated, IdentityPoolsList, IdentityProviderId, IdentityProviderName, IdentityProviderToken, IdentityProviders
-@docs ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse, ListTagsForResourceInput
-@docs ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput, LookupDeveloperIdentityResponse, MappingRule
-@docs MappingRuleMatchType, MappingRulesList, MergeDeveloperIdentitiesInput, MergeDeveloperIdentitiesResponse, OidcproviderList
-@docs Oidctoken, PaginationKey, QueryLimit, RoleMapping, RoleMappingMap, RoleMappingType, RoleType, RolesMap, RulesConfigurationType
-@docs SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagKeysType, TagResourceInput, TagResourceResponse
-@docs TagValueType, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList
-@docs UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName, claimValue
-@docs cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier, errorCode
-@docs identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken, mappingRuleMatchType
-@docs paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
+@docs GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityIdList, IdentityPool
+@docs IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType, IdentityPoolUnauthenticated, IdentityPoolsList
+@docs IdentityProviders, ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse
+@docs ListTagsForResourceInput, ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput
+@docs LookupDeveloperIdentityResponse, MappingRule, MappingRuleMatchType, MappingRulesList, MergeDeveloperIdentitiesInput
+@docs MergeDeveloperIdentitiesResponse, OidcproviderList, Oidctoken, RoleMapping, RoleMappingMap, RoleMappingType, RolesMap
+@docs RulesConfigurationType, SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagResourceInput
+@docs TagResourceResponse, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId
+@docs UnprocessedIdentityIdList, UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName
+@docs claimValue, cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier
+@docs errorCode, identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken
+@docs mappingRuleMatchType, paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
 
 
 # Codecs for the data model.
@@ -519,6 +515,8 @@ createIdentityPool req =
     AWS.Core.Http.request "CreateIdentityPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
+{-| The Arnstring data model.
+-}
 type Arnstring
     = Arnstring String
 
@@ -543,6 +541,8 @@ type alias AccessKeyString =
     String
 
 
+{-| The AccountId data model.
+-}
 type AccountId
     = AccountId String
 
@@ -587,6 +587,8 @@ ambiguousRoleResolutionType =
         )
 
 
+{-| The ClaimName data model.
+-}
 type ClaimName
     = ClaimName String
 
@@ -608,6 +610,8 @@ claimName =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The ClaimValue data model.
+-}
 type ClaimValue
     = ClaimValue String
 
@@ -635,6 +639,8 @@ type alias CognitoIdentityProvider =
     }
 
 
+{-| The CognitoIdentityProviderClientId data model.
+-}
 type CognitoIdentityProviderClientId
     = CognitoIdentityProviderClientId String
 
@@ -662,6 +668,8 @@ type alias CognitoIdentityProviderList =
     List CognitoIdentityProvider
 
 
+{-| The CognitoIdentityProviderName data model.
+-}
 type CognitoIdentityProviderName
     = CognitoIdentityProviderName String
 
@@ -745,6 +753,8 @@ type alias DescribeIdentityPoolInput =
     { identityPoolId : IdentityPoolId }
 
 
+{-| The DeveloperProviderName data model.
+-}
 type DeveloperProviderName
     = DeveloperProviderName String
 
@@ -766,6 +776,8 @@ developerProviderName =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The DeveloperUserIdentifier data model.
+-}
 type DeveloperUserIdentifier
     = DeveloperUserIdentifier String
 
@@ -895,6 +907,8 @@ type alias IdentityDescription =
     }
 
 
+{-| The IdentityId data model.
+-}
 type IdentityId
     = IdentityId String
 
@@ -937,6 +951,8 @@ type alias IdentityPool =
     }
 
 
+{-| The IdentityPoolId data model.
+-}
 type IdentityPoolId
     = IdentityPoolId String
 
@@ -958,6 +974,8 @@ identityPoolId =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The IdentityPoolName data model.
+-}
 type IdentityPoolName
     = IdentityPoolName String
 
@@ -1009,6 +1027,8 @@ type alias IdentityPoolsList =
     List IdentityPoolShortDescription
 
 
+{-| The IdentityProviderId data model.
+-}
 type IdentityProviderId
     = IdentityProviderId String
 
@@ -1030,6 +1050,8 @@ identityProviderId =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The IdentityProviderName data model.
+-}
 type IdentityProviderName
     = IdentityProviderName String
 
@@ -1048,6 +1070,8 @@ identityProviderName =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The IdentityProviderToken data model.
+-}
 type IdentityProviderToken
     = IdentityProviderToken String
 
@@ -1219,6 +1243,8 @@ type alias Oidctoken =
     String
 
 
+{-| The PaginationKey data model.
+-}
 type PaginationKey
     = PaginationKey String
 
@@ -1237,6 +1263,8 @@ paginationKey =
     Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
+{-| The QueryLimit data model.
+-}
 type QueryLimit
     = QueryLimit Int
 
@@ -1293,6 +1321,8 @@ roleMappingType =
         )
 
 
+{-| The RoleType data model.
+-}
 type RoleType
     = RoleType String
 
@@ -1347,6 +1377,8 @@ type alias SetIdentityPoolRolesInput =
     { roles : RolesMap, roleMappings : Maybe RoleMappingMap, identityPoolId : IdentityPoolId }
 
 
+{-| The TagKeysType data model.
+-}
 type TagKeysType
     = TagKeysType String
 
@@ -1377,6 +1409,8 @@ type alias TagResourceResponse =
     {}
 
 
+{-| The TagValueType data model.
+-}
 type TagValueType
     = TagValueType String
 
