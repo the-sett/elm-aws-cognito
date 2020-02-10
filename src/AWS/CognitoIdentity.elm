@@ -637,9 +637,9 @@ claimValue =
 {-| The CognitoIdentityProvider data model.
 -}
 type alias CognitoIdentityProvider =
-    { serverSideTokenCheck : Maybe Bool
+    { clientId : Maybe CognitoIdentityProviderClientId
     , providerName : Maybe CognitoIdentityProviderName
-    , clientId : Maybe CognitoIdentityProviderClientId
+    , serverSideTokenCheck : Maybe CognitoIdentityProviderTokenCheck
     }
 
 
@@ -704,21 +704,25 @@ type alias CognitoIdentityProviderTokenCheck =
 {-| The CreateIdentityPoolInput data model.
 -}
 type alias CreateIdentityPoolInput =
-    { supportedLoginProviders : Maybe IdentityProviders
-    , samlProviderArns : Maybe SamlproviderList
-    , openIdConnectProviderArns : Maybe OidcproviderList
-    , identityPoolTags : Maybe IdentityPoolTagsType
-    , identityPoolName : IdentityPoolName
-    , developerProviderName : Maybe DeveloperProviderName
+    { allowUnauthenticatedIdentities : IdentityPoolUnauthenticated
     , cognitoIdentityProviders : Maybe CognitoIdentityProviderList
-    , allowUnauthenticatedIdentities : Bool
+    , developerProviderName : Maybe DeveloperProviderName
+    , identityPoolName : IdentityPoolName
+    , identityPoolTags : Maybe IdentityPoolTagsType
+    , openIdConnectProviderArns : Maybe OidcproviderList
+    , samlProviderArns : Maybe SamlproviderList
+    , supportedLoginProviders : Maybe IdentityProviders
     }
 
 
 {-| The Credentials data model.
 -}
 type alias Credentials =
-    { sessionToken : Maybe String, secretKey : Maybe String, expiration : Maybe DateType, accessKeyId : Maybe String }
+    { accessKeyId : Maybe AccessKeyString
+    , expiration : Maybe DateType
+    , secretKey : Maybe SecretKeyString
+    , sessionToken : Maybe SessionTokenString
+    }
 
 
 {-| The DateType data model.
@@ -832,19 +836,19 @@ errorCode =
 {-| The GetCredentialsForIdentityInput data model.
 -}
 type alias GetCredentialsForIdentityInput =
-    { logins : Maybe LoginsMap, identityId : IdentityId, customRoleArn : Maybe Arnstring }
+    { customRoleArn : Maybe Arnstring, identityId : IdentityId, logins : Maybe LoginsMap }
 
 
 {-| The GetCredentialsForIdentityResponse data model.
 -}
 type alias GetCredentialsForIdentityResponse =
-    { identityId : Maybe IdentityId, credentials : Maybe Credentials }
+    { credentials : Maybe Credentials, identityId : Maybe IdentityId }
 
 
 {-| The GetIdInput data model.
 -}
 type alias GetIdInput =
-    { logins : Maybe LoginsMap, identityPoolId : IdentityPoolId, accountId : Maybe AccountId }
+    { accountId : Maybe AccountId, identityPoolId : IdentityPoolId, logins : Maybe LoginsMap }
 
 
 {-| The GetIdResponse data model.
@@ -862,31 +866,35 @@ type alias GetIdentityPoolRolesInput =
 {-| The GetIdentityPoolRolesResponse data model.
 -}
 type alias GetIdentityPoolRolesResponse =
-    { roles : Maybe RolesMap, roleMappings : Maybe RoleMappingMap, identityPoolId : Maybe IdentityPoolId }
+    { identityPoolId : Maybe IdentityPoolId, roleMappings : Maybe RoleMappingMap, roles : Maybe RolesMap }
 
 
 {-| The GetOpenIdTokenForDeveloperIdentityInput data model.
 -}
 type alias GetOpenIdTokenForDeveloperIdentityInput =
-    { tokenDuration : Maybe Int, logins : LoginsMap, identityPoolId : IdentityPoolId, identityId : Maybe IdentityId }
+    { identityId : Maybe IdentityId
+    , identityPoolId : IdentityPoolId
+    , logins : LoginsMap
+    , tokenDuration : Maybe TokenDuration
+    }
 
 
 {-| The GetOpenIdTokenForDeveloperIdentityResponse data model.
 -}
 type alias GetOpenIdTokenForDeveloperIdentityResponse =
-    { token : Maybe String, identityId : Maybe IdentityId }
+    { identityId : Maybe IdentityId, token : Maybe Oidctoken }
 
 
 {-| The GetOpenIdTokenInput data model.
 -}
 type alias GetOpenIdTokenInput =
-    { logins : Maybe LoginsMap, identityId : IdentityId }
+    { identityId : IdentityId, logins : Maybe LoginsMap }
 
 
 {-| The GetOpenIdTokenResponse data model.
 -}
 type alias GetOpenIdTokenResponse =
-    { token : Maybe String, identityId : Maybe IdentityId }
+    { identityId : Maybe IdentityId, token : Maybe Oidctoken }
 
 
 {-| The HideDisabled data model.
@@ -904,10 +912,10 @@ type alias IdentitiesList =
 {-| The IdentityDescription data model.
 -}
 type alias IdentityDescription =
-    { logins : Maybe LoginsList
-    , lastModifiedDate : Maybe DateType
+    { creationDate : Maybe DateType
     , identityId : Maybe IdentityId
-    , creationDate : Maybe DateType
+    , lastModifiedDate : Maybe DateType
+    , logins : Maybe LoginsList
     }
 
 
@@ -943,15 +951,15 @@ type alias IdentityIdList =
 {-| The IdentityPool data model.
 -}
 type alias IdentityPool =
-    { supportedLoginProviders : Maybe IdentityProviders
-    , samlProviderArns : Maybe SamlproviderList
-    , openIdConnectProviderArns : Maybe OidcproviderList
-    , identityPoolTags : Maybe IdentityPoolTagsType
-    , identityPoolName : IdentityPoolName
-    , identityPoolId : IdentityPoolId
-    , developerProviderName : Maybe DeveloperProviderName
+    { allowUnauthenticatedIdentities : IdentityPoolUnauthenticated
     , cognitoIdentityProviders : Maybe CognitoIdentityProviderList
-    , allowUnauthenticatedIdentities : Bool
+    , developerProviderName : Maybe DeveloperProviderName
+    , identityPoolId : IdentityPoolId
+    , identityPoolName : IdentityPoolName
+    , identityPoolTags : Maybe IdentityPoolTagsType
+    , openIdConnectProviderArns : Maybe OidcproviderList
+    , samlProviderArns : Maybe SamlproviderList
+    , supportedLoginProviders : Maybe IdentityProviders
     }
 
 
@@ -1004,7 +1012,7 @@ identityPoolName =
 {-| The IdentityPoolShortDescription data model.
 -}
 type alias IdentityPoolShortDescription =
-    { identityPoolName : Maybe IdentityPoolName, identityPoolId : Maybe IdentityPoolId }
+    { identityPoolId : Maybe IdentityPoolId, identityPoolName : Maybe IdentityPoolName }
 
 
 {-| The IdentityPoolTagsListType data model.
@@ -1103,29 +1111,29 @@ type alias IdentityProviders =
 {-| The ListIdentitiesInput data model.
 -}
 type alias ListIdentitiesInput =
-    { nextToken : Maybe PaginationKey
-    , maxResults : QueryLimit
+    { hideDisabled : Maybe HideDisabled
     , identityPoolId : IdentityPoolId
-    , hideDisabled : Maybe Bool
+    , maxResults : QueryLimit
+    , nextToken : Maybe PaginationKey
     }
 
 
 {-| The ListIdentitiesResponse data model.
 -}
 type alias ListIdentitiesResponse =
-    { nextToken : Maybe PaginationKey, identityPoolId : Maybe IdentityPoolId, identities : Maybe IdentitiesList }
+    { identities : Maybe IdentitiesList, identityPoolId : Maybe IdentityPoolId, nextToken : Maybe PaginationKey }
 
 
 {-| The ListIdentityPoolsInput data model.
 -}
 type alias ListIdentityPoolsInput =
-    { nextToken : Maybe PaginationKey, maxResults : QueryLimit }
+    { maxResults : QueryLimit, nextToken : Maybe PaginationKey }
 
 
 {-| The ListIdentityPoolsResponse data model.
 -}
 type alias ListIdentityPoolsResponse =
-    { nextToken : Maybe PaginationKey, identityPools : Maybe IdentityPoolsList }
+    { identityPools : Maybe IdentityPoolsList, nextToken : Maybe PaginationKey }
 
 
 {-| The ListTagsForResourceInput data model.
@@ -1155,27 +1163,27 @@ type alias LoginsMap =
 {-| The LookupDeveloperIdentityInput data model.
 -}
 type alias LookupDeveloperIdentityInput =
-    { nextToken : Maybe PaginationKey
-    , maxResults : Maybe QueryLimit
-    , identityPoolId : IdentityPoolId
+    { developerUserIdentifier : Maybe DeveloperUserIdentifier
     , identityId : Maybe IdentityId
-    , developerUserIdentifier : Maybe DeveloperUserIdentifier
+    , identityPoolId : IdentityPoolId
+    , maxResults : Maybe QueryLimit
+    , nextToken : Maybe PaginationKey
     }
 
 
 {-| The LookupDeveloperIdentityResponse data model.
 -}
 type alias LookupDeveloperIdentityResponse =
-    { nextToken : Maybe PaginationKey
+    { developerUserIdentifierList : Maybe DeveloperUserIdentifierList
     , identityId : Maybe IdentityId
-    , developerUserIdentifierList : Maybe DeveloperUserIdentifierList
+    , nextToken : Maybe PaginationKey
     }
 
 
 {-| The MappingRule data model.
 -}
 type alias MappingRule =
-    { value : ClaimValue, roleArn : Arnstring, matchType : MappingRuleMatchType, claim : ClaimName }
+    { claim : ClaimName, matchType : MappingRuleMatchType, roleArn : Arnstring, value : ClaimValue }
 
 
 {-| The MappingRuleMatchType data model.
@@ -1222,10 +1230,10 @@ type alias MappingRulesList =
 {-| The MergeDeveloperIdentitiesInput data model.
 -}
 type alias MergeDeveloperIdentitiesInput =
-    { sourceUserIdentifier : DeveloperUserIdentifier
-    , identityPoolId : IdentityPoolId
+    { destinationUserIdentifier : DeveloperUserIdentifier
     , developerProviderName : DeveloperProviderName
-    , destinationUserIdentifier : DeveloperUserIdentifier
+    , identityPoolId : IdentityPoolId
+    , sourceUserIdentifier : DeveloperUserIdentifier
     }
 
 
@@ -1290,9 +1298,9 @@ queryLimit =
 {-| The RoleMapping data model.
 -}
 type alias RoleMapping =
-    { type_ : RoleMappingType
+    { ambiguousRoleResolution : Maybe AmbiguousRoleResolutionType
     , rulesConfiguration : Maybe RulesConfigurationType
-    , ambiguousRoleResolution : Maybe AmbiguousRoleResolutionType
+    , type_ : RoleMappingType
     }
 
 
@@ -1378,7 +1386,7 @@ type alias SessionTokenString =
 {-| The SetIdentityPoolRolesInput data model.
 -}
 type alias SetIdentityPoolRolesInput =
-    { roles : RolesMap, roleMappings : Maybe RoleMappingMap, identityPoolId : IdentityPoolId }
+    { identityPoolId : IdentityPoolId, roleMappings : Maybe RoleMappingMap, roles : RolesMap }
 
 
 {-| The TagKeysType data model.
@@ -1404,7 +1412,7 @@ tagKeysType =
 {-| The TagResourceInput data model.
 -}
 type alias TagResourceInput =
-    { tags : Maybe IdentityPoolTagsType, resourceArn : Arnstring }
+    { resourceArn : Arnstring, tags : Maybe IdentityPoolTagsType }
 
 
 {-| The TagResourceResponse data model.
@@ -1442,23 +1450,23 @@ type alias TokenDuration =
 {-| The UnlinkDeveloperIdentityInput data model.
 -}
 type alias UnlinkDeveloperIdentityInput =
-    { identityPoolId : IdentityPoolId
-    , identityId : IdentityId
+    { developerProviderName : DeveloperProviderName
     , developerUserIdentifier : DeveloperUserIdentifier
-    , developerProviderName : DeveloperProviderName
+    , identityId : IdentityId
+    , identityPoolId : IdentityPoolId
     }
 
 
 {-| The UnlinkIdentityInput data model.
 -}
 type alias UnlinkIdentityInput =
-    { loginsToRemove : LoginsList, logins : LoginsMap, identityId : IdentityId }
+    { identityId : IdentityId, logins : LoginsMap, loginsToRemove : LoginsList }
 
 
 {-| The UnprocessedIdentityId data model.
 -}
 type alias UnprocessedIdentityId =
-    { identityId : Maybe IdentityId, errorCode : Maybe ErrorCode }
+    { errorCode : Maybe ErrorCode, identityId : Maybe IdentityId }
 
 
 {-| The UnprocessedIdentityIdList data model.
@@ -1470,7 +1478,7 @@ type alias UnprocessedIdentityIdList =
 {-| The UntagResourceInput data model.
 -}
 type alias UntagResourceInput =
-    { tagKeys : Maybe IdentityPoolTagsListType, resourceArn : Arnstring }
+    { resourceArn : Arnstring, tagKeys : Maybe IdentityPoolTagsListType }
 
 
 {-| The UntagResourceResponse data model.
@@ -1491,8 +1499,8 @@ untagResourceResponseCodec =
 untagResourceInputCodec : Codec UntagResourceInput
 untagResourceInputCodec =
     Codec.object UntagResourceInput
-        |> Codec.optionalField "TagKeys" .tagKeys identityPoolTagsListTypeCodec
         |> Codec.field "ResourceArn" .resourceArn arnstringCodec
+        |> Codec.optionalField "TagKeys" .tagKeys identityPoolTagsListTypeCodec
         |> Codec.buildObject
 
 
@@ -1508,8 +1516,8 @@ unprocessedIdentityIdListCodec =
 unprocessedIdentityIdCodec : Codec UnprocessedIdentityId
 unprocessedIdentityIdCodec =
     Codec.object UnprocessedIdentityId
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.optionalField "ErrorCode" .errorCode errorCodeCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.buildObject
 
 
@@ -1518,9 +1526,9 @@ unprocessedIdentityIdCodec =
 unlinkIdentityInputCodec : Codec UnlinkIdentityInput
 unlinkIdentityInputCodec =
     Codec.object UnlinkIdentityInput
-        |> Codec.field "LoginsToRemove" .loginsToRemove loginsListCodec
-        |> Codec.field "Logins" .logins loginsMapCodec
         |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.field "Logins" .logins loginsMapCodec
+        |> Codec.field "LoginsToRemove" .loginsToRemove loginsListCodec
         |> Codec.buildObject
 
 
@@ -1529,10 +1537,10 @@ unlinkIdentityInputCodec =
 unlinkDeveloperIdentityInputCodec : Codec UnlinkDeveloperIdentityInput
 unlinkDeveloperIdentityInputCodec =
     Codec.object UnlinkDeveloperIdentityInput
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.field "IdentityId" .identityId identityIdCodec
-        |> Codec.field "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
         |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
+        |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
         |> Codec.buildObject
 
 
@@ -1562,8 +1570,8 @@ tagResourceResponseCodec =
 tagResourceInputCodec : Codec TagResourceInput
 tagResourceInputCodec =
     Codec.object TagResourceInput
-        |> Codec.optionalField "Tags" .tags identityPoolTagsTypeCodec
         |> Codec.field "ResourceArn" .resourceArn arnstringCodec
+        |> Codec.optionalField "Tags" .tags identityPoolTagsTypeCodec
         |> Codec.buildObject
 
 
@@ -1579,9 +1587,9 @@ tagKeysTypeCodec =
 setIdentityPoolRolesInputCodec : Codec SetIdentityPoolRolesInput
 setIdentityPoolRolesInputCodec =
     Codec.object SetIdentityPoolRolesInput
-        |> Codec.field "Roles" .roles rolesMapCodec
-        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
         |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
+        |> Codec.field "Roles" .roles rolesMapCodec
         |> Codec.buildObject
 
 
@@ -1650,9 +1658,9 @@ roleMappingMapCodec =
 roleMappingCodec : Codec RoleMapping
 roleMappingCodec =
     Codec.object RoleMapping
-        |> Codec.field "Type" .type_ roleMappingTypeCodec
-        |> Codec.optionalField "RulesConfiguration" .rulesConfiguration rulesConfigurationTypeCodec
         |> Codec.optionalField "AmbiguousRoleResolution" .ambiguousRoleResolution ambiguousRoleResolutionTypeCodec
+        |> Codec.optionalField "RulesConfiguration" .rulesConfiguration rulesConfigurationTypeCodec
+        |> Codec.field "Type" .type_ roleMappingTypeCodec
         |> Codec.buildObject
 
 
@@ -1698,10 +1706,10 @@ mergeDeveloperIdentitiesResponseCodec =
 mergeDeveloperIdentitiesInputCodec : Codec MergeDeveloperIdentitiesInput
 mergeDeveloperIdentitiesInputCodec =
     Codec.object MergeDeveloperIdentitiesInput
-        |> Codec.field "SourceUserIdentifier" .sourceUserIdentifier developerUserIdentifierCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
         |> Codec.field "DestinationUserIdentifier" .destinationUserIdentifier developerUserIdentifierCodec
+        |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.field "SourceUserIdentifier" .sourceUserIdentifier developerUserIdentifierCodec
         |> Codec.buildObject
 
 
@@ -1724,10 +1732,10 @@ mappingRuleMatchTypeCodec =
 mappingRuleCodec : Codec MappingRule
 mappingRuleCodec =
     Codec.object MappingRule
-        |> Codec.field "Value" .value claimValueCodec
-        |> Codec.field "RoleARN" .roleArn arnstringCodec
-        |> Codec.field "MatchType" .matchType mappingRuleMatchTypeCodec
         |> Codec.field "Claim" .claim claimNameCodec
+        |> Codec.field "MatchType" .matchType mappingRuleMatchTypeCodec
+        |> Codec.field "RoleARN" .roleArn arnstringCodec
+        |> Codec.field "Value" .value claimValueCodec
         |> Codec.buildObject
 
 
@@ -1736,12 +1744,12 @@ mappingRuleCodec =
 lookupDeveloperIdentityResponseCodec : Codec LookupDeveloperIdentityResponse
 lookupDeveloperIdentityResponseCodec =
     Codec.object LookupDeveloperIdentityResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.optionalField
             "DeveloperUserIdentifierList"
             .developerUserIdentifierList
             developerUserIdentifierListCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
@@ -1750,11 +1758,11 @@ lookupDeveloperIdentityResponseCodec =
 lookupDeveloperIdentityInputCodec : Codec LookupDeveloperIdentityInput
 lookupDeveloperIdentityInputCodec =
     Codec.object LookupDeveloperIdentityInput
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.optionalField "MaxResults" .maxResults queryLimitCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.optionalField "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
@@ -1795,8 +1803,8 @@ listTagsForResourceInputCodec =
 listIdentityPoolsResponseCodec : Codec ListIdentityPoolsResponse
 listIdentityPoolsResponseCodec =
     Codec.object ListIdentityPoolsResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.optionalField "IdentityPools" .identityPools identityPoolsListCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
@@ -1805,8 +1813,8 @@ listIdentityPoolsResponseCodec =
 listIdentityPoolsInputCodec : Codec ListIdentityPoolsInput
 listIdentityPoolsInputCodec =
     Codec.object ListIdentityPoolsInput
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.field "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
@@ -1815,9 +1823,9 @@ listIdentityPoolsInputCodec =
 listIdentitiesResponseCodec : Codec ListIdentitiesResponse
 listIdentitiesResponseCodec =
     Codec.object ListIdentitiesResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
         |> Codec.optionalField "Identities" .identities identitiesListCodec
+        |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
@@ -1826,10 +1834,10 @@ listIdentitiesResponseCodec =
 listIdentitiesInputCodec : Codec ListIdentitiesInput
 listIdentitiesInputCodec =
     Codec.object ListIdentitiesInput
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.field "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "HideDisabled" .hideDisabled hideDisabledCodec
         |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "HideDisabled" .hideDisabled Codec.bool
+        |> Codec.field "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
@@ -1898,8 +1906,8 @@ identityPoolTagsListTypeCodec =
 identityPoolShortDescriptionCodec : Codec IdentityPoolShortDescription
 identityPoolShortDescriptionCodec =
     Codec.object IdentityPoolShortDescription
-        |> Codec.optionalField "IdentityPoolName" .identityPoolName identityPoolNameCodec
         |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "IdentityPoolName" .identityPoolName identityPoolNameCodec
         |> Codec.buildObject
 
 
@@ -1922,15 +1930,15 @@ identityPoolIdCodec =
 identityPoolCodec : Codec IdentityPool
 identityPoolCodec =
     Codec.object IdentityPool
-        |> Codec.optionalField "SupportedLoginProviders" .supportedLoginProviders identityProvidersCodec
-        |> Codec.optionalField "SamlProviderARNs" .samlProviderArns samlproviderListCodec
-        |> Codec.optionalField "OpenIdConnectProviderARNs" .openIdConnectProviderArns oidcproviderListCodec
-        |> Codec.optionalField "IdentityPoolTags" .identityPoolTags identityPoolTagsTypeCodec
-        |> Codec.field "IdentityPoolName" .identityPoolName identityPoolNameCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "AllowUnauthenticatedIdentities" .allowUnauthenticatedIdentities identityPoolUnauthenticatedCodec
         |> Codec.optionalField "CognitoIdentityProviders" .cognitoIdentityProviders cognitoIdentityProviderListCodec
-        |> Codec.field "AllowUnauthenticatedIdentities" .allowUnauthenticatedIdentities Codec.bool
+        |> Codec.optionalField "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.field "IdentityPoolName" .identityPoolName identityPoolNameCodec
+        |> Codec.optionalField "IdentityPoolTags" .identityPoolTags identityPoolTagsTypeCodec
+        |> Codec.optionalField "OpenIdConnectProviderARNs" .openIdConnectProviderArns oidcproviderListCodec
+        |> Codec.optionalField "SamlProviderARNs" .samlProviderArns samlproviderListCodec
+        |> Codec.optionalField "SupportedLoginProviders" .supportedLoginProviders identityProvidersCodec
         |> Codec.buildObject
 
 
@@ -1953,10 +1961,10 @@ identityIdCodec =
 identityDescriptionCodec : Codec IdentityDescription
 identityDescriptionCodec =
     Codec.object IdentityDescription
-        |> Codec.optionalField "Logins" .logins loginsListCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "Logins" .logins loginsListCodec
         |> Codec.buildObject
 
 
@@ -1979,8 +1987,8 @@ hideDisabledCodec =
 getOpenIdTokenResponseCodec : Codec GetOpenIdTokenResponse
 getOpenIdTokenResponseCodec =
     Codec.object GetOpenIdTokenResponse
-        |> Codec.optionalField "Token" .token Codec.string
         |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Token" .token oidctokenCodec
         |> Codec.buildObject
 
 
@@ -1989,8 +1997,8 @@ getOpenIdTokenResponseCodec =
 getOpenIdTokenInputCodec : Codec GetOpenIdTokenInput
 getOpenIdTokenInputCodec =
     Codec.object GetOpenIdTokenInput
-        |> Codec.optionalField "Logins" .logins loginsMapCodec
         |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Logins" .logins loginsMapCodec
         |> Codec.buildObject
 
 
@@ -1999,8 +2007,8 @@ getOpenIdTokenInputCodec =
 getOpenIdTokenForDeveloperIdentityResponseCodec : Codec GetOpenIdTokenForDeveloperIdentityResponse
 getOpenIdTokenForDeveloperIdentityResponseCodec =
     Codec.object GetOpenIdTokenForDeveloperIdentityResponse
-        |> Codec.optionalField "Token" .token Codec.string
         |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Token" .token oidctokenCodec
         |> Codec.buildObject
 
 
@@ -2009,10 +2017,10 @@ getOpenIdTokenForDeveloperIdentityResponseCodec =
 getOpenIdTokenForDeveloperIdentityInputCodec : Codec GetOpenIdTokenForDeveloperIdentityInput
 getOpenIdTokenForDeveloperIdentityInputCodec =
     Codec.object GetOpenIdTokenForDeveloperIdentityInput
-        |> Codec.optionalField "TokenDuration" .tokenDuration Codec.int
-        |> Codec.field "Logins" .logins loginsMapCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
         |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.field "Logins" .logins loginsMapCodec
+        |> Codec.optionalField "TokenDuration" .tokenDuration tokenDurationCodec
         |> Codec.buildObject
 
 
@@ -2021,9 +2029,9 @@ getOpenIdTokenForDeveloperIdentityInputCodec =
 getIdentityPoolRolesResponseCodec : Codec GetIdentityPoolRolesResponse
 getIdentityPoolRolesResponseCodec =
     Codec.object GetIdentityPoolRolesResponse
-        |> Codec.optionalField "Roles" .roles rolesMapCodec
-        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
         |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
+        |> Codec.optionalField "Roles" .roles rolesMapCodec
         |> Codec.buildObject
 
 
@@ -2048,9 +2056,9 @@ getIdResponseCodec =
 getIdInputCodec : Codec GetIdInput
 getIdInputCodec =
     Codec.object GetIdInput
-        |> Codec.optionalField "Logins" .logins loginsMapCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
         |> Codec.optionalField "AccountId" .accountId accountIdCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "Logins" .logins loginsMapCodec
         |> Codec.buildObject
 
 
@@ -2059,8 +2067,8 @@ getIdInputCodec =
 getCredentialsForIdentityResponseCodec : Codec GetCredentialsForIdentityResponse
 getCredentialsForIdentityResponseCodec =
     Codec.object GetCredentialsForIdentityResponse
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.optionalField "Credentials" .credentials credentialsCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.buildObject
 
 
@@ -2069,9 +2077,9 @@ getCredentialsForIdentityResponseCodec =
 getCredentialsForIdentityInputCodec : Codec GetCredentialsForIdentityInput
 getCredentialsForIdentityInputCodec =
     Codec.object GetCredentialsForIdentityInput
-        |> Codec.optionalField "Logins" .logins loginsMapCodec
-        |> Codec.field "IdentityId" .identityId identityIdCodec
         |> Codec.optionalField "CustomRoleArn" .customRoleArn arnstringCodec
+        |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Logins" .logins loginsMapCodec
         |> Codec.buildObject
 
 
@@ -2158,10 +2166,10 @@ dateTypeCodec =
 credentialsCodec : Codec Credentials
 credentialsCodec =
     Codec.object Credentials
-        |> Codec.optionalField "SessionToken" .sessionToken Codec.string
-        |> Codec.optionalField "SecretKey" .secretKey Codec.string
+        |> Codec.optionalField "AccessKeyId" .accessKeyId accessKeyStringCodec
         |> Codec.optionalField "Expiration" .expiration dateTypeCodec
-        |> Codec.optionalField "AccessKeyId" .accessKeyId Codec.string
+        |> Codec.optionalField "SecretKey" .secretKey secretKeyStringCodec
+        |> Codec.optionalField "SessionToken" .sessionToken sessionTokenStringCodec
         |> Codec.buildObject
 
 
@@ -2170,14 +2178,14 @@ credentialsCodec =
 createIdentityPoolInputCodec : Codec CreateIdentityPoolInput
 createIdentityPoolInputCodec =
     Codec.object CreateIdentityPoolInput
-        |> Codec.optionalField "SupportedLoginProviders" .supportedLoginProviders identityProvidersCodec
-        |> Codec.optionalField "SamlProviderARNs" .samlProviderArns samlproviderListCodec
-        |> Codec.optionalField "OpenIdConnectProviderARNs" .openIdConnectProviderArns oidcproviderListCodec
-        |> Codec.optionalField "IdentityPoolTags" .identityPoolTags identityPoolTagsTypeCodec
-        |> Codec.field "IdentityPoolName" .identityPoolName identityPoolNameCodec
-        |> Codec.optionalField "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "AllowUnauthenticatedIdentities" .allowUnauthenticatedIdentities identityPoolUnauthenticatedCodec
         |> Codec.optionalField "CognitoIdentityProviders" .cognitoIdentityProviders cognitoIdentityProviderListCodec
-        |> Codec.field "AllowUnauthenticatedIdentities" .allowUnauthenticatedIdentities Codec.bool
+        |> Codec.optionalField "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "IdentityPoolName" .identityPoolName identityPoolNameCodec
+        |> Codec.optionalField "IdentityPoolTags" .identityPoolTags identityPoolTagsTypeCodec
+        |> Codec.optionalField "OpenIdConnectProviderARNs" .openIdConnectProviderArns oidcproviderListCodec
+        |> Codec.optionalField "SamlProviderARNs" .samlProviderArns samlproviderListCodec
+        |> Codec.optionalField "SupportedLoginProviders" .supportedLoginProviders identityProvidersCodec
         |> Codec.buildObject
 
 
@@ -2214,9 +2222,9 @@ cognitoIdentityProviderClientIdCodec =
 cognitoIdentityProviderCodec : Codec CognitoIdentityProvider
 cognitoIdentityProviderCodec =
     Codec.object CognitoIdentityProvider
-        |> Codec.optionalField "ServerSideTokenCheck" .serverSideTokenCheck Codec.bool
-        |> Codec.optionalField "ProviderName" .providerName cognitoIdentityProviderNameCodec
         |> Codec.optionalField "ClientId" .clientId cognitoIdentityProviderClientIdCodec
+        |> Codec.optionalField "ProviderName" .providerName cognitoIdentityProviderNameCodec
+        |> Codec.optionalField "ServerSideTokenCheck" .serverSideTokenCheck cognitoIdentityProviderTokenCheckCodec
         |> Codec.buildObject
 
 
