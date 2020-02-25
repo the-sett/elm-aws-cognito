@@ -6676,129 +6676,3631 @@ type alias VerifyUserAttributeResponse =
     {}
 
 
-{-| Codec for VerifyUserAttributeResponse.
+{-| Codec for AwsaccountIdType.
 -}
-verifyUserAttributeResponseCodec : Codec VerifyUserAttributeResponse
-verifyUserAttributeResponseCodec =
-    Codec.object VerifyUserAttributeResponse |> Codec.buildObject
+awsaccountIdTypeCodec : Codec AwsaccountIdType
+awsaccountIdTypeCodec =
+    Codec.string
 
 
-{-| Codec for VerifyUserAttributeRequest.
+{-| Codec for AccountTakeoverActionNotifyType.
 -}
-verifyUserAttributeRequestCodec : Codec VerifyUserAttributeRequest
-verifyUserAttributeRequestCodec =
-    Codec.object VerifyUserAttributeRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "AttributeName" .attributeName attributeNameTypeCodec
-        |> Codec.field "Code" .code confirmationCodeTypeCodec
+accountTakeoverActionNotifyTypeCodec : Codec AccountTakeoverActionNotifyType
+accountTakeoverActionNotifyTypeCodec =
+    Codec.bool
+
+
+{-| Codec for AccountTakeoverActionType.
+-}
+accountTakeoverActionTypeCodec : Codec AccountTakeoverActionType
+accountTakeoverActionTypeCodec =
+    Codec.object AccountTakeoverActionType
+        |> Codec.field "EventAction" .eventAction accountTakeoverEventActionTypeCodec
+        |> Codec.field "Notify" .notify accountTakeoverActionNotifyTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for VerifySoftwareTokenResponseType.
+{-| Codec for AccountTakeoverActionsType.
 -}
-verifySoftwareTokenResponseTypeCodec : Codec VerifySoftwareTokenResponseType
-verifySoftwareTokenResponseTypeCodec =
-    Codec.build (Enum.encoder verifySoftwareTokenResponseType) (Enum.decoder verifySoftwareTokenResponseType)
-
-
-{-| Codec for VerifySoftwareTokenResponse.
--}
-verifySoftwareTokenResponseCodec : Codec VerifySoftwareTokenResponse
-verifySoftwareTokenResponseCodec =
-    Codec.object VerifySoftwareTokenResponse
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.optionalField "Status" .status verifySoftwareTokenResponseTypeCodec
+accountTakeoverActionsTypeCodec : Codec AccountTakeoverActionsType
+accountTakeoverActionsTypeCodec =
+    Codec.object AccountTakeoverActionsType
+        |> Codec.optionalField "HighAction" .highAction accountTakeoverActionTypeCodec
+        |> Codec.optionalField "LowAction" .lowAction accountTakeoverActionTypeCodec
+        |> Codec.optionalField "MediumAction" .mediumAction accountTakeoverActionTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for VerifySoftwareTokenRequest.
+{-| Codec for AccountTakeoverEventActionType.
 -}
-verifySoftwareTokenRequestCodec : Codec VerifySoftwareTokenRequest
-verifySoftwareTokenRequestCodec =
-    Codec.object VerifySoftwareTokenRequest
-        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.optionalField "FriendlyDeviceName" .friendlyDeviceName stringTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.field "UserCode" .userCode softwareTokenMfauserCodeTypeCodec
+accountTakeoverEventActionTypeCodec : Codec AccountTakeoverEventActionType
+accountTakeoverEventActionTypeCodec =
+    Codec.build (Enum.encoder accountTakeoverEventActionType) (Enum.decoder accountTakeoverEventActionType)
+
+
+{-| Codec for AccountTakeoverRiskConfigurationType.
+-}
+accountTakeoverRiskConfigurationTypeCodec : Codec AccountTakeoverRiskConfigurationType
+accountTakeoverRiskConfigurationTypeCodec =
+    Codec.object AccountTakeoverRiskConfigurationType
+        |> Codec.field "Actions" .actions accountTakeoverActionsTypeCodec
+        |> Codec.optionalField "NotifyConfiguration" .notifyConfiguration notifyConfigurationTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for VerifiedAttributesListType.
+{-| Codec for AddCustomAttributesRequest.
 -}
-verifiedAttributesListTypeCodec : Codec VerifiedAttributesListType
-verifiedAttributesListTypeCodec =
-    Codec.list verifiedAttributeTypeCodec
-
-
-{-| Codec for VerifiedAttributeType.
--}
-verifiedAttributeTypeCodec : Codec VerifiedAttributeType
-verifiedAttributeTypeCodec =
-    Codec.build (Enum.encoder verifiedAttributeType) (Enum.decoder verifiedAttributeType)
-
-
-{-| Codec for VerificationMessageTemplateType.
--}
-verificationMessageTemplateTypeCodec : Codec VerificationMessageTemplateType
-verificationMessageTemplateTypeCodec =
-    Codec.object VerificationMessageTemplateType
-        |> Codec.optionalField "DefaultEmailOption" .defaultEmailOption defaultEmailOptionTypeCodec
-        |> Codec.optionalField "EmailMessage" .emailMessage emailVerificationMessageTypeCodec
-        |> Codec.optionalField "EmailMessageByLink" .emailMessageByLink emailVerificationMessageByLinkTypeCodec
-        |> Codec.optionalField "EmailSubject" .emailSubject emailVerificationSubjectTypeCodec
-        |> Codec.optionalField "EmailSubjectByLink" .emailSubjectByLink emailVerificationSubjectByLinkTypeCodec
-        |> Codec.optionalField "SmsMessage" .smsMessage smsVerificationMessageTypeCodec
+addCustomAttributesRequestCodec : Codec AddCustomAttributesRequest
+addCustomAttributesRequestCodec =
+    Codec.object AddCustomAttributesRequest
+        |> Codec.field "CustomAttributes" .customAttributes customAttributesListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for UsersListType.
+{-| Codec for AddCustomAttributesResponse.
 -}
-usersListTypeCodec : Codec UsersListType
-usersListTypeCodec =
-    Codec.list userTypeCodec
+addCustomAttributesResponseCodec : Codec AddCustomAttributesResponse
+addCustomAttributesResponseCodec =
+    Codec.object AddCustomAttributesResponse |> Codec.buildObject
 
 
-{-| Codec for UsernameType.
+{-| Codec for AdminAddUserToGroupRequest.
 -}
-usernameTypeCodec : Codec UsernameType
-usernameTypeCodec =
-    Codec.build (Refined.encoder usernameType) (Refined.decoder usernameType)
+adminAddUserToGroupRequestCodec : Codec AdminAddUserToGroupRequest
+adminAddUserToGroupRequestCodec =
+    Codec.object AdminAddUserToGroupRequest
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
 
 
-{-| Codec for UsernameAttributesListType.
+{-| Codec for AdminConfirmSignUpRequest.
 -}
-usernameAttributesListTypeCodec : Codec UsernameAttributesListType
-usernameAttributesListTypeCodec =
-    Codec.list usernameAttributeTypeCodec
+adminConfirmSignUpRequestCodec : Codec AdminConfirmSignUpRequest
+adminConfirmSignUpRequestCodec =
+    Codec.object AdminConfirmSignUpRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
 
 
-{-| Codec for UsernameAttributeType.
+{-| Codec for AdminConfirmSignUpResponse.
 -}
-usernameAttributeTypeCodec : Codec UsernameAttributeType
-usernameAttributeTypeCodec =
-    Codec.build (Enum.encoder usernameAttributeType) (Enum.decoder usernameAttributeType)
+adminConfirmSignUpResponseCodec : Codec AdminConfirmSignUpResponse
+adminConfirmSignUpResponseCodec =
+    Codec.object AdminConfirmSignUpResponse |> Codec.buildObject
 
 
-{-| Codec for UserType.
+{-| Codec for AdminCreateUserConfigType.
 -}
-userTypeCodec : Codec UserType
-userTypeCodec =
-    Codec.object UserType
-        |> Codec.optionalField "Attributes" .attributes attributeListTypeCodec
+adminCreateUserConfigTypeCodec : Codec AdminCreateUserConfigType
+adminCreateUserConfigTypeCodec =
+    Codec.object AdminCreateUserConfigType
+        |> Codec.optionalField "AllowAdminCreateUserOnly" .allowAdminCreateUserOnly booleanTypeCodec
+        |> Codec.optionalField "InviteMessageTemplate" .inviteMessageTemplate messageTemplateTypeCodec
+        |> Codec.optionalField
+            "UnusedAccountValidityDays"
+            .unusedAccountValidityDays
+            adminCreateUserUnusedAccountValidityDaysTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminCreateUserRequest.
+-}
+adminCreateUserRequestCodec : Codec AdminCreateUserRequest
+adminCreateUserRequestCodec =
+    Codec.object AdminCreateUserRequest
+        |> Codec.optionalField "DesiredDeliveryMediums" .desiredDeliveryMediums deliveryMediumListTypeCodec
+        |> Codec.optionalField "ForceAliasCreation" .forceAliasCreation forceAliasCreationCodec
+        |> Codec.optionalField "MessageAction" .messageAction messageActionTypeCodec
+        |> Codec.optionalField "TemporaryPassword" .temporaryPassword passwordTypeCodec
+        |> Codec.optionalField "UserAttributes" .userAttributes attributeListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.optionalField "ValidationData" .validationData attributeListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminCreateUserResponse.
+-}
+adminCreateUserResponseCodec : Codec AdminCreateUserResponse
+adminCreateUserResponseCodec =
+    Codec.object AdminCreateUserResponse |> Codec.optionalField "User" .user userTypeCodec |> Codec.buildObject
+
+
+{-| Codec for AdminCreateUserUnusedAccountValidityDaysType.
+-}
+adminCreateUserUnusedAccountValidityDaysTypeCodec : Codec AdminCreateUserUnusedAccountValidityDaysType
+adminCreateUserUnusedAccountValidityDaysTypeCodec =
+    Codec.build
+        (Refined.encoder adminCreateUserUnusedAccountValidityDaysType)
+        (Refined.decoder adminCreateUserUnusedAccountValidityDaysType)
+
+
+{-| Codec for AdminDeleteUserAttributesRequest.
+-}
+adminDeleteUserAttributesRequestCodec : Codec AdminDeleteUserAttributesRequest
+adminDeleteUserAttributesRequestCodec =
+    Codec.object AdminDeleteUserAttributesRequest
+        |> Codec.field "UserAttributeNames" .userAttributeNames attributeNameListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminDeleteUserAttributesResponse.
+-}
+adminDeleteUserAttributesResponseCodec : Codec AdminDeleteUserAttributesResponse
+adminDeleteUserAttributesResponseCodec =
+    Codec.object AdminDeleteUserAttributesResponse |> Codec.buildObject
+
+
+{-| Codec for AdminDeleteUserRequest.
+-}
+adminDeleteUserRequestCodec : Codec AdminDeleteUserRequest
+adminDeleteUserRequestCodec =
+    Codec.object AdminDeleteUserRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminDisableProviderForUserRequest.
+-}
+adminDisableProviderForUserRequestCodec : Codec AdminDisableProviderForUserRequest
+adminDisableProviderForUserRequestCodec =
+    Codec.object AdminDisableProviderForUserRequest
+        |> Codec.field "User" .user providerUserIdentifierTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminDisableProviderForUserResponse.
+-}
+adminDisableProviderForUserResponseCodec : Codec AdminDisableProviderForUserResponse
+adminDisableProviderForUserResponseCodec =
+    Codec.object AdminDisableProviderForUserResponse |> Codec.buildObject
+
+
+{-| Codec for AdminDisableUserRequest.
+-}
+adminDisableUserRequestCodec : Codec AdminDisableUserRequest
+adminDisableUserRequestCodec =
+    Codec.object AdminDisableUserRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminDisableUserResponse.
+-}
+adminDisableUserResponseCodec : Codec AdminDisableUserResponse
+adminDisableUserResponseCodec =
+    Codec.object AdminDisableUserResponse |> Codec.buildObject
+
+
+{-| Codec for AdminEnableUserRequest.
+-}
+adminEnableUserRequestCodec : Codec AdminEnableUserRequest
+adminEnableUserRequestCodec =
+    Codec.object AdminEnableUserRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminEnableUserResponse.
+-}
+adminEnableUserResponseCodec : Codec AdminEnableUserResponse
+adminEnableUserResponseCodec =
+    Codec.object AdminEnableUserResponse |> Codec.buildObject
+
+
+{-| Codec for AdminForgetDeviceRequest.
+-}
+adminForgetDeviceRequestCodec : Codec AdminForgetDeviceRequest
+adminForgetDeviceRequestCodec =
+    Codec.object AdminForgetDeviceRequest
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminGetDeviceRequest.
+-}
+adminGetDeviceRequestCodec : Codec AdminGetDeviceRequest
+adminGetDeviceRequestCodec =
+    Codec.object AdminGetDeviceRequest
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminGetDeviceResponse.
+-}
+adminGetDeviceResponseCodec : Codec AdminGetDeviceResponse
+adminGetDeviceResponseCodec =
+    Codec.object AdminGetDeviceResponse |> Codec.field "Device" .device deviceTypeCodec |> Codec.buildObject
+
+
+{-| Codec for AdminGetUserRequest.
+-}
+adminGetUserRequestCodec : Codec AdminGetUserRequest
+adminGetUserRequestCodec =
+    Codec.object AdminGetUserRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminGetUserResponse.
+-}
+adminGetUserResponseCodec : Codec AdminGetUserResponse
+adminGetUserResponseCodec =
+    Codec.object AdminGetUserResponse
         |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
         |> Codec.optionalField "MFAOptions" .mfaoptions mfaoptionListTypeCodec
+        |> Codec.optionalField "PreferredMfaSetting" .preferredMfaSetting stringTypeCodec
+        |> Codec.optionalField "UserAttributes" .userAttributes attributeListTypeCodec
         |> Codec.optionalField "UserCreateDate" .userCreateDate dateTypeCodec
         |> Codec.optionalField "UserLastModifiedDate" .userLastModifiedDate dateTypeCodec
+        |> Codec.optionalField "UserMFASettingList" .userMfasettingList userMfasettingListTypeCodec
         |> Codec.optionalField "UserStatus" .userStatus userStatusTypeCodec
-        |> Codec.optionalField "Username" .username usernameTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for UserStatusType.
+{-| Codec for AdminInitiateAuthRequest.
 -}
-userStatusTypeCodec : Codec UserStatusType
-userStatusTypeCodec =
-    Codec.build (Enum.encoder userStatusType) (Enum.decoder userStatusType)
+adminInitiateAuthRequestCodec : Codec AdminInitiateAuthRequest
+adminInitiateAuthRequestCodec =
+    Codec.object AdminInitiateAuthRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "AuthFlow" .authFlow authFlowTypeCodec
+        |> Codec.optionalField "AuthParameters" .authParameters authParametersTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ClientMetadata" .clientMetadata clientMetadataTypeCodec
+        |> Codec.optionalField "ContextData" .contextData contextDataTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminInitiateAuthResponse.
+-}
+adminInitiateAuthResponseCodec : Codec AdminInitiateAuthResponse
+adminInitiateAuthResponseCodec =
+    Codec.object AdminInitiateAuthResponse
+        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
+        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
+        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminLinkProviderForUserRequest.
+-}
+adminLinkProviderForUserRequestCodec : Codec AdminLinkProviderForUserRequest
+adminLinkProviderForUserRequestCodec =
+    Codec.object AdminLinkProviderForUserRequest
+        |> Codec.field "DestinationUser" .destinationUser providerUserIdentifierTypeCodec
+        |> Codec.field "SourceUser" .sourceUser providerUserIdentifierTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminLinkProviderForUserResponse.
+-}
+adminLinkProviderForUserResponseCodec : Codec AdminLinkProviderForUserResponse
+adminLinkProviderForUserResponseCodec =
+    Codec.object AdminLinkProviderForUserResponse |> Codec.buildObject
+
+
+{-| Codec for AdminListDevicesRequest.
+-}
+adminListDevicesRequestCodec : Codec AdminListDevicesRequest
+adminListDevicesRequestCodec =
+    Codec.object AdminListDevicesRequest
+        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
+        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminListDevicesResponse.
+-}
+adminListDevicesResponseCodec : Codec AdminListDevicesResponse
+adminListDevicesResponseCodec =
+    Codec.object AdminListDevicesResponse
+        |> Codec.optionalField "Devices" .devices deviceListTypeCodec
+        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminListGroupsForUserRequest.
+-}
+adminListGroupsForUserRequestCodec : Codec AdminListGroupsForUserRequest
+adminListGroupsForUserRequestCodec =
+    Codec.object AdminListGroupsForUserRequest
+        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminListGroupsForUserResponse.
+-}
+adminListGroupsForUserResponseCodec : Codec AdminListGroupsForUserResponse
+adminListGroupsForUserResponseCodec =
+    Codec.object AdminListGroupsForUserResponse
+        |> Codec.optionalField "Groups" .groups groupListTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminListUserAuthEventsRequest.
+-}
+adminListUserAuthEventsRequestCodec : Codec AdminListUserAuthEventsRequest
+adminListUserAuthEventsRequestCodec =
+    Codec.object AdminListUserAuthEventsRequest
+        |> Codec.optionalField "MaxResults" .maxResults queryLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminListUserAuthEventsResponse.
+-}
+adminListUserAuthEventsResponseCodec : Codec AdminListUserAuthEventsResponse
+adminListUserAuthEventsResponseCodec =
+    Codec.object AdminListUserAuthEventsResponse
+        |> Codec.optionalField "AuthEvents" .authEvents authEventsTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminRemoveUserFromGroupRequest.
+-}
+adminRemoveUserFromGroupRequestCodec : Codec AdminRemoveUserFromGroupRequest
+adminRemoveUserFromGroupRequestCodec =
+    Codec.object AdminRemoveUserFromGroupRequest
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminResetUserPasswordRequest.
+-}
+adminResetUserPasswordRequestCodec : Codec AdminResetUserPasswordRequest
+adminResetUserPasswordRequestCodec =
+    Codec.object AdminResetUserPasswordRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminResetUserPasswordResponse.
+-}
+adminResetUserPasswordResponseCodec : Codec AdminResetUserPasswordResponse
+adminResetUserPasswordResponseCodec =
+    Codec.object AdminResetUserPasswordResponse |> Codec.buildObject
+
+
+{-| Codec for AdminRespondToAuthChallengeRequest.
+-}
+adminRespondToAuthChallengeRequestCodec : Codec AdminRespondToAuthChallengeRequest
+adminRespondToAuthChallengeRequestCodec =
+    Codec.object AdminRespondToAuthChallengeRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ChallengeName" .challengeName challengeNameTypeCodec
+        |> Codec.optionalField "ChallengeResponses" .challengeResponses challengeResponsesTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ContextData" .contextData contextDataTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminRespondToAuthChallengeResponse.
+-}
+adminRespondToAuthChallengeResponseCodec : Codec AdminRespondToAuthChallengeResponse
+adminRespondToAuthChallengeResponseCodec =
+    Codec.object AdminRespondToAuthChallengeResponse
+        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
+        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
+        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminSetUserMfapreferenceRequest.
+-}
+adminSetUserMfapreferenceRequestCodec : Codec AdminSetUserMfapreferenceRequest
+adminSetUserMfapreferenceRequestCodec =
+    Codec.object AdminSetUserMfapreferenceRequest
+        |> Codec.optionalField "SMSMfaSettings" .smsmfaSettings smsmfaSettingsTypeCodec
+        |> Codec.optionalField "SoftwareTokenMfaSettings" .softwareTokenMfaSettings softwareTokenMfaSettingsTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminSetUserMfapreferenceResponse.
+-}
+adminSetUserMfapreferenceResponseCodec : Codec AdminSetUserMfapreferenceResponse
+adminSetUserMfapreferenceResponseCodec =
+    Codec.object AdminSetUserMfapreferenceResponse |> Codec.buildObject
+
+
+{-| Codec for AdminSetUserPasswordRequest.
+-}
+adminSetUserPasswordRequestCodec : Codec AdminSetUserPasswordRequest
+adminSetUserPasswordRequestCodec =
+    Codec.object AdminSetUserPasswordRequest
+        |> Codec.field "Password" .password passwordTypeCodec
+        |> Codec.optionalField "Permanent" .permanent booleanTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminSetUserPasswordResponse.
+-}
+adminSetUserPasswordResponseCodec : Codec AdminSetUserPasswordResponse
+adminSetUserPasswordResponseCodec =
+    Codec.object AdminSetUserPasswordResponse |> Codec.buildObject
+
+
+{-| Codec for AdminSetUserSettingsRequest.
+-}
+adminSetUserSettingsRequestCodec : Codec AdminSetUserSettingsRequest
+adminSetUserSettingsRequestCodec =
+    Codec.object AdminSetUserSettingsRequest
+        |> Codec.field "MFAOptions" .mfaoptions mfaoptionListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminSetUserSettingsResponse.
+-}
+adminSetUserSettingsResponseCodec : Codec AdminSetUserSettingsResponse
+adminSetUserSettingsResponseCodec =
+    Codec.object AdminSetUserSettingsResponse |> Codec.buildObject
+
+
+{-| Codec for AdminUpdateAuthEventFeedbackRequest.
+-}
+adminUpdateAuthEventFeedbackRequestCodec : Codec AdminUpdateAuthEventFeedbackRequest
+adminUpdateAuthEventFeedbackRequestCodec =
+    Codec.object AdminUpdateAuthEventFeedbackRequest
+        |> Codec.field "EventId" .eventId eventIdTypeCodec
+        |> Codec.field "FeedbackValue" .feedbackValue feedbackValueTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminUpdateAuthEventFeedbackResponse.
+-}
+adminUpdateAuthEventFeedbackResponseCodec : Codec AdminUpdateAuthEventFeedbackResponse
+adminUpdateAuthEventFeedbackResponseCodec =
+    Codec.object AdminUpdateAuthEventFeedbackResponse |> Codec.buildObject
+
+
+{-| Codec for AdminUpdateDeviceStatusRequest.
+-}
+adminUpdateDeviceStatusRequestCodec : Codec AdminUpdateDeviceStatusRequest
+adminUpdateDeviceStatusRequestCodec =
+    Codec.object AdminUpdateDeviceStatusRequest
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.optionalField "DeviceRememberedStatus" .deviceRememberedStatus deviceRememberedStatusTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminUpdateDeviceStatusResponse.
+-}
+adminUpdateDeviceStatusResponseCodec : Codec AdminUpdateDeviceStatusResponse
+adminUpdateDeviceStatusResponseCodec =
+    Codec.object AdminUpdateDeviceStatusResponse |> Codec.buildObject
+
+
+{-| Codec for AdminUpdateUserAttributesRequest.
+-}
+adminUpdateUserAttributesRequestCodec : Codec AdminUpdateUserAttributesRequest
+adminUpdateUserAttributesRequestCodec =
+    Codec.object AdminUpdateUserAttributesRequest
+        |> Codec.field "UserAttributes" .userAttributes attributeListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminUpdateUserAttributesResponse.
+-}
+adminUpdateUserAttributesResponseCodec : Codec AdminUpdateUserAttributesResponse
+adminUpdateUserAttributesResponseCodec =
+    Codec.object AdminUpdateUserAttributesResponse |> Codec.buildObject
+
+
+{-| Codec for AdminUserGlobalSignOutRequest.
+-}
+adminUserGlobalSignOutRequestCodec : Codec AdminUserGlobalSignOutRequest
+adminUserGlobalSignOutRequestCodec =
+    Codec.object AdminUserGlobalSignOutRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AdminUserGlobalSignOutResponse.
+-}
+adminUserGlobalSignOutResponseCodec : Codec AdminUserGlobalSignOutResponse
+adminUserGlobalSignOutResponseCodec =
+    Codec.object AdminUserGlobalSignOutResponse |> Codec.buildObject
+
+
+{-| Codec for AdvancedSecurityModeType.
+-}
+advancedSecurityModeTypeCodec : Codec AdvancedSecurityModeType
+advancedSecurityModeTypeCodec =
+    Codec.build (Enum.encoder advancedSecurityModeType) (Enum.decoder advancedSecurityModeType)
+
+
+{-| Codec for AliasAttributeType.
+-}
+aliasAttributeTypeCodec : Codec AliasAttributeType
+aliasAttributeTypeCodec =
+    Codec.build (Enum.encoder aliasAttributeType) (Enum.decoder aliasAttributeType)
+
+
+{-| Codec for AliasAttributesListType.
+-}
+aliasAttributesListTypeCodec : Codec AliasAttributesListType
+aliasAttributesListTypeCodec =
+    Codec.list aliasAttributeTypeCodec
+
+
+{-| Codec for AnalyticsConfigurationType.
+-}
+analyticsConfigurationTypeCodec : Codec AnalyticsConfigurationType
+analyticsConfigurationTypeCodec =
+    Codec.object AnalyticsConfigurationType
+        |> Codec.field "ApplicationId" .applicationId hexStringTypeCodec
+        |> Codec.field "ExternalId" .externalId stringTypeCodec
+        |> Codec.field "RoleArn" .roleArn arnTypeCodec
+        |> Codec.optionalField "UserDataShared" .userDataShared booleanTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AnalyticsMetadataType.
+-}
+analyticsMetadataTypeCodec : Codec AnalyticsMetadataType
+analyticsMetadataTypeCodec =
+    Codec.object AnalyticsMetadataType
+        |> Codec.optionalField "AnalyticsEndpointId" .analyticsEndpointId stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ArnType.
+-}
+arnTypeCodec : Codec ArnType
+arnTypeCodec =
+    Codec.build (Refined.encoder arnType) (Refined.decoder arnType)
+
+
+{-| Codec for AssociateSoftwareTokenRequest.
+-}
+associateSoftwareTokenRequestCodec : Codec AssociateSoftwareTokenRequest
+associateSoftwareTokenRequestCodec =
+    Codec.object AssociateSoftwareTokenRequest
+        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AssociateSoftwareTokenResponse.
+-}
+associateSoftwareTokenResponseCodec : Codec AssociateSoftwareTokenResponse
+associateSoftwareTokenResponseCodec =
+    Codec.object AssociateSoftwareTokenResponse
+        |> Codec.optionalField "SecretCode" .secretCode secretCodeTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AttributeDataType.
+-}
+attributeDataTypeCodec : Codec AttributeDataType
+attributeDataTypeCodec =
+    Codec.build (Enum.encoder attributeDataType) (Enum.decoder attributeDataType)
+
+
+{-| Codec for AttributeListType.
+-}
+attributeListTypeCodec : Codec AttributeListType
+attributeListTypeCodec =
+    Codec.list attributeTypeCodec
+
+
+{-| Codec for AttributeMappingKeyType.
+-}
+attributeMappingKeyTypeCodec : Codec AttributeMappingKeyType
+attributeMappingKeyTypeCodec =
+    Codec.build (Refined.encoder attributeMappingKeyType) (Refined.decoder attributeMappingKeyType)
+
+
+{-| Codec for AttributeMappingType.
+-}
+attributeMappingTypeCodec : Codec AttributeMappingType
+attributeMappingTypeCodec =
+    Codec.build
+        (Refined.dictEncoder attributeMappingKeyType (Codec.encoder stringTypeCodec))
+        (Refined.dictDecoder attributeMappingKeyType (Codec.decoder stringTypeCodec))
+
+
+{-| Codec for AttributeNameListType.
+-}
+attributeNameListTypeCodec : Codec AttributeNameListType
+attributeNameListTypeCodec =
+    Codec.list attributeNameTypeCodec
+
+
+{-| Codec for AttributeNameType.
+-}
+attributeNameTypeCodec : Codec AttributeNameType
+attributeNameTypeCodec =
+    Codec.build (Refined.encoder attributeNameType) (Refined.decoder attributeNameType)
+
+
+{-| Codec for AttributeType.
+-}
+attributeTypeCodec : Codec AttributeType
+attributeTypeCodec =
+    Codec.object AttributeType
+        |> Codec.field "Name" .name attributeNameTypeCodec
+        |> Codec.optionalField "Value" .value attributeValueTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AttributeValueType.
+-}
+attributeValueTypeCodec : Codec AttributeValueType
+attributeValueTypeCodec =
+    Codec.build (Refined.encoder attributeValueType) (Refined.decoder attributeValueType)
+
+
+{-| Codec for AuthEventType.
+-}
+authEventTypeCodec : Codec AuthEventType
+authEventTypeCodec =
+    Codec.object AuthEventType
+        |> Codec.optionalField "ChallengeResponses" .challengeResponses challengeResponseListTypeCodec
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "EventContextData" .eventContextData eventContextDataTypeCodec
+        |> Codec.optionalField "EventFeedback" .eventFeedback eventFeedbackTypeCodec
+        |> Codec.optionalField "EventId" .eventId stringTypeCodec
+        |> Codec.optionalField "EventResponse" .eventResponse eventResponseTypeCodec
+        |> Codec.optionalField "EventRisk" .eventRisk eventRiskTypeCodec
+        |> Codec.optionalField "EventType" .eventType eventTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for AuthEventsType.
+-}
+authEventsTypeCodec : Codec AuthEventsType
+authEventsTypeCodec =
+    Codec.list authEventTypeCodec
+
+
+{-| Codec for AuthFlowType.
+-}
+authFlowTypeCodec : Codec AuthFlowType
+authFlowTypeCodec =
+    Codec.build (Enum.encoder authFlowType) (Enum.decoder authFlowType)
+
+
+{-| Codec for AuthParametersType.
+-}
+authParametersTypeCodec : Codec AuthParametersType
+authParametersTypeCodec =
+    Codec.dict stringTypeCodec
+
+
+{-| Codec for AuthenticationResultType.
+-}
+authenticationResultTypeCodec : Codec AuthenticationResultType
+authenticationResultTypeCodec =
+    Codec.object AuthenticationResultType
+        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.optionalField "ExpiresIn" .expiresIn integerTypeCodec
+        |> Codec.optionalField "IdToken" .idToken tokenModelTypeCodec
+        |> Codec.optionalField "NewDeviceMetadata" .newDeviceMetadata newDeviceMetadataTypeCodec
+        |> Codec.optionalField "RefreshToken" .refreshToken tokenModelTypeCodec
+        |> Codec.optionalField "TokenType" .tokenType stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for BlockedIprangeListType.
+-}
+blockedIprangeListTypeCodec : Codec BlockedIprangeListType
+blockedIprangeListTypeCodec =
+    Codec.list stringTypeCodec
+
+
+{-| Codec for BooleanType.
+-}
+booleanTypeCodec : Codec BooleanType
+booleanTypeCodec =
+    Codec.bool
+
+
+{-| Codec for Csstype.
+-}
+csstypeCodec : Codec Csstype
+csstypeCodec =
+    Codec.string
+
+
+{-| Codec for CssversionType.
+-}
+cssversionTypeCodec : Codec CssversionType
+cssversionTypeCodec =
+    Codec.string
+
+
+{-| Codec for CallbackUrlsListType.
+-}
+callbackUrlsListTypeCodec : Codec CallbackUrlsListType
+callbackUrlsListTypeCodec =
+    Codec.list redirectUrlTypeCodec
+
+
+{-| Codec for ChallengeName.
+-}
+challengeNameCodec : Codec ChallengeName
+challengeNameCodec =
+    Codec.build (Enum.encoder challengeName) (Enum.decoder challengeName)
+
+
+{-| Codec for ChallengeNameType.
+-}
+challengeNameTypeCodec : Codec ChallengeNameType
+challengeNameTypeCodec =
+    Codec.build (Enum.encoder challengeNameType) (Enum.decoder challengeNameType)
+
+
+{-| Codec for ChallengeParametersType.
+-}
+challengeParametersTypeCodec : Codec ChallengeParametersType
+challengeParametersTypeCodec =
+    Codec.dict stringTypeCodec
+
+
+{-| Codec for ChallengeResponse.
+-}
+challengeResponseCodec : Codec ChallengeResponse
+challengeResponseCodec =
+    Codec.build (Enum.encoder challengeResponse) (Enum.decoder challengeResponse)
+
+
+{-| Codec for ChallengeResponseListType.
+-}
+challengeResponseListTypeCodec : Codec ChallengeResponseListType
+challengeResponseListTypeCodec =
+    Codec.list challengeResponseTypeCodec
+
+
+{-| Codec for ChallengeResponseType.
+-}
+challengeResponseTypeCodec : Codec ChallengeResponseType
+challengeResponseTypeCodec =
+    Codec.object ChallengeResponseType
+        |> Codec.optionalField "ChallengeName" .challengeName challengeNameCodec
+        |> Codec.optionalField "ChallengeResponse" .challengeResponse challengeResponseCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ChallengeResponsesType.
+-}
+challengeResponsesTypeCodec : Codec ChallengeResponsesType
+challengeResponsesTypeCodec =
+    Codec.dict stringTypeCodec
+
+
+{-| Codec for ChangePasswordRequest.
+-}
+changePasswordRequestCodec : Codec ChangePasswordRequest
+changePasswordRequestCodec =
+    Codec.object ChangePasswordRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "PreviousPassword" .previousPassword passwordTypeCodec
+        |> Codec.field "ProposedPassword" .proposedPassword passwordTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ChangePasswordResponse.
+-}
+changePasswordResponseCodec : Codec ChangePasswordResponse
+changePasswordResponseCodec =
+    Codec.object ChangePasswordResponse |> Codec.buildObject
+
+
+{-| Codec for ClientIdType.
+-}
+clientIdTypeCodec : Codec ClientIdType
+clientIdTypeCodec =
+    Codec.build (Refined.encoder clientIdType) (Refined.decoder clientIdType)
+
+
+{-| Codec for ClientMetadataType.
+-}
+clientMetadataTypeCodec : Codec ClientMetadataType
+clientMetadataTypeCodec =
+    Codec.dict stringTypeCodec
+
+
+{-| Codec for ClientNameType.
+-}
+clientNameTypeCodec : Codec ClientNameType
+clientNameTypeCodec =
+    Codec.build (Refined.encoder clientNameType) (Refined.decoder clientNameType)
+
+
+{-| Codec for ClientPermissionListType.
+-}
+clientPermissionListTypeCodec : Codec ClientPermissionListType
+clientPermissionListTypeCodec =
+    Codec.list clientPermissionTypeCodec
+
+
+{-| Codec for ClientPermissionType.
+-}
+clientPermissionTypeCodec : Codec ClientPermissionType
+clientPermissionTypeCodec =
+    Codec.build (Refined.encoder clientPermissionType) (Refined.decoder clientPermissionType)
+
+
+{-| Codec for ClientSecretType.
+-}
+clientSecretTypeCodec : Codec ClientSecretType
+clientSecretTypeCodec =
+    Codec.build (Refined.encoder clientSecretType) (Refined.decoder clientSecretType)
+
+
+{-| Codec for CodeDeliveryDetailsListType.
+-}
+codeDeliveryDetailsListTypeCodec : Codec CodeDeliveryDetailsListType
+codeDeliveryDetailsListTypeCodec =
+    Codec.list codeDeliveryDetailsTypeCodec
+
+
+{-| Codec for CodeDeliveryDetailsType.
+-}
+codeDeliveryDetailsTypeCodec : Codec CodeDeliveryDetailsType
+codeDeliveryDetailsTypeCodec =
+    Codec.object CodeDeliveryDetailsType
+        |> Codec.optionalField "AttributeName" .attributeName attributeNameTypeCodec
+        |> Codec.optionalField "DeliveryMedium" .deliveryMedium deliveryMediumTypeCodec
+        |> Codec.optionalField "Destination" .destination stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CompletionMessageType.
+-}
+completionMessageTypeCodec : Codec CompletionMessageType
+completionMessageTypeCodec =
+    Codec.build (Refined.encoder completionMessageType) (Refined.decoder completionMessageType)
+
+
+{-| Codec for CompromisedCredentialsActionsType.
+-}
+compromisedCredentialsActionsTypeCodec : Codec CompromisedCredentialsActionsType
+compromisedCredentialsActionsTypeCodec =
+    Codec.object CompromisedCredentialsActionsType
+        |> Codec.field "EventAction" .eventAction compromisedCredentialsEventActionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CompromisedCredentialsEventActionType.
+-}
+compromisedCredentialsEventActionTypeCodec : Codec CompromisedCredentialsEventActionType
+compromisedCredentialsEventActionTypeCodec =
+    Codec.build
+        (Enum.encoder compromisedCredentialsEventActionType)
+        (Enum.decoder compromisedCredentialsEventActionType)
+
+
+{-| Codec for CompromisedCredentialsRiskConfigurationType.
+-}
+compromisedCredentialsRiskConfigurationTypeCodec : Codec CompromisedCredentialsRiskConfigurationType
+compromisedCredentialsRiskConfigurationTypeCodec =
+    Codec.object CompromisedCredentialsRiskConfigurationType
+        |> Codec.field "Actions" .actions compromisedCredentialsActionsTypeCodec
+        |> Codec.optionalField "EventFilter" .eventFilter eventFiltersTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ConfirmDeviceRequest.
+-}
+confirmDeviceRequestCodec : Codec ConfirmDeviceRequest
+confirmDeviceRequestCodec =
+    Codec.object ConfirmDeviceRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.optionalField "DeviceName" .deviceName deviceNameTypeCodec
+        |> Codec.optionalField
+            "DeviceSecretVerifierConfig"
+            .deviceSecretVerifierConfig
+            deviceSecretVerifierConfigTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ConfirmDeviceResponse.
+-}
+confirmDeviceResponseCodec : Codec ConfirmDeviceResponse
+confirmDeviceResponseCodec =
+    Codec.object ConfirmDeviceResponse
+        |> Codec.optionalField "UserConfirmationNecessary" .userConfirmationNecessary booleanTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ConfirmForgotPasswordRequest.
+-}
+confirmForgotPasswordRequestCodec : Codec ConfirmForgotPasswordRequest
+confirmForgotPasswordRequestCodec =
+    Codec.object ConfirmForgotPasswordRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "ConfirmationCode" .confirmationCode confirmationCodeTypeCodec
+        |> Codec.field "Password" .password passwordTypeCodec
+        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ConfirmForgotPasswordResponse.
+-}
+confirmForgotPasswordResponseCodec : Codec ConfirmForgotPasswordResponse
+confirmForgotPasswordResponseCodec =
+    Codec.object ConfirmForgotPasswordResponse |> Codec.buildObject
+
+
+{-| Codec for ConfirmSignUpRequest.
+-}
+confirmSignUpRequestCodec : Codec ConfirmSignUpRequest
+confirmSignUpRequestCodec =
+    Codec.object ConfirmSignUpRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "ConfirmationCode" .confirmationCode confirmationCodeTypeCodec
+        |> Codec.optionalField "ForceAliasCreation" .forceAliasCreation forceAliasCreationCodec
+        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ConfirmSignUpResponse.
+-}
+confirmSignUpResponseCodec : Codec ConfirmSignUpResponse
+confirmSignUpResponseCodec =
+    Codec.object ConfirmSignUpResponse |> Codec.buildObject
+
+
+{-| Codec for ConfirmationCodeType.
+-}
+confirmationCodeTypeCodec : Codec ConfirmationCodeType
+confirmationCodeTypeCodec =
+    Codec.build (Refined.encoder confirmationCodeType) (Refined.decoder confirmationCodeType)
+
+
+{-| Codec for ContextDataType.
+-}
+contextDataTypeCodec : Codec ContextDataType
+contextDataTypeCodec =
+    Codec.object ContextDataType
+        |> Codec.optionalField "EncodedData" .encodedData stringTypeCodec
+        |> Codec.field "HttpHeaders" .httpHeaders httpHeaderListCodec
+        |> Codec.field "IpAddress" .ipAddress stringTypeCodec
+        |> Codec.field "ServerName" .serverName stringTypeCodec
+        |> Codec.field "ServerPath" .serverPath stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateGroupRequest.
+-}
+createGroupRequestCodec : Codec CreateGroupRequest
+createGroupRequestCodec =
+    Codec.object CreateGroupRequest
+        |> Codec.optionalField "Description" .description descriptionTypeCodec
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.optionalField "Precedence" .precedence precedenceTypeCodec
+        |> Codec.optionalField "RoleArn" .roleArn arnTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateGroupResponse.
+-}
+createGroupResponseCodec : Codec CreateGroupResponse
+createGroupResponseCodec =
+    Codec.object CreateGroupResponse |> Codec.optionalField "Group" .group groupTypeCodec |> Codec.buildObject
+
+
+{-| Codec for CreateIdentityProviderRequest.
+-}
+createIdentityProviderRequestCodec : Codec CreateIdentityProviderRequest
+createIdentityProviderRequestCodec =
+    Codec.object CreateIdentityProviderRequest
+        |> Codec.optionalField "AttributeMapping" .attributeMapping attributeMappingTypeCodec
+        |> Codec.optionalField "IdpIdentifiers" .idpIdentifiers idpIdentifiersListTypeCodec
+        |> Codec.field "ProviderDetails" .providerDetails providerDetailsTypeCodec
+        |> Codec.field "ProviderName" .providerName providerNameTypeV1Codec
+        |> Codec.field "ProviderType" .providerType identityProviderTypeTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateIdentityProviderResponse.
+-}
+createIdentityProviderResponseCodec : Codec CreateIdentityProviderResponse
+createIdentityProviderResponseCodec =
+    Codec.object CreateIdentityProviderResponse
+        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateResourceServerRequest.
+-}
+createResourceServerRequestCodec : Codec CreateResourceServerRequest
+createResourceServerRequestCodec =
+    Codec.object CreateResourceServerRequest
+        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
+        |> Codec.field "Name" .name resourceServerNameTypeCodec
+        |> Codec.optionalField "Scopes" .scopes resourceServerScopeListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateResourceServerResponse.
+-}
+createResourceServerResponseCodec : Codec CreateResourceServerResponse
+createResourceServerResponseCodec =
+    Codec.object CreateResourceServerResponse
+        |> Codec.field "ResourceServer" .resourceServer resourceServerTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserImportJobRequest.
+-}
+createUserImportJobRequestCodec : Codec CreateUserImportJobRequest
+createUserImportJobRequestCodec =
+    Codec.object CreateUserImportJobRequest
+        |> Codec.field "CloudWatchLogsRoleArn" .cloudWatchLogsRoleArn arnTypeCodec
+        |> Codec.field "JobName" .jobName userImportJobNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserImportJobResponse.
+-}
+createUserImportJobResponseCodec : Codec CreateUserImportJobResponse
+createUserImportJobResponseCodec =
+    Codec.object CreateUserImportJobResponse
+        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserPoolClientRequest.
+-}
+createUserPoolClientRequestCodec : Codec CreateUserPoolClientRequest
+createUserPoolClientRequestCodec =
+    Codec.object CreateUserPoolClientRequest
+        |> Codec.optionalField "AllowedOAuthFlows" .allowedOauthFlows oauthFlowsTypeCodec
+        |> Codec.optionalField "AllowedOAuthFlowsUserPoolClient" .allowedOauthFlowsUserPoolClient booleanTypeCodec
+        |> Codec.optionalField "AllowedOAuthScopes" .allowedOauthScopes scopeListTypeCodec
+        |> Codec.optionalField "AnalyticsConfiguration" .analyticsConfiguration analyticsConfigurationTypeCodec
+        |> Codec.optionalField "CallbackURLs" .callbackUrls callbackUrlsListTypeCodec
+        |> Codec.field "ClientName" .clientName clientNameTypeCodec
+        |> Codec.optionalField "DefaultRedirectURI" .defaultRedirectUri redirectUrlTypeCodec
+        |> Codec.optionalField "ExplicitAuthFlows" .explicitAuthFlows explicitAuthFlowsListTypeCodec
+        |> Codec.optionalField "GenerateSecret" .generateSecret generateSecretCodec
+        |> Codec.optionalField "LogoutURLs" .logoutUrls logoutUrlsListTypeCodec
+        |> Codec.optionalField "ReadAttributes" .readAttributes clientPermissionListTypeCodec
+        |> Codec.optionalField "RefreshTokenValidity" .refreshTokenValidity refreshTokenValidityTypeCodec
+        |> Codec.optionalField
+            "SupportedIdentityProviders"
+            .supportedIdentityProviders
+            supportedIdentityProvidersListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.optionalField "WriteAttributes" .writeAttributes clientPermissionListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserPoolClientResponse.
+-}
+createUserPoolClientResponseCodec : Codec CreateUserPoolClientResponse
+createUserPoolClientResponseCodec =
+    Codec.object CreateUserPoolClientResponse
+        |> Codec.optionalField "UserPoolClient" .userPoolClient userPoolClientTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserPoolDomainRequest.
+-}
+createUserPoolDomainRequestCodec : Codec CreateUserPoolDomainRequest
+createUserPoolDomainRequestCodec =
+    Codec.object CreateUserPoolDomainRequest
+        |> Codec.optionalField "CustomDomainConfig" .customDomainConfig customDomainConfigTypeCodec
+        |> Codec.field "Domain" .domain domainTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserPoolDomainResponse.
+-}
+createUserPoolDomainResponseCodec : Codec CreateUserPoolDomainResponse
+createUserPoolDomainResponseCodec =
+    Codec.object CreateUserPoolDomainResponse
+        |> Codec.optionalField "CloudFrontDomain" .cloudFrontDomain domainTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserPoolRequest.
+-}
+createUserPoolRequestCodec : Codec CreateUserPoolRequest
+createUserPoolRequestCodec =
+    Codec.object CreateUserPoolRequest
+        |> Codec.optionalField "AdminCreateUserConfig" .adminCreateUserConfig adminCreateUserConfigTypeCodec
+        |> Codec.optionalField "AliasAttributes" .aliasAttributes aliasAttributesListTypeCodec
+        |> Codec.optionalField "AutoVerifiedAttributes" .autoVerifiedAttributes verifiedAttributesListTypeCodec
+        |> Codec.optionalField "DeviceConfiguration" .deviceConfiguration deviceConfigurationTypeCodec
+        |> Codec.optionalField "EmailConfiguration" .emailConfiguration emailConfigurationTypeCodec
+        |> Codec.optionalField "EmailVerificationMessage" .emailVerificationMessage emailVerificationMessageTypeCodec
+        |> Codec.optionalField "EmailVerificationSubject" .emailVerificationSubject emailVerificationSubjectTypeCodec
+        |> Codec.optionalField "LambdaConfig" .lambdaConfig lambdaConfigTypeCodec
+        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
+        |> Codec.optionalField "Policies" .policies userPoolPolicyTypeCodec
+        |> Codec.field "PoolName" .poolName userPoolNameTypeCodec
+        |> Codec.optionalField "Schema" .schema schemaAttributesListTypeCodec
+        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
+        |> Codec.optionalField "SmsVerificationMessage" .smsVerificationMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "UserPoolAddOns" .userPoolAddOns userPoolAddOnsTypeCodec
+        |> Codec.optionalField "UserPoolTags" .userPoolTags userPoolTagsTypeCodec
+        |> Codec.optionalField "UsernameAttributes" .usernameAttributes usernameAttributesListTypeCodec
+        |> Codec.optionalField
+            "VerificationMessageTemplate"
+            .verificationMessageTemplate
+            verificationMessageTemplateTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CreateUserPoolResponse.
+-}
+createUserPoolResponseCodec : Codec CreateUserPoolResponse
+createUserPoolResponseCodec =
+    Codec.object CreateUserPoolResponse
+        |> Codec.optionalField "UserPool" .userPool userPoolTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for CustomAttributeNameType.
+-}
+customAttributeNameTypeCodec : Codec CustomAttributeNameType
+customAttributeNameTypeCodec =
+    Codec.build (Refined.encoder customAttributeNameType) (Refined.decoder customAttributeNameType)
+
+
+{-| Codec for CustomAttributesListType.
+-}
+customAttributesListTypeCodec : Codec CustomAttributesListType
+customAttributesListTypeCodec =
+    Codec.list schemaAttributeTypeCodec
+
+
+{-| Codec for CustomDomainConfigType.
+-}
+customDomainConfigTypeCodec : Codec CustomDomainConfigType
+customDomainConfigTypeCodec =
+    Codec.object CustomDomainConfigType
+        |> Codec.field "CertificateArn" .certificateArn arnTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DateType.
+-}
+dateTypeCodec : Codec DateType
+dateTypeCodec =
+    Codec.string
+
+
+{-| Codec for DefaultEmailOptionType.
+-}
+defaultEmailOptionTypeCodec : Codec DefaultEmailOptionType
+defaultEmailOptionTypeCodec =
+    Codec.build (Enum.encoder defaultEmailOptionType) (Enum.decoder defaultEmailOptionType)
+
+
+{-| Codec for DeleteGroupRequest.
+-}
+deleteGroupRequestCodec : Codec DeleteGroupRequest
+deleteGroupRequestCodec =
+    Codec.object DeleteGroupRequest
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteIdentityProviderRequest.
+-}
+deleteIdentityProviderRequestCodec : Codec DeleteIdentityProviderRequest
+deleteIdentityProviderRequestCodec =
+    Codec.object DeleteIdentityProviderRequest
+        |> Codec.field "ProviderName" .providerName providerNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteResourceServerRequest.
+-}
+deleteResourceServerRequestCodec : Codec DeleteResourceServerRequest
+deleteResourceServerRequestCodec =
+    Codec.object DeleteResourceServerRequest
+        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteUserAttributesRequest.
+-}
+deleteUserAttributesRequestCodec : Codec DeleteUserAttributesRequest
+deleteUserAttributesRequestCodec =
+    Codec.object DeleteUserAttributesRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "UserAttributeNames" .userAttributeNames attributeNameListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteUserAttributesResponse.
+-}
+deleteUserAttributesResponseCodec : Codec DeleteUserAttributesResponse
+deleteUserAttributesResponseCodec =
+    Codec.object DeleteUserAttributesResponse |> Codec.buildObject
+
+
+{-| Codec for DeleteUserPoolClientRequest.
+-}
+deleteUserPoolClientRequestCodec : Codec DeleteUserPoolClientRequest
+deleteUserPoolClientRequestCodec =
+    Codec.object DeleteUserPoolClientRequest
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteUserPoolDomainRequest.
+-}
+deleteUserPoolDomainRequestCodec : Codec DeleteUserPoolDomainRequest
+deleteUserPoolDomainRequestCodec =
+    Codec.object DeleteUserPoolDomainRequest
+        |> Codec.field "Domain" .domain domainTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteUserPoolDomainResponse.
+-}
+deleteUserPoolDomainResponseCodec : Codec DeleteUserPoolDomainResponse
+deleteUserPoolDomainResponseCodec =
+    Codec.object DeleteUserPoolDomainResponse |> Codec.buildObject
+
+
+{-| Codec for DeleteUserPoolRequest.
+-}
+deleteUserPoolRequestCodec : Codec DeleteUserPoolRequest
+deleteUserPoolRequestCodec =
+    Codec.object DeleteUserPoolRequest |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec |> Codec.buildObject
+
+
+{-| Codec for DeleteUserRequest.
+-}
+deleteUserRequestCodec : Codec DeleteUserRequest
+deleteUserRequestCodec =
+    Codec.object DeleteUserRequest |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec |> Codec.buildObject
+
+
+{-| Codec for DeliveryMediumListType.
+-}
+deliveryMediumListTypeCodec : Codec DeliveryMediumListType
+deliveryMediumListTypeCodec =
+    Codec.list deliveryMediumTypeCodec
+
+
+{-| Codec for DeliveryMediumType.
+-}
+deliveryMediumTypeCodec : Codec DeliveryMediumType
+deliveryMediumTypeCodec =
+    Codec.build (Enum.encoder deliveryMediumType) (Enum.decoder deliveryMediumType)
+
+
+{-| Codec for DescribeIdentityProviderRequest.
+-}
+describeIdentityProviderRequestCodec : Codec DescribeIdentityProviderRequest
+describeIdentityProviderRequestCodec =
+    Codec.object DescribeIdentityProviderRequest
+        |> Codec.field "ProviderName" .providerName providerNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeIdentityProviderResponse.
+-}
+describeIdentityProviderResponseCodec : Codec DescribeIdentityProviderResponse
+describeIdentityProviderResponseCodec =
+    Codec.object DescribeIdentityProviderResponse
+        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeResourceServerRequest.
+-}
+describeResourceServerRequestCodec : Codec DescribeResourceServerRequest
+describeResourceServerRequestCodec =
+    Codec.object DescribeResourceServerRequest
+        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeResourceServerResponse.
+-}
+describeResourceServerResponseCodec : Codec DescribeResourceServerResponse
+describeResourceServerResponseCodec =
+    Codec.object DescribeResourceServerResponse
+        |> Codec.field "ResourceServer" .resourceServer resourceServerTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeRiskConfigurationRequest.
+-}
+describeRiskConfigurationRequestCodec : Codec DescribeRiskConfigurationRequest
+describeRiskConfigurationRequestCodec =
+    Codec.object DescribeRiskConfigurationRequest
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeRiskConfigurationResponse.
+-}
+describeRiskConfigurationResponseCodec : Codec DescribeRiskConfigurationResponse
+describeRiskConfigurationResponseCodec =
+    Codec.object DescribeRiskConfigurationResponse
+        |> Codec.field "RiskConfiguration" .riskConfiguration riskConfigurationTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserImportJobRequest.
+-}
+describeUserImportJobRequestCodec : Codec DescribeUserImportJobRequest
+describeUserImportJobRequestCodec =
+    Codec.object DescribeUserImportJobRequest
+        |> Codec.field "JobId" .jobId userImportJobIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserImportJobResponse.
+-}
+describeUserImportJobResponseCodec : Codec DescribeUserImportJobResponse
+describeUserImportJobResponseCodec =
+    Codec.object DescribeUserImportJobResponse
+        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserPoolClientRequest.
+-}
+describeUserPoolClientRequestCodec : Codec DescribeUserPoolClientRequest
+describeUserPoolClientRequestCodec =
+    Codec.object DescribeUserPoolClientRequest
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserPoolClientResponse.
+-}
+describeUserPoolClientResponseCodec : Codec DescribeUserPoolClientResponse
+describeUserPoolClientResponseCodec =
+    Codec.object DescribeUserPoolClientResponse
+        |> Codec.optionalField "UserPoolClient" .userPoolClient userPoolClientTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserPoolDomainRequest.
+-}
+describeUserPoolDomainRequestCodec : Codec DescribeUserPoolDomainRequest
+describeUserPoolDomainRequestCodec =
+    Codec.object DescribeUserPoolDomainRequest |> Codec.field "Domain" .domain domainTypeCodec |> Codec.buildObject
+
+
+{-| Codec for DescribeUserPoolDomainResponse.
+-}
+describeUserPoolDomainResponseCodec : Codec DescribeUserPoolDomainResponse
+describeUserPoolDomainResponseCodec =
+    Codec.object DescribeUserPoolDomainResponse
+        |> Codec.optionalField "DomainDescription" .domainDescription domainDescriptionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserPoolRequest.
+-}
+describeUserPoolRequestCodec : Codec DescribeUserPoolRequest
+describeUserPoolRequestCodec =
+    Codec.object DescribeUserPoolRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeUserPoolResponse.
+-}
+describeUserPoolResponseCodec : Codec DescribeUserPoolResponse
+describeUserPoolResponseCodec =
+    Codec.object DescribeUserPoolResponse
+        |> Codec.optionalField "UserPool" .userPool userPoolTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescriptionType.
+-}
+descriptionTypeCodec : Codec DescriptionType
+descriptionTypeCodec =
+    Codec.build (Refined.encoder descriptionType) (Refined.decoder descriptionType)
+
+
+{-| Codec for DeviceConfigurationType.
+-}
+deviceConfigurationTypeCodec : Codec DeviceConfigurationType
+deviceConfigurationTypeCodec =
+    Codec.object DeviceConfigurationType
+        |> Codec.optionalField "ChallengeRequiredOnNewDevice" .challengeRequiredOnNewDevice booleanTypeCodec
+        |> Codec.optionalField "DeviceOnlyRememberedOnUserPrompt" .deviceOnlyRememberedOnUserPrompt booleanTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeviceKeyType.
+-}
+deviceKeyTypeCodec : Codec DeviceKeyType
+deviceKeyTypeCodec =
+    Codec.build (Refined.encoder deviceKeyType) (Refined.decoder deviceKeyType)
+
+
+{-| Codec for DeviceListType.
+-}
+deviceListTypeCodec : Codec DeviceListType
+deviceListTypeCodec =
+    Codec.list deviceTypeCodec
+
+
+{-| Codec for DeviceNameType.
+-}
+deviceNameTypeCodec : Codec DeviceNameType
+deviceNameTypeCodec =
+    Codec.build (Refined.encoder deviceNameType) (Refined.decoder deviceNameType)
+
+
+{-| Codec for DeviceRememberedStatusType.
+-}
+deviceRememberedStatusTypeCodec : Codec DeviceRememberedStatusType
+deviceRememberedStatusTypeCodec =
+    Codec.build (Enum.encoder deviceRememberedStatusType) (Enum.decoder deviceRememberedStatusType)
+
+
+{-| Codec for DeviceSecretVerifierConfigType.
+-}
+deviceSecretVerifierConfigTypeCodec : Codec DeviceSecretVerifierConfigType
+deviceSecretVerifierConfigTypeCodec =
+    Codec.object DeviceSecretVerifierConfigType
+        |> Codec.optionalField "PasswordVerifier" .passwordVerifier stringTypeCodec
+        |> Codec.optionalField "Salt" .salt stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeviceType.
+-}
+deviceTypeCodec : Codec DeviceType
+deviceTypeCodec =
+    Codec.object DeviceType
+        |> Codec.optionalField "DeviceAttributes" .deviceAttributes attributeListTypeCodec
+        |> Codec.optionalField "DeviceCreateDate" .deviceCreateDate dateTypeCodec
+        |> Codec.optionalField "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.optionalField "DeviceLastAuthenticatedDate" .deviceLastAuthenticatedDate dateTypeCodec
+        |> Codec.optionalField "DeviceLastModifiedDate" .deviceLastModifiedDate dateTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DomainDescriptionType.
+-}
+domainDescriptionTypeCodec : Codec DomainDescriptionType
+domainDescriptionTypeCodec =
+    Codec.object DomainDescriptionType
+        |> Codec.optionalField "AWSAccountId" .awsaccountId awsaccountIdTypeCodec
+        |> Codec.optionalField "CloudFrontDistribution" .cloudFrontDistribution stringTypeCodec
+        |> Codec.optionalField "CustomDomainConfig" .customDomainConfig customDomainConfigTypeCodec
+        |> Codec.optionalField "Domain" .domain domainTypeCodec
+        |> Codec.optionalField "S3Bucket" .s3Bucket s3BucketTypeCodec
+        |> Codec.optionalField "Status" .status domainStatusTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.optionalField "Version" .version domainVersionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DomainStatusType.
+-}
+domainStatusTypeCodec : Codec DomainStatusType
+domainStatusTypeCodec =
+    Codec.build (Enum.encoder domainStatusType) (Enum.decoder domainStatusType)
+
+
+{-| Codec for DomainType.
+-}
+domainTypeCodec : Codec DomainType
+domainTypeCodec =
+    Codec.build (Refined.encoder domainType) (Refined.decoder domainType)
+
+
+{-| Codec for DomainVersionType.
+-}
+domainVersionTypeCodec : Codec DomainVersionType
+domainVersionTypeCodec =
+    Codec.build (Refined.encoder domainVersionType) (Refined.decoder domainVersionType)
+
+
+{-| Codec for EmailAddressType.
+-}
+emailAddressTypeCodec : Codec EmailAddressType
+emailAddressTypeCodec =
+    Codec.build (Refined.encoder emailAddressType) (Refined.decoder emailAddressType)
+
+
+{-| Codec for EmailConfigurationType.
+-}
+emailConfigurationTypeCodec : Codec EmailConfigurationType
+emailConfigurationTypeCodec =
+    Codec.object EmailConfigurationType
+        |> Codec.optionalField "EmailSendingAccount" .emailSendingAccount emailSendingAccountTypeCodec
+        |> Codec.optionalField "ReplyToEmailAddress" .replyToEmailAddress emailAddressTypeCodec
+        |> Codec.optionalField "SourceArn" .sourceArn arnTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for EmailNotificationBodyType.
+-}
+emailNotificationBodyTypeCodec : Codec EmailNotificationBodyType
+emailNotificationBodyTypeCodec =
+    Codec.build (Refined.encoder emailNotificationBodyType) (Refined.decoder emailNotificationBodyType)
+
+
+{-| Codec for EmailNotificationSubjectType.
+-}
+emailNotificationSubjectTypeCodec : Codec EmailNotificationSubjectType
+emailNotificationSubjectTypeCodec =
+    Codec.build (Refined.encoder emailNotificationSubjectType) (Refined.decoder emailNotificationSubjectType)
+
+
+{-| Codec for EmailSendingAccountType.
+-}
+emailSendingAccountTypeCodec : Codec EmailSendingAccountType
+emailSendingAccountTypeCodec =
+    Codec.build (Enum.encoder emailSendingAccountType) (Enum.decoder emailSendingAccountType)
+
+
+{-| Codec for EmailVerificationMessageByLinkType.
+-}
+emailVerificationMessageByLinkTypeCodec : Codec EmailVerificationMessageByLinkType
+emailVerificationMessageByLinkTypeCodec =
+    Codec.build
+        (Refined.encoder emailVerificationMessageByLinkType)
+        (Refined.decoder emailVerificationMessageByLinkType)
+
+
+{-| Codec for EmailVerificationMessageType.
+-}
+emailVerificationMessageTypeCodec : Codec EmailVerificationMessageType
+emailVerificationMessageTypeCodec =
+    Codec.build (Refined.encoder emailVerificationMessageType) (Refined.decoder emailVerificationMessageType)
+
+
+{-| Codec for EmailVerificationSubjectByLinkType.
+-}
+emailVerificationSubjectByLinkTypeCodec : Codec EmailVerificationSubjectByLinkType
+emailVerificationSubjectByLinkTypeCodec =
+    Codec.build
+        (Refined.encoder emailVerificationSubjectByLinkType)
+        (Refined.decoder emailVerificationSubjectByLinkType)
+
+
+{-| Codec for EmailVerificationSubjectType.
+-}
+emailVerificationSubjectTypeCodec : Codec EmailVerificationSubjectType
+emailVerificationSubjectTypeCodec =
+    Codec.build (Refined.encoder emailVerificationSubjectType) (Refined.decoder emailVerificationSubjectType)
+
+
+{-| Codec for EventContextDataType.
+-}
+eventContextDataTypeCodec : Codec EventContextDataType
+eventContextDataTypeCodec =
+    Codec.object EventContextDataType
+        |> Codec.optionalField "City" .city stringTypeCodec
+        |> Codec.optionalField "Country" .country stringTypeCodec
+        |> Codec.optionalField "DeviceName" .deviceName stringTypeCodec
+        |> Codec.optionalField "IpAddress" .ipAddress stringTypeCodec
+        |> Codec.optionalField "Timezone" .timezone stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for EventFeedbackType.
+-}
+eventFeedbackTypeCodec : Codec EventFeedbackType
+eventFeedbackTypeCodec =
+    Codec.object EventFeedbackType
+        |> Codec.optionalField "FeedbackDate" .feedbackDate dateTypeCodec
+        |> Codec.field "FeedbackValue" .feedbackValue feedbackValueTypeCodec
+        |> Codec.field "Provider" .provider stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for EventFilterType.
+-}
+eventFilterTypeCodec : Codec EventFilterType
+eventFilterTypeCodec =
+    Codec.build (Enum.encoder eventFilterType) (Enum.decoder eventFilterType)
+
+
+{-| Codec for EventFiltersType.
+-}
+eventFiltersTypeCodec : Codec EventFiltersType
+eventFiltersTypeCodec =
+    Codec.list eventFilterTypeCodec
+
+
+{-| Codec for EventIdType.
+-}
+eventIdTypeCodec : Codec EventIdType
+eventIdTypeCodec =
+    Codec.build (Refined.encoder eventIdType) (Refined.decoder eventIdType)
+
+
+{-| Codec for EventResponseType.
+-}
+eventResponseTypeCodec : Codec EventResponseType
+eventResponseTypeCodec =
+    Codec.build (Enum.encoder eventResponseType) (Enum.decoder eventResponseType)
+
+
+{-| Codec for EventRiskType.
+-}
+eventRiskTypeCodec : Codec EventRiskType
+eventRiskTypeCodec =
+    Codec.object EventRiskType
+        |> Codec.optionalField "RiskDecision" .riskDecision riskDecisionTypeCodec
+        |> Codec.optionalField "RiskLevel" .riskLevel riskLevelTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for EventType.
+-}
+eventTypeCodec : Codec EventType
+eventTypeCodec =
+    Codec.build (Enum.encoder eventType) (Enum.decoder eventType)
+
+
+{-| Codec for ExplicitAuthFlowsListType.
+-}
+explicitAuthFlowsListTypeCodec : Codec ExplicitAuthFlowsListType
+explicitAuthFlowsListTypeCodec =
+    Codec.list explicitAuthFlowsTypeCodec
+
+
+{-| Codec for ExplicitAuthFlowsType.
+-}
+explicitAuthFlowsTypeCodec : Codec ExplicitAuthFlowsType
+explicitAuthFlowsTypeCodec =
+    Codec.build (Enum.encoder explicitAuthFlowsType) (Enum.decoder explicitAuthFlowsType)
+
+
+{-| Codec for FeedbackValueType.
+-}
+feedbackValueTypeCodec : Codec FeedbackValueType
+feedbackValueTypeCodec =
+    Codec.build (Enum.encoder feedbackValueType) (Enum.decoder feedbackValueType)
+
+
+{-| Codec for ForceAliasCreation.
+-}
+forceAliasCreationCodec : Codec ForceAliasCreation
+forceAliasCreationCodec =
+    Codec.bool
+
+
+{-| Codec for ForgetDeviceRequest.
+-}
+forgetDeviceRequestCodec : Codec ForgetDeviceRequest
+forgetDeviceRequestCodec =
+    Codec.object ForgetDeviceRequest
+        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ForgotPasswordRequest.
+-}
+forgotPasswordRequestCodec : Codec ForgotPasswordRequest
+forgotPasswordRequestCodec =
+    Codec.object ForgotPasswordRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ForgotPasswordResponse.
+-}
+forgotPasswordResponseCodec : Codec ForgotPasswordResponse
+forgotPasswordResponseCodec =
+    Codec.object ForgotPasswordResponse
+        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GenerateSecret.
+-}
+generateSecretCodec : Codec GenerateSecret
+generateSecretCodec =
+    Codec.bool
+
+
+{-| Codec for GetCsvheaderRequest.
+-}
+getCsvheaderRequestCodec : Codec GetCsvheaderRequest
+getCsvheaderRequestCodec =
+    Codec.object GetCsvheaderRequest |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec |> Codec.buildObject
+
+
+{-| Codec for GetCsvheaderResponse.
+-}
+getCsvheaderResponseCodec : Codec GetCsvheaderResponse
+getCsvheaderResponseCodec =
+    Codec.object GetCsvheaderResponse
+        |> Codec.optionalField "CSVHeader" .csvheader listOfStringTypesCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetDeviceRequest.
+-}
+getDeviceRequestCodec : Codec GetDeviceRequest
+getDeviceRequestCodec =
+    Codec.object GetDeviceRequest
+        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetDeviceResponse.
+-}
+getDeviceResponseCodec : Codec GetDeviceResponse
+getDeviceResponseCodec =
+    Codec.object GetDeviceResponse |> Codec.field "Device" .device deviceTypeCodec |> Codec.buildObject
+
+
+{-| Codec for GetGroupRequest.
+-}
+getGroupRequestCodec : Codec GetGroupRequest
+getGroupRequestCodec =
+    Codec.object GetGroupRequest
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetGroupResponse.
+-}
+getGroupResponseCodec : Codec GetGroupResponse
+getGroupResponseCodec =
+    Codec.object GetGroupResponse |> Codec.optionalField "Group" .group groupTypeCodec |> Codec.buildObject
+
+
+{-| Codec for GetIdentityProviderByIdentifierRequest.
+-}
+getIdentityProviderByIdentifierRequestCodec : Codec GetIdentityProviderByIdentifierRequest
+getIdentityProviderByIdentifierRequestCodec =
+    Codec.object GetIdentityProviderByIdentifierRequest
+        |> Codec.field "IdpIdentifier" .idpIdentifier idpIdentifierTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetIdentityProviderByIdentifierResponse.
+-}
+getIdentityProviderByIdentifierResponseCodec : Codec GetIdentityProviderByIdentifierResponse
+getIdentityProviderByIdentifierResponseCodec =
+    Codec.object GetIdentityProviderByIdentifierResponse
+        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetSigningCertificateRequest.
+-}
+getSigningCertificateRequestCodec : Codec GetSigningCertificateRequest
+getSigningCertificateRequestCodec =
+    Codec.object GetSigningCertificateRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetSigningCertificateResponse.
+-}
+getSigningCertificateResponseCodec : Codec GetSigningCertificateResponse
+getSigningCertificateResponseCodec =
+    Codec.object GetSigningCertificateResponse
+        |> Codec.optionalField "Certificate" .certificate stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUicustomizationRequest.
+-}
+getUicustomizationRequestCodec : Codec GetUicustomizationRequest
+getUicustomizationRequestCodec =
+    Codec.object GetUicustomizationRequest
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUicustomizationResponse.
+-}
+getUicustomizationResponseCodec : Codec GetUicustomizationResponse
+getUicustomizationResponseCodec =
+    Codec.object GetUicustomizationResponse
+        |> Codec.field "UICustomization" .uicustomization uicustomizationTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUserAttributeVerificationCodeRequest.
+-}
+getUserAttributeVerificationCodeRequestCodec : Codec GetUserAttributeVerificationCodeRequest
+getUserAttributeVerificationCodeRequestCodec =
+    Codec.object GetUserAttributeVerificationCodeRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "AttributeName" .attributeName attributeNameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUserAttributeVerificationCodeResponse.
+-}
+getUserAttributeVerificationCodeResponseCodec : Codec GetUserAttributeVerificationCodeResponse
+getUserAttributeVerificationCodeResponseCodec =
+    Codec.object GetUserAttributeVerificationCodeResponse
+        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUserPoolMfaConfigRequest.
+-}
+getUserPoolMfaConfigRequestCodec : Codec GetUserPoolMfaConfigRequest
+getUserPoolMfaConfigRequestCodec =
+    Codec.object GetUserPoolMfaConfigRequest
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUserPoolMfaConfigResponse.
+-}
+getUserPoolMfaConfigResponseCodec : Codec GetUserPoolMfaConfigResponse
+getUserPoolMfaConfigResponseCodec =
+    Codec.object GetUserPoolMfaConfigResponse
+        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
+        |> Codec.optionalField "SmsMfaConfiguration" .smsMfaConfiguration smsMfaConfigTypeCodec
+        |> Codec.optionalField
+            "SoftwareTokenMfaConfiguration"
+            .softwareTokenMfaConfiguration
+            softwareTokenMfaConfigTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetUserRequest.
+-}
+getUserRequestCodec : Codec GetUserRequest
+getUserRequestCodec =
+    Codec.object GetUserRequest |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec |> Codec.buildObject
+
+
+{-| Codec for GetUserResponse.
+-}
+getUserResponseCodec : Codec GetUserResponse
+getUserResponseCodec =
+    Codec.object GetUserResponse
+        |> Codec.optionalField "MFAOptions" .mfaoptions mfaoptionListTypeCodec
+        |> Codec.optionalField "PreferredMfaSetting" .preferredMfaSetting stringTypeCodec
+        |> Codec.field "UserAttributes" .userAttributes attributeListTypeCodec
+        |> Codec.optionalField "UserMFASettingList" .userMfasettingList userMfasettingListTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GlobalSignOutRequest.
+-}
+globalSignOutRequestCodec : Codec GlobalSignOutRequest
+globalSignOutRequestCodec =
+    Codec.object GlobalSignOutRequest |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec |> Codec.buildObject
+
+
+{-| Codec for GlobalSignOutResponse.
+-}
+globalSignOutResponseCodec : Codec GlobalSignOutResponse
+globalSignOutResponseCodec =
+    Codec.object GlobalSignOutResponse |> Codec.buildObject
+
+
+{-| Codec for GroupListType.
+-}
+groupListTypeCodec : Codec GroupListType
+groupListTypeCodec =
+    Codec.list groupTypeCodec
+
+
+{-| Codec for GroupNameType.
+-}
+groupNameTypeCodec : Codec GroupNameType
+groupNameTypeCodec =
+    Codec.build (Refined.encoder groupNameType) (Refined.decoder groupNameType)
+
+
+{-| Codec for GroupType.
+-}
+groupTypeCodec : Codec GroupType
+groupTypeCodec =
+    Codec.object GroupType
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "Description" .description descriptionTypeCodec
+        |> Codec.optionalField "GroupName" .groupName groupNameTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "Precedence" .precedence precedenceTypeCodec
+        |> Codec.optionalField "RoleArn" .roleArn arnTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for HexStringType.
+-}
+hexStringTypeCodec : Codec HexStringType
+hexStringTypeCodec =
+    Codec.build (Refined.encoder hexStringType) (Refined.decoder hexStringType)
+
+
+{-| Codec for HttpHeader.
+-}
+httpHeaderCodec : Codec HttpHeader
+httpHeaderCodec =
+    Codec.object HttpHeader
+        |> Codec.optionalField "headerName" .headerName stringTypeCodec
+        |> Codec.optionalField "headerValue" .headerValue stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for HttpHeaderList.
+-}
+httpHeaderListCodec : Codec HttpHeaderList
+httpHeaderListCodec =
+    Codec.list httpHeaderCodec
+
+
+{-| Codec for IdentityProviderType.
+-}
+identityProviderTypeCodec : Codec IdentityProviderType
+identityProviderTypeCodec =
+    Codec.object IdentityProviderType
+        |> Codec.optionalField "AttributeMapping" .attributeMapping attributeMappingTypeCodec
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "IdpIdentifiers" .idpIdentifiers idpIdentifiersListTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "ProviderDetails" .providerDetails providerDetailsTypeCodec
+        |> Codec.optionalField "ProviderName" .providerName providerNameTypeCodec
+        |> Codec.optionalField "ProviderType" .providerType identityProviderTypeTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for IdentityProviderTypeType.
+-}
+identityProviderTypeTypeCodec : Codec IdentityProviderTypeType
+identityProviderTypeTypeCodec =
+    Codec.build (Enum.encoder identityProviderTypeType) (Enum.decoder identityProviderTypeType)
+
+
+{-| Codec for IdpIdentifierType.
+-}
+idpIdentifierTypeCodec : Codec IdpIdentifierType
+idpIdentifierTypeCodec =
+    Codec.build (Refined.encoder idpIdentifierType) (Refined.decoder idpIdentifierType)
+
+
+{-| Codec for IdpIdentifiersListType.
+-}
+idpIdentifiersListTypeCodec : Codec IdpIdentifiersListType
+idpIdentifiersListTypeCodec =
+    Codec.list idpIdentifierTypeCodec
+
+
+{-| Codec for ImageFileType.
+-}
+imageFileTypeCodec : Codec ImageFileType
+imageFileTypeCodec =
+    Codec.string
+
+
+{-| Codec for ImageUrlType.
+-}
+imageUrlTypeCodec : Codec ImageUrlType
+imageUrlTypeCodec =
+    Codec.string
+
+
+{-| Codec for InitiateAuthRequest.
+-}
+initiateAuthRequestCodec : Codec InitiateAuthRequest
+initiateAuthRequestCodec =
+    Codec.object InitiateAuthRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "AuthFlow" .authFlow authFlowTypeCodec
+        |> Codec.optionalField "AuthParameters" .authParameters authParametersTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ClientMetadata" .clientMetadata clientMetadataTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for InitiateAuthResponse.
+-}
+initiateAuthResponseCodec : Codec InitiateAuthResponse
+initiateAuthResponseCodec =
+    Codec.object InitiateAuthResponse
+        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
+        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
+        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for IntegerType.
+-}
+integerTypeCodec : Codec IntegerType
+integerTypeCodec =
+    Codec.int
+
+
+{-| Codec for LambdaConfigType.
+-}
+lambdaConfigTypeCodec : Codec LambdaConfigType
+lambdaConfigTypeCodec =
+    Codec.object LambdaConfigType
+        |> Codec.optionalField "CreateAuthChallenge" .createAuthChallenge arnTypeCodec
+        |> Codec.optionalField "CustomMessage" .customMessage arnTypeCodec
+        |> Codec.optionalField "DefineAuthChallenge" .defineAuthChallenge arnTypeCodec
+        |> Codec.optionalField "PostAuthentication" .postAuthentication arnTypeCodec
+        |> Codec.optionalField "PostConfirmation" .postConfirmation arnTypeCodec
+        |> Codec.optionalField "PreAuthentication" .preAuthentication arnTypeCodec
+        |> Codec.optionalField "PreSignUp" .preSignUp arnTypeCodec
+        |> Codec.optionalField "PreTokenGeneration" .preTokenGeneration arnTypeCodec
+        |> Codec.optionalField "UserMigration" .userMigration arnTypeCodec
+        |> Codec.optionalField "VerifyAuthChallengeResponse" .verifyAuthChallengeResponse arnTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListDevicesRequest.
+-}
+listDevicesRequestCodec : Codec ListDevicesRequest
+listDevicesRequestCodec =
+    Codec.object ListDevicesRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
+        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListDevicesResponse.
+-}
+listDevicesResponseCodec : Codec ListDevicesResponse
+listDevicesResponseCodec =
+    Codec.object ListDevicesResponse
+        |> Codec.optionalField "Devices" .devices deviceListTypeCodec
+        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListGroupsRequest.
+-}
+listGroupsRequestCodec : Codec ListGroupsRequest
+listGroupsRequestCodec =
+    Codec.object ListGroupsRequest
+        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListGroupsResponse.
+-}
+listGroupsResponseCodec : Codec ListGroupsResponse
+listGroupsResponseCodec =
+    Codec.object ListGroupsResponse
+        |> Codec.optionalField "Groups" .groups groupListTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListIdentityProvidersRequest.
+-}
+listIdentityProvidersRequestCodec : Codec ListIdentityProvidersRequest
+listIdentityProvidersRequestCodec =
+    Codec.object ListIdentityProvidersRequest
+        |> Codec.optionalField "MaxResults" .maxResults listProvidersLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListIdentityProvidersResponse.
+-}
+listIdentityProvidersResponseCodec : Codec ListIdentityProvidersResponse
+listIdentityProvidersResponseCodec =
+    Codec.object ListIdentityProvidersResponse
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
+        |> Codec.field "Providers" .providers providersListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListOfStringTypes.
+-}
+listOfStringTypesCodec : Codec ListOfStringTypes
+listOfStringTypesCodec =
+    Codec.list stringTypeCodec
+
+
+{-| Codec for ListProvidersLimitType.
+-}
+listProvidersLimitTypeCodec : Codec ListProvidersLimitType
+listProvidersLimitTypeCodec =
+    Codec.build (Refined.encoder listProvidersLimitType) (Refined.decoder listProvidersLimitType)
+
+
+{-| Codec for ListResourceServersLimitType.
+-}
+listResourceServersLimitTypeCodec : Codec ListResourceServersLimitType
+listResourceServersLimitTypeCodec =
+    Codec.build (Refined.encoder listResourceServersLimitType) (Refined.decoder listResourceServersLimitType)
+
+
+{-| Codec for ListResourceServersRequest.
+-}
+listResourceServersRequestCodec : Codec ListResourceServersRequest
+listResourceServersRequestCodec =
+    Codec.object ListResourceServersRequest
+        |> Codec.optionalField "MaxResults" .maxResults listResourceServersLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListResourceServersResponse.
+-}
+listResourceServersResponseCodec : Codec ListResourceServersResponse
+listResourceServersResponseCodec =
+    Codec.object ListResourceServersResponse
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
+        |> Codec.field "ResourceServers" .resourceServers resourceServersListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListTagsForResourceRequest.
+-}
+listTagsForResourceRequestCodec : Codec ListTagsForResourceRequest
+listTagsForResourceRequestCodec =
+    Codec.object ListTagsForResourceRequest |> Codec.field "ResourceArn" .resourceArn arnTypeCodec |> Codec.buildObject
+
+
+{-| Codec for ListTagsForResourceResponse.
+-}
+listTagsForResourceResponseCodec : Codec ListTagsForResourceResponse
+listTagsForResourceResponseCodec =
+    Codec.object ListTagsForResourceResponse
+        |> Codec.optionalField "Tags" .tags userPoolTagsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUserImportJobsRequest.
+-}
+listUserImportJobsRequestCodec : Codec ListUserImportJobsRequest
+listUserImportJobsRequestCodec =
+    Codec.object ListUserImportJobsRequest
+        |> Codec.field "MaxResults" .maxResults poolQueryLimitTypeCodec
+        |> Codec.optionalField "PaginationToken" .paginationToken paginationKeyTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUserImportJobsResponse.
+-}
+listUserImportJobsResponseCodec : Codec ListUserImportJobsResponse
+listUserImportJobsResponseCodec =
+    Codec.object ListUserImportJobsResponse
+        |> Codec.optionalField "PaginationToken" .paginationToken paginationKeyTypeCodec
+        |> Codec.optionalField "UserImportJobs" .userImportJobs userImportJobsListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUserPoolClientsRequest.
+-}
+listUserPoolClientsRequestCodec : Codec ListUserPoolClientsRequest
+listUserPoolClientsRequestCodec =
+    Codec.object ListUserPoolClientsRequest
+        |> Codec.optionalField "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUserPoolClientsResponse.
+-}
+listUserPoolClientsResponseCodec : Codec ListUserPoolClientsResponse
+listUserPoolClientsResponseCodec =
+    Codec.object ListUserPoolClientsResponse
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.optionalField "UserPoolClients" .userPoolClients userPoolClientListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUserPoolsRequest.
+-}
+listUserPoolsRequestCodec : Codec ListUserPoolsRequest
+listUserPoolsRequestCodec =
+    Codec.object ListUserPoolsRequest
+        |> Codec.field "MaxResults" .maxResults poolQueryLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUserPoolsResponse.
+-}
+listUserPoolsResponseCodec : Codec ListUserPoolsResponse
+listUserPoolsResponseCodec =
+    Codec.object ListUserPoolsResponse
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
+        |> Codec.optionalField "UserPools" .userPools userPoolListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUsersInGroupRequest.
+-}
+listUsersInGroupRequestCodec : Codec ListUsersInGroupRequest
+listUsersInGroupRequestCodec =
+    Codec.object ListUsersInGroupRequest
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUsersInGroupResponse.
+-}
+listUsersInGroupResponseCodec : Codec ListUsersInGroupResponse
+listUsersInGroupResponseCodec =
+    Codec.object ListUsersInGroupResponse
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.optionalField "Users" .users usersListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUsersRequest.
+-}
+listUsersRequestCodec : Codec ListUsersRequest
+listUsersRequestCodec =
+    Codec.object ListUsersRequest
+        |> Codec.optionalField "AttributesToGet" .attributesToGet searchedAttributeNamesListTypeCodec
+        |> Codec.optionalField "Filter" .filter userFilterTypeCodec
+        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
+        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListUsersResponse.
+-}
+listUsersResponseCodec : Codec ListUsersResponse
+listUsersResponseCodec =
+    Codec.object ListUsersResponse
+        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
+        |> Codec.optionalField "Users" .users usersListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for LogoutUrlsListType.
+-}
+logoutUrlsListTypeCodec : Codec LogoutUrlsListType
+logoutUrlsListTypeCodec =
+    Codec.list redirectUrlTypeCodec
+
+
+{-| Codec for LongType.
+-}
+longTypeCodec : Codec LongType
+longTypeCodec =
+    Codec.int
+
+
+{-| Codec for MfaoptionListType.
+-}
+mfaoptionListTypeCodec : Codec MfaoptionListType
+mfaoptionListTypeCodec =
+    Codec.list mfaoptionTypeCodec
+
+
+{-| Codec for MfaoptionType.
+-}
+mfaoptionTypeCodec : Codec MfaoptionType
+mfaoptionTypeCodec =
+    Codec.object MfaoptionType
+        |> Codec.optionalField "AttributeName" .attributeName attributeNameTypeCodec
+        |> Codec.optionalField "DeliveryMedium" .deliveryMedium deliveryMediumTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for MessageActionType.
+-}
+messageActionTypeCodec : Codec MessageActionType
+messageActionTypeCodec =
+    Codec.build (Enum.encoder messageActionType) (Enum.decoder messageActionType)
+
+
+{-| Codec for MessageTemplateType.
+-}
+messageTemplateTypeCodec : Codec MessageTemplateType
+messageTemplateTypeCodec =
+    Codec.object MessageTemplateType
+        |> Codec.optionalField "EmailMessage" .emailMessage emailVerificationMessageTypeCodec
+        |> Codec.optionalField "EmailSubject" .emailSubject emailVerificationSubjectTypeCodec
+        |> Codec.optionalField "SMSMessage" .smsmessage smsVerificationMessageTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for NewDeviceMetadataType.
+-}
+newDeviceMetadataTypeCodec : Codec NewDeviceMetadataType
+newDeviceMetadataTypeCodec =
+    Codec.object NewDeviceMetadataType
+        |> Codec.optionalField "DeviceGroupKey" .deviceGroupKey stringTypeCodec
+        |> Codec.optionalField "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for NotifyConfigurationType.
+-}
+notifyConfigurationTypeCodec : Codec NotifyConfigurationType
+notifyConfigurationTypeCodec =
+    Codec.object NotifyConfigurationType
+        |> Codec.optionalField "BlockEmail" .blockEmail notifyEmailTypeCodec
+        |> Codec.optionalField "From" .from stringTypeCodec
+        |> Codec.optionalField "MfaEmail" .mfaEmail notifyEmailTypeCodec
+        |> Codec.optionalField "NoActionEmail" .noActionEmail notifyEmailTypeCodec
+        |> Codec.optionalField "ReplyTo" .replyTo stringTypeCodec
+        |> Codec.field "SourceArn" .sourceArn arnTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for NotifyEmailType.
+-}
+notifyEmailTypeCodec : Codec NotifyEmailType
+notifyEmailTypeCodec =
+    Codec.object NotifyEmailType
+        |> Codec.optionalField "HtmlBody" .htmlBody emailNotificationBodyTypeCodec
+        |> Codec.field "Subject" .subject emailNotificationSubjectTypeCodec
+        |> Codec.optionalField "TextBody" .textBody emailNotificationBodyTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for NumberAttributeConstraintsType.
+-}
+numberAttributeConstraintsTypeCodec : Codec NumberAttributeConstraintsType
+numberAttributeConstraintsTypeCodec =
+    Codec.object NumberAttributeConstraintsType
+        |> Codec.optionalField "MaxValue" .maxValue stringTypeCodec
+        |> Codec.optionalField "MinValue" .minValue stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for OauthFlowType.
+-}
+oauthFlowTypeCodec : Codec OauthFlowType
+oauthFlowTypeCodec =
+    Codec.build (Enum.encoder oauthFlowType) (Enum.decoder oauthFlowType)
+
+
+{-| Codec for OauthFlowsType.
+-}
+oauthFlowsTypeCodec : Codec OauthFlowsType
+oauthFlowsTypeCodec =
+    Codec.list oauthFlowTypeCodec
+
+
+{-| Codec for PaginationKey.
+-}
+paginationKeyCodec : Codec PaginationKey
+paginationKeyCodec =
+    Codec.build (Refined.encoder paginationKey) (Refined.decoder paginationKey)
+
+
+{-| Codec for PaginationKeyType.
+-}
+paginationKeyTypeCodec : Codec PaginationKeyType
+paginationKeyTypeCodec =
+    Codec.build (Refined.encoder paginationKeyType) (Refined.decoder paginationKeyType)
+
+
+{-| Codec for PasswordPolicyMinLengthType.
+-}
+passwordPolicyMinLengthTypeCodec : Codec PasswordPolicyMinLengthType
+passwordPolicyMinLengthTypeCodec =
+    Codec.build (Refined.encoder passwordPolicyMinLengthType) (Refined.decoder passwordPolicyMinLengthType)
+
+
+{-| Codec for PasswordPolicyType.
+-}
+passwordPolicyTypeCodec : Codec PasswordPolicyType
+passwordPolicyTypeCodec =
+    Codec.object PasswordPolicyType
+        |> Codec.optionalField "MinimumLength" .minimumLength passwordPolicyMinLengthTypeCodec
+        |> Codec.optionalField "RequireLowercase" .requireLowercase booleanTypeCodec
+        |> Codec.optionalField "RequireNumbers" .requireNumbers booleanTypeCodec
+        |> Codec.optionalField "RequireSymbols" .requireSymbols booleanTypeCodec
+        |> Codec.optionalField "RequireUppercase" .requireUppercase booleanTypeCodec
+        |> Codec.optionalField
+            "TemporaryPasswordValidityDays"
+            .temporaryPasswordValidityDays
+            temporaryPasswordValidityDaysTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for PasswordType.
+-}
+passwordTypeCodec : Codec PasswordType
+passwordTypeCodec =
+    Codec.build (Refined.encoder passwordType) (Refined.decoder passwordType)
+
+
+{-| Codec for PoolQueryLimitType.
+-}
+poolQueryLimitTypeCodec : Codec PoolQueryLimitType
+poolQueryLimitTypeCodec =
+    Codec.build (Refined.encoder poolQueryLimitType) (Refined.decoder poolQueryLimitType)
+
+
+{-| Codec for PreSignedUrlType.
+-}
+preSignedUrlTypeCodec : Codec PreSignedUrlType
+preSignedUrlTypeCodec =
+    Codec.build (Refined.encoder preSignedUrlType) (Refined.decoder preSignedUrlType)
+
+
+{-| Codec for PrecedenceType.
+-}
+precedenceTypeCodec : Codec PrecedenceType
+precedenceTypeCodec =
+    Codec.build (Refined.encoder precedenceType) (Refined.decoder precedenceType)
+
+
+{-| Codec for ProviderDescription.
+-}
+providerDescriptionCodec : Codec ProviderDescription
+providerDescriptionCodec =
+    Codec.object ProviderDescription
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "ProviderName" .providerName providerNameTypeCodec
+        |> Codec.optionalField "ProviderType" .providerType identityProviderTypeTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ProviderDetailsType.
+-}
+providerDetailsTypeCodec : Codec ProviderDetailsType
+providerDetailsTypeCodec =
+    Codec.dict stringTypeCodec
+
+
+{-| Codec for ProviderNameType.
+-}
+providerNameTypeCodec : Codec ProviderNameType
+providerNameTypeCodec =
+    Codec.build (Refined.encoder providerNameType) (Refined.decoder providerNameType)
+
+
+{-| Codec for ProviderNameTypeV1.
+-}
+providerNameTypeV1Codec : Codec ProviderNameTypeV1
+providerNameTypeV1Codec =
+    Codec.build (Refined.encoder providerNameTypeV1) (Refined.decoder providerNameTypeV1)
+
+
+{-| Codec for ProviderUserIdentifierType.
+-}
+providerUserIdentifierTypeCodec : Codec ProviderUserIdentifierType
+providerUserIdentifierTypeCodec =
+    Codec.object ProviderUserIdentifierType
+        |> Codec.optionalField "ProviderAttributeName" .providerAttributeName stringTypeCodec
+        |> Codec.optionalField "ProviderAttributeValue" .providerAttributeValue stringTypeCodec
+        |> Codec.optionalField "ProviderName" .providerName providerNameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ProvidersListType.
+-}
+providersListTypeCodec : Codec ProvidersListType
+providersListTypeCodec =
+    Codec.list providerDescriptionCodec
+
+
+{-| Codec for QueryLimit.
+-}
+queryLimitCodec : Codec QueryLimit
+queryLimitCodec =
+    Codec.build (Refined.encoder queryLimit) (Refined.decoder queryLimit)
+
+
+{-| Codec for QueryLimitType.
+-}
+queryLimitTypeCodec : Codec QueryLimitType
+queryLimitTypeCodec =
+    Codec.build (Refined.encoder queryLimitType) (Refined.decoder queryLimitType)
+
+
+{-| Codec for RedirectUrlType.
+-}
+redirectUrlTypeCodec : Codec RedirectUrlType
+redirectUrlTypeCodec =
+    Codec.build (Refined.encoder redirectUrlType) (Refined.decoder redirectUrlType)
+
+
+{-| Codec for RefreshTokenValidityType.
+-}
+refreshTokenValidityTypeCodec : Codec RefreshTokenValidityType
+refreshTokenValidityTypeCodec =
+    Codec.build (Refined.encoder refreshTokenValidityType) (Refined.decoder refreshTokenValidityType)
+
+
+{-| Codec for ResendConfirmationCodeRequest.
+-}
+resendConfirmationCodeRequestCodec : Codec ResendConfirmationCodeRequest
+resendConfirmationCodeRequestCodec =
+    Codec.object ResendConfirmationCodeRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ResendConfirmationCodeResponse.
+-}
+resendConfirmationCodeResponseCodec : Codec ResendConfirmationCodeResponse
+resendConfirmationCodeResponseCodec =
+    Codec.object ResendConfirmationCodeResponse
+        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ResourceServerIdentifierType.
+-}
+resourceServerIdentifierTypeCodec : Codec ResourceServerIdentifierType
+resourceServerIdentifierTypeCodec =
+    Codec.build (Refined.encoder resourceServerIdentifierType) (Refined.decoder resourceServerIdentifierType)
+
+
+{-| Codec for ResourceServerNameType.
+-}
+resourceServerNameTypeCodec : Codec ResourceServerNameType
+resourceServerNameTypeCodec =
+    Codec.build (Refined.encoder resourceServerNameType) (Refined.decoder resourceServerNameType)
+
+
+{-| Codec for ResourceServerScopeDescriptionType.
+-}
+resourceServerScopeDescriptionTypeCodec : Codec ResourceServerScopeDescriptionType
+resourceServerScopeDescriptionTypeCodec =
+    Codec.build
+        (Refined.encoder resourceServerScopeDescriptionType)
+        (Refined.decoder resourceServerScopeDescriptionType)
+
+
+{-| Codec for ResourceServerScopeListType.
+-}
+resourceServerScopeListTypeCodec : Codec ResourceServerScopeListType
+resourceServerScopeListTypeCodec =
+    Codec.list resourceServerScopeTypeCodec
+
+
+{-| Codec for ResourceServerScopeNameType.
+-}
+resourceServerScopeNameTypeCodec : Codec ResourceServerScopeNameType
+resourceServerScopeNameTypeCodec =
+    Codec.build (Refined.encoder resourceServerScopeNameType) (Refined.decoder resourceServerScopeNameType)
+
+
+{-| Codec for ResourceServerScopeType.
+-}
+resourceServerScopeTypeCodec : Codec ResourceServerScopeType
+resourceServerScopeTypeCodec =
+    Codec.object ResourceServerScopeType
+        |> Codec.field "ScopeDescription" .scopeDescription resourceServerScopeDescriptionTypeCodec
+        |> Codec.field "ScopeName" .scopeName resourceServerScopeNameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ResourceServerType.
+-}
+resourceServerTypeCodec : Codec ResourceServerType
+resourceServerTypeCodec =
+    Codec.object ResourceServerType
+        |> Codec.optionalField "Identifier" .identifier resourceServerIdentifierTypeCodec
+        |> Codec.optionalField "Name" .name resourceServerNameTypeCodec
+        |> Codec.optionalField "Scopes" .scopes resourceServerScopeListTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ResourceServersListType.
+-}
+resourceServersListTypeCodec : Codec ResourceServersListType
+resourceServersListTypeCodec =
+    Codec.list resourceServerTypeCodec
+
+
+{-| Codec for RespondToAuthChallengeRequest.
+-}
+respondToAuthChallengeRequestCodec : Codec RespondToAuthChallengeRequest
+respondToAuthChallengeRequestCodec =
+    Codec.object RespondToAuthChallengeRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ChallengeName" .challengeName challengeNameTypeCodec
+        |> Codec.optionalField "ChallengeResponses" .challengeResponses challengeResponsesTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for RespondToAuthChallengeResponse.
+-}
+respondToAuthChallengeResponseCodec : Codec RespondToAuthChallengeResponse
+respondToAuthChallengeResponseCodec =
+    Codec.object RespondToAuthChallengeResponse
+        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
+        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
+        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for RiskConfigurationType.
+-}
+riskConfigurationTypeCodec : Codec RiskConfigurationType
+riskConfigurationTypeCodec =
+    Codec.object RiskConfigurationType
+        |> Codec.optionalField
+            "AccountTakeoverRiskConfiguration"
+            .accountTakeoverRiskConfiguration
+            accountTakeoverRiskConfigurationTypeCodec
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField
+            "CompromisedCredentialsRiskConfiguration"
+            .compromisedCredentialsRiskConfiguration
+            compromisedCredentialsRiskConfigurationTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField
+            "RiskExceptionConfiguration"
+            .riskExceptionConfiguration
+            riskExceptionConfigurationTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for RiskDecisionType.
+-}
+riskDecisionTypeCodec : Codec RiskDecisionType
+riskDecisionTypeCodec =
+    Codec.build (Enum.encoder riskDecisionType) (Enum.decoder riskDecisionType)
+
+
+{-| Codec for RiskExceptionConfigurationType.
+-}
+riskExceptionConfigurationTypeCodec : Codec RiskExceptionConfigurationType
+riskExceptionConfigurationTypeCodec =
+    Codec.object RiskExceptionConfigurationType
+        |> Codec.optionalField "BlockedIPRangeList" .blockedIprangeList blockedIprangeListTypeCodec
+        |> Codec.optionalField "SkippedIPRangeList" .skippedIprangeList skippedIprangeListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for RiskLevelType.
+-}
+riskLevelTypeCodec : Codec RiskLevelType
+riskLevelTypeCodec =
+    Codec.build (Enum.encoder riskLevelType) (Enum.decoder riskLevelType)
+
+
+{-| Codec for S3BucketType.
+-}
+s3BucketTypeCodec : Codec S3BucketType
+s3BucketTypeCodec =
+    Codec.build (Refined.encoder s3BucketType) (Refined.decoder s3BucketType)
+
+
+{-| Codec for SmsmfaSettingsType.
+-}
+smsmfaSettingsTypeCodec : Codec SmsmfaSettingsType
+smsmfaSettingsTypeCodec =
+    Codec.object SmsmfaSettingsType
+        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
+        |> Codec.optionalField "PreferredMfa" .preferredMfa booleanTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SchemaAttributeType.
+-}
+schemaAttributeTypeCodec : Codec SchemaAttributeType
+schemaAttributeTypeCodec =
+    Codec.object SchemaAttributeType
+        |> Codec.optionalField "AttributeDataType" .attributeDataType attributeDataTypeCodec
+        |> Codec.optionalField "DeveloperOnlyAttribute" .developerOnlyAttribute booleanTypeCodec
+        |> Codec.optionalField "Mutable" .mutable booleanTypeCodec
+        |> Codec.optionalField "Name" .name customAttributeNameTypeCodec
+        |> Codec.optionalField
+            "NumberAttributeConstraints"
+            .numberAttributeConstraints
+            numberAttributeConstraintsTypeCodec
+        |> Codec.optionalField "Required" .required booleanTypeCodec
+        |> Codec.optionalField
+            "StringAttributeConstraints"
+            .stringAttributeConstraints
+            stringAttributeConstraintsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SchemaAttributesListType.
+-}
+schemaAttributesListTypeCodec : Codec SchemaAttributesListType
+schemaAttributesListTypeCodec =
+    Codec.list schemaAttributeTypeCodec
+
+
+{-| Codec for ScopeListType.
+-}
+scopeListTypeCodec : Codec ScopeListType
+scopeListTypeCodec =
+    Codec.list scopeTypeCodec
+
+
+{-| Codec for ScopeType.
+-}
+scopeTypeCodec : Codec ScopeType
+scopeTypeCodec =
+    Codec.build (Refined.encoder scopeType) (Refined.decoder scopeType)
+
+
+{-| Codec for SearchPaginationTokenType.
+-}
+searchPaginationTokenTypeCodec : Codec SearchPaginationTokenType
+searchPaginationTokenTypeCodec =
+    Codec.build (Refined.encoder searchPaginationTokenType) (Refined.decoder searchPaginationTokenType)
+
+
+{-| Codec for SearchedAttributeNamesListType.
+-}
+searchedAttributeNamesListTypeCodec : Codec SearchedAttributeNamesListType
+searchedAttributeNamesListTypeCodec =
+    Codec.list attributeNameTypeCodec
+
+
+{-| Codec for SecretCodeType.
+-}
+secretCodeTypeCodec : Codec SecretCodeType
+secretCodeTypeCodec =
+    Codec.build (Refined.encoder secretCodeType) (Refined.decoder secretCodeType)
+
+
+{-| Codec for SecretHashType.
+-}
+secretHashTypeCodec : Codec SecretHashType
+secretHashTypeCodec =
+    Codec.build (Refined.encoder secretHashType) (Refined.decoder secretHashType)
+
+
+{-| Codec for SessionType.
+-}
+sessionTypeCodec : Codec SessionType
+sessionTypeCodec =
+    Codec.build (Refined.encoder sessionType) (Refined.decoder sessionType)
+
+
+{-| Codec for SetRiskConfigurationRequest.
+-}
+setRiskConfigurationRequestCodec : Codec SetRiskConfigurationRequest
+setRiskConfigurationRequestCodec =
+    Codec.object SetRiskConfigurationRequest
+        |> Codec.optionalField
+            "AccountTakeoverRiskConfiguration"
+            .accountTakeoverRiskConfiguration
+            accountTakeoverRiskConfigurationTypeCodec
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField
+            "CompromisedCredentialsRiskConfiguration"
+            .compromisedCredentialsRiskConfiguration
+            compromisedCredentialsRiskConfigurationTypeCodec
+        |> Codec.optionalField
+            "RiskExceptionConfiguration"
+            .riskExceptionConfiguration
+            riskExceptionConfigurationTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetRiskConfigurationResponse.
+-}
+setRiskConfigurationResponseCodec : Codec SetRiskConfigurationResponse
+setRiskConfigurationResponseCodec =
+    Codec.object SetRiskConfigurationResponse
+        |> Codec.field "RiskConfiguration" .riskConfiguration riskConfigurationTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUicustomizationRequest.
+-}
+setUicustomizationRequestCodec : Codec SetUicustomizationRequest
+setUicustomizationRequestCodec =
+    Codec.object SetUicustomizationRequest
+        |> Codec.optionalField "CSS" .css csstypeCodec
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ImageFile" .imageFile imageFileTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUicustomizationResponse.
+-}
+setUicustomizationResponseCodec : Codec SetUicustomizationResponse
+setUicustomizationResponseCodec =
+    Codec.object SetUicustomizationResponse
+        |> Codec.field "UICustomization" .uicustomization uicustomizationTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUserMfapreferenceRequest.
+-}
+setUserMfapreferenceRequestCodec : Codec SetUserMfapreferenceRequest
+setUserMfapreferenceRequestCodec =
+    Codec.object SetUserMfapreferenceRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.optionalField "SMSMfaSettings" .smsmfaSettings smsmfaSettingsTypeCodec
+        |> Codec.optionalField "SoftwareTokenMfaSettings" .softwareTokenMfaSettings softwareTokenMfaSettingsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUserMfapreferenceResponse.
+-}
+setUserMfapreferenceResponseCodec : Codec SetUserMfapreferenceResponse
+setUserMfapreferenceResponseCodec =
+    Codec.object SetUserMfapreferenceResponse |> Codec.buildObject
+
+
+{-| Codec for SetUserPoolMfaConfigRequest.
+-}
+setUserPoolMfaConfigRequestCodec : Codec SetUserPoolMfaConfigRequest
+setUserPoolMfaConfigRequestCodec =
+    Codec.object SetUserPoolMfaConfigRequest
+        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
+        |> Codec.optionalField "SmsMfaConfiguration" .smsMfaConfiguration smsMfaConfigTypeCodec
+        |> Codec.optionalField
+            "SoftwareTokenMfaConfiguration"
+            .softwareTokenMfaConfiguration
+            softwareTokenMfaConfigTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUserPoolMfaConfigResponse.
+-}
+setUserPoolMfaConfigResponseCodec : Codec SetUserPoolMfaConfigResponse
+setUserPoolMfaConfigResponseCodec =
+    Codec.object SetUserPoolMfaConfigResponse
+        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
+        |> Codec.optionalField "SmsMfaConfiguration" .smsMfaConfiguration smsMfaConfigTypeCodec
+        |> Codec.optionalField
+            "SoftwareTokenMfaConfiguration"
+            .softwareTokenMfaConfiguration
+            softwareTokenMfaConfigTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUserSettingsRequest.
+-}
+setUserSettingsRequestCodec : Codec SetUserSettingsRequest
+setUserSettingsRequestCodec =
+    Codec.object SetUserSettingsRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "MFAOptions" .mfaoptions mfaoptionListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SetUserSettingsResponse.
+-}
+setUserSettingsResponseCodec : Codec SetUserSettingsResponse
+setUserSettingsResponseCodec =
+    Codec.object SetUserSettingsResponse |> Codec.buildObject
+
+
+{-| Codec for SignUpRequest.
+-}
+signUpRequestCodec : Codec SignUpRequest
+signUpRequestCodec =
+    Codec.object SignUpRequest
+        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.field "Password" .password passwordTypeCodec
+        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
+        |> Codec.optionalField "UserAttributes" .userAttributes attributeListTypeCodec
+        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.optionalField "ValidationData" .validationData attributeListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SignUpResponse.
+-}
+signUpResponseCodec : Codec SignUpResponse
+signUpResponseCodec =
+    Codec.object SignUpResponse
+        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
+        |> Codec.field "UserConfirmed" .userConfirmed booleanTypeCodec
+        |> Codec.field "UserSub" .userSub stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SkippedIprangeListType.
+-}
+skippedIprangeListTypeCodec : Codec SkippedIprangeListType
+skippedIprangeListTypeCodec =
+    Codec.list stringTypeCodec
+
+
+{-| Codec for SmsConfigurationType.
+-}
+smsConfigurationTypeCodec : Codec SmsConfigurationType
+smsConfigurationTypeCodec =
+    Codec.object SmsConfigurationType
+        |> Codec.optionalField "ExternalId" .externalId stringTypeCodec
+        |> Codec.field "SnsCallerArn" .snsCallerArn arnTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SmsMfaConfigType.
+-}
+smsMfaConfigTypeCodec : Codec SmsMfaConfigType
+smsMfaConfigTypeCodec =
+    Codec.object SmsMfaConfigType
+        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SmsVerificationMessageType.
+-}
+smsVerificationMessageTypeCodec : Codec SmsVerificationMessageType
+smsVerificationMessageTypeCodec =
+    Codec.build (Refined.encoder smsVerificationMessageType) (Refined.decoder smsVerificationMessageType)
+
+
+{-| Codec for SoftwareTokenMfauserCodeType.
+-}
+softwareTokenMfauserCodeTypeCodec : Codec SoftwareTokenMfauserCodeType
+softwareTokenMfauserCodeTypeCodec =
+    Codec.build (Refined.encoder softwareTokenMfauserCodeType) (Refined.decoder softwareTokenMfauserCodeType)
+
+
+{-| Codec for SoftwareTokenMfaConfigType.
+-}
+softwareTokenMfaConfigTypeCodec : Codec SoftwareTokenMfaConfigType
+softwareTokenMfaConfigTypeCodec =
+    Codec.object SoftwareTokenMfaConfigType
+        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for SoftwareTokenMfaSettingsType.
+-}
+softwareTokenMfaSettingsTypeCodec : Codec SoftwareTokenMfaSettingsType
+softwareTokenMfaSettingsTypeCodec =
+    Codec.object SoftwareTokenMfaSettingsType
+        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
+        |> Codec.optionalField "PreferredMfa" .preferredMfa booleanTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for StartUserImportJobRequest.
+-}
+startUserImportJobRequestCodec : Codec StartUserImportJobRequest
+startUserImportJobRequestCodec =
+    Codec.object StartUserImportJobRequest
+        |> Codec.field "JobId" .jobId userImportJobIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for StartUserImportJobResponse.
+-}
+startUserImportJobResponseCodec : Codec StartUserImportJobResponse
+startUserImportJobResponseCodec =
+    Codec.object StartUserImportJobResponse
+        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for StatusType.
+-}
+statusTypeCodec : Codec StatusType
+statusTypeCodec =
+    Codec.build (Enum.encoder statusType) (Enum.decoder statusType)
+
+
+{-| Codec for StopUserImportJobRequest.
+-}
+stopUserImportJobRequestCodec : Codec StopUserImportJobRequest
+stopUserImportJobRequestCodec =
+    Codec.object StopUserImportJobRequest
+        |> Codec.field "JobId" .jobId userImportJobIdTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for StopUserImportJobResponse.
+-}
+stopUserImportJobResponseCodec : Codec StopUserImportJobResponse
+stopUserImportJobResponseCodec =
+    Codec.object StopUserImportJobResponse
+        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for StringAttributeConstraintsType.
+-}
+stringAttributeConstraintsTypeCodec : Codec StringAttributeConstraintsType
+stringAttributeConstraintsTypeCodec =
+    Codec.object StringAttributeConstraintsType
+        |> Codec.optionalField "MaxLength" .maxLength stringTypeCodec
+        |> Codec.optionalField "MinLength" .minLength stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for StringType.
+-}
+stringTypeCodec : Codec StringType
+stringTypeCodec =
+    Codec.string
+
+
+{-| Codec for SupportedIdentityProvidersListType.
+-}
+supportedIdentityProvidersListTypeCodec : Codec SupportedIdentityProvidersListType
+supportedIdentityProvidersListTypeCodec =
+    Codec.list providerNameTypeCodec
+
+
+{-| Codec for TagKeysType.
+-}
+tagKeysTypeCodec : Codec TagKeysType
+tagKeysTypeCodec =
+    Codec.build (Refined.encoder tagKeysType) (Refined.decoder tagKeysType)
+
+
+{-| Codec for TagResourceRequest.
+-}
+tagResourceRequestCodec : Codec TagResourceRequest
+tagResourceRequestCodec =
+    Codec.object TagResourceRequest
+        |> Codec.field "ResourceArn" .resourceArn arnTypeCodec
+        |> Codec.optionalField "Tags" .tags userPoolTagsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for TagResourceResponse.
+-}
+tagResourceResponseCodec : Codec TagResourceResponse
+tagResourceResponseCodec =
+    Codec.object TagResourceResponse |> Codec.buildObject
+
+
+{-| Codec for TagValueType.
+-}
+tagValueTypeCodec : Codec TagValueType
+tagValueTypeCodec =
+    Codec.build (Refined.encoder tagValueType) (Refined.decoder tagValueType)
+
+
+{-| Codec for TemporaryPasswordValidityDaysType.
+-}
+temporaryPasswordValidityDaysTypeCodec : Codec TemporaryPasswordValidityDaysType
+temporaryPasswordValidityDaysTypeCodec =
+    Codec.build (Refined.encoder temporaryPasswordValidityDaysType) (Refined.decoder temporaryPasswordValidityDaysType)
+
+
+{-| Codec for TokenModelType.
+-}
+tokenModelTypeCodec : Codec TokenModelType
+tokenModelTypeCodec =
+    Codec.build (Refined.encoder tokenModelType) (Refined.decoder tokenModelType)
+
+
+{-| Codec for UicustomizationType.
+-}
+uicustomizationTypeCodec : Codec UicustomizationType
+uicustomizationTypeCodec =
+    Codec.object UicustomizationType
+        |> Codec.optionalField "CSS" .css csstypeCodec
+        |> Codec.optionalField "CSSVersion" .cssversion cssversionTypeCodec
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "ImageUrl" .imageUrl imageUrlTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UntagResourceRequest.
+-}
+untagResourceRequestCodec : Codec UntagResourceRequest
+untagResourceRequestCodec =
+    Codec.object UntagResourceRequest
+        |> Codec.field "ResourceArn" .resourceArn arnTypeCodec
+        |> Codec.optionalField "TagKeys" .tagKeys userPoolTagsListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UntagResourceResponse.
+-}
+untagResourceResponseCodec : Codec UntagResourceResponse
+untagResourceResponseCodec =
+    Codec.object UntagResourceResponse |> Codec.buildObject
+
+
+{-| Codec for UpdateAuthEventFeedbackRequest.
+-}
+updateAuthEventFeedbackRequestCodec : Codec UpdateAuthEventFeedbackRequest
+updateAuthEventFeedbackRequestCodec =
+    Codec.object UpdateAuthEventFeedbackRequest
+        |> Codec.field "EventId" .eventId eventIdTypeCodec
+        |> Codec.field "FeedbackToken" .feedbackToken tokenModelTypeCodec
+        |> Codec.field "FeedbackValue" .feedbackValue feedbackValueTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateAuthEventFeedbackResponse.
+-}
+updateAuthEventFeedbackResponseCodec : Codec UpdateAuthEventFeedbackResponse
+updateAuthEventFeedbackResponseCodec =
+    Codec.object UpdateAuthEventFeedbackResponse |> Codec.buildObject
+
+
+{-| Codec for UpdateDeviceStatusRequest.
+-}
+updateDeviceStatusRequestCodec : Codec UpdateDeviceStatusRequest
+updateDeviceStatusRequestCodec =
+    Codec.object UpdateDeviceStatusRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
+        |> Codec.optionalField "DeviceRememberedStatus" .deviceRememberedStatus deviceRememberedStatusTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateDeviceStatusResponse.
+-}
+updateDeviceStatusResponseCodec : Codec UpdateDeviceStatusResponse
+updateDeviceStatusResponseCodec =
+    Codec.object UpdateDeviceStatusResponse |> Codec.buildObject
+
+
+{-| Codec for UpdateGroupRequest.
+-}
+updateGroupRequestCodec : Codec UpdateGroupRequest
+updateGroupRequestCodec =
+    Codec.object UpdateGroupRequest
+        |> Codec.optionalField "Description" .description descriptionTypeCodec
+        |> Codec.field "GroupName" .groupName groupNameTypeCodec
+        |> Codec.optionalField "Precedence" .precedence precedenceTypeCodec
+        |> Codec.optionalField "RoleArn" .roleArn arnTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateGroupResponse.
+-}
+updateGroupResponseCodec : Codec UpdateGroupResponse
+updateGroupResponseCodec =
+    Codec.object UpdateGroupResponse |> Codec.optionalField "Group" .group groupTypeCodec |> Codec.buildObject
+
+
+{-| Codec for UpdateIdentityProviderRequest.
+-}
+updateIdentityProviderRequestCodec : Codec UpdateIdentityProviderRequest
+updateIdentityProviderRequestCodec =
+    Codec.object UpdateIdentityProviderRequest
+        |> Codec.optionalField "AttributeMapping" .attributeMapping attributeMappingTypeCodec
+        |> Codec.optionalField "IdpIdentifiers" .idpIdentifiers idpIdentifiersListTypeCodec
+        |> Codec.optionalField "ProviderDetails" .providerDetails providerDetailsTypeCodec
+        |> Codec.field "ProviderName" .providerName providerNameTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateIdentityProviderResponse.
+-}
+updateIdentityProviderResponseCodec : Codec UpdateIdentityProviderResponse
+updateIdentityProviderResponseCodec =
+    Codec.object UpdateIdentityProviderResponse
+        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateResourceServerRequest.
+-}
+updateResourceServerRequestCodec : Codec UpdateResourceServerRequest
+updateResourceServerRequestCodec =
+    Codec.object UpdateResourceServerRequest
+        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
+        |> Codec.field "Name" .name resourceServerNameTypeCodec
+        |> Codec.optionalField "Scopes" .scopes resourceServerScopeListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateResourceServerResponse.
+-}
+updateResourceServerResponseCodec : Codec UpdateResourceServerResponse
+updateResourceServerResponseCodec =
+    Codec.object UpdateResourceServerResponse
+        |> Codec.field "ResourceServer" .resourceServer resourceServerTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserAttributesRequest.
+-}
+updateUserAttributesRequestCodec : Codec UpdateUserAttributesRequest
+updateUserAttributesRequestCodec =
+    Codec.object UpdateUserAttributesRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "UserAttributes" .userAttributes attributeListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserAttributesResponse.
+-}
+updateUserAttributesResponseCodec : Codec UpdateUserAttributesResponse
+updateUserAttributesResponseCodec =
+    Codec.object UpdateUserAttributesResponse
+        |> Codec.optionalField "CodeDeliveryDetailsList" .codeDeliveryDetailsList codeDeliveryDetailsListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserPoolClientRequest.
+-}
+updateUserPoolClientRequestCodec : Codec UpdateUserPoolClientRequest
+updateUserPoolClientRequestCodec =
+    Codec.object UpdateUserPoolClientRequest
+        |> Codec.optionalField "AllowedOAuthFlows" .allowedOauthFlows oauthFlowsTypeCodec
+        |> Codec.optionalField "AllowedOAuthFlowsUserPoolClient" .allowedOauthFlowsUserPoolClient booleanTypeCodec
+        |> Codec.optionalField "AllowedOAuthScopes" .allowedOauthScopes scopeListTypeCodec
+        |> Codec.optionalField "AnalyticsConfiguration" .analyticsConfiguration analyticsConfigurationTypeCodec
+        |> Codec.optionalField "CallbackURLs" .callbackUrls callbackUrlsListTypeCodec
+        |> Codec.field "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ClientName" .clientName clientNameTypeCodec
+        |> Codec.optionalField "DefaultRedirectURI" .defaultRedirectUri redirectUrlTypeCodec
+        |> Codec.optionalField "ExplicitAuthFlows" .explicitAuthFlows explicitAuthFlowsListTypeCodec
+        |> Codec.optionalField "LogoutURLs" .logoutUrls logoutUrlsListTypeCodec
+        |> Codec.optionalField "ReadAttributes" .readAttributes clientPermissionListTypeCodec
+        |> Codec.optionalField "RefreshTokenValidity" .refreshTokenValidity refreshTokenValidityTypeCodec
+        |> Codec.optionalField
+            "SupportedIdentityProviders"
+            .supportedIdentityProviders
+            supportedIdentityProvidersListTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.optionalField "WriteAttributes" .writeAttributes clientPermissionListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserPoolClientResponse.
+-}
+updateUserPoolClientResponseCodec : Codec UpdateUserPoolClientResponse
+updateUserPoolClientResponseCodec =
+    Codec.object UpdateUserPoolClientResponse
+        |> Codec.optionalField "UserPoolClient" .userPoolClient userPoolClientTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserPoolDomainRequest.
+-}
+updateUserPoolDomainRequestCodec : Codec UpdateUserPoolDomainRequest
+updateUserPoolDomainRequestCodec =
+    Codec.object UpdateUserPoolDomainRequest
+        |> Codec.field "CustomDomainConfig" .customDomainConfig customDomainConfigTypeCodec
+        |> Codec.field "Domain" .domain domainTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserPoolDomainResponse.
+-}
+updateUserPoolDomainResponseCodec : Codec UpdateUserPoolDomainResponse
+updateUserPoolDomainResponseCodec =
+    Codec.object UpdateUserPoolDomainResponse
+        |> Codec.optionalField "CloudFrontDomain" .cloudFrontDomain domainTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserPoolRequest.
+-}
+updateUserPoolRequestCodec : Codec UpdateUserPoolRequest
+updateUserPoolRequestCodec =
+    Codec.object UpdateUserPoolRequest
+        |> Codec.optionalField "AdminCreateUserConfig" .adminCreateUserConfig adminCreateUserConfigTypeCodec
+        |> Codec.optionalField "AutoVerifiedAttributes" .autoVerifiedAttributes verifiedAttributesListTypeCodec
+        |> Codec.optionalField "DeviceConfiguration" .deviceConfiguration deviceConfigurationTypeCodec
+        |> Codec.optionalField "EmailConfiguration" .emailConfiguration emailConfigurationTypeCodec
+        |> Codec.optionalField "EmailVerificationMessage" .emailVerificationMessage emailVerificationMessageTypeCodec
+        |> Codec.optionalField "EmailVerificationSubject" .emailVerificationSubject emailVerificationSubjectTypeCodec
+        |> Codec.optionalField "LambdaConfig" .lambdaConfig lambdaConfigTypeCodec
+        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
+        |> Codec.optionalField "Policies" .policies userPoolPolicyTypeCodec
+        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
+        |> Codec.optionalField "SmsVerificationMessage" .smsVerificationMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "UserPoolAddOns" .userPoolAddOns userPoolAddOnsTypeCodec
+        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.optionalField "UserPoolTags" .userPoolTags userPoolTagsTypeCodec
+        |> Codec.optionalField
+            "VerificationMessageTemplate"
+            .verificationMessageTemplate
+            verificationMessageTemplateTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UpdateUserPoolResponse.
+-}
+updateUserPoolResponseCodec : Codec UpdateUserPoolResponse
+updateUserPoolResponseCodec =
+    Codec.object UpdateUserPoolResponse |> Codec.buildObject
+
+
+{-| Codec for UserContextDataType.
+-}
+userContextDataTypeCodec : Codec UserContextDataType
+userContextDataTypeCodec =
+    Codec.object UserContextDataType
+        |> Codec.optionalField "EncodedData" .encodedData stringTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserFilterType.
+-}
+userFilterTypeCodec : Codec UserFilterType
+userFilterTypeCodec =
+    Codec.build (Refined.encoder userFilterType) (Refined.decoder userFilterType)
+
+
+{-| Codec for UserImportJobIdType.
+-}
+userImportJobIdTypeCodec : Codec UserImportJobIdType
+userImportJobIdTypeCodec =
+    Codec.build (Refined.encoder userImportJobIdType) (Refined.decoder userImportJobIdType)
+
+
+{-| Codec for UserImportJobNameType.
+-}
+userImportJobNameTypeCodec : Codec UserImportJobNameType
+userImportJobNameTypeCodec =
+    Codec.build (Refined.encoder userImportJobNameType) (Refined.decoder userImportJobNameType)
+
+
+{-| Codec for UserImportJobStatusType.
+-}
+userImportJobStatusTypeCodec : Codec UserImportJobStatusType
+userImportJobStatusTypeCodec =
+    Codec.build (Enum.encoder userImportJobStatusType) (Enum.decoder userImportJobStatusType)
+
+
+{-| Codec for UserImportJobType.
+-}
+userImportJobTypeCodec : Codec UserImportJobType
+userImportJobTypeCodec =
+    Codec.object UserImportJobType
+        |> Codec.optionalField "CloudWatchLogsRoleArn" .cloudWatchLogsRoleArn arnTypeCodec
+        |> Codec.optionalField "CompletionDate" .completionDate dateTypeCodec
+        |> Codec.optionalField "CompletionMessage" .completionMessage completionMessageTypeCodec
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "FailedUsers" .failedUsers longTypeCodec
+        |> Codec.optionalField "ImportedUsers" .importedUsers longTypeCodec
+        |> Codec.optionalField "JobId" .jobId userImportJobIdTypeCodec
+        |> Codec.optionalField "JobName" .jobName userImportJobNameTypeCodec
+        |> Codec.optionalField "PreSignedUrl" .preSignedUrl preSignedUrlTypeCodec
+        |> Codec.optionalField "SkippedUsers" .skippedUsers longTypeCodec
+        |> Codec.optionalField "StartDate" .startDate dateTypeCodec
+        |> Codec.optionalField "Status" .status userImportJobStatusTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserImportJobsListType.
+-}
+userImportJobsListTypeCodec : Codec UserImportJobsListType
+userImportJobsListTypeCodec =
+    Codec.list userImportJobTypeCodec
+
+
+{-| Codec for UserMfasettingListType.
+-}
+userMfasettingListTypeCodec : Codec UserMfasettingListType
+userMfasettingListTypeCodec =
+    Codec.list stringTypeCodec
+
+
+{-| Codec for UserPoolAddOnsType.
+-}
+userPoolAddOnsTypeCodec : Codec UserPoolAddOnsType
+userPoolAddOnsTypeCodec =
+    Codec.object UserPoolAddOnsType
+        |> Codec.field "AdvancedSecurityMode" .advancedSecurityMode advancedSecurityModeTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserPoolClientDescription.
+-}
+userPoolClientDescriptionCodec : Codec UserPoolClientDescription
+userPoolClientDescriptionCodec =
+    Codec.object UserPoolClientDescription
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ClientName" .clientName clientNameTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserPoolClientListType.
+-}
+userPoolClientListTypeCodec : Codec UserPoolClientListType
+userPoolClientListTypeCodec =
+    Codec.list userPoolClientDescriptionCodec
+
+
+{-| Codec for UserPoolClientType.
+-}
+userPoolClientTypeCodec : Codec UserPoolClientType
+userPoolClientTypeCodec =
+    Codec.object UserPoolClientType
+        |> Codec.optionalField "AllowedOAuthFlows" .allowedOauthFlows oauthFlowsTypeCodec
+        |> Codec.optionalField "AllowedOAuthFlowsUserPoolClient" .allowedOauthFlowsUserPoolClient booleanTypeCodec
+        |> Codec.optionalField "AllowedOAuthScopes" .allowedOauthScopes scopeListTypeCodec
+        |> Codec.optionalField "AnalyticsConfiguration" .analyticsConfiguration analyticsConfigurationTypeCodec
+        |> Codec.optionalField "CallbackURLs" .callbackUrls callbackUrlsListTypeCodec
+        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
+        |> Codec.optionalField "ClientName" .clientName clientNameTypeCodec
+        |> Codec.optionalField "ClientSecret" .clientSecret clientSecretTypeCodec
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "DefaultRedirectURI" .defaultRedirectUri redirectUrlTypeCodec
+        |> Codec.optionalField "ExplicitAuthFlows" .explicitAuthFlows explicitAuthFlowsListTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "LogoutURLs" .logoutUrls logoutUrlsListTypeCodec
+        |> Codec.optionalField "ReadAttributes" .readAttributes clientPermissionListTypeCodec
+        |> Codec.optionalField "RefreshTokenValidity" .refreshTokenValidity refreshTokenValidityTypeCodec
+        |> Codec.optionalField
+            "SupportedIdentityProviders"
+            .supportedIdentityProviders
+            supportedIdentityProvidersListTypeCodec
+        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
+        |> Codec.optionalField "WriteAttributes" .writeAttributes clientPermissionListTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserPoolDescriptionType.
+-}
+userPoolDescriptionTypeCodec : Codec UserPoolDescriptionType
+userPoolDescriptionTypeCodec =
+    Codec.object UserPoolDescriptionType
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "Id" .id userPoolIdTypeCodec
+        |> Codec.optionalField "LambdaConfig" .lambdaConfig lambdaConfigTypeCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "Name" .name userPoolNameTypeCodec
+        |> Codec.optionalField "Status" .status statusTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserPoolIdType.
+-}
+userPoolIdTypeCodec : Codec UserPoolIdType
+userPoolIdTypeCodec =
+    Codec.build (Refined.encoder userPoolIdType) (Refined.decoder userPoolIdType)
+
+
+{-| Codec for UserPoolListType.
+-}
+userPoolListTypeCodec : Codec UserPoolListType
+userPoolListTypeCodec =
+    Codec.list userPoolDescriptionTypeCodec
+
+
+{-| Codec for UserPoolMfaType.
+-}
+userPoolMfaTypeCodec : Codec UserPoolMfaType
+userPoolMfaTypeCodec =
+    Codec.build (Enum.encoder userPoolMfaType) (Enum.decoder userPoolMfaType)
+
+
+{-| Codec for UserPoolNameType.
+-}
+userPoolNameTypeCodec : Codec UserPoolNameType
+userPoolNameTypeCodec =
+    Codec.build (Refined.encoder userPoolNameType) (Refined.decoder userPoolNameType)
+
+
+{-| Codec for UserPoolPolicyType.
+-}
+userPoolPolicyTypeCodec : Codec UserPoolPolicyType
+userPoolPolicyTypeCodec =
+    Codec.object UserPoolPolicyType
+        |> Codec.optionalField "PasswordPolicy" .passwordPolicy passwordPolicyTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for UserPoolTagsListType.
+-}
+userPoolTagsListTypeCodec : Codec UserPoolTagsListType
+userPoolTagsListTypeCodec =
+    Codec.list tagKeysTypeCodec
+
+
+{-| Codec for UserPoolTagsType.
+-}
+userPoolTagsTypeCodec : Codec UserPoolTagsType
+userPoolTagsTypeCodec =
+    Codec.build
+        (Refined.dictEncoder tagKeysType (Codec.encoder tagValueTypeCodec))
+        (Refined.dictDecoder tagKeysType (Codec.decoder tagValueTypeCodec))
 
 
 {-| Codec for UserPoolType.
@@ -6841,3628 +10343,126 @@ userPoolTypeCodec =
         |> Codec.buildObject
 
 
-{-| Codec for UserPoolTagsType.
+{-| Codec for UserStatusType.
 -}
-userPoolTagsTypeCodec : Codec UserPoolTagsType
-userPoolTagsTypeCodec =
-    Codec.build
-        (Refined.dictEncoder tagKeysType (Codec.encoder tagValueTypeCodec))
-        (Refined.dictDecoder tagKeysType (Codec.decoder tagValueTypeCodec))
+userStatusTypeCodec : Codec UserStatusType
+userStatusTypeCodec =
+    Codec.build (Enum.encoder userStatusType) (Enum.decoder userStatusType)
 
 
-{-| Codec for UserPoolTagsListType.
+{-| Codec for UserType.
 -}
-userPoolTagsListTypeCodec : Codec UserPoolTagsListType
-userPoolTagsListTypeCodec =
-    Codec.list tagKeysTypeCodec
-
-
-{-| Codec for UserPoolPolicyType.
--}
-userPoolPolicyTypeCodec : Codec UserPoolPolicyType
-userPoolPolicyTypeCodec =
-    Codec.object UserPoolPolicyType
-        |> Codec.optionalField "PasswordPolicy" .passwordPolicy passwordPolicyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UserPoolNameType.
--}
-userPoolNameTypeCodec : Codec UserPoolNameType
-userPoolNameTypeCodec =
-    Codec.build (Refined.encoder userPoolNameType) (Refined.decoder userPoolNameType)
-
-
-{-| Codec for UserPoolMfaType.
--}
-userPoolMfaTypeCodec : Codec UserPoolMfaType
-userPoolMfaTypeCodec =
-    Codec.build (Enum.encoder userPoolMfaType) (Enum.decoder userPoolMfaType)
-
-
-{-| Codec for UserPoolListType.
--}
-userPoolListTypeCodec : Codec UserPoolListType
-userPoolListTypeCodec =
-    Codec.list userPoolDescriptionTypeCodec
-
-
-{-| Codec for UserPoolIdType.
--}
-userPoolIdTypeCodec : Codec UserPoolIdType
-userPoolIdTypeCodec =
-    Codec.build (Refined.encoder userPoolIdType) (Refined.decoder userPoolIdType)
-
-
-{-| Codec for UserPoolDescriptionType.
--}
-userPoolDescriptionTypeCodec : Codec UserPoolDescriptionType
-userPoolDescriptionTypeCodec =
-    Codec.object UserPoolDescriptionType
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "Id" .id userPoolIdTypeCodec
-        |> Codec.optionalField "LambdaConfig" .lambdaConfig lambdaConfigTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "Name" .name userPoolNameTypeCodec
-        |> Codec.optionalField "Status" .status statusTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UserPoolClientType.
--}
-userPoolClientTypeCodec : Codec UserPoolClientType
-userPoolClientTypeCodec =
-    Codec.object UserPoolClientType
-        |> Codec.optionalField "AllowedOAuthFlows" .allowedOauthFlows oauthFlowsTypeCodec
-        |> Codec.optionalField "AllowedOAuthFlowsUserPoolClient" .allowedOauthFlowsUserPoolClient booleanTypeCodec
-        |> Codec.optionalField "AllowedOAuthScopes" .allowedOauthScopes scopeListTypeCodec
-        |> Codec.optionalField "AnalyticsConfiguration" .analyticsConfiguration analyticsConfigurationTypeCodec
-        |> Codec.optionalField "CallbackURLs" .callbackUrls callbackUrlsListTypeCodec
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ClientName" .clientName clientNameTypeCodec
-        |> Codec.optionalField "ClientSecret" .clientSecret clientSecretTypeCodec
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "DefaultRedirectURI" .defaultRedirectUri redirectUrlTypeCodec
-        |> Codec.optionalField "ExplicitAuthFlows" .explicitAuthFlows explicitAuthFlowsListTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "LogoutURLs" .logoutUrls logoutUrlsListTypeCodec
-        |> Codec.optionalField "ReadAttributes" .readAttributes clientPermissionListTypeCodec
-        |> Codec.optionalField "RefreshTokenValidity" .refreshTokenValidity refreshTokenValidityTypeCodec
-        |> Codec.optionalField
-            "SupportedIdentityProviders"
-            .supportedIdentityProviders
-            supportedIdentityProvidersListTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.optionalField "WriteAttributes" .writeAttributes clientPermissionListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UserPoolClientListType.
--}
-userPoolClientListTypeCodec : Codec UserPoolClientListType
-userPoolClientListTypeCodec =
-    Codec.list userPoolClientDescriptionCodec
-
-
-{-| Codec for UserPoolClientDescription.
--}
-userPoolClientDescriptionCodec : Codec UserPoolClientDescription
-userPoolClientDescriptionCodec =
-    Codec.object UserPoolClientDescription
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ClientName" .clientName clientNameTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UserPoolAddOnsType.
--}
-userPoolAddOnsTypeCodec : Codec UserPoolAddOnsType
-userPoolAddOnsTypeCodec =
-    Codec.object UserPoolAddOnsType
-        |> Codec.field "AdvancedSecurityMode" .advancedSecurityMode advancedSecurityModeTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UserMfasettingListType.
--}
-userMfasettingListTypeCodec : Codec UserMfasettingListType
-userMfasettingListTypeCodec =
-    Codec.list stringTypeCodec
-
-
-{-| Codec for UserImportJobsListType.
--}
-userImportJobsListTypeCodec : Codec UserImportJobsListType
-userImportJobsListTypeCodec =
-    Codec.list userImportJobTypeCodec
-
-
-{-| Codec for UserImportJobType.
--}
-userImportJobTypeCodec : Codec UserImportJobType
-userImportJobTypeCodec =
-    Codec.object UserImportJobType
-        |> Codec.optionalField "CloudWatchLogsRoleArn" .cloudWatchLogsRoleArn arnTypeCodec
-        |> Codec.optionalField "CompletionDate" .completionDate dateTypeCodec
-        |> Codec.optionalField "CompletionMessage" .completionMessage completionMessageTypeCodec
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "FailedUsers" .failedUsers longTypeCodec
-        |> Codec.optionalField "ImportedUsers" .importedUsers longTypeCodec
-        |> Codec.optionalField "JobId" .jobId userImportJobIdTypeCodec
-        |> Codec.optionalField "JobName" .jobName userImportJobNameTypeCodec
-        |> Codec.optionalField "PreSignedUrl" .preSignedUrl preSignedUrlTypeCodec
-        |> Codec.optionalField "SkippedUsers" .skippedUsers longTypeCodec
-        |> Codec.optionalField "StartDate" .startDate dateTypeCodec
-        |> Codec.optionalField "Status" .status userImportJobStatusTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UserImportJobStatusType.
--}
-userImportJobStatusTypeCodec : Codec UserImportJobStatusType
-userImportJobStatusTypeCodec =
-    Codec.build (Enum.encoder userImportJobStatusType) (Enum.decoder userImportJobStatusType)
-
-
-{-| Codec for UserImportJobNameType.
--}
-userImportJobNameTypeCodec : Codec UserImportJobNameType
-userImportJobNameTypeCodec =
-    Codec.build (Refined.encoder userImportJobNameType) (Refined.decoder userImportJobNameType)
-
-
-{-| Codec for UserImportJobIdType.
--}
-userImportJobIdTypeCodec : Codec UserImportJobIdType
-userImportJobIdTypeCodec =
-    Codec.build (Refined.encoder userImportJobIdType) (Refined.decoder userImportJobIdType)
-
-
-{-| Codec for UserFilterType.
--}
-userFilterTypeCodec : Codec UserFilterType
-userFilterTypeCodec =
-    Codec.build (Refined.encoder userFilterType) (Refined.decoder userFilterType)
-
-
-{-| Codec for UserContextDataType.
--}
-userContextDataTypeCodec : Codec UserContextDataType
-userContextDataTypeCodec =
-    Codec.object UserContextDataType
-        |> Codec.optionalField "EncodedData" .encodedData stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserPoolResponse.
--}
-updateUserPoolResponseCodec : Codec UpdateUserPoolResponse
-updateUserPoolResponseCodec =
-    Codec.object UpdateUserPoolResponse |> Codec.buildObject
-
-
-{-| Codec for UpdateUserPoolRequest.
--}
-updateUserPoolRequestCodec : Codec UpdateUserPoolRequest
-updateUserPoolRequestCodec =
-    Codec.object UpdateUserPoolRequest
-        |> Codec.optionalField "AdminCreateUserConfig" .adminCreateUserConfig adminCreateUserConfigTypeCodec
-        |> Codec.optionalField "AutoVerifiedAttributes" .autoVerifiedAttributes verifiedAttributesListTypeCodec
-        |> Codec.optionalField "DeviceConfiguration" .deviceConfiguration deviceConfigurationTypeCodec
-        |> Codec.optionalField "EmailConfiguration" .emailConfiguration emailConfigurationTypeCodec
-        |> Codec.optionalField "EmailVerificationMessage" .emailVerificationMessage emailVerificationMessageTypeCodec
-        |> Codec.optionalField "EmailVerificationSubject" .emailVerificationSubject emailVerificationSubjectTypeCodec
-        |> Codec.optionalField "LambdaConfig" .lambdaConfig lambdaConfigTypeCodec
-        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
-        |> Codec.optionalField "Policies" .policies userPoolPolicyTypeCodec
-        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
-        |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
-        |> Codec.optionalField "SmsVerificationMessage" .smsVerificationMessage smsVerificationMessageTypeCodec
-        |> Codec.optionalField "UserPoolAddOns" .userPoolAddOns userPoolAddOnsTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.optionalField "UserPoolTags" .userPoolTags userPoolTagsTypeCodec
-        |> Codec.optionalField
-            "VerificationMessageTemplate"
-            .verificationMessageTemplate
-            verificationMessageTemplateTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserPoolDomainResponse.
--}
-updateUserPoolDomainResponseCodec : Codec UpdateUserPoolDomainResponse
-updateUserPoolDomainResponseCodec =
-    Codec.object UpdateUserPoolDomainResponse
-        |> Codec.optionalField "CloudFrontDomain" .cloudFrontDomain domainTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserPoolDomainRequest.
--}
-updateUserPoolDomainRequestCodec : Codec UpdateUserPoolDomainRequest
-updateUserPoolDomainRequestCodec =
-    Codec.object UpdateUserPoolDomainRequest
-        |> Codec.field "CustomDomainConfig" .customDomainConfig customDomainConfigTypeCodec
-        |> Codec.field "Domain" .domain domainTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserPoolClientResponse.
--}
-updateUserPoolClientResponseCodec : Codec UpdateUserPoolClientResponse
-updateUserPoolClientResponseCodec =
-    Codec.object UpdateUserPoolClientResponse
-        |> Codec.optionalField "UserPoolClient" .userPoolClient userPoolClientTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserPoolClientRequest.
--}
-updateUserPoolClientRequestCodec : Codec UpdateUserPoolClientRequest
-updateUserPoolClientRequestCodec =
-    Codec.object UpdateUserPoolClientRequest
-        |> Codec.optionalField "AllowedOAuthFlows" .allowedOauthFlows oauthFlowsTypeCodec
-        |> Codec.optionalField "AllowedOAuthFlowsUserPoolClient" .allowedOauthFlowsUserPoolClient booleanTypeCodec
-        |> Codec.optionalField "AllowedOAuthScopes" .allowedOauthScopes scopeListTypeCodec
-        |> Codec.optionalField "AnalyticsConfiguration" .analyticsConfiguration analyticsConfigurationTypeCodec
-        |> Codec.optionalField "CallbackURLs" .callbackUrls callbackUrlsListTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ClientName" .clientName clientNameTypeCodec
-        |> Codec.optionalField "DefaultRedirectURI" .defaultRedirectUri redirectUrlTypeCodec
-        |> Codec.optionalField "ExplicitAuthFlows" .explicitAuthFlows explicitAuthFlowsListTypeCodec
-        |> Codec.optionalField "LogoutURLs" .logoutUrls logoutUrlsListTypeCodec
-        |> Codec.optionalField "ReadAttributes" .readAttributes clientPermissionListTypeCodec
-        |> Codec.optionalField "RefreshTokenValidity" .refreshTokenValidity refreshTokenValidityTypeCodec
-        |> Codec.optionalField
-            "SupportedIdentityProviders"
-            .supportedIdentityProviders
-            supportedIdentityProvidersListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.optionalField "WriteAttributes" .writeAttributes clientPermissionListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserAttributesResponse.
--}
-updateUserAttributesResponseCodec : Codec UpdateUserAttributesResponse
-updateUserAttributesResponseCodec =
-    Codec.object UpdateUserAttributesResponse
-        |> Codec.optionalField "CodeDeliveryDetailsList" .codeDeliveryDetailsList codeDeliveryDetailsListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateUserAttributesRequest.
--}
-updateUserAttributesRequestCodec : Codec UpdateUserAttributesRequest
-updateUserAttributesRequestCodec =
-    Codec.object UpdateUserAttributesRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "UserAttributes" .userAttributes attributeListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateResourceServerResponse.
--}
-updateResourceServerResponseCodec : Codec UpdateResourceServerResponse
-updateResourceServerResponseCodec =
-    Codec.object UpdateResourceServerResponse
-        |> Codec.field "ResourceServer" .resourceServer resourceServerTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateResourceServerRequest.
--}
-updateResourceServerRequestCodec : Codec UpdateResourceServerRequest
-updateResourceServerRequestCodec =
-    Codec.object UpdateResourceServerRequest
-        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
-        |> Codec.field "Name" .name resourceServerNameTypeCodec
-        |> Codec.optionalField "Scopes" .scopes resourceServerScopeListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateIdentityProviderResponse.
--}
-updateIdentityProviderResponseCodec : Codec UpdateIdentityProviderResponse
-updateIdentityProviderResponseCodec =
-    Codec.object UpdateIdentityProviderResponse
-        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateIdentityProviderRequest.
--}
-updateIdentityProviderRequestCodec : Codec UpdateIdentityProviderRequest
-updateIdentityProviderRequestCodec =
-    Codec.object UpdateIdentityProviderRequest
-        |> Codec.optionalField "AttributeMapping" .attributeMapping attributeMappingTypeCodec
-        |> Codec.optionalField "IdpIdentifiers" .idpIdentifiers idpIdentifiersListTypeCodec
-        |> Codec.optionalField "ProviderDetails" .providerDetails providerDetailsTypeCodec
-        |> Codec.field "ProviderName" .providerName providerNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateGroupResponse.
--}
-updateGroupResponseCodec : Codec UpdateGroupResponse
-updateGroupResponseCodec =
-    Codec.object UpdateGroupResponse |> Codec.optionalField "Group" .group groupTypeCodec |> Codec.buildObject
-
-
-{-| Codec for UpdateGroupRequest.
--}
-updateGroupRequestCodec : Codec UpdateGroupRequest
-updateGroupRequestCodec =
-    Codec.object UpdateGroupRequest
-        |> Codec.optionalField "Description" .description descriptionTypeCodec
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.optionalField "Precedence" .precedence precedenceTypeCodec
-        |> Codec.optionalField "RoleArn" .roleArn arnTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateDeviceStatusResponse.
--}
-updateDeviceStatusResponseCodec : Codec UpdateDeviceStatusResponse
-updateDeviceStatusResponseCodec =
-    Codec.object UpdateDeviceStatusResponse |> Codec.buildObject
-
-
-{-| Codec for UpdateDeviceStatusRequest.
--}
-updateDeviceStatusRequestCodec : Codec UpdateDeviceStatusRequest
-updateDeviceStatusRequestCodec =
-    Codec.object UpdateDeviceStatusRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.optionalField "DeviceRememberedStatus" .deviceRememberedStatus deviceRememberedStatusTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UpdateAuthEventFeedbackResponse.
--}
-updateAuthEventFeedbackResponseCodec : Codec UpdateAuthEventFeedbackResponse
-updateAuthEventFeedbackResponseCodec =
-    Codec.object UpdateAuthEventFeedbackResponse |> Codec.buildObject
-
-
-{-| Codec for UpdateAuthEventFeedbackRequest.
--}
-updateAuthEventFeedbackRequestCodec : Codec UpdateAuthEventFeedbackRequest
-updateAuthEventFeedbackRequestCodec =
-    Codec.object UpdateAuthEventFeedbackRequest
-        |> Codec.field "EventId" .eventId eventIdTypeCodec
-        |> Codec.field "FeedbackToken" .feedbackToken tokenModelTypeCodec
-        |> Codec.field "FeedbackValue" .feedbackValue feedbackValueTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UntagResourceResponse.
--}
-untagResourceResponseCodec : Codec UntagResourceResponse
-untagResourceResponseCodec =
-    Codec.object UntagResourceResponse |> Codec.buildObject
-
-
-{-| Codec for UntagResourceRequest.
--}
-untagResourceRequestCodec : Codec UntagResourceRequest
-untagResourceRequestCodec =
-    Codec.object UntagResourceRequest
-        |> Codec.field "ResourceArn" .resourceArn arnTypeCodec
-        |> Codec.optionalField "TagKeys" .tagKeys userPoolTagsListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UicustomizationType.
--}
-uicustomizationTypeCodec : Codec UicustomizationType
-uicustomizationTypeCodec =
-    Codec.object UicustomizationType
-        |> Codec.optionalField "CSS" .css csstypeCodec
-        |> Codec.optionalField "CSSVersion" .cssversion cssversionTypeCodec
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "ImageUrl" .imageUrl imageUrlTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for TokenModelType.
--}
-tokenModelTypeCodec : Codec TokenModelType
-tokenModelTypeCodec =
-    Codec.build (Refined.encoder tokenModelType) (Refined.decoder tokenModelType)
-
-
-{-| Codec for TemporaryPasswordValidityDaysType.
--}
-temporaryPasswordValidityDaysTypeCodec : Codec TemporaryPasswordValidityDaysType
-temporaryPasswordValidityDaysTypeCodec =
-    Codec.build (Refined.encoder temporaryPasswordValidityDaysType) (Refined.decoder temporaryPasswordValidityDaysType)
-
-
-{-| Codec for TagValueType.
--}
-tagValueTypeCodec : Codec TagValueType
-tagValueTypeCodec =
-    Codec.build (Refined.encoder tagValueType) (Refined.decoder tagValueType)
-
-
-{-| Codec for TagResourceResponse.
--}
-tagResourceResponseCodec : Codec TagResourceResponse
-tagResourceResponseCodec =
-    Codec.object TagResourceResponse |> Codec.buildObject
-
-
-{-| Codec for TagResourceRequest.
--}
-tagResourceRequestCodec : Codec TagResourceRequest
-tagResourceRequestCodec =
-    Codec.object TagResourceRequest
-        |> Codec.field "ResourceArn" .resourceArn arnTypeCodec
-        |> Codec.optionalField "Tags" .tags userPoolTagsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for TagKeysType.
--}
-tagKeysTypeCodec : Codec TagKeysType
-tagKeysTypeCodec =
-    Codec.build (Refined.encoder tagKeysType) (Refined.decoder tagKeysType)
-
-
-{-| Codec for SupportedIdentityProvidersListType.
--}
-supportedIdentityProvidersListTypeCodec : Codec SupportedIdentityProvidersListType
-supportedIdentityProvidersListTypeCodec =
-    Codec.list providerNameTypeCodec
-
-
-{-| Codec for StringType.
--}
-stringTypeCodec : Codec StringType
-stringTypeCodec =
-    Codec.string
-
-
-{-| Codec for StringAttributeConstraintsType.
--}
-stringAttributeConstraintsTypeCodec : Codec StringAttributeConstraintsType
-stringAttributeConstraintsTypeCodec =
-    Codec.object StringAttributeConstraintsType
-        |> Codec.optionalField "MaxLength" .maxLength stringTypeCodec
-        |> Codec.optionalField "MinLength" .minLength stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for StopUserImportJobResponse.
--}
-stopUserImportJobResponseCodec : Codec StopUserImportJobResponse
-stopUserImportJobResponseCodec =
-    Codec.object StopUserImportJobResponse
-        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for StopUserImportJobRequest.
--}
-stopUserImportJobRequestCodec : Codec StopUserImportJobRequest
-stopUserImportJobRequestCodec =
-    Codec.object StopUserImportJobRequest
-        |> Codec.field "JobId" .jobId userImportJobIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for StatusType.
--}
-statusTypeCodec : Codec StatusType
-statusTypeCodec =
-    Codec.build (Enum.encoder statusType) (Enum.decoder statusType)
-
-
-{-| Codec for StartUserImportJobResponse.
--}
-startUserImportJobResponseCodec : Codec StartUserImportJobResponse
-startUserImportJobResponseCodec =
-    Codec.object StartUserImportJobResponse
-        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for StartUserImportJobRequest.
--}
-startUserImportJobRequestCodec : Codec StartUserImportJobRequest
-startUserImportJobRequestCodec =
-    Codec.object StartUserImportJobRequest
-        |> Codec.field "JobId" .jobId userImportJobIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SoftwareTokenMfaSettingsType.
--}
-softwareTokenMfaSettingsTypeCodec : Codec SoftwareTokenMfaSettingsType
-softwareTokenMfaSettingsTypeCodec =
-    Codec.object SoftwareTokenMfaSettingsType
-        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
-        |> Codec.optionalField "PreferredMfa" .preferredMfa booleanTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SoftwareTokenMfaConfigType.
--}
-softwareTokenMfaConfigTypeCodec : Codec SoftwareTokenMfaConfigType
-softwareTokenMfaConfigTypeCodec =
-    Codec.object SoftwareTokenMfaConfigType
-        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SoftwareTokenMfauserCodeType.
--}
-softwareTokenMfauserCodeTypeCodec : Codec SoftwareTokenMfauserCodeType
-softwareTokenMfauserCodeTypeCodec =
-    Codec.build (Refined.encoder softwareTokenMfauserCodeType) (Refined.decoder softwareTokenMfauserCodeType)
-
-
-{-| Codec for SmsVerificationMessageType.
--}
-smsVerificationMessageTypeCodec : Codec SmsVerificationMessageType
-smsVerificationMessageTypeCodec =
-    Codec.build (Refined.encoder smsVerificationMessageType) (Refined.decoder smsVerificationMessageType)
-
-
-{-| Codec for SmsMfaConfigType.
--}
-smsMfaConfigTypeCodec : Codec SmsMfaConfigType
-smsMfaConfigTypeCodec =
-    Codec.object SmsMfaConfigType
-        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
-        |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SmsConfigurationType.
--}
-smsConfigurationTypeCodec : Codec SmsConfigurationType
-smsConfigurationTypeCodec =
-    Codec.object SmsConfigurationType
-        |> Codec.optionalField "ExternalId" .externalId stringTypeCodec
-        |> Codec.field "SnsCallerArn" .snsCallerArn arnTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SkippedIprangeListType.
--}
-skippedIprangeListTypeCodec : Codec SkippedIprangeListType
-skippedIprangeListTypeCodec =
-    Codec.list stringTypeCodec
-
-
-{-| Codec for SignUpResponse.
--}
-signUpResponseCodec : Codec SignUpResponse
-signUpResponseCodec =
-    Codec.object SignUpResponse
-        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
-        |> Codec.field "UserConfirmed" .userConfirmed booleanTypeCodec
-        |> Codec.field "UserSub" .userSub stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SignUpRequest.
--}
-signUpRequestCodec : Codec SignUpRequest
-signUpRequestCodec =
-    Codec.object SignUpRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "Password" .password passwordTypeCodec
-        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
-        |> Codec.optionalField "UserAttributes" .userAttributes attributeListTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.optionalField "ValidationData" .validationData attributeListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetUserSettingsResponse.
--}
-setUserSettingsResponseCodec : Codec SetUserSettingsResponse
-setUserSettingsResponseCodec =
-    Codec.object SetUserSettingsResponse |> Codec.buildObject
-
-
-{-| Codec for SetUserSettingsRequest.
--}
-setUserSettingsRequestCodec : Codec SetUserSettingsRequest
-setUserSettingsRequestCodec =
-    Codec.object SetUserSettingsRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "MFAOptions" .mfaoptions mfaoptionListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetUserPoolMfaConfigResponse.
--}
-setUserPoolMfaConfigResponseCodec : Codec SetUserPoolMfaConfigResponse
-setUserPoolMfaConfigResponseCodec =
-    Codec.object SetUserPoolMfaConfigResponse
-        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
-        |> Codec.optionalField "SmsMfaConfiguration" .smsMfaConfiguration smsMfaConfigTypeCodec
-        |> Codec.optionalField
-            "SoftwareTokenMfaConfiguration"
-            .softwareTokenMfaConfiguration
-            softwareTokenMfaConfigTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetUserPoolMfaConfigRequest.
--}
-setUserPoolMfaConfigRequestCodec : Codec SetUserPoolMfaConfigRequest
-setUserPoolMfaConfigRequestCodec =
-    Codec.object SetUserPoolMfaConfigRequest
-        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
-        |> Codec.optionalField "SmsMfaConfiguration" .smsMfaConfiguration smsMfaConfigTypeCodec
-        |> Codec.optionalField
-            "SoftwareTokenMfaConfiguration"
-            .softwareTokenMfaConfiguration
-            softwareTokenMfaConfigTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetUserMfapreferenceResponse.
--}
-setUserMfapreferenceResponseCodec : Codec SetUserMfapreferenceResponse
-setUserMfapreferenceResponseCodec =
-    Codec.object SetUserMfapreferenceResponse |> Codec.buildObject
-
-
-{-| Codec for SetUserMfapreferenceRequest.
--}
-setUserMfapreferenceRequestCodec : Codec SetUserMfapreferenceRequest
-setUserMfapreferenceRequestCodec =
-    Codec.object SetUserMfapreferenceRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.optionalField "SMSMfaSettings" .smsmfaSettings smsmfaSettingsTypeCodec
-        |> Codec.optionalField "SoftwareTokenMfaSettings" .softwareTokenMfaSettings softwareTokenMfaSettingsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetUicustomizationResponse.
--}
-setUicustomizationResponseCodec : Codec SetUicustomizationResponse
-setUicustomizationResponseCodec =
-    Codec.object SetUicustomizationResponse
-        |> Codec.field "UICustomization" .uicustomization uicustomizationTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetUicustomizationRequest.
--}
-setUicustomizationRequestCodec : Codec SetUicustomizationRequest
-setUicustomizationRequestCodec =
-    Codec.object SetUicustomizationRequest
-        |> Codec.optionalField "CSS" .css csstypeCodec
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ImageFile" .imageFile imageFileTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetRiskConfigurationResponse.
--}
-setRiskConfigurationResponseCodec : Codec SetRiskConfigurationResponse
-setRiskConfigurationResponseCodec =
-    Codec.object SetRiskConfigurationResponse
-        |> Codec.field "RiskConfiguration" .riskConfiguration riskConfigurationTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SetRiskConfigurationRequest.
--}
-setRiskConfigurationRequestCodec : Codec SetRiskConfigurationRequest
-setRiskConfigurationRequestCodec =
-    Codec.object SetRiskConfigurationRequest
-        |> Codec.optionalField
-            "AccountTakeoverRiskConfiguration"
-            .accountTakeoverRiskConfiguration
-            accountTakeoverRiskConfigurationTypeCodec
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField
-            "CompromisedCredentialsRiskConfiguration"
-            .compromisedCredentialsRiskConfiguration
-            compromisedCredentialsRiskConfigurationTypeCodec
-        |> Codec.optionalField
-            "RiskExceptionConfiguration"
-            .riskExceptionConfiguration
-            riskExceptionConfigurationTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SessionType.
--}
-sessionTypeCodec : Codec SessionType
-sessionTypeCodec =
-    Codec.build (Refined.encoder sessionType) (Refined.decoder sessionType)
-
-
-{-| Codec for SecretHashType.
--}
-secretHashTypeCodec : Codec SecretHashType
-secretHashTypeCodec =
-    Codec.build (Refined.encoder secretHashType) (Refined.decoder secretHashType)
-
-
-{-| Codec for SecretCodeType.
--}
-secretCodeTypeCodec : Codec SecretCodeType
-secretCodeTypeCodec =
-    Codec.build (Refined.encoder secretCodeType) (Refined.decoder secretCodeType)
-
-
-{-| Codec for SearchedAttributeNamesListType.
--}
-searchedAttributeNamesListTypeCodec : Codec SearchedAttributeNamesListType
-searchedAttributeNamesListTypeCodec =
-    Codec.list attributeNameTypeCodec
-
-
-{-| Codec for SearchPaginationTokenType.
--}
-searchPaginationTokenTypeCodec : Codec SearchPaginationTokenType
-searchPaginationTokenTypeCodec =
-    Codec.build (Refined.encoder searchPaginationTokenType) (Refined.decoder searchPaginationTokenType)
-
-
-{-| Codec for ScopeType.
--}
-scopeTypeCodec : Codec ScopeType
-scopeTypeCodec =
-    Codec.build (Refined.encoder scopeType) (Refined.decoder scopeType)
-
-
-{-| Codec for ScopeListType.
--}
-scopeListTypeCodec : Codec ScopeListType
-scopeListTypeCodec =
-    Codec.list scopeTypeCodec
-
-
-{-| Codec for SchemaAttributesListType.
--}
-schemaAttributesListTypeCodec : Codec SchemaAttributesListType
-schemaAttributesListTypeCodec =
-    Codec.list schemaAttributeTypeCodec
-
-
-{-| Codec for SchemaAttributeType.
--}
-schemaAttributeTypeCodec : Codec SchemaAttributeType
-schemaAttributeTypeCodec =
-    Codec.object SchemaAttributeType
-        |> Codec.optionalField "AttributeDataType" .attributeDataType attributeDataTypeCodec
-        |> Codec.optionalField "DeveloperOnlyAttribute" .developerOnlyAttribute booleanTypeCodec
-        |> Codec.optionalField "Mutable" .mutable booleanTypeCodec
-        |> Codec.optionalField "Name" .name customAttributeNameTypeCodec
-        |> Codec.optionalField
-            "NumberAttributeConstraints"
-            .numberAttributeConstraints
-            numberAttributeConstraintsTypeCodec
-        |> Codec.optionalField "Required" .required booleanTypeCodec
-        |> Codec.optionalField
-            "StringAttributeConstraints"
-            .stringAttributeConstraints
-            stringAttributeConstraintsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SmsmfaSettingsType.
--}
-smsmfaSettingsTypeCodec : Codec SmsmfaSettingsType
-smsmfaSettingsTypeCodec =
-    Codec.object SmsmfaSettingsType
-        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
-        |> Codec.optionalField "PreferredMfa" .preferredMfa booleanTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for S3BucketType.
--}
-s3BucketTypeCodec : Codec S3BucketType
-s3BucketTypeCodec =
-    Codec.build (Refined.encoder s3BucketType) (Refined.decoder s3BucketType)
-
-
-{-| Codec for RiskLevelType.
--}
-riskLevelTypeCodec : Codec RiskLevelType
-riskLevelTypeCodec =
-    Codec.build (Enum.encoder riskLevelType) (Enum.decoder riskLevelType)
-
-
-{-| Codec for RiskExceptionConfigurationType.
--}
-riskExceptionConfigurationTypeCodec : Codec RiskExceptionConfigurationType
-riskExceptionConfigurationTypeCodec =
-    Codec.object RiskExceptionConfigurationType
-        |> Codec.optionalField "BlockedIPRangeList" .blockedIprangeList blockedIprangeListTypeCodec
-        |> Codec.optionalField "SkippedIPRangeList" .skippedIprangeList skippedIprangeListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for RiskDecisionType.
--}
-riskDecisionTypeCodec : Codec RiskDecisionType
-riskDecisionTypeCodec =
-    Codec.build (Enum.encoder riskDecisionType) (Enum.decoder riskDecisionType)
-
-
-{-| Codec for RiskConfigurationType.
--}
-riskConfigurationTypeCodec : Codec RiskConfigurationType
-riskConfigurationTypeCodec =
-    Codec.object RiskConfigurationType
-        |> Codec.optionalField
-            "AccountTakeoverRiskConfiguration"
-            .accountTakeoverRiskConfiguration
-            accountTakeoverRiskConfigurationTypeCodec
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField
-            "CompromisedCredentialsRiskConfiguration"
-            .compromisedCredentialsRiskConfiguration
-            compromisedCredentialsRiskConfigurationTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField
-            "RiskExceptionConfiguration"
-            .riskExceptionConfiguration
-            riskExceptionConfigurationTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for RespondToAuthChallengeResponse.
--}
-respondToAuthChallengeResponseCodec : Codec RespondToAuthChallengeResponse
-respondToAuthChallengeResponseCodec =
-    Codec.object RespondToAuthChallengeResponse
-        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
-        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
-        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for RespondToAuthChallengeRequest.
--}
-respondToAuthChallengeRequestCodec : Codec RespondToAuthChallengeRequest
-respondToAuthChallengeRequestCodec =
-    Codec.object RespondToAuthChallengeRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ChallengeName" .challengeName challengeNameTypeCodec
-        |> Codec.optionalField "ChallengeResponses" .challengeResponses challengeResponsesTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ResourceServersListType.
--}
-resourceServersListTypeCodec : Codec ResourceServersListType
-resourceServersListTypeCodec =
-    Codec.list resourceServerTypeCodec
-
-
-{-| Codec for ResourceServerType.
--}
-resourceServerTypeCodec : Codec ResourceServerType
-resourceServerTypeCodec =
-    Codec.object ResourceServerType
-        |> Codec.optionalField "Identifier" .identifier resourceServerIdentifierTypeCodec
-        |> Codec.optionalField "Name" .name resourceServerNameTypeCodec
-        |> Codec.optionalField "Scopes" .scopes resourceServerScopeListTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ResourceServerScopeType.
--}
-resourceServerScopeTypeCodec : Codec ResourceServerScopeType
-resourceServerScopeTypeCodec =
-    Codec.object ResourceServerScopeType
-        |> Codec.field "ScopeDescription" .scopeDescription resourceServerScopeDescriptionTypeCodec
-        |> Codec.field "ScopeName" .scopeName resourceServerScopeNameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ResourceServerScopeNameType.
--}
-resourceServerScopeNameTypeCodec : Codec ResourceServerScopeNameType
-resourceServerScopeNameTypeCodec =
-    Codec.build (Refined.encoder resourceServerScopeNameType) (Refined.decoder resourceServerScopeNameType)
-
-
-{-| Codec for ResourceServerScopeListType.
--}
-resourceServerScopeListTypeCodec : Codec ResourceServerScopeListType
-resourceServerScopeListTypeCodec =
-    Codec.list resourceServerScopeTypeCodec
-
-
-{-| Codec for ResourceServerScopeDescriptionType.
--}
-resourceServerScopeDescriptionTypeCodec : Codec ResourceServerScopeDescriptionType
-resourceServerScopeDescriptionTypeCodec =
-    Codec.build
-        (Refined.encoder resourceServerScopeDescriptionType)
-        (Refined.decoder resourceServerScopeDescriptionType)
-
-
-{-| Codec for ResourceServerNameType.
--}
-resourceServerNameTypeCodec : Codec ResourceServerNameType
-resourceServerNameTypeCodec =
-    Codec.build (Refined.encoder resourceServerNameType) (Refined.decoder resourceServerNameType)
-
-
-{-| Codec for ResourceServerIdentifierType.
--}
-resourceServerIdentifierTypeCodec : Codec ResourceServerIdentifierType
-resourceServerIdentifierTypeCodec =
-    Codec.build (Refined.encoder resourceServerIdentifierType) (Refined.decoder resourceServerIdentifierType)
-
-
-{-| Codec for ResendConfirmationCodeResponse.
--}
-resendConfirmationCodeResponseCodec : Codec ResendConfirmationCodeResponse
-resendConfirmationCodeResponseCodec =
-    Codec.object ResendConfirmationCodeResponse
-        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ResendConfirmationCodeRequest.
--}
-resendConfirmationCodeRequestCodec : Codec ResendConfirmationCodeRequest
-resendConfirmationCodeRequestCodec =
-    Codec.object ResendConfirmationCodeRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for RefreshTokenValidityType.
--}
-refreshTokenValidityTypeCodec : Codec RefreshTokenValidityType
-refreshTokenValidityTypeCodec =
-    Codec.build (Refined.encoder refreshTokenValidityType) (Refined.decoder refreshTokenValidityType)
-
-
-{-| Codec for RedirectUrlType.
--}
-redirectUrlTypeCodec : Codec RedirectUrlType
-redirectUrlTypeCodec =
-    Codec.build (Refined.encoder redirectUrlType) (Refined.decoder redirectUrlType)
-
-
-{-| Codec for QueryLimitType.
--}
-queryLimitTypeCodec : Codec QueryLimitType
-queryLimitTypeCodec =
-    Codec.build (Refined.encoder queryLimitType) (Refined.decoder queryLimitType)
-
-
-{-| Codec for QueryLimit.
--}
-queryLimitCodec : Codec QueryLimit
-queryLimitCodec =
-    Codec.build (Refined.encoder queryLimit) (Refined.decoder queryLimit)
-
-
-{-| Codec for ProvidersListType.
--}
-providersListTypeCodec : Codec ProvidersListType
-providersListTypeCodec =
-    Codec.list providerDescriptionCodec
-
-
-{-| Codec for ProviderUserIdentifierType.
--}
-providerUserIdentifierTypeCodec : Codec ProviderUserIdentifierType
-providerUserIdentifierTypeCodec =
-    Codec.object ProviderUserIdentifierType
-        |> Codec.optionalField "ProviderAttributeName" .providerAttributeName stringTypeCodec
-        |> Codec.optionalField "ProviderAttributeValue" .providerAttributeValue stringTypeCodec
-        |> Codec.optionalField "ProviderName" .providerName providerNameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ProviderNameTypeV1.
--}
-providerNameTypeV1Codec : Codec ProviderNameTypeV1
-providerNameTypeV1Codec =
-    Codec.build (Refined.encoder providerNameTypeV1) (Refined.decoder providerNameTypeV1)
-
-
-{-| Codec for ProviderNameType.
--}
-providerNameTypeCodec : Codec ProviderNameType
-providerNameTypeCodec =
-    Codec.build (Refined.encoder providerNameType) (Refined.decoder providerNameType)
-
-
-{-| Codec for ProviderDetailsType.
--}
-providerDetailsTypeCodec : Codec ProviderDetailsType
-providerDetailsTypeCodec =
-    Codec.dict stringTypeCodec
-
-
-{-| Codec for ProviderDescription.
--}
-providerDescriptionCodec : Codec ProviderDescription
-providerDescriptionCodec =
-    Codec.object ProviderDescription
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "ProviderName" .providerName providerNameTypeCodec
-        |> Codec.optionalField "ProviderType" .providerType identityProviderTypeTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for PrecedenceType.
--}
-precedenceTypeCodec : Codec PrecedenceType
-precedenceTypeCodec =
-    Codec.build (Refined.encoder precedenceType) (Refined.decoder precedenceType)
-
-
-{-| Codec for PreSignedUrlType.
--}
-preSignedUrlTypeCodec : Codec PreSignedUrlType
-preSignedUrlTypeCodec =
-    Codec.build (Refined.encoder preSignedUrlType) (Refined.decoder preSignedUrlType)
-
-
-{-| Codec for PoolQueryLimitType.
--}
-poolQueryLimitTypeCodec : Codec PoolQueryLimitType
-poolQueryLimitTypeCodec =
-    Codec.build (Refined.encoder poolQueryLimitType) (Refined.decoder poolQueryLimitType)
-
-
-{-| Codec for PasswordType.
--}
-passwordTypeCodec : Codec PasswordType
-passwordTypeCodec =
-    Codec.build (Refined.encoder passwordType) (Refined.decoder passwordType)
-
-
-{-| Codec for PasswordPolicyType.
--}
-passwordPolicyTypeCodec : Codec PasswordPolicyType
-passwordPolicyTypeCodec =
-    Codec.object PasswordPolicyType
-        |> Codec.optionalField "MinimumLength" .minimumLength passwordPolicyMinLengthTypeCodec
-        |> Codec.optionalField "RequireLowercase" .requireLowercase booleanTypeCodec
-        |> Codec.optionalField "RequireNumbers" .requireNumbers booleanTypeCodec
-        |> Codec.optionalField "RequireSymbols" .requireSymbols booleanTypeCodec
-        |> Codec.optionalField "RequireUppercase" .requireUppercase booleanTypeCodec
-        |> Codec.optionalField
-            "TemporaryPasswordValidityDays"
-            .temporaryPasswordValidityDays
-            temporaryPasswordValidityDaysTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for PasswordPolicyMinLengthType.
--}
-passwordPolicyMinLengthTypeCodec : Codec PasswordPolicyMinLengthType
-passwordPolicyMinLengthTypeCodec =
-    Codec.build (Refined.encoder passwordPolicyMinLengthType) (Refined.decoder passwordPolicyMinLengthType)
-
-
-{-| Codec for PaginationKeyType.
--}
-paginationKeyTypeCodec : Codec PaginationKeyType
-paginationKeyTypeCodec =
-    Codec.build (Refined.encoder paginationKeyType) (Refined.decoder paginationKeyType)
-
-
-{-| Codec for PaginationKey.
--}
-paginationKeyCodec : Codec PaginationKey
-paginationKeyCodec =
-    Codec.build (Refined.encoder paginationKey) (Refined.decoder paginationKey)
-
-
-{-| Codec for OauthFlowsType.
--}
-oauthFlowsTypeCodec : Codec OauthFlowsType
-oauthFlowsTypeCodec =
-    Codec.list oauthFlowTypeCodec
-
-
-{-| Codec for OauthFlowType.
--}
-oauthFlowTypeCodec : Codec OauthFlowType
-oauthFlowTypeCodec =
-    Codec.build (Enum.encoder oauthFlowType) (Enum.decoder oauthFlowType)
-
-
-{-| Codec for NumberAttributeConstraintsType.
--}
-numberAttributeConstraintsTypeCodec : Codec NumberAttributeConstraintsType
-numberAttributeConstraintsTypeCodec =
-    Codec.object NumberAttributeConstraintsType
-        |> Codec.optionalField "MaxValue" .maxValue stringTypeCodec
-        |> Codec.optionalField "MinValue" .minValue stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for NotifyEmailType.
--}
-notifyEmailTypeCodec : Codec NotifyEmailType
-notifyEmailTypeCodec =
-    Codec.object NotifyEmailType
-        |> Codec.optionalField "HtmlBody" .htmlBody emailNotificationBodyTypeCodec
-        |> Codec.field "Subject" .subject emailNotificationSubjectTypeCodec
-        |> Codec.optionalField "TextBody" .textBody emailNotificationBodyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for NotifyConfigurationType.
--}
-notifyConfigurationTypeCodec : Codec NotifyConfigurationType
-notifyConfigurationTypeCodec =
-    Codec.object NotifyConfigurationType
-        |> Codec.optionalField "BlockEmail" .blockEmail notifyEmailTypeCodec
-        |> Codec.optionalField "From" .from stringTypeCodec
-        |> Codec.optionalField "MfaEmail" .mfaEmail notifyEmailTypeCodec
-        |> Codec.optionalField "NoActionEmail" .noActionEmail notifyEmailTypeCodec
-        |> Codec.optionalField "ReplyTo" .replyTo stringTypeCodec
-        |> Codec.field "SourceArn" .sourceArn arnTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for NewDeviceMetadataType.
--}
-newDeviceMetadataTypeCodec : Codec NewDeviceMetadataType
-newDeviceMetadataTypeCodec =
-    Codec.object NewDeviceMetadataType
-        |> Codec.optionalField "DeviceGroupKey" .deviceGroupKey stringTypeCodec
-        |> Codec.optionalField "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for MessageTemplateType.
--}
-messageTemplateTypeCodec : Codec MessageTemplateType
-messageTemplateTypeCodec =
-    Codec.object MessageTemplateType
-        |> Codec.optionalField "EmailMessage" .emailMessage emailVerificationMessageTypeCodec
-        |> Codec.optionalField "EmailSubject" .emailSubject emailVerificationSubjectTypeCodec
-        |> Codec.optionalField "SMSMessage" .smsmessage smsVerificationMessageTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for MessageActionType.
--}
-messageActionTypeCodec : Codec MessageActionType
-messageActionTypeCodec =
-    Codec.build (Enum.encoder messageActionType) (Enum.decoder messageActionType)
-
-
-{-| Codec for MfaoptionType.
--}
-mfaoptionTypeCodec : Codec MfaoptionType
-mfaoptionTypeCodec =
-    Codec.object MfaoptionType
-        |> Codec.optionalField "AttributeName" .attributeName attributeNameTypeCodec
-        |> Codec.optionalField "DeliveryMedium" .deliveryMedium deliveryMediumTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for MfaoptionListType.
--}
-mfaoptionListTypeCodec : Codec MfaoptionListType
-mfaoptionListTypeCodec =
-    Codec.list mfaoptionTypeCodec
-
-
-{-| Codec for LongType.
--}
-longTypeCodec : Codec LongType
-longTypeCodec =
-    Codec.int
-
-
-{-| Codec for LogoutUrlsListType.
--}
-logoutUrlsListTypeCodec : Codec LogoutUrlsListType
-logoutUrlsListTypeCodec =
-    Codec.list redirectUrlTypeCodec
-
-
-{-| Codec for ListUsersResponse.
--}
-listUsersResponseCodec : Codec ListUsersResponse
-listUsersResponseCodec =
-    Codec.object ListUsersResponse
-        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
-        |> Codec.optionalField "Users" .users usersListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUsersRequest.
--}
-listUsersRequestCodec : Codec ListUsersRequest
-listUsersRequestCodec =
-    Codec.object ListUsersRequest
-        |> Codec.optionalField "AttributesToGet" .attributesToGet searchedAttributeNamesListTypeCodec
-        |> Codec.optionalField "Filter" .filter userFilterTypeCodec
-        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
-        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUsersInGroupResponse.
--}
-listUsersInGroupResponseCodec : Codec ListUsersInGroupResponse
-listUsersInGroupResponseCodec =
-    Codec.object ListUsersInGroupResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.optionalField "Users" .users usersListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUsersInGroupRequest.
--}
-listUsersInGroupRequestCodec : Codec ListUsersInGroupRequest
-listUsersInGroupRequestCodec =
-    Codec.object ListUsersInGroupRequest
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUserPoolsResponse.
--}
-listUserPoolsResponseCodec : Codec ListUserPoolsResponse
-listUserPoolsResponseCodec =
-    Codec.object ListUserPoolsResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
-        |> Codec.optionalField "UserPools" .userPools userPoolListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUserPoolsRequest.
--}
-listUserPoolsRequestCodec : Codec ListUserPoolsRequest
-listUserPoolsRequestCodec =
-    Codec.object ListUserPoolsRequest
-        |> Codec.field "MaxResults" .maxResults poolQueryLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUserPoolClientsResponse.
--}
-listUserPoolClientsResponseCodec : Codec ListUserPoolClientsResponse
-listUserPoolClientsResponseCodec =
-    Codec.object ListUserPoolClientsResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.optionalField "UserPoolClients" .userPoolClients userPoolClientListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUserPoolClientsRequest.
--}
-listUserPoolClientsRequestCodec : Codec ListUserPoolClientsRequest
-listUserPoolClientsRequestCodec =
-    Codec.object ListUserPoolClientsRequest
-        |> Codec.optionalField "MaxResults" .maxResults queryLimitCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUserImportJobsResponse.
--}
-listUserImportJobsResponseCodec : Codec ListUserImportJobsResponse
-listUserImportJobsResponseCodec =
-    Codec.object ListUserImportJobsResponse
-        |> Codec.optionalField "PaginationToken" .paginationToken paginationKeyTypeCodec
-        |> Codec.optionalField "UserImportJobs" .userImportJobs userImportJobsListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListUserImportJobsRequest.
--}
-listUserImportJobsRequestCodec : Codec ListUserImportJobsRequest
-listUserImportJobsRequestCodec =
-    Codec.object ListUserImportJobsRequest
-        |> Codec.field "MaxResults" .maxResults poolQueryLimitTypeCodec
-        |> Codec.optionalField "PaginationToken" .paginationToken paginationKeyTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListTagsForResourceResponse.
--}
-listTagsForResourceResponseCodec : Codec ListTagsForResourceResponse
-listTagsForResourceResponseCodec =
-    Codec.object ListTagsForResourceResponse
-        |> Codec.optionalField "Tags" .tags userPoolTagsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListTagsForResourceRequest.
--}
-listTagsForResourceRequestCodec : Codec ListTagsForResourceRequest
-listTagsForResourceRequestCodec =
-    Codec.object ListTagsForResourceRequest |> Codec.field "ResourceArn" .resourceArn arnTypeCodec |> Codec.buildObject
-
-
-{-| Codec for ListResourceServersResponse.
--}
-listResourceServersResponseCodec : Codec ListResourceServersResponse
-listResourceServersResponseCodec =
-    Codec.object ListResourceServersResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
-        |> Codec.field "ResourceServers" .resourceServers resourceServersListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListResourceServersRequest.
--}
-listResourceServersRequestCodec : Codec ListResourceServersRequest
-listResourceServersRequestCodec =
-    Codec.object ListResourceServersRequest
-        |> Codec.optionalField "MaxResults" .maxResults listResourceServersLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListResourceServersLimitType.
--}
-listResourceServersLimitTypeCodec : Codec ListResourceServersLimitType
-listResourceServersLimitTypeCodec =
-    Codec.build (Refined.encoder listResourceServersLimitType) (Refined.decoder listResourceServersLimitType)
-
-
-{-| Codec for ListProvidersLimitType.
--}
-listProvidersLimitTypeCodec : Codec ListProvidersLimitType
-listProvidersLimitTypeCodec =
-    Codec.build (Refined.encoder listProvidersLimitType) (Refined.decoder listProvidersLimitType)
-
-
-{-| Codec for ListOfStringTypes.
--}
-listOfStringTypesCodec : Codec ListOfStringTypes
-listOfStringTypesCodec =
-    Codec.list stringTypeCodec
-
-
-{-| Codec for ListIdentityProvidersResponse.
--}
-listIdentityProvidersResponseCodec : Codec ListIdentityProvidersResponse
-listIdentityProvidersResponseCodec =
-    Codec.object ListIdentityProvidersResponse
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
-        |> Codec.field "Providers" .providers providersListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListIdentityProvidersRequest.
--}
-listIdentityProvidersRequestCodec : Codec ListIdentityProvidersRequest
-listIdentityProvidersRequestCodec =
-    Codec.object ListIdentityProvidersRequest
-        |> Codec.optionalField "MaxResults" .maxResults listProvidersLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListGroupsResponse.
--}
-listGroupsResponseCodec : Codec ListGroupsResponse
-listGroupsResponseCodec =
-    Codec.object ListGroupsResponse
-        |> Codec.optionalField "Groups" .groups groupListTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListGroupsRequest.
--}
-listGroupsRequestCodec : Codec ListGroupsRequest
-listGroupsRequestCodec =
-    Codec.object ListGroupsRequest
-        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListDevicesResponse.
--}
-listDevicesResponseCodec : Codec ListDevicesResponse
-listDevicesResponseCodec =
-    Codec.object ListDevicesResponse
-        |> Codec.optionalField "Devices" .devices deviceListTypeCodec
-        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListDevicesRequest.
--}
-listDevicesRequestCodec : Codec ListDevicesRequest
-listDevicesRequestCodec =
-    Codec.object ListDevicesRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
-        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for LambdaConfigType.
--}
-lambdaConfigTypeCodec : Codec LambdaConfigType
-lambdaConfigTypeCodec =
-    Codec.object LambdaConfigType
-        |> Codec.optionalField "CreateAuthChallenge" .createAuthChallenge arnTypeCodec
-        |> Codec.optionalField "CustomMessage" .customMessage arnTypeCodec
-        |> Codec.optionalField "DefineAuthChallenge" .defineAuthChallenge arnTypeCodec
-        |> Codec.optionalField "PostAuthentication" .postAuthentication arnTypeCodec
-        |> Codec.optionalField "PostConfirmation" .postConfirmation arnTypeCodec
-        |> Codec.optionalField "PreAuthentication" .preAuthentication arnTypeCodec
-        |> Codec.optionalField "PreSignUp" .preSignUp arnTypeCodec
-        |> Codec.optionalField "PreTokenGeneration" .preTokenGeneration arnTypeCodec
-        |> Codec.optionalField "UserMigration" .userMigration arnTypeCodec
-        |> Codec.optionalField "VerifyAuthChallengeResponse" .verifyAuthChallengeResponse arnTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for IntegerType.
--}
-integerTypeCodec : Codec IntegerType
-integerTypeCodec =
-    Codec.int
-
-
-{-| Codec for InitiateAuthResponse.
--}
-initiateAuthResponseCodec : Codec InitiateAuthResponse
-initiateAuthResponseCodec =
-    Codec.object InitiateAuthResponse
-        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
-        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
-        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for InitiateAuthRequest.
--}
-initiateAuthRequestCodec : Codec InitiateAuthRequest
-initiateAuthRequestCodec =
-    Codec.object InitiateAuthRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "AuthFlow" .authFlow authFlowTypeCodec
-        |> Codec.optionalField "AuthParameters" .authParameters authParametersTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ClientMetadata" .clientMetadata clientMetadataTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ImageUrlType.
--}
-imageUrlTypeCodec : Codec ImageUrlType
-imageUrlTypeCodec =
-    Codec.string
-
-
-{-| Codec for ImageFileType.
--}
-imageFileTypeCodec : Codec ImageFileType
-imageFileTypeCodec =
-    Codec.string
-
-
-{-| Codec for IdpIdentifiersListType.
--}
-idpIdentifiersListTypeCodec : Codec IdpIdentifiersListType
-idpIdentifiersListTypeCodec =
-    Codec.list idpIdentifierTypeCodec
-
-
-{-| Codec for IdpIdentifierType.
--}
-idpIdentifierTypeCodec : Codec IdpIdentifierType
-idpIdentifierTypeCodec =
-    Codec.build (Refined.encoder idpIdentifierType) (Refined.decoder idpIdentifierType)
-
-
-{-| Codec for IdentityProviderTypeType.
--}
-identityProviderTypeTypeCodec : Codec IdentityProviderTypeType
-identityProviderTypeTypeCodec =
-    Codec.build (Enum.encoder identityProviderTypeType) (Enum.decoder identityProviderTypeType)
-
-
-{-| Codec for IdentityProviderType.
--}
-identityProviderTypeCodec : Codec IdentityProviderType
-identityProviderTypeCodec =
-    Codec.object IdentityProviderType
-        |> Codec.optionalField "AttributeMapping" .attributeMapping attributeMappingTypeCodec
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "IdpIdentifiers" .idpIdentifiers idpIdentifiersListTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "ProviderDetails" .providerDetails providerDetailsTypeCodec
-        |> Codec.optionalField "ProviderName" .providerName providerNameTypeCodec
-        |> Codec.optionalField "ProviderType" .providerType identityProviderTypeTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for HttpHeaderList.
--}
-httpHeaderListCodec : Codec HttpHeaderList
-httpHeaderListCodec =
-    Codec.list httpHeaderCodec
-
-
-{-| Codec for HttpHeader.
--}
-httpHeaderCodec : Codec HttpHeader
-httpHeaderCodec =
-    Codec.object HttpHeader
-        |> Codec.optionalField "headerName" .headerName stringTypeCodec
-        |> Codec.optionalField "headerValue" .headerValue stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for HexStringType.
--}
-hexStringTypeCodec : Codec HexStringType
-hexStringTypeCodec =
-    Codec.build (Refined.encoder hexStringType) (Refined.decoder hexStringType)
-
-
-{-| Codec for GroupType.
--}
-groupTypeCodec : Codec GroupType
-groupTypeCodec =
-    Codec.object GroupType
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "Description" .description descriptionTypeCodec
-        |> Codec.optionalField "GroupName" .groupName groupNameTypeCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "Precedence" .precedence precedenceTypeCodec
-        |> Codec.optionalField "RoleArn" .roleArn arnTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GroupNameType.
--}
-groupNameTypeCodec : Codec GroupNameType
-groupNameTypeCodec =
-    Codec.build (Refined.encoder groupNameType) (Refined.decoder groupNameType)
-
-
-{-| Codec for GroupListType.
--}
-groupListTypeCodec : Codec GroupListType
-groupListTypeCodec =
-    Codec.list groupTypeCodec
-
-
-{-| Codec for GlobalSignOutResponse.
--}
-globalSignOutResponseCodec : Codec GlobalSignOutResponse
-globalSignOutResponseCodec =
-    Codec.object GlobalSignOutResponse |> Codec.buildObject
-
-
-{-| Codec for GlobalSignOutRequest.
--}
-globalSignOutRequestCodec : Codec GlobalSignOutRequest
-globalSignOutRequestCodec =
-    Codec.object GlobalSignOutRequest |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec |> Codec.buildObject
-
-
-{-| Codec for GetUserResponse.
--}
-getUserResponseCodec : Codec GetUserResponse
-getUserResponseCodec =
-    Codec.object GetUserResponse
-        |> Codec.optionalField "MFAOptions" .mfaoptions mfaoptionListTypeCodec
-        |> Codec.optionalField "PreferredMfaSetting" .preferredMfaSetting stringTypeCodec
-        |> Codec.field "UserAttributes" .userAttributes attributeListTypeCodec
-        |> Codec.optionalField "UserMFASettingList" .userMfasettingList userMfasettingListTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetUserRequest.
--}
-getUserRequestCodec : Codec GetUserRequest
-getUserRequestCodec =
-    Codec.object GetUserRequest |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec |> Codec.buildObject
-
-
-{-| Codec for GetUserPoolMfaConfigResponse.
--}
-getUserPoolMfaConfigResponseCodec : Codec GetUserPoolMfaConfigResponse
-getUserPoolMfaConfigResponseCodec =
-    Codec.object GetUserPoolMfaConfigResponse
-        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
-        |> Codec.optionalField "SmsMfaConfiguration" .smsMfaConfiguration smsMfaConfigTypeCodec
-        |> Codec.optionalField
-            "SoftwareTokenMfaConfiguration"
-            .softwareTokenMfaConfiguration
-            softwareTokenMfaConfigTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetUserPoolMfaConfigRequest.
--}
-getUserPoolMfaConfigRequestCodec : Codec GetUserPoolMfaConfigRequest
-getUserPoolMfaConfigRequestCodec =
-    Codec.object GetUserPoolMfaConfigRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetUserAttributeVerificationCodeResponse.
--}
-getUserAttributeVerificationCodeResponseCodec : Codec GetUserAttributeVerificationCodeResponse
-getUserAttributeVerificationCodeResponseCodec =
-    Codec.object GetUserAttributeVerificationCodeResponse
-        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetUserAttributeVerificationCodeRequest.
--}
-getUserAttributeVerificationCodeRequestCodec : Codec GetUserAttributeVerificationCodeRequest
-getUserAttributeVerificationCodeRequestCodec =
-    Codec.object GetUserAttributeVerificationCodeRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "AttributeName" .attributeName attributeNameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetUicustomizationResponse.
--}
-getUicustomizationResponseCodec : Codec GetUicustomizationResponse
-getUicustomizationResponseCodec =
-    Codec.object GetUicustomizationResponse
-        |> Codec.field "UICustomization" .uicustomization uicustomizationTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetUicustomizationRequest.
--}
-getUicustomizationRequestCodec : Codec GetUicustomizationRequest
-getUicustomizationRequestCodec =
-    Codec.object GetUicustomizationRequest
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetSigningCertificateResponse.
--}
-getSigningCertificateResponseCodec : Codec GetSigningCertificateResponse
-getSigningCertificateResponseCodec =
-    Codec.object GetSigningCertificateResponse
-        |> Codec.optionalField "Certificate" .certificate stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetSigningCertificateRequest.
--}
-getSigningCertificateRequestCodec : Codec GetSigningCertificateRequest
-getSigningCertificateRequestCodec =
-    Codec.object GetSigningCertificateRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetIdentityProviderByIdentifierResponse.
--}
-getIdentityProviderByIdentifierResponseCodec : Codec GetIdentityProviderByIdentifierResponse
-getIdentityProviderByIdentifierResponseCodec =
-    Codec.object GetIdentityProviderByIdentifierResponse
-        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetIdentityProviderByIdentifierRequest.
--}
-getIdentityProviderByIdentifierRequestCodec : Codec GetIdentityProviderByIdentifierRequest
-getIdentityProviderByIdentifierRequestCodec =
-    Codec.object GetIdentityProviderByIdentifierRequest
-        |> Codec.field "IdpIdentifier" .idpIdentifier idpIdentifierTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetGroupResponse.
--}
-getGroupResponseCodec : Codec GetGroupResponse
-getGroupResponseCodec =
-    Codec.object GetGroupResponse |> Codec.optionalField "Group" .group groupTypeCodec |> Codec.buildObject
-
-
-{-| Codec for GetGroupRequest.
--}
-getGroupRequestCodec : Codec GetGroupRequest
-getGroupRequestCodec =
-    Codec.object GetGroupRequest
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetDeviceResponse.
--}
-getDeviceResponseCodec : Codec GetDeviceResponse
-getDeviceResponseCodec =
-    Codec.object GetDeviceResponse |> Codec.field "Device" .device deviceTypeCodec |> Codec.buildObject
-
-
-{-| Codec for GetDeviceRequest.
--}
-getDeviceRequestCodec : Codec GetDeviceRequest
-getDeviceRequestCodec =
-    Codec.object GetDeviceRequest
-        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetCsvheaderResponse.
--}
-getCsvheaderResponseCodec : Codec GetCsvheaderResponse
-getCsvheaderResponseCodec =
-    Codec.object GetCsvheaderResponse
-        |> Codec.optionalField "CSVHeader" .csvheader listOfStringTypesCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetCsvheaderRequest.
--}
-getCsvheaderRequestCodec : Codec GetCsvheaderRequest
-getCsvheaderRequestCodec =
-    Codec.object GetCsvheaderRequest |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec |> Codec.buildObject
-
-
-{-| Codec for GenerateSecret.
--}
-generateSecretCodec : Codec GenerateSecret
-generateSecretCodec =
-    Codec.bool
-
-
-{-| Codec for ForgotPasswordResponse.
--}
-forgotPasswordResponseCodec : Codec ForgotPasswordResponse
-forgotPasswordResponseCodec =
-    Codec.object ForgotPasswordResponse
-        |> Codec.optionalField "CodeDeliveryDetails" .codeDeliveryDetails codeDeliveryDetailsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ForgotPasswordRequest.
--}
-forgotPasswordRequestCodec : Codec ForgotPasswordRequest
-forgotPasswordRequestCodec =
-    Codec.object ForgotPasswordRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ForgetDeviceRequest.
--}
-forgetDeviceRequestCodec : Codec ForgetDeviceRequest
-forgetDeviceRequestCodec =
-    Codec.object ForgetDeviceRequest
-        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ForceAliasCreation.
--}
-forceAliasCreationCodec : Codec ForceAliasCreation
-forceAliasCreationCodec =
-    Codec.bool
-
-
-{-| Codec for FeedbackValueType.
--}
-feedbackValueTypeCodec : Codec FeedbackValueType
-feedbackValueTypeCodec =
-    Codec.build (Enum.encoder feedbackValueType) (Enum.decoder feedbackValueType)
-
-
-{-| Codec for ExplicitAuthFlowsType.
--}
-explicitAuthFlowsTypeCodec : Codec ExplicitAuthFlowsType
-explicitAuthFlowsTypeCodec =
-    Codec.build (Enum.encoder explicitAuthFlowsType) (Enum.decoder explicitAuthFlowsType)
-
-
-{-| Codec for ExplicitAuthFlowsListType.
--}
-explicitAuthFlowsListTypeCodec : Codec ExplicitAuthFlowsListType
-explicitAuthFlowsListTypeCodec =
-    Codec.list explicitAuthFlowsTypeCodec
-
-
-{-| Codec for EventType.
--}
-eventTypeCodec : Codec EventType
-eventTypeCodec =
-    Codec.build (Enum.encoder eventType) (Enum.decoder eventType)
-
-
-{-| Codec for EventRiskType.
--}
-eventRiskTypeCodec : Codec EventRiskType
-eventRiskTypeCodec =
-    Codec.object EventRiskType
-        |> Codec.optionalField "RiskDecision" .riskDecision riskDecisionTypeCodec
-        |> Codec.optionalField "RiskLevel" .riskLevel riskLevelTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for EventResponseType.
--}
-eventResponseTypeCodec : Codec EventResponseType
-eventResponseTypeCodec =
-    Codec.build (Enum.encoder eventResponseType) (Enum.decoder eventResponseType)
-
-
-{-| Codec for EventIdType.
--}
-eventIdTypeCodec : Codec EventIdType
-eventIdTypeCodec =
-    Codec.build (Refined.encoder eventIdType) (Refined.decoder eventIdType)
-
-
-{-| Codec for EventFiltersType.
--}
-eventFiltersTypeCodec : Codec EventFiltersType
-eventFiltersTypeCodec =
-    Codec.list eventFilterTypeCodec
-
-
-{-| Codec for EventFilterType.
--}
-eventFilterTypeCodec : Codec EventFilterType
-eventFilterTypeCodec =
-    Codec.build (Enum.encoder eventFilterType) (Enum.decoder eventFilterType)
-
-
-{-| Codec for EventFeedbackType.
--}
-eventFeedbackTypeCodec : Codec EventFeedbackType
-eventFeedbackTypeCodec =
-    Codec.object EventFeedbackType
-        |> Codec.optionalField "FeedbackDate" .feedbackDate dateTypeCodec
-        |> Codec.field "FeedbackValue" .feedbackValue feedbackValueTypeCodec
-        |> Codec.field "Provider" .provider stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for EventContextDataType.
--}
-eventContextDataTypeCodec : Codec EventContextDataType
-eventContextDataTypeCodec =
-    Codec.object EventContextDataType
-        |> Codec.optionalField "City" .city stringTypeCodec
-        |> Codec.optionalField "Country" .country stringTypeCodec
-        |> Codec.optionalField "DeviceName" .deviceName stringTypeCodec
-        |> Codec.optionalField "IpAddress" .ipAddress stringTypeCodec
-        |> Codec.optionalField "Timezone" .timezone stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for EmailVerificationSubjectType.
--}
-emailVerificationSubjectTypeCodec : Codec EmailVerificationSubjectType
-emailVerificationSubjectTypeCodec =
-    Codec.build (Refined.encoder emailVerificationSubjectType) (Refined.decoder emailVerificationSubjectType)
-
-
-{-| Codec for EmailVerificationSubjectByLinkType.
--}
-emailVerificationSubjectByLinkTypeCodec : Codec EmailVerificationSubjectByLinkType
-emailVerificationSubjectByLinkTypeCodec =
-    Codec.build
-        (Refined.encoder emailVerificationSubjectByLinkType)
-        (Refined.decoder emailVerificationSubjectByLinkType)
-
-
-{-| Codec for EmailVerificationMessageType.
--}
-emailVerificationMessageTypeCodec : Codec EmailVerificationMessageType
-emailVerificationMessageTypeCodec =
-    Codec.build (Refined.encoder emailVerificationMessageType) (Refined.decoder emailVerificationMessageType)
-
-
-{-| Codec for EmailVerificationMessageByLinkType.
--}
-emailVerificationMessageByLinkTypeCodec : Codec EmailVerificationMessageByLinkType
-emailVerificationMessageByLinkTypeCodec =
-    Codec.build
-        (Refined.encoder emailVerificationMessageByLinkType)
-        (Refined.decoder emailVerificationMessageByLinkType)
-
-
-{-| Codec for EmailSendingAccountType.
--}
-emailSendingAccountTypeCodec : Codec EmailSendingAccountType
-emailSendingAccountTypeCodec =
-    Codec.build (Enum.encoder emailSendingAccountType) (Enum.decoder emailSendingAccountType)
-
-
-{-| Codec for EmailNotificationSubjectType.
--}
-emailNotificationSubjectTypeCodec : Codec EmailNotificationSubjectType
-emailNotificationSubjectTypeCodec =
-    Codec.build (Refined.encoder emailNotificationSubjectType) (Refined.decoder emailNotificationSubjectType)
-
-
-{-| Codec for EmailNotificationBodyType.
--}
-emailNotificationBodyTypeCodec : Codec EmailNotificationBodyType
-emailNotificationBodyTypeCodec =
-    Codec.build (Refined.encoder emailNotificationBodyType) (Refined.decoder emailNotificationBodyType)
-
-
-{-| Codec for EmailConfigurationType.
--}
-emailConfigurationTypeCodec : Codec EmailConfigurationType
-emailConfigurationTypeCodec =
-    Codec.object EmailConfigurationType
-        |> Codec.optionalField "EmailSendingAccount" .emailSendingAccount emailSendingAccountTypeCodec
-        |> Codec.optionalField "ReplyToEmailAddress" .replyToEmailAddress emailAddressTypeCodec
-        |> Codec.optionalField "SourceArn" .sourceArn arnTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for EmailAddressType.
--}
-emailAddressTypeCodec : Codec EmailAddressType
-emailAddressTypeCodec =
-    Codec.build (Refined.encoder emailAddressType) (Refined.decoder emailAddressType)
-
-
-{-| Codec for DomainVersionType.
--}
-domainVersionTypeCodec : Codec DomainVersionType
-domainVersionTypeCodec =
-    Codec.build (Refined.encoder domainVersionType) (Refined.decoder domainVersionType)
-
-
-{-| Codec for DomainType.
--}
-domainTypeCodec : Codec DomainType
-domainTypeCodec =
-    Codec.build (Refined.encoder domainType) (Refined.decoder domainType)
-
-
-{-| Codec for DomainStatusType.
--}
-domainStatusTypeCodec : Codec DomainStatusType
-domainStatusTypeCodec =
-    Codec.build (Enum.encoder domainStatusType) (Enum.decoder domainStatusType)
-
-
-{-| Codec for DomainDescriptionType.
--}
-domainDescriptionTypeCodec : Codec DomainDescriptionType
-domainDescriptionTypeCodec =
-    Codec.object DomainDescriptionType
-        |> Codec.optionalField "AWSAccountId" .awsaccountId awsaccountIdTypeCodec
-        |> Codec.optionalField "CloudFrontDistribution" .cloudFrontDistribution stringTypeCodec
-        |> Codec.optionalField "CustomDomainConfig" .customDomainConfig customDomainConfigTypeCodec
-        |> Codec.optionalField "Domain" .domain domainTypeCodec
-        |> Codec.optionalField "S3Bucket" .s3Bucket s3BucketTypeCodec
-        |> Codec.optionalField "Status" .status domainStatusTypeCodec
-        |> Codec.optionalField "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.optionalField "Version" .version domainVersionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeviceType.
--}
-deviceTypeCodec : Codec DeviceType
-deviceTypeCodec =
-    Codec.object DeviceType
-        |> Codec.optionalField "DeviceAttributes" .deviceAttributes attributeListTypeCodec
-        |> Codec.optionalField "DeviceCreateDate" .deviceCreateDate dateTypeCodec
-        |> Codec.optionalField "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.optionalField "DeviceLastAuthenticatedDate" .deviceLastAuthenticatedDate dateTypeCodec
-        |> Codec.optionalField "DeviceLastModifiedDate" .deviceLastModifiedDate dateTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeviceSecretVerifierConfigType.
--}
-deviceSecretVerifierConfigTypeCodec : Codec DeviceSecretVerifierConfigType
-deviceSecretVerifierConfigTypeCodec =
-    Codec.object DeviceSecretVerifierConfigType
-        |> Codec.optionalField "PasswordVerifier" .passwordVerifier stringTypeCodec
-        |> Codec.optionalField "Salt" .salt stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeviceRememberedStatusType.
--}
-deviceRememberedStatusTypeCodec : Codec DeviceRememberedStatusType
-deviceRememberedStatusTypeCodec =
-    Codec.build (Enum.encoder deviceRememberedStatusType) (Enum.decoder deviceRememberedStatusType)
-
-
-{-| Codec for DeviceNameType.
--}
-deviceNameTypeCodec : Codec DeviceNameType
-deviceNameTypeCodec =
-    Codec.build (Refined.encoder deviceNameType) (Refined.decoder deviceNameType)
-
-
-{-| Codec for DeviceListType.
--}
-deviceListTypeCodec : Codec DeviceListType
-deviceListTypeCodec =
-    Codec.list deviceTypeCodec
-
-
-{-| Codec for DeviceKeyType.
--}
-deviceKeyTypeCodec : Codec DeviceKeyType
-deviceKeyTypeCodec =
-    Codec.build (Refined.encoder deviceKeyType) (Refined.decoder deviceKeyType)
-
-
-{-| Codec for DeviceConfigurationType.
--}
-deviceConfigurationTypeCodec : Codec DeviceConfigurationType
-deviceConfigurationTypeCodec =
-    Codec.object DeviceConfigurationType
-        |> Codec.optionalField "ChallengeRequiredOnNewDevice" .challengeRequiredOnNewDevice booleanTypeCodec
-        |> Codec.optionalField "DeviceOnlyRememberedOnUserPrompt" .deviceOnlyRememberedOnUserPrompt booleanTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescriptionType.
--}
-descriptionTypeCodec : Codec DescriptionType
-descriptionTypeCodec =
-    Codec.build (Refined.encoder descriptionType) (Refined.decoder descriptionType)
-
-
-{-| Codec for DescribeUserPoolResponse.
--}
-describeUserPoolResponseCodec : Codec DescribeUserPoolResponse
-describeUserPoolResponseCodec =
-    Codec.object DescribeUserPoolResponse
-        |> Codec.optionalField "UserPool" .userPool userPoolTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeUserPoolRequest.
--}
-describeUserPoolRequestCodec : Codec DescribeUserPoolRequest
-describeUserPoolRequestCodec =
-    Codec.object DescribeUserPoolRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeUserPoolDomainResponse.
--}
-describeUserPoolDomainResponseCodec : Codec DescribeUserPoolDomainResponse
-describeUserPoolDomainResponseCodec =
-    Codec.object DescribeUserPoolDomainResponse
-        |> Codec.optionalField "DomainDescription" .domainDescription domainDescriptionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeUserPoolDomainRequest.
--}
-describeUserPoolDomainRequestCodec : Codec DescribeUserPoolDomainRequest
-describeUserPoolDomainRequestCodec =
-    Codec.object DescribeUserPoolDomainRequest |> Codec.field "Domain" .domain domainTypeCodec |> Codec.buildObject
-
-
-{-| Codec for DescribeUserPoolClientResponse.
--}
-describeUserPoolClientResponseCodec : Codec DescribeUserPoolClientResponse
-describeUserPoolClientResponseCodec =
-    Codec.object DescribeUserPoolClientResponse
-        |> Codec.optionalField "UserPoolClient" .userPoolClient userPoolClientTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeUserPoolClientRequest.
--}
-describeUserPoolClientRequestCodec : Codec DescribeUserPoolClientRequest
-describeUserPoolClientRequestCodec =
-    Codec.object DescribeUserPoolClientRequest
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeUserImportJobResponse.
--}
-describeUserImportJobResponseCodec : Codec DescribeUserImportJobResponse
-describeUserImportJobResponseCodec =
-    Codec.object DescribeUserImportJobResponse
-        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeUserImportJobRequest.
--}
-describeUserImportJobRequestCodec : Codec DescribeUserImportJobRequest
-describeUserImportJobRequestCodec =
-    Codec.object DescribeUserImportJobRequest
-        |> Codec.field "JobId" .jobId userImportJobIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeRiskConfigurationResponse.
--}
-describeRiskConfigurationResponseCodec : Codec DescribeRiskConfigurationResponse
-describeRiskConfigurationResponseCodec =
-    Codec.object DescribeRiskConfigurationResponse
-        |> Codec.field "RiskConfiguration" .riskConfiguration riskConfigurationTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeRiskConfigurationRequest.
--}
-describeRiskConfigurationRequestCodec : Codec DescribeRiskConfigurationRequest
-describeRiskConfigurationRequestCodec =
-    Codec.object DescribeRiskConfigurationRequest
-        |> Codec.optionalField "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeResourceServerResponse.
--}
-describeResourceServerResponseCodec : Codec DescribeResourceServerResponse
-describeResourceServerResponseCodec =
-    Codec.object DescribeResourceServerResponse
-        |> Codec.field "ResourceServer" .resourceServer resourceServerTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeResourceServerRequest.
--}
-describeResourceServerRequestCodec : Codec DescribeResourceServerRequest
-describeResourceServerRequestCodec =
-    Codec.object DescribeResourceServerRequest
-        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeIdentityProviderResponse.
--}
-describeIdentityProviderResponseCodec : Codec DescribeIdentityProviderResponse
-describeIdentityProviderResponseCodec =
-    Codec.object DescribeIdentityProviderResponse
-        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DescribeIdentityProviderRequest.
--}
-describeIdentityProviderRequestCodec : Codec DescribeIdentityProviderRequest
-describeIdentityProviderRequestCodec =
-    Codec.object DescribeIdentityProviderRequest
-        |> Codec.field "ProviderName" .providerName providerNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeliveryMediumType.
--}
-deliveryMediumTypeCodec : Codec DeliveryMediumType
-deliveryMediumTypeCodec =
-    Codec.build (Enum.encoder deliveryMediumType) (Enum.decoder deliveryMediumType)
-
-
-{-| Codec for DeliveryMediumListType.
--}
-deliveryMediumListTypeCodec : Codec DeliveryMediumListType
-deliveryMediumListTypeCodec =
-    Codec.list deliveryMediumTypeCodec
-
-
-{-| Codec for DeleteUserRequest.
--}
-deleteUserRequestCodec : Codec DeleteUserRequest
-deleteUserRequestCodec =
-    Codec.object DeleteUserRequest |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec |> Codec.buildObject
-
-
-{-| Codec for DeleteUserPoolRequest.
--}
-deleteUserPoolRequestCodec : Codec DeleteUserPoolRequest
-deleteUserPoolRequestCodec =
-    Codec.object DeleteUserPoolRequest |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec |> Codec.buildObject
-
-
-{-| Codec for DeleteUserPoolDomainResponse.
--}
-deleteUserPoolDomainResponseCodec : Codec DeleteUserPoolDomainResponse
-deleteUserPoolDomainResponseCodec =
-    Codec.object DeleteUserPoolDomainResponse |> Codec.buildObject
-
-
-{-| Codec for DeleteUserPoolDomainRequest.
--}
-deleteUserPoolDomainRequestCodec : Codec DeleteUserPoolDomainRequest
-deleteUserPoolDomainRequestCodec =
-    Codec.object DeleteUserPoolDomainRequest
-        |> Codec.field "Domain" .domain domainTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeleteUserPoolClientRequest.
--}
-deleteUserPoolClientRequestCodec : Codec DeleteUserPoolClientRequest
-deleteUserPoolClientRequestCodec =
-    Codec.object DeleteUserPoolClientRequest
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeleteUserAttributesResponse.
--}
-deleteUserAttributesResponseCodec : Codec DeleteUserAttributesResponse
-deleteUserAttributesResponseCodec =
-    Codec.object DeleteUserAttributesResponse |> Codec.buildObject
-
-
-{-| Codec for DeleteUserAttributesRequest.
--}
-deleteUserAttributesRequestCodec : Codec DeleteUserAttributesRequest
-deleteUserAttributesRequestCodec =
-    Codec.object DeleteUserAttributesRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "UserAttributeNames" .userAttributeNames attributeNameListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeleteResourceServerRequest.
--}
-deleteResourceServerRequestCodec : Codec DeleteResourceServerRequest
-deleteResourceServerRequestCodec =
-    Codec.object DeleteResourceServerRequest
-        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeleteIdentityProviderRequest.
--}
-deleteIdentityProviderRequestCodec : Codec DeleteIdentityProviderRequest
-deleteIdentityProviderRequestCodec =
-    Codec.object DeleteIdentityProviderRequest
-        |> Codec.field "ProviderName" .providerName providerNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DeleteGroupRequest.
--}
-deleteGroupRequestCodec : Codec DeleteGroupRequest
-deleteGroupRequestCodec =
-    Codec.object DeleteGroupRequest
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for DefaultEmailOptionType.
--}
-defaultEmailOptionTypeCodec : Codec DefaultEmailOptionType
-defaultEmailOptionTypeCodec =
-    Codec.build (Enum.encoder defaultEmailOptionType) (Enum.decoder defaultEmailOptionType)
-
-
-{-| Codec for DateType.
--}
-dateTypeCodec : Codec DateType
-dateTypeCodec =
-    Codec.string
-
-
-{-| Codec for CustomDomainConfigType.
--}
-customDomainConfigTypeCodec : Codec CustomDomainConfigType
-customDomainConfigTypeCodec =
-    Codec.object CustomDomainConfigType
-        |> Codec.field "CertificateArn" .certificateArn arnTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CustomAttributesListType.
--}
-customAttributesListTypeCodec : Codec CustomAttributesListType
-customAttributesListTypeCodec =
-    Codec.list schemaAttributeTypeCodec
-
-
-{-| Codec for CustomAttributeNameType.
--}
-customAttributeNameTypeCodec : Codec CustomAttributeNameType
-customAttributeNameTypeCodec =
-    Codec.build (Refined.encoder customAttributeNameType) (Refined.decoder customAttributeNameType)
-
-
-{-| Codec for CreateUserPoolResponse.
--}
-createUserPoolResponseCodec : Codec CreateUserPoolResponse
-createUserPoolResponseCodec =
-    Codec.object CreateUserPoolResponse
-        |> Codec.optionalField "UserPool" .userPool userPoolTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserPoolRequest.
--}
-createUserPoolRequestCodec : Codec CreateUserPoolRequest
-createUserPoolRequestCodec =
-    Codec.object CreateUserPoolRequest
-        |> Codec.optionalField "AdminCreateUserConfig" .adminCreateUserConfig adminCreateUserConfigTypeCodec
-        |> Codec.optionalField "AliasAttributes" .aliasAttributes aliasAttributesListTypeCodec
-        |> Codec.optionalField "AutoVerifiedAttributes" .autoVerifiedAttributes verifiedAttributesListTypeCodec
-        |> Codec.optionalField "DeviceConfiguration" .deviceConfiguration deviceConfigurationTypeCodec
-        |> Codec.optionalField "EmailConfiguration" .emailConfiguration emailConfigurationTypeCodec
-        |> Codec.optionalField "EmailVerificationMessage" .emailVerificationMessage emailVerificationMessageTypeCodec
-        |> Codec.optionalField "EmailVerificationSubject" .emailVerificationSubject emailVerificationSubjectTypeCodec
-        |> Codec.optionalField "LambdaConfig" .lambdaConfig lambdaConfigTypeCodec
-        |> Codec.optionalField "MfaConfiguration" .mfaConfiguration userPoolMfaTypeCodec
-        |> Codec.optionalField "Policies" .policies userPoolPolicyTypeCodec
-        |> Codec.field "PoolName" .poolName userPoolNameTypeCodec
-        |> Codec.optionalField "Schema" .schema schemaAttributesListTypeCodec
-        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
-        |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
-        |> Codec.optionalField "SmsVerificationMessage" .smsVerificationMessage smsVerificationMessageTypeCodec
-        |> Codec.optionalField "UserPoolAddOns" .userPoolAddOns userPoolAddOnsTypeCodec
-        |> Codec.optionalField "UserPoolTags" .userPoolTags userPoolTagsTypeCodec
-        |> Codec.optionalField "UsernameAttributes" .usernameAttributes usernameAttributesListTypeCodec
-        |> Codec.optionalField
-            "VerificationMessageTemplate"
-            .verificationMessageTemplate
-            verificationMessageTemplateTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserPoolDomainResponse.
--}
-createUserPoolDomainResponseCodec : Codec CreateUserPoolDomainResponse
-createUserPoolDomainResponseCodec =
-    Codec.object CreateUserPoolDomainResponse
-        |> Codec.optionalField "CloudFrontDomain" .cloudFrontDomain domainTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserPoolDomainRequest.
--}
-createUserPoolDomainRequestCodec : Codec CreateUserPoolDomainRequest
-createUserPoolDomainRequestCodec =
-    Codec.object CreateUserPoolDomainRequest
-        |> Codec.optionalField "CustomDomainConfig" .customDomainConfig customDomainConfigTypeCodec
-        |> Codec.field "Domain" .domain domainTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserPoolClientResponse.
--}
-createUserPoolClientResponseCodec : Codec CreateUserPoolClientResponse
-createUserPoolClientResponseCodec =
-    Codec.object CreateUserPoolClientResponse
-        |> Codec.optionalField "UserPoolClient" .userPoolClient userPoolClientTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserPoolClientRequest.
--}
-createUserPoolClientRequestCodec : Codec CreateUserPoolClientRequest
-createUserPoolClientRequestCodec =
-    Codec.object CreateUserPoolClientRequest
-        |> Codec.optionalField "AllowedOAuthFlows" .allowedOauthFlows oauthFlowsTypeCodec
-        |> Codec.optionalField "AllowedOAuthFlowsUserPoolClient" .allowedOauthFlowsUserPoolClient booleanTypeCodec
-        |> Codec.optionalField "AllowedOAuthScopes" .allowedOauthScopes scopeListTypeCodec
-        |> Codec.optionalField "AnalyticsConfiguration" .analyticsConfiguration analyticsConfigurationTypeCodec
-        |> Codec.optionalField "CallbackURLs" .callbackUrls callbackUrlsListTypeCodec
-        |> Codec.field "ClientName" .clientName clientNameTypeCodec
-        |> Codec.optionalField "DefaultRedirectURI" .defaultRedirectUri redirectUrlTypeCodec
-        |> Codec.optionalField "ExplicitAuthFlows" .explicitAuthFlows explicitAuthFlowsListTypeCodec
-        |> Codec.optionalField "GenerateSecret" .generateSecret generateSecretCodec
-        |> Codec.optionalField "LogoutURLs" .logoutUrls logoutUrlsListTypeCodec
-        |> Codec.optionalField "ReadAttributes" .readAttributes clientPermissionListTypeCodec
-        |> Codec.optionalField "RefreshTokenValidity" .refreshTokenValidity refreshTokenValidityTypeCodec
-        |> Codec.optionalField
-            "SupportedIdentityProviders"
-            .supportedIdentityProviders
-            supportedIdentityProvidersListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.optionalField "WriteAttributes" .writeAttributes clientPermissionListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserImportJobResponse.
--}
-createUserImportJobResponseCodec : Codec CreateUserImportJobResponse
-createUserImportJobResponseCodec =
-    Codec.object CreateUserImportJobResponse
-        |> Codec.optionalField "UserImportJob" .userImportJob userImportJobTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateUserImportJobRequest.
--}
-createUserImportJobRequestCodec : Codec CreateUserImportJobRequest
-createUserImportJobRequestCodec =
-    Codec.object CreateUserImportJobRequest
-        |> Codec.field "CloudWatchLogsRoleArn" .cloudWatchLogsRoleArn arnTypeCodec
-        |> Codec.field "JobName" .jobName userImportJobNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateResourceServerResponse.
--}
-createResourceServerResponseCodec : Codec CreateResourceServerResponse
-createResourceServerResponseCodec =
-    Codec.object CreateResourceServerResponse
-        |> Codec.field "ResourceServer" .resourceServer resourceServerTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateResourceServerRequest.
--}
-createResourceServerRequestCodec : Codec CreateResourceServerRequest
-createResourceServerRequestCodec =
-    Codec.object CreateResourceServerRequest
-        |> Codec.field "Identifier" .identifier resourceServerIdentifierTypeCodec
-        |> Codec.field "Name" .name resourceServerNameTypeCodec
-        |> Codec.optionalField "Scopes" .scopes resourceServerScopeListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateIdentityProviderResponse.
--}
-createIdentityProviderResponseCodec : Codec CreateIdentityProviderResponse
-createIdentityProviderResponseCodec =
-    Codec.object CreateIdentityProviderResponse
-        |> Codec.field "IdentityProvider" .identityProvider identityProviderTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateIdentityProviderRequest.
--}
-createIdentityProviderRequestCodec : Codec CreateIdentityProviderRequest
-createIdentityProviderRequestCodec =
-    Codec.object CreateIdentityProviderRequest
-        |> Codec.optionalField "AttributeMapping" .attributeMapping attributeMappingTypeCodec
-        |> Codec.optionalField "IdpIdentifiers" .idpIdentifiers idpIdentifiersListTypeCodec
-        |> Codec.field "ProviderDetails" .providerDetails providerDetailsTypeCodec
-        |> Codec.field "ProviderName" .providerName providerNameTypeV1Codec
-        |> Codec.field "ProviderType" .providerType identityProviderTypeTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateGroupResponse.
--}
-createGroupResponseCodec : Codec CreateGroupResponse
-createGroupResponseCodec =
-    Codec.object CreateGroupResponse |> Codec.optionalField "Group" .group groupTypeCodec |> Codec.buildObject
-
-
-{-| Codec for CreateGroupRequest.
--}
-createGroupRequestCodec : Codec CreateGroupRequest
-createGroupRequestCodec =
-    Codec.object CreateGroupRequest
-        |> Codec.optionalField "Description" .description descriptionTypeCodec
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.optionalField "Precedence" .precedence precedenceTypeCodec
-        |> Codec.optionalField "RoleArn" .roleArn arnTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ContextDataType.
--}
-contextDataTypeCodec : Codec ContextDataType
-contextDataTypeCodec =
-    Codec.object ContextDataType
-        |> Codec.optionalField "EncodedData" .encodedData stringTypeCodec
-        |> Codec.field "HttpHeaders" .httpHeaders httpHeaderListCodec
-        |> Codec.field "IpAddress" .ipAddress stringTypeCodec
-        |> Codec.field "ServerName" .serverName stringTypeCodec
-        |> Codec.field "ServerPath" .serverPath stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ConfirmationCodeType.
--}
-confirmationCodeTypeCodec : Codec ConfirmationCodeType
-confirmationCodeTypeCodec =
-    Codec.build (Refined.encoder confirmationCodeType) (Refined.decoder confirmationCodeType)
-
-
-{-| Codec for ConfirmSignUpResponse.
--}
-confirmSignUpResponseCodec : Codec ConfirmSignUpResponse
-confirmSignUpResponseCodec =
-    Codec.object ConfirmSignUpResponse |> Codec.buildObject
-
-
-{-| Codec for ConfirmSignUpRequest.
--}
-confirmSignUpRequestCodec : Codec ConfirmSignUpRequest
-confirmSignUpRequestCodec =
-    Codec.object ConfirmSignUpRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "ConfirmationCode" .confirmationCode confirmationCodeTypeCodec
-        |> Codec.optionalField "ForceAliasCreation" .forceAliasCreation forceAliasCreationCodec
-        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ConfirmForgotPasswordResponse.
--}
-confirmForgotPasswordResponseCodec : Codec ConfirmForgotPasswordResponse
-confirmForgotPasswordResponseCodec =
-    Codec.object ConfirmForgotPasswordResponse |> Codec.buildObject
-
-
-{-| Codec for ConfirmForgotPasswordRequest.
--}
-confirmForgotPasswordRequestCodec : Codec ConfirmForgotPasswordRequest
-confirmForgotPasswordRequestCodec =
-    Codec.object ConfirmForgotPasswordRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.field "ConfirmationCode" .confirmationCode confirmationCodeTypeCodec
-        |> Codec.field "Password" .password passwordTypeCodec
-        |> Codec.optionalField "SecretHash" .secretHash secretHashTypeCodec
-        |> Codec.optionalField "UserContextData" .userContextData userContextDataTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ConfirmDeviceResponse.
--}
-confirmDeviceResponseCodec : Codec ConfirmDeviceResponse
-confirmDeviceResponseCodec =
-    Codec.object ConfirmDeviceResponse
-        |> Codec.optionalField "UserConfirmationNecessary" .userConfirmationNecessary booleanTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ConfirmDeviceRequest.
--}
-confirmDeviceRequestCodec : Codec ConfirmDeviceRequest
-confirmDeviceRequestCodec =
-    Codec.object ConfirmDeviceRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.optionalField "DeviceName" .deviceName deviceNameTypeCodec
-        |> Codec.optionalField
-            "DeviceSecretVerifierConfig"
-            .deviceSecretVerifierConfig
-            deviceSecretVerifierConfigTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CompromisedCredentialsRiskConfigurationType.
--}
-compromisedCredentialsRiskConfigurationTypeCodec : Codec CompromisedCredentialsRiskConfigurationType
-compromisedCredentialsRiskConfigurationTypeCodec =
-    Codec.object CompromisedCredentialsRiskConfigurationType
-        |> Codec.field "Actions" .actions compromisedCredentialsActionsTypeCodec
-        |> Codec.optionalField "EventFilter" .eventFilter eventFiltersTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CompromisedCredentialsEventActionType.
--}
-compromisedCredentialsEventActionTypeCodec : Codec CompromisedCredentialsEventActionType
-compromisedCredentialsEventActionTypeCodec =
-    Codec.build
-        (Enum.encoder compromisedCredentialsEventActionType)
-        (Enum.decoder compromisedCredentialsEventActionType)
-
-
-{-| Codec for CompromisedCredentialsActionsType.
--}
-compromisedCredentialsActionsTypeCodec : Codec CompromisedCredentialsActionsType
-compromisedCredentialsActionsTypeCodec =
-    Codec.object CompromisedCredentialsActionsType
-        |> Codec.field "EventAction" .eventAction compromisedCredentialsEventActionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CompletionMessageType.
--}
-completionMessageTypeCodec : Codec CompletionMessageType
-completionMessageTypeCodec =
-    Codec.build (Refined.encoder completionMessageType) (Refined.decoder completionMessageType)
-
-
-{-| Codec for CodeDeliveryDetailsType.
--}
-codeDeliveryDetailsTypeCodec : Codec CodeDeliveryDetailsType
-codeDeliveryDetailsTypeCodec =
-    Codec.object CodeDeliveryDetailsType
-        |> Codec.optionalField "AttributeName" .attributeName attributeNameTypeCodec
-        |> Codec.optionalField "DeliveryMedium" .deliveryMedium deliveryMediumTypeCodec
-        |> Codec.optionalField "Destination" .destination stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CodeDeliveryDetailsListType.
--}
-codeDeliveryDetailsListTypeCodec : Codec CodeDeliveryDetailsListType
-codeDeliveryDetailsListTypeCodec =
-    Codec.list codeDeliveryDetailsTypeCodec
-
-
-{-| Codec for ClientSecretType.
--}
-clientSecretTypeCodec : Codec ClientSecretType
-clientSecretTypeCodec =
-    Codec.build (Refined.encoder clientSecretType) (Refined.decoder clientSecretType)
-
-
-{-| Codec for ClientPermissionType.
--}
-clientPermissionTypeCodec : Codec ClientPermissionType
-clientPermissionTypeCodec =
-    Codec.build (Refined.encoder clientPermissionType) (Refined.decoder clientPermissionType)
-
-
-{-| Codec for ClientPermissionListType.
--}
-clientPermissionListTypeCodec : Codec ClientPermissionListType
-clientPermissionListTypeCodec =
-    Codec.list clientPermissionTypeCodec
-
-
-{-| Codec for ClientNameType.
--}
-clientNameTypeCodec : Codec ClientNameType
-clientNameTypeCodec =
-    Codec.build (Refined.encoder clientNameType) (Refined.decoder clientNameType)
-
-
-{-| Codec for ClientMetadataType.
--}
-clientMetadataTypeCodec : Codec ClientMetadataType
-clientMetadataTypeCodec =
-    Codec.dict stringTypeCodec
-
-
-{-| Codec for ClientIdType.
--}
-clientIdTypeCodec : Codec ClientIdType
-clientIdTypeCodec =
-    Codec.build (Refined.encoder clientIdType) (Refined.decoder clientIdType)
-
-
-{-| Codec for ChangePasswordResponse.
--}
-changePasswordResponseCodec : Codec ChangePasswordResponse
-changePasswordResponseCodec =
-    Codec.object ChangePasswordResponse |> Codec.buildObject
-
-
-{-| Codec for ChangePasswordRequest.
--}
-changePasswordRequestCodec : Codec ChangePasswordRequest
-changePasswordRequestCodec =
-    Codec.object ChangePasswordRequest
-        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.field "PreviousPassword" .previousPassword passwordTypeCodec
-        |> Codec.field "ProposedPassword" .proposedPassword passwordTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ChallengeResponsesType.
--}
-challengeResponsesTypeCodec : Codec ChallengeResponsesType
-challengeResponsesTypeCodec =
-    Codec.dict stringTypeCodec
-
-
-{-| Codec for ChallengeResponseType.
--}
-challengeResponseTypeCodec : Codec ChallengeResponseType
-challengeResponseTypeCodec =
-    Codec.object ChallengeResponseType
-        |> Codec.optionalField "ChallengeName" .challengeName challengeNameCodec
-        |> Codec.optionalField "ChallengeResponse" .challengeResponse challengeResponseCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ChallengeResponseListType.
--}
-challengeResponseListTypeCodec : Codec ChallengeResponseListType
-challengeResponseListTypeCodec =
-    Codec.list challengeResponseTypeCodec
-
-
-{-| Codec for ChallengeResponse.
--}
-challengeResponseCodec : Codec ChallengeResponse
-challengeResponseCodec =
-    Codec.build (Enum.encoder challengeResponse) (Enum.decoder challengeResponse)
-
-
-{-| Codec for ChallengeParametersType.
--}
-challengeParametersTypeCodec : Codec ChallengeParametersType
-challengeParametersTypeCodec =
-    Codec.dict stringTypeCodec
-
-
-{-| Codec for ChallengeNameType.
--}
-challengeNameTypeCodec : Codec ChallengeNameType
-challengeNameTypeCodec =
-    Codec.build (Enum.encoder challengeNameType) (Enum.decoder challengeNameType)
-
-
-{-| Codec for ChallengeName.
--}
-challengeNameCodec : Codec ChallengeName
-challengeNameCodec =
-    Codec.build (Enum.encoder challengeName) (Enum.decoder challengeName)
-
-
-{-| Codec for CallbackUrlsListType.
--}
-callbackUrlsListTypeCodec : Codec CallbackUrlsListType
-callbackUrlsListTypeCodec =
-    Codec.list redirectUrlTypeCodec
-
-
-{-| Codec for CssversionType.
--}
-cssversionTypeCodec : Codec CssversionType
-cssversionTypeCodec =
-    Codec.string
-
-
-{-| Codec for Csstype.
--}
-csstypeCodec : Codec Csstype
-csstypeCodec =
-    Codec.string
-
-
-{-| Codec for BooleanType.
--}
-booleanTypeCodec : Codec BooleanType
-booleanTypeCodec =
-    Codec.bool
-
-
-{-| Codec for BlockedIprangeListType.
--}
-blockedIprangeListTypeCodec : Codec BlockedIprangeListType
-blockedIprangeListTypeCodec =
-    Codec.list stringTypeCodec
-
-
-{-| Codec for AuthenticationResultType.
--}
-authenticationResultTypeCodec : Codec AuthenticationResultType
-authenticationResultTypeCodec =
-    Codec.object AuthenticationResultType
-        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.optionalField "ExpiresIn" .expiresIn integerTypeCodec
-        |> Codec.optionalField "IdToken" .idToken tokenModelTypeCodec
-        |> Codec.optionalField "NewDeviceMetadata" .newDeviceMetadata newDeviceMetadataTypeCodec
-        |> Codec.optionalField "RefreshToken" .refreshToken tokenModelTypeCodec
-        |> Codec.optionalField "TokenType" .tokenType stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AuthParametersType.
--}
-authParametersTypeCodec : Codec AuthParametersType
-authParametersTypeCodec =
-    Codec.dict stringTypeCodec
-
-
-{-| Codec for AuthFlowType.
--}
-authFlowTypeCodec : Codec AuthFlowType
-authFlowTypeCodec =
-    Codec.build (Enum.encoder authFlowType) (Enum.decoder authFlowType)
-
-
-{-| Codec for AuthEventsType.
--}
-authEventsTypeCodec : Codec AuthEventsType
-authEventsTypeCodec =
-    Codec.list authEventTypeCodec
-
-
-{-| Codec for AuthEventType.
--}
-authEventTypeCodec : Codec AuthEventType
-authEventTypeCodec =
-    Codec.object AuthEventType
-        |> Codec.optionalField "ChallengeResponses" .challengeResponses challengeResponseListTypeCodec
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "EventContextData" .eventContextData eventContextDataTypeCodec
-        |> Codec.optionalField "EventFeedback" .eventFeedback eventFeedbackTypeCodec
-        |> Codec.optionalField "EventId" .eventId stringTypeCodec
-        |> Codec.optionalField "EventResponse" .eventResponse eventResponseTypeCodec
-        |> Codec.optionalField "EventRisk" .eventRisk eventRiskTypeCodec
-        |> Codec.optionalField "EventType" .eventType eventTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AttributeValueType.
--}
-attributeValueTypeCodec : Codec AttributeValueType
-attributeValueTypeCodec =
-    Codec.build (Refined.encoder attributeValueType) (Refined.decoder attributeValueType)
-
-
-{-| Codec for AttributeType.
--}
-attributeTypeCodec : Codec AttributeType
-attributeTypeCodec =
-    Codec.object AttributeType
-        |> Codec.field "Name" .name attributeNameTypeCodec
-        |> Codec.optionalField "Value" .value attributeValueTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AttributeNameType.
--}
-attributeNameTypeCodec : Codec AttributeNameType
-attributeNameTypeCodec =
-    Codec.build (Refined.encoder attributeNameType) (Refined.decoder attributeNameType)
-
-
-{-| Codec for AttributeNameListType.
--}
-attributeNameListTypeCodec : Codec AttributeNameListType
-attributeNameListTypeCodec =
-    Codec.list attributeNameTypeCodec
-
-
-{-| Codec for AttributeMappingType.
--}
-attributeMappingTypeCodec : Codec AttributeMappingType
-attributeMappingTypeCodec =
-    Codec.build
-        (Refined.dictEncoder attributeMappingKeyType (Codec.encoder stringTypeCodec))
-        (Refined.dictDecoder attributeMappingKeyType (Codec.decoder stringTypeCodec))
-
-
-{-| Codec for AttributeMappingKeyType.
--}
-attributeMappingKeyTypeCodec : Codec AttributeMappingKeyType
-attributeMappingKeyTypeCodec =
-    Codec.build (Refined.encoder attributeMappingKeyType) (Refined.decoder attributeMappingKeyType)
-
-
-{-| Codec for AttributeListType.
--}
-attributeListTypeCodec : Codec AttributeListType
-attributeListTypeCodec =
-    Codec.list attributeTypeCodec
-
-
-{-| Codec for AttributeDataType.
--}
-attributeDataTypeCodec : Codec AttributeDataType
-attributeDataTypeCodec =
-    Codec.build (Enum.encoder attributeDataType) (Enum.decoder attributeDataType)
-
-
-{-| Codec for AssociateSoftwareTokenResponse.
--}
-associateSoftwareTokenResponseCodec : Codec AssociateSoftwareTokenResponse
-associateSoftwareTokenResponseCodec =
-    Codec.object AssociateSoftwareTokenResponse
-        |> Codec.optionalField "SecretCode" .secretCode secretCodeTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AssociateSoftwareTokenRequest.
--}
-associateSoftwareTokenRequestCodec : Codec AssociateSoftwareTokenRequest
-associateSoftwareTokenRequestCodec =
-    Codec.object AssociateSoftwareTokenRequest
-        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ArnType.
--}
-arnTypeCodec : Codec ArnType
-arnTypeCodec =
-    Codec.build (Refined.encoder arnType) (Refined.decoder arnType)
-
-
-{-| Codec for AnalyticsMetadataType.
--}
-analyticsMetadataTypeCodec : Codec AnalyticsMetadataType
-analyticsMetadataTypeCodec =
-    Codec.object AnalyticsMetadataType
-        |> Codec.optionalField "AnalyticsEndpointId" .analyticsEndpointId stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AnalyticsConfigurationType.
--}
-analyticsConfigurationTypeCodec : Codec AnalyticsConfigurationType
-analyticsConfigurationTypeCodec =
-    Codec.object AnalyticsConfigurationType
-        |> Codec.field "ApplicationId" .applicationId hexStringTypeCodec
-        |> Codec.field "ExternalId" .externalId stringTypeCodec
-        |> Codec.field "RoleArn" .roleArn arnTypeCodec
-        |> Codec.optionalField "UserDataShared" .userDataShared booleanTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AliasAttributesListType.
--}
-aliasAttributesListTypeCodec : Codec AliasAttributesListType
-aliasAttributesListTypeCodec =
-    Codec.list aliasAttributeTypeCodec
-
-
-{-| Codec for AliasAttributeType.
--}
-aliasAttributeTypeCodec : Codec AliasAttributeType
-aliasAttributeTypeCodec =
-    Codec.build (Enum.encoder aliasAttributeType) (Enum.decoder aliasAttributeType)
-
-
-{-| Codec for AdvancedSecurityModeType.
--}
-advancedSecurityModeTypeCodec : Codec AdvancedSecurityModeType
-advancedSecurityModeTypeCodec =
-    Codec.build (Enum.encoder advancedSecurityModeType) (Enum.decoder advancedSecurityModeType)
-
-
-{-| Codec for AdminUserGlobalSignOutResponse.
--}
-adminUserGlobalSignOutResponseCodec : Codec AdminUserGlobalSignOutResponse
-adminUserGlobalSignOutResponseCodec =
-    Codec.object AdminUserGlobalSignOutResponse |> Codec.buildObject
-
-
-{-| Codec for AdminUserGlobalSignOutRequest.
--}
-adminUserGlobalSignOutRequestCodec : Codec AdminUserGlobalSignOutRequest
-adminUserGlobalSignOutRequestCodec =
-    Codec.object AdminUserGlobalSignOutRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminUpdateUserAttributesResponse.
--}
-adminUpdateUserAttributesResponseCodec : Codec AdminUpdateUserAttributesResponse
-adminUpdateUserAttributesResponseCodec =
-    Codec.object AdminUpdateUserAttributesResponse |> Codec.buildObject
-
-
-{-| Codec for AdminUpdateUserAttributesRequest.
--}
-adminUpdateUserAttributesRequestCodec : Codec AdminUpdateUserAttributesRequest
-adminUpdateUserAttributesRequestCodec =
-    Codec.object AdminUpdateUserAttributesRequest
-        |> Codec.field "UserAttributes" .userAttributes attributeListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminUpdateDeviceStatusResponse.
--}
-adminUpdateDeviceStatusResponseCodec : Codec AdminUpdateDeviceStatusResponse
-adminUpdateDeviceStatusResponseCodec =
-    Codec.object AdminUpdateDeviceStatusResponse |> Codec.buildObject
-
-
-{-| Codec for AdminUpdateDeviceStatusRequest.
--}
-adminUpdateDeviceStatusRequestCodec : Codec AdminUpdateDeviceStatusRequest
-adminUpdateDeviceStatusRequestCodec =
-    Codec.object AdminUpdateDeviceStatusRequest
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.optionalField "DeviceRememberedStatus" .deviceRememberedStatus deviceRememberedStatusTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminUpdateAuthEventFeedbackResponse.
--}
-adminUpdateAuthEventFeedbackResponseCodec : Codec AdminUpdateAuthEventFeedbackResponse
-adminUpdateAuthEventFeedbackResponseCodec =
-    Codec.object AdminUpdateAuthEventFeedbackResponse |> Codec.buildObject
-
-
-{-| Codec for AdminUpdateAuthEventFeedbackRequest.
--}
-adminUpdateAuthEventFeedbackRequestCodec : Codec AdminUpdateAuthEventFeedbackRequest
-adminUpdateAuthEventFeedbackRequestCodec =
-    Codec.object AdminUpdateAuthEventFeedbackRequest
-        |> Codec.field "EventId" .eventId eventIdTypeCodec
-        |> Codec.field "FeedbackValue" .feedbackValue feedbackValueTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminSetUserSettingsResponse.
--}
-adminSetUserSettingsResponseCodec : Codec AdminSetUserSettingsResponse
-adminSetUserSettingsResponseCodec =
-    Codec.object AdminSetUserSettingsResponse |> Codec.buildObject
-
-
-{-| Codec for AdminSetUserSettingsRequest.
--}
-adminSetUserSettingsRequestCodec : Codec AdminSetUserSettingsRequest
-adminSetUserSettingsRequestCodec =
-    Codec.object AdminSetUserSettingsRequest
-        |> Codec.field "MFAOptions" .mfaoptions mfaoptionListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminSetUserPasswordResponse.
--}
-adminSetUserPasswordResponseCodec : Codec AdminSetUserPasswordResponse
-adminSetUserPasswordResponseCodec =
-    Codec.object AdminSetUserPasswordResponse |> Codec.buildObject
-
-
-{-| Codec for AdminSetUserPasswordRequest.
--}
-adminSetUserPasswordRequestCodec : Codec AdminSetUserPasswordRequest
-adminSetUserPasswordRequestCodec =
-    Codec.object AdminSetUserPasswordRequest
-        |> Codec.field "Password" .password passwordTypeCodec
-        |> Codec.optionalField "Permanent" .permanent booleanTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminSetUserMfapreferenceResponse.
--}
-adminSetUserMfapreferenceResponseCodec : Codec AdminSetUserMfapreferenceResponse
-adminSetUserMfapreferenceResponseCodec =
-    Codec.object AdminSetUserMfapreferenceResponse |> Codec.buildObject
-
-
-{-| Codec for AdminSetUserMfapreferenceRequest.
--}
-adminSetUserMfapreferenceRequestCodec : Codec AdminSetUserMfapreferenceRequest
-adminSetUserMfapreferenceRequestCodec =
-    Codec.object AdminSetUserMfapreferenceRequest
-        |> Codec.optionalField "SMSMfaSettings" .smsmfaSettings smsmfaSettingsTypeCodec
-        |> Codec.optionalField "SoftwareTokenMfaSettings" .softwareTokenMfaSettings softwareTokenMfaSettingsTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminRespondToAuthChallengeResponse.
--}
-adminRespondToAuthChallengeResponseCodec : Codec AdminRespondToAuthChallengeResponse
-adminRespondToAuthChallengeResponseCodec =
-    Codec.object AdminRespondToAuthChallengeResponse
-        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
-        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
-        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminRespondToAuthChallengeRequest.
--}
-adminRespondToAuthChallengeRequestCodec : Codec AdminRespondToAuthChallengeRequest
-adminRespondToAuthChallengeRequestCodec =
-    Codec.object AdminRespondToAuthChallengeRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "ChallengeName" .challengeName challengeNameTypeCodec
-        |> Codec.optionalField "ChallengeResponses" .challengeResponses challengeResponsesTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ContextData" .contextData contextDataTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminResetUserPasswordResponse.
--}
-adminResetUserPasswordResponseCodec : Codec AdminResetUserPasswordResponse
-adminResetUserPasswordResponseCodec =
-    Codec.object AdminResetUserPasswordResponse |> Codec.buildObject
-
-
-{-| Codec for AdminResetUserPasswordRequest.
--}
-adminResetUserPasswordRequestCodec : Codec AdminResetUserPasswordRequest
-adminResetUserPasswordRequestCodec =
-    Codec.object AdminResetUserPasswordRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminRemoveUserFromGroupRequest.
--}
-adminRemoveUserFromGroupRequestCodec : Codec AdminRemoveUserFromGroupRequest
-adminRemoveUserFromGroupRequestCodec =
-    Codec.object AdminRemoveUserFromGroupRequest
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminListUserAuthEventsResponse.
--}
-adminListUserAuthEventsResponseCodec : Codec AdminListUserAuthEventsResponse
-adminListUserAuthEventsResponseCodec =
-    Codec.object AdminListUserAuthEventsResponse
-        |> Codec.optionalField "AuthEvents" .authEvents authEventsTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminListUserAuthEventsRequest.
--}
-adminListUserAuthEventsRequestCodec : Codec AdminListUserAuthEventsRequest
-adminListUserAuthEventsRequestCodec =
-    Codec.object AdminListUserAuthEventsRequest
-        |> Codec.optionalField "MaxResults" .maxResults queryLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminListGroupsForUserResponse.
--}
-adminListGroupsForUserResponseCodec : Codec AdminListGroupsForUserResponse
-adminListGroupsForUserResponseCodec =
-    Codec.object AdminListGroupsForUserResponse
-        |> Codec.optionalField "Groups" .groups groupListTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminListGroupsForUserRequest.
--}
-adminListGroupsForUserRequestCodec : Codec AdminListGroupsForUserRequest
-adminListGroupsForUserRequestCodec =
-    Codec.object AdminListGroupsForUserRequest
-        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminListDevicesResponse.
--}
-adminListDevicesResponseCodec : Codec AdminListDevicesResponse
-adminListDevicesResponseCodec =
-    Codec.object AdminListDevicesResponse
-        |> Codec.optionalField "Devices" .devices deviceListTypeCodec
-        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminListDevicesRequest.
--}
-adminListDevicesRequestCodec : Codec AdminListDevicesRequest
-adminListDevicesRequestCodec =
-    Codec.object AdminListDevicesRequest
-        |> Codec.optionalField "Limit" .limit queryLimitTypeCodec
-        |> Codec.optionalField "PaginationToken" .paginationToken searchPaginationTokenTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminLinkProviderForUserResponse.
--}
-adminLinkProviderForUserResponseCodec : Codec AdminLinkProviderForUserResponse
-adminLinkProviderForUserResponseCodec =
-    Codec.object AdminLinkProviderForUserResponse |> Codec.buildObject
-
-
-{-| Codec for AdminLinkProviderForUserRequest.
--}
-adminLinkProviderForUserRequestCodec : Codec AdminLinkProviderForUserRequest
-adminLinkProviderForUserRequestCodec =
-    Codec.object AdminLinkProviderForUserRequest
-        |> Codec.field "DestinationUser" .destinationUser providerUserIdentifierTypeCodec
-        |> Codec.field "SourceUser" .sourceUser providerUserIdentifierTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminInitiateAuthResponse.
--}
-adminInitiateAuthResponseCodec : Codec AdminInitiateAuthResponse
-adminInitiateAuthResponseCodec =
-    Codec.object AdminInitiateAuthResponse
-        |> Codec.optionalField "AuthenticationResult" .authenticationResult authenticationResultTypeCodec
-        |> Codec.optionalField "ChallengeName" .challengeName challengeNameTypeCodec
-        |> Codec.optionalField "ChallengeParameters" .challengeParameters challengeParametersTypeCodec
-        |> Codec.optionalField "Session" .session sessionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminInitiateAuthRequest.
--}
-adminInitiateAuthRequestCodec : Codec AdminInitiateAuthRequest
-adminInitiateAuthRequestCodec =
-    Codec.object AdminInitiateAuthRequest
-        |> Codec.optionalField "AnalyticsMetadata" .analyticsMetadata analyticsMetadataTypeCodec
-        |> Codec.field "AuthFlow" .authFlow authFlowTypeCodec
-        |> Codec.optionalField "AuthParameters" .authParameters authParametersTypeCodec
-        |> Codec.field "ClientId" .clientId clientIdTypeCodec
-        |> Codec.optionalField "ClientMetadata" .clientMetadata clientMetadataTypeCodec
-        |> Codec.optionalField "ContextData" .contextData contextDataTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminGetUserResponse.
--}
-adminGetUserResponseCodec : Codec AdminGetUserResponse
-adminGetUserResponseCodec =
-    Codec.object AdminGetUserResponse
+userTypeCodec : Codec UserType
+userTypeCodec =
+    Codec.object UserType
+        |> Codec.optionalField "Attributes" .attributes attributeListTypeCodec
         |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
         |> Codec.optionalField "MFAOptions" .mfaoptions mfaoptionListTypeCodec
-        |> Codec.optionalField "PreferredMfaSetting" .preferredMfaSetting stringTypeCodec
-        |> Codec.optionalField "UserAttributes" .userAttributes attributeListTypeCodec
         |> Codec.optionalField "UserCreateDate" .userCreateDate dateTypeCodec
         |> Codec.optionalField "UserLastModifiedDate" .userLastModifiedDate dateTypeCodec
-        |> Codec.optionalField "UserMFASettingList" .userMfasettingList userMfasettingListTypeCodec
         |> Codec.optionalField "UserStatus" .userStatus userStatusTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
+        |> Codec.optionalField "Username" .username usernameTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for AdminGetUserRequest.
+{-| Codec for UsernameAttributeType.
 -}
-adminGetUserRequestCodec : Codec AdminGetUserRequest
-adminGetUserRequestCodec =
-    Codec.object AdminGetUserRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
+usernameAttributeTypeCodec : Codec UsernameAttributeType
+usernameAttributeTypeCodec =
+    Codec.build (Enum.encoder usernameAttributeType) (Enum.decoder usernameAttributeType)
+
+
+{-| Codec for UsernameAttributesListType.
+-}
+usernameAttributesListTypeCodec : Codec UsernameAttributesListType
+usernameAttributesListTypeCodec =
+    Codec.list usernameAttributeTypeCodec
+
+
+{-| Codec for UsernameType.
+-}
+usernameTypeCodec : Codec UsernameType
+usernameTypeCodec =
+    Codec.build (Refined.encoder usernameType) (Refined.decoder usernameType)
+
+
+{-| Codec for UsersListType.
+-}
+usersListTypeCodec : Codec UsersListType
+usersListTypeCodec =
+    Codec.list userTypeCodec
+
+
+{-| Codec for VerificationMessageTemplateType.
+-}
+verificationMessageTemplateTypeCodec : Codec VerificationMessageTemplateType
+verificationMessageTemplateTypeCodec =
+    Codec.object VerificationMessageTemplateType
+        |> Codec.optionalField "DefaultEmailOption" .defaultEmailOption defaultEmailOptionTypeCodec
+        |> Codec.optionalField "EmailMessage" .emailMessage emailVerificationMessageTypeCodec
+        |> Codec.optionalField "EmailMessageByLink" .emailMessageByLink emailVerificationMessageByLinkTypeCodec
+        |> Codec.optionalField "EmailSubject" .emailSubject emailVerificationSubjectTypeCodec
+        |> Codec.optionalField "EmailSubjectByLink" .emailSubjectByLink emailVerificationSubjectByLinkTypeCodec
+        |> Codec.optionalField "SmsMessage" .smsMessage smsVerificationMessageTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for AdminGetDeviceResponse.
+{-| Codec for VerifiedAttributeType.
 -}
-adminGetDeviceResponseCodec : Codec AdminGetDeviceResponse
-adminGetDeviceResponseCodec =
-    Codec.object AdminGetDeviceResponse |> Codec.field "Device" .device deviceTypeCodec |> Codec.buildObject
+verifiedAttributeTypeCodec : Codec VerifiedAttributeType
+verifiedAttributeTypeCodec =
+    Codec.build (Enum.encoder verifiedAttributeType) (Enum.decoder verifiedAttributeType)
 
 
-{-| Codec for AdminGetDeviceRequest.
+{-| Codec for VerifiedAttributesListType.
 -}
-adminGetDeviceRequestCodec : Codec AdminGetDeviceRequest
-adminGetDeviceRequestCodec =
-    Codec.object AdminGetDeviceRequest
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
+verifiedAttributesListTypeCodec : Codec VerifiedAttributesListType
+verifiedAttributesListTypeCodec =
+    Codec.list verifiedAttributeTypeCodec
+
+
+{-| Codec for VerifySoftwareTokenRequest.
+-}
+verifySoftwareTokenRequestCodec : Codec VerifySoftwareTokenRequest
+verifySoftwareTokenRequestCodec =
+    Codec.object VerifySoftwareTokenRequest
+        |> Codec.optionalField "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.optionalField "FriendlyDeviceName" .friendlyDeviceName stringTypeCodec
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.field "UserCode" .userCode softwareTokenMfauserCodeTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for AdminForgetDeviceRequest.
+{-| Codec for VerifySoftwareTokenResponse.
 -}
-adminForgetDeviceRequestCodec : Codec AdminForgetDeviceRequest
-adminForgetDeviceRequestCodec =
-    Codec.object AdminForgetDeviceRequest
-        |> Codec.field "DeviceKey" .deviceKey deviceKeyTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
+verifySoftwareTokenResponseCodec : Codec VerifySoftwareTokenResponse
+verifySoftwareTokenResponseCodec =
+    Codec.object VerifySoftwareTokenResponse
+        |> Codec.optionalField "Session" .session sessionTypeCodec
+        |> Codec.optionalField "Status" .status verifySoftwareTokenResponseTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for AdminEnableUserResponse.
+{-| Codec for VerifySoftwareTokenResponseType.
 -}
-adminEnableUserResponseCodec : Codec AdminEnableUserResponse
-adminEnableUserResponseCodec =
-    Codec.object AdminEnableUserResponse |> Codec.buildObject
+verifySoftwareTokenResponseTypeCodec : Codec VerifySoftwareTokenResponseType
+verifySoftwareTokenResponseTypeCodec =
+    Codec.build (Enum.encoder verifySoftwareTokenResponseType) (Enum.decoder verifySoftwareTokenResponseType)
 
 
-{-| Codec for AdminEnableUserRequest.
+{-| Codec for VerifyUserAttributeRequest.
 -}
-adminEnableUserRequestCodec : Codec AdminEnableUserRequest
-adminEnableUserRequestCodec =
-    Codec.object AdminEnableUserRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
+verifyUserAttributeRequestCodec : Codec VerifyUserAttributeRequest
+verifyUserAttributeRequestCodec =
+    Codec.object VerifyUserAttributeRequest
+        |> Codec.field "AccessToken" .accessToken tokenModelTypeCodec
+        |> Codec.field "AttributeName" .attributeName attributeNameTypeCodec
+        |> Codec.field "Code" .code confirmationCodeTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for AdminDisableUserResponse.
+{-| Codec for VerifyUserAttributeResponse.
 -}
-adminDisableUserResponseCodec : Codec AdminDisableUserResponse
-adminDisableUserResponseCodec =
-    Codec.object AdminDisableUserResponse |> Codec.buildObject
-
-
-{-| Codec for AdminDisableUserRequest.
--}
-adminDisableUserRequestCodec : Codec AdminDisableUserRequest
-adminDisableUserRequestCodec =
-    Codec.object AdminDisableUserRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminDisableProviderForUserResponse.
--}
-adminDisableProviderForUserResponseCodec : Codec AdminDisableProviderForUserResponse
-adminDisableProviderForUserResponseCodec =
-    Codec.object AdminDisableProviderForUserResponse |> Codec.buildObject
-
-
-{-| Codec for AdminDisableProviderForUserRequest.
--}
-adminDisableProviderForUserRequestCodec : Codec AdminDisableProviderForUserRequest
-adminDisableProviderForUserRequestCodec =
-    Codec.object AdminDisableProviderForUserRequest
-        |> Codec.field "User" .user providerUserIdentifierTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId stringTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminDeleteUserRequest.
--}
-adminDeleteUserRequestCodec : Codec AdminDeleteUserRequest
-adminDeleteUserRequestCodec =
-    Codec.object AdminDeleteUserRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminDeleteUserAttributesResponse.
--}
-adminDeleteUserAttributesResponseCodec : Codec AdminDeleteUserAttributesResponse
-adminDeleteUserAttributesResponseCodec =
-    Codec.object AdminDeleteUserAttributesResponse |> Codec.buildObject
-
-
-{-| Codec for AdminDeleteUserAttributesRequest.
--}
-adminDeleteUserAttributesRequestCodec : Codec AdminDeleteUserAttributesRequest
-adminDeleteUserAttributesRequestCodec =
-    Codec.object AdminDeleteUserAttributesRequest
-        |> Codec.field "UserAttributeNames" .userAttributeNames attributeNameListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminCreateUserUnusedAccountValidityDaysType.
--}
-adminCreateUserUnusedAccountValidityDaysTypeCodec : Codec AdminCreateUserUnusedAccountValidityDaysType
-adminCreateUserUnusedAccountValidityDaysTypeCodec =
-    Codec.build
-        (Refined.encoder adminCreateUserUnusedAccountValidityDaysType)
-        (Refined.decoder adminCreateUserUnusedAccountValidityDaysType)
-
-
-{-| Codec for AdminCreateUserResponse.
--}
-adminCreateUserResponseCodec : Codec AdminCreateUserResponse
-adminCreateUserResponseCodec =
-    Codec.object AdminCreateUserResponse |> Codec.optionalField "User" .user userTypeCodec |> Codec.buildObject
-
-
-{-| Codec for AdminCreateUserRequest.
--}
-adminCreateUserRequestCodec : Codec AdminCreateUserRequest
-adminCreateUserRequestCodec =
-    Codec.object AdminCreateUserRequest
-        |> Codec.optionalField "DesiredDeliveryMediums" .desiredDeliveryMediums deliveryMediumListTypeCodec
-        |> Codec.optionalField "ForceAliasCreation" .forceAliasCreation forceAliasCreationCodec
-        |> Codec.optionalField "MessageAction" .messageAction messageActionTypeCodec
-        |> Codec.optionalField "TemporaryPassword" .temporaryPassword passwordTypeCodec
-        |> Codec.optionalField "UserAttributes" .userAttributes attributeListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.optionalField "ValidationData" .validationData attributeListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminCreateUserConfigType.
--}
-adminCreateUserConfigTypeCodec : Codec AdminCreateUserConfigType
-adminCreateUserConfigTypeCodec =
-    Codec.object AdminCreateUserConfigType
-        |> Codec.optionalField "AllowAdminCreateUserOnly" .allowAdminCreateUserOnly booleanTypeCodec
-        |> Codec.optionalField "InviteMessageTemplate" .inviteMessageTemplate messageTemplateTypeCodec
-        |> Codec.optionalField
-            "UnusedAccountValidityDays"
-            .unusedAccountValidityDays
-            adminCreateUserUnusedAccountValidityDaysTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminConfirmSignUpResponse.
--}
-adminConfirmSignUpResponseCodec : Codec AdminConfirmSignUpResponse
-adminConfirmSignUpResponseCodec =
-    Codec.object AdminConfirmSignUpResponse |> Codec.buildObject
-
-
-{-| Codec for AdminConfirmSignUpRequest.
--}
-adminConfirmSignUpRequestCodec : Codec AdminConfirmSignUpRequest
-adminConfirmSignUpRequestCodec =
-    Codec.object AdminConfirmSignUpRequest
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AdminAddUserToGroupRequest.
--}
-adminAddUserToGroupRequestCodec : Codec AdminAddUserToGroupRequest
-adminAddUserToGroupRequestCodec =
-    Codec.object AdminAddUserToGroupRequest
-        |> Codec.field "GroupName" .groupName groupNameTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.field "Username" .username usernameTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AddCustomAttributesResponse.
--}
-addCustomAttributesResponseCodec : Codec AddCustomAttributesResponse
-addCustomAttributesResponseCodec =
-    Codec.object AddCustomAttributesResponse |> Codec.buildObject
-
-
-{-| Codec for AddCustomAttributesRequest.
--}
-addCustomAttributesRequestCodec : Codec AddCustomAttributesRequest
-addCustomAttributesRequestCodec =
-    Codec.object AddCustomAttributesRequest
-        |> Codec.field "CustomAttributes" .customAttributes customAttributesListTypeCodec
-        |> Codec.field "UserPoolId" .userPoolId userPoolIdTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AccountTakeoverRiskConfigurationType.
--}
-accountTakeoverRiskConfigurationTypeCodec : Codec AccountTakeoverRiskConfigurationType
-accountTakeoverRiskConfigurationTypeCodec =
-    Codec.object AccountTakeoverRiskConfigurationType
-        |> Codec.field "Actions" .actions accountTakeoverActionsTypeCodec
-        |> Codec.optionalField "NotifyConfiguration" .notifyConfiguration notifyConfigurationTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AccountTakeoverEventActionType.
--}
-accountTakeoverEventActionTypeCodec : Codec AccountTakeoverEventActionType
-accountTakeoverEventActionTypeCodec =
-    Codec.build (Enum.encoder accountTakeoverEventActionType) (Enum.decoder accountTakeoverEventActionType)
-
-
-{-| Codec for AccountTakeoverActionsType.
--}
-accountTakeoverActionsTypeCodec : Codec AccountTakeoverActionsType
-accountTakeoverActionsTypeCodec =
-    Codec.object AccountTakeoverActionsType
-        |> Codec.optionalField "HighAction" .highAction accountTakeoverActionTypeCodec
-        |> Codec.optionalField "LowAction" .lowAction accountTakeoverActionTypeCodec
-        |> Codec.optionalField "MediumAction" .mediumAction accountTakeoverActionTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AccountTakeoverActionType.
--}
-accountTakeoverActionTypeCodec : Codec AccountTakeoverActionType
-accountTakeoverActionTypeCodec =
-    Codec.object AccountTakeoverActionType
-        |> Codec.field "EventAction" .eventAction accountTakeoverEventActionTypeCodec
-        |> Codec.field "Notify" .notify accountTakeoverActionNotifyTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for AccountTakeoverActionNotifyType.
--}
-accountTakeoverActionNotifyTypeCodec : Codec AccountTakeoverActionNotifyType
-accountTakeoverActionNotifyTypeCodec =
-    Codec.bool
-
-
-{-| Codec for AwsaccountIdType.
--}
-awsaccountIdTypeCodec : Codec AwsaccountIdType
-awsaccountIdTypeCodec =
-    Codec.string
+verifyUserAttributeResponseCodec : Codec VerifyUserAttributeResponse
+verifyUserAttributeResponseCodec =
+    Codec.object VerifyUserAttributeResponse |> Codec.buildObject

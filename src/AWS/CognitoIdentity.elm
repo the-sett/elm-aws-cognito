@@ -1487,442 +1487,332 @@ type alias UntagResourceResponse =
     {}
 
 
-{-| Codec for UntagResourceResponse.
+{-| Codec for Arnstring.
 -}
-untagResourceResponseCodec : Codec UntagResourceResponse
-untagResourceResponseCodec =
-    Codec.object UntagResourceResponse |> Codec.buildObject
+arnstringCodec : Codec Arnstring
+arnstringCodec =
+    Codec.build (Refined.encoder arnstring) (Refined.decoder arnstring)
 
 
-{-| Codec for UntagResourceInput.
+{-| Codec for AccessKeyString.
 -}
-untagResourceInputCodec : Codec UntagResourceInput
-untagResourceInputCodec =
-    Codec.object UntagResourceInput
-        |> Codec.field "ResourceArn" .resourceArn arnstringCodec
-        |> Codec.optionalField "TagKeys" .tagKeys identityPoolTagsListTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UnprocessedIdentityIdList.
--}
-unprocessedIdentityIdListCodec : Codec UnprocessedIdentityIdList
-unprocessedIdentityIdListCodec =
-    Codec.list unprocessedIdentityIdCodec
-
-
-{-| Codec for UnprocessedIdentityId.
--}
-unprocessedIdentityIdCodec : Codec UnprocessedIdentityId
-unprocessedIdentityIdCodec =
-    Codec.object UnprocessedIdentityId
-        |> Codec.optionalField "ErrorCode" .errorCode errorCodeCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UnlinkIdentityInput.
--}
-unlinkIdentityInputCodec : Codec UnlinkIdentityInput
-unlinkIdentityInputCodec =
-    Codec.object UnlinkIdentityInput
-        |> Codec.field "IdentityId" .identityId identityIdCodec
-        |> Codec.field "Logins" .logins loginsMapCodec
-        |> Codec.field "LoginsToRemove" .loginsToRemove loginsListCodec
-        |> Codec.buildObject
-
-
-{-| Codec for UnlinkDeveloperIdentityInput.
--}
-unlinkDeveloperIdentityInputCodec : Codec UnlinkDeveloperIdentityInput
-unlinkDeveloperIdentityInputCodec =
-    Codec.object UnlinkDeveloperIdentityInput
-        |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
-        |> Codec.field "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
-        |> Codec.field "IdentityId" .identityId identityIdCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.buildObject
-
-
-{-| Codec for TokenDuration.
--}
-tokenDurationCodec : Codec TokenDuration
-tokenDurationCodec =
-    Codec.int
-
-
-{-| Codec for TagValueType.
--}
-tagValueTypeCodec : Codec TagValueType
-tagValueTypeCodec =
-    Codec.build (Refined.encoder tagValueType) (Refined.decoder tagValueType)
-
-
-{-| Codec for TagResourceResponse.
--}
-tagResourceResponseCodec : Codec TagResourceResponse
-tagResourceResponseCodec =
-    Codec.object TagResourceResponse |> Codec.buildObject
-
-
-{-| Codec for TagResourceInput.
--}
-tagResourceInputCodec : Codec TagResourceInput
-tagResourceInputCodec =
-    Codec.object TagResourceInput
-        |> Codec.field "ResourceArn" .resourceArn arnstringCodec
-        |> Codec.optionalField "Tags" .tags identityPoolTagsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for TagKeysType.
--}
-tagKeysTypeCodec : Codec TagKeysType
-tagKeysTypeCodec =
-    Codec.build (Refined.encoder tagKeysType) (Refined.decoder tagKeysType)
-
-
-{-| Codec for SetIdentityPoolRolesInput.
--}
-setIdentityPoolRolesInputCodec : Codec SetIdentityPoolRolesInput
-setIdentityPoolRolesInputCodec =
-    Codec.object SetIdentityPoolRolesInput
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
-        |> Codec.field "Roles" .roles rolesMapCodec
-        |> Codec.buildObject
-
-
-{-| Codec for SessionTokenString.
--}
-sessionTokenStringCodec : Codec SessionTokenString
-sessionTokenStringCodec =
+accessKeyStringCodec : Codec AccessKeyString
+accessKeyStringCodec =
     Codec.string
 
 
-{-| Codec for SecretKeyString.
+{-| Codec for AccountId.
 -}
-secretKeyStringCodec : Codec SecretKeyString
-secretKeyStringCodec =
-    Codec.string
+accountIdCodec : Codec AccountId
+accountIdCodec =
+    Codec.build (Refined.encoder accountId) (Refined.decoder accountId)
 
 
-{-| Codec for SamlproviderList.
+{-| Codec for AmbiguousRoleResolutionType.
 -}
-samlproviderListCodec : Codec SamlproviderList
-samlproviderListCodec =
-    Codec.list arnstringCodec
+ambiguousRoleResolutionTypeCodec : Codec AmbiguousRoleResolutionType
+ambiguousRoleResolutionTypeCodec =
+    Codec.build (Enum.encoder ambiguousRoleResolutionType) (Enum.decoder ambiguousRoleResolutionType)
 
 
-{-| Codec for RulesConfigurationType.
+{-| Codec for ClaimName.
 -}
-rulesConfigurationTypeCodec : Codec RulesConfigurationType
-rulesConfigurationTypeCodec =
-    Codec.object RulesConfigurationType |> Codec.field "Rules" .rules mappingRulesListCodec |> Codec.buildObject
+claimNameCodec : Codec ClaimName
+claimNameCodec =
+    Codec.build (Refined.encoder claimName) (Refined.decoder claimName)
 
 
-{-| Codec for RolesMap.
+{-| Codec for ClaimValue.
 -}
-rolesMapCodec : Codec RolesMap
-rolesMapCodec =
-    Codec.build
-        (Refined.dictEncoder roleType (Codec.encoder arnstringCodec))
-        (Refined.dictDecoder roleType (Codec.decoder arnstringCodec))
+claimValueCodec : Codec ClaimValue
+claimValueCodec =
+    Codec.build (Refined.encoder claimValue) (Refined.decoder claimValue)
 
 
-{-| Codec for RoleType.
+{-| Codec for CognitoIdentityProvider.
 -}
-roleTypeCodec : Codec RoleType
-roleTypeCodec =
-    Codec.build (Refined.encoder roleType) (Refined.decoder roleType)
-
-
-{-| Codec for RoleMappingType.
--}
-roleMappingTypeCodec : Codec RoleMappingType
-roleMappingTypeCodec =
-    Codec.build (Enum.encoder roleMappingType) (Enum.decoder roleMappingType)
-
-
-{-| Codec for RoleMappingMap.
--}
-roleMappingMapCodec : Codec RoleMappingMap
-roleMappingMapCodec =
-    Codec.build
-        (Refined.dictEncoder identityProviderName (Codec.encoder roleMappingCodec))
-        (Refined.dictDecoder identityProviderName (Codec.decoder roleMappingCodec))
-
-
-{-| Codec for RoleMapping.
--}
-roleMappingCodec : Codec RoleMapping
-roleMappingCodec =
-    Codec.object RoleMapping
-        |> Codec.optionalField "AmbiguousRoleResolution" .ambiguousRoleResolution ambiguousRoleResolutionTypeCodec
-        |> Codec.optionalField "RulesConfiguration" .rulesConfiguration rulesConfigurationTypeCodec
-        |> Codec.field "Type" .type_ roleMappingTypeCodec
+cognitoIdentityProviderCodec : Codec CognitoIdentityProvider
+cognitoIdentityProviderCodec =
+    Codec.object CognitoIdentityProvider
+        |> Codec.optionalField "ClientId" .clientId cognitoIdentityProviderClientIdCodec
+        |> Codec.optionalField "ProviderName" .providerName cognitoIdentityProviderNameCodec
+        |> Codec.optionalField "ServerSideTokenCheck" .serverSideTokenCheck cognitoIdentityProviderTokenCheckCodec
         |> Codec.buildObject
 
 
-{-| Codec for QueryLimit.
+{-| Codec for CognitoIdentityProviderClientId.
 -}
-queryLimitCodec : Codec QueryLimit
-queryLimitCodec =
-    Codec.build (Refined.encoder queryLimit) (Refined.decoder queryLimit)
+cognitoIdentityProviderClientIdCodec : Codec CognitoIdentityProviderClientId
+cognitoIdentityProviderClientIdCodec =
+    Codec.build (Refined.encoder cognitoIdentityProviderClientId) (Refined.decoder cognitoIdentityProviderClientId)
 
 
-{-| Codec for PaginationKey.
+{-| Codec for CognitoIdentityProviderList.
 -}
-paginationKeyCodec : Codec PaginationKey
-paginationKeyCodec =
-    Codec.build (Refined.encoder paginationKey) (Refined.decoder paginationKey)
+cognitoIdentityProviderListCodec : Codec CognitoIdentityProviderList
+cognitoIdentityProviderListCodec =
+    Codec.list cognitoIdentityProviderCodec
 
 
-{-| Codec for Oidctoken.
+{-| Codec for CognitoIdentityProviderName.
 -}
-oidctokenCodec : Codec Oidctoken
-oidctokenCodec =
-    Codec.string
+cognitoIdentityProviderNameCodec : Codec CognitoIdentityProviderName
+cognitoIdentityProviderNameCodec =
+    Codec.build (Refined.encoder cognitoIdentityProviderName) (Refined.decoder cognitoIdentityProviderName)
 
 
-{-| Codec for OidcproviderList.
+{-| Codec for CognitoIdentityProviderTokenCheck.
 -}
-oidcproviderListCodec : Codec OidcproviderList
-oidcproviderListCodec =
-    Codec.list arnstringCodec
-
-
-{-| Codec for MergeDeveloperIdentitiesResponse.
--}
-mergeDeveloperIdentitiesResponseCodec : Codec MergeDeveloperIdentitiesResponse
-mergeDeveloperIdentitiesResponseCodec =
-    Codec.object MergeDeveloperIdentitiesResponse
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.buildObject
-
-
-{-| Codec for MergeDeveloperIdentitiesInput.
--}
-mergeDeveloperIdentitiesInputCodec : Codec MergeDeveloperIdentitiesInput
-mergeDeveloperIdentitiesInputCodec =
-    Codec.object MergeDeveloperIdentitiesInput
-        |> Codec.field "DestinationUserIdentifier" .destinationUserIdentifier developerUserIdentifierCodec
-        |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.field "SourceUserIdentifier" .sourceUserIdentifier developerUserIdentifierCodec
-        |> Codec.buildObject
-
-
-{-| Codec for MappingRulesList.
--}
-mappingRulesListCodec : Codec MappingRulesList
-mappingRulesListCodec =
-    Codec.list mappingRuleCodec
-
-
-{-| Codec for MappingRuleMatchType.
--}
-mappingRuleMatchTypeCodec : Codec MappingRuleMatchType
-mappingRuleMatchTypeCodec =
-    Codec.build (Enum.encoder mappingRuleMatchType) (Enum.decoder mappingRuleMatchType)
-
-
-{-| Codec for MappingRule.
--}
-mappingRuleCodec : Codec MappingRule
-mappingRuleCodec =
-    Codec.object MappingRule
-        |> Codec.field "Claim" .claim claimNameCodec
-        |> Codec.field "MatchType" .matchType mappingRuleMatchTypeCodec
-        |> Codec.field "RoleARN" .roleArn arnstringCodec
-        |> Codec.field "Value" .value claimValueCodec
-        |> Codec.buildObject
-
-
-{-| Codec for LookupDeveloperIdentityResponse.
--}
-lookupDeveloperIdentityResponseCodec : Codec LookupDeveloperIdentityResponse
-lookupDeveloperIdentityResponseCodec =
-    Codec.object LookupDeveloperIdentityResponse
-        |> Codec.optionalField
-            "DeveloperUserIdentifierList"
-            .developerUserIdentifierList
-            developerUserIdentifierListCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for LookupDeveloperIdentityInput.
--}
-lookupDeveloperIdentityInputCodec : Codec LookupDeveloperIdentityInput
-lookupDeveloperIdentityInputCodec =
-    Codec.object LookupDeveloperIdentityInput
-        |> Codec.optionalField "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "MaxResults" .maxResults queryLimitCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for LoginsMap.
--}
-loginsMapCodec : Codec LoginsMap
-loginsMapCodec =
-    Codec.build
-        (Refined.dictEncoder identityProviderName (Codec.encoder identityProviderTokenCodec))
-        (Refined.dictDecoder identityProviderName (Codec.decoder identityProviderTokenCodec))
-
-
-{-| Codec for LoginsList.
--}
-loginsListCodec : Codec LoginsList
-loginsListCodec =
-    Codec.list identityProviderNameCodec
-
-
-{-| Codec for ListTagsForResourceResponse.
--}
-listTagsForResourceResponseCodec : Codec ListTagsForResourceResponse
-listTagsForResourceResponseCodec =
-    Codec.object ListTagsForResourceResponse
-        |> Codec.optionalField "Tags" .tags identityPoolTagsTypeCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListTagsForResourceInput.
--}
-listTagsForResourceInputCodec : Codec ListTagsForResourceInput
-listTagsForResourceInputCodec =
-    Codec.object ListTagsForResourceInput |> Codec.field "ResourceArn" .resourceArn arnstringCodec |> Codec.buildObject
-
-
-{-| Codec for ListIdentityPoolsResponse.
--}
-listIdentityPoolsResponseCodec : Codec ListIdentityPoolsResponse
-listIdentityPoolsResponseCodec =
-    Codec.object ListIdentityPoolsResponse
-        |> Codec.optionalField "IdentityPools" .identityPools identityPoolsListCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListIdentityPoolsInput.
--}
-listIdentityPoolsInputCodec : Codec ListIdentityPoolsInput
-listIdentityPoolsInputCodec =
-    Codec.object ListIdentityPoolsInput
-        |> Codec.field "MaxResults" .maxResults queryLimitCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListIdentitiesResponse.
--}
-listIdentitiesResponseCodec : Codec ListIdentitiesResponse
-listIdentitiesResponseCodec =
-    Codec.object ListIdentitiesResponse
-        |> Codec.optionalField "Identities" .identities identitiesListCodec
-        |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ListIdentitiesInput.
--}
-listIdentitiesInputCodec : Codec ListIdentitiesInput
-listIdentitiesInputCodec =
-    Codec.object ListIdentitiesInput
-        |> Codec.optionalField "HideDisabled" .hideDisabled hideDisabledCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.field "MaxResults" .maxResults queryLimitCodec
-        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
-        |> Codec.buildObject
-
-
-{-| Codec for IdentityProviders.
--}
-identityProvidersCodec : Codec IdentityProviders
-identityProvidersCodec =
-    Codec.build
-        (Refined.dictEncoder identityProviderName (Codec.encoder identityProviderIdCodec))
-        (Refined.dictDecoder identityProviderName (Codec.decoder identityProviderIdCodec))
-
-
-{-| Codec for IdentityProviderToken.
--}
-identityProviderTokenCodec : Codec IdentityProviderToken
-identityProviderTokenCodec =
-    Codec.build (Refined.encoder identityProviderToken) (Refined.decoder identityProviderToken)
-
-
-{-| Codec for IdentityProviderName.
--}
-identityProviderNameCodec : Codec IdentityProviderName
-identityProviderNameCodec =
-    Codec.build (Refined.encoder identityProviderName) (Refined.decoder identityProviderName)
-
-
-{-| Codec for IdentityProviderId.
--}
-identityProviderIdCodec : Codec IdentityProviderId
-identityProviderIdCodec =
-    Codec.build (Refined.encoder identityProviderId) (Refined.decoder identityProviderId)
-
-
-{-| Codec for IdentityPoolsList.
--}
-identityPoolsListCodec : Codec IdentityPoolsList
-identityPoolsListCodec =
-    Codec.list identityPoolShortDescriptionCodec
-
-
-{-| Codec for IdentityPoolUnauthenticated.
--}
-identityPoolUnauthenticatedCodec : Codec IdentityPoolUnauthenticated
-identityPoolUnauthenticatedCodec =
+cognitoIdentityProviderTokenCheckCodec : Codec CognitoIdentityProviderTokenCheck
+cognitoIdentityProviderTokenCheckCodec =
     Codec.bool
 
 
-{-| Codec for IdentityPoolTagsType.
+{-| Codec for CreateIdentityPoolInput.
 -}
-identityPoolTagsTypeCodec : Codec IdentityPoolTagsType
-identityPoolTagsTypeCodec =
-    Codec.build
-        (Refined.dictEncoder tagKeysType (Codec.encoder tagValueTypeCodec))
-        (Refined.dictDecoder tagKeysType (Codec.decoder tagValueTypeCodec))
-
-
-{-| Codec for IdentityPoolTagsListType.
--}
-identityPoolTagsListTypeCodec : Codec IdentityPoolTagsListType
-identityPoolTagsListTypeCodec =
-    Codec.list tagKeysTypeCodec
-
-
-{-| Codec for IdentityPoolShortDescription.
--}
-identityPoolShortDescriptionCodec : Codec IdentityPoolShortDescription
-identityPoolShortDescriptionCodec =
-    Codec.object IdentityPoolShortDescription
-        |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "IdentityPoolName" .identityPoolName identityPoolNameCodec
+createIdentityPoolInputCodec : Codec CreateIdentityPoolInput
+createIdentityPoolInputCodec =
+    Codec.object CreateIdentityPoolInput
+        |> Codec.field "AllowUnauthenticatedIdentities" .allowUnauthenticatedIdentities identityPoolUnauthenticatedCodec
+        |> Codec.optionalField "CognitoIdentityProviders" .cognitoIdentityProviders cognitoIdentityProviderListCodec
+        |> Codec.optionalField "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "IdentityPoolName" .identityPoolName identityPoolNameCodec
+        |> Codec.optionalField "IdentityPoolTags" .identityPoolTags identityPoolTagsTypeCodec
+        |> Codec.optionalField "OpenIdConnectProviderARNs" .openIdConnectProviderArns oidcproviderListCodec
+        |> Codec.optionalField "SamlProviderARNs" .samlProviderArns samlproviderListCodec
+        |> Codec.optionalField "SupportedLoginProviders" .supportedLoginProviders identityProvidersCodec
         |> Codec.buildObject
 
 
-{-| Codec for IdentityPoolName.
+{-| Codec for Credentials.
 -}
-identityPoolNameCodec : Codec IdentityPoolName
-identityPoolNameCodec =
-    Codec.build (Refined.encoder identityPoolName) (Refined.decoder identityPoolName)
+credentialsCodec : Codec Credentials
+credentialsCodec =
+    Codec.object Credentials
+        |> Codec.optionalField "AccessKeyId" .accessKeyId accessKeyStringCodec
+        |> Codec.optionalField "Expiration" .expiration dateTypeCodec
+        |> Codec.optionalField "SecretKey" .secretKey secretKeyStringCodec
+        |> Codec.optionalField "SessionToken" .sessionToken sessionTokenStringCodec
+        |> Codec.buildObject
 
 
-{-| Codec for IdentityPoolId.
+{-| Codec for DateType.
 -}
-identityPoolIdCodec : Codec IdentityPoolId
-identityPoolIdCodec =
-    Codec.build (Refined.encoder identityPoolId) (Refined.decoder identityPoolId)
+dateTypeCodec : Codec DateType
+dateTypeCodec =
+    Codec.string
+
+
+{-| Codec for DeleteIdentitiesInput.
+-}
+deleteIdentitiesInputCodec : Codec DeleteIdentitiesInput
+deleteIdentitiesInputCodec =
+    Codec.object DeleteIdentitiesInput
+        |> Codec.field "IdentityIdsToDelete" .identityIdsToDelete identityIdListCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteIdentitiesResponse.
+-}
+deleteIdentitiesResponseCodec : Codec DeleteIdentitiesResponse
+deleteIdentitiesResponseCodec =
+    Codec.object DeleteIdentitiesResponse
+        |> Codec.optionalField "UnprocessedIdentityIds" .unprocessedIdentityIds unprocessedIdentityIdListCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeleteIdentityPoolInput.
+-}
+deleteIdentityPoolInputCodec : Codec DeleteIdentityPoolInput
+deleteIdentityPoolInputCodec =
+    Codec.object DeleteIdentityPoolInput
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DescribeIdentityInput.
+-}
+describeIdentityInputCodec : Codec DescribeIdentityInput
+describeIdentityInputCodec =
+    Codec.object DescribeIdentityInput |> Codec.field "IdentityId" .identityId identityIdCodec |> Codec.buildObject
+
+
+{-| Codec for DescribeIdentityPoolInput.
+-}
+describeIdentityPoolInputCodec : Codec DescribeIdentityPoolInput
+describeIdentityPoolInputCodec =
+    Codec.object DescribeIdentityPoolInput
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.buildObject
+
+
+{-| Codec for DeveloperProviderName.
+-}
+developerProviderNameCodec : Codec DeveloperProviderName
+developerProviderNameCodec =
+    Codec.build (Refined.encoder developerProviderName) (Refined.decoder developerProviderName)
+
+
+{-| Codec for DeveloperUserIdentifier.
+-}
+developerUserIdentifierCodec : Codec DeveloperUserIdentifier
+developerUserIdentifierCodec =
+    Codec.build (Refined.encoder developerUserIdentifier) (Refined.decoder developerUserIdentifier)
+
+
+{-| Codec for DeveloperUserIdentifierList.
+-}
+developerUserIdentifierListCodec : Codec DeveloperUserIdentifierList
+developerUserIdentifierListCodec =
+    Codec.list developerUserIdentifierCodec
+
+
+{-| Codec for ErrorCode.
+-}
+errorCodeCodec : Codec ErrorCode
+errorCodeCodec =
+    Codec.build (Enum.encoder errorCode) (Enum.decoder errorCode)
+
+
+{-| Codec for GetCredentialsForIdentityInput.
+-}
+getCredentialsForIdentityInputCodec : Codec GetCredentialsForIdentityInput
+getCredentialsForIdentityInputCodec =
+    Codec.object GetCredentialsForIdentityInput
+        |> Codec.optionalField "CustomRoleArn" .customRoleArn arnstringCodec
+        |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Logins" .logins loginsMapCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetCredentialsForIdentityResponse.
+-}
+getCredentialsForIdentityResponseCodec : Codec GetCredentialsForIdentityResponse
+getCredentialsForIdentityResponseCodec =
+    Codec.object GetCredentialsForIdentityResponse
+        |> Codec.optionalField "Credentials" .credentials credentialsCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetIdInput.
+-}
+getIdInputCodec : Codec GetIdInput
+getIdInputCodec =
+    Codec.object GetIdInput
+        |> Codec.optionalField "AccountId" .accountId accountIdCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "Logins" .logins loginsMapCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetIdResponse.
+-}
+getIdResponseCodec : Codec GetIdResponse
+getIdResponseCodec =
+    Codec.object GetIdResponse |> Codec.optionalField "IdentityId" .identityId identityIdCodec |> Codec.buildObject
+
+
+{-| Codec for GetIdentityPoolRolesInput.
+-}
+getIdentityPoolRolesInputCodec : Codec GetIdentityPoolRolesInput
+getIdentityPoolRolesInputCodec =
+    Codec.object GetIdentityPoolRolesInput
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetIdentityPoolRolesResponse.
+-}
+getIdentityPoolRolesResponseCodec : Codec GetIdentityPoolRolesResponse
+getIdentityPoolRolesResponseCodec =
+    Codec.object GetIdentityPoolRolesResponse
+        |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
+        |> Codec.optionalField "Roles" .roles rolesMapCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetOpenIdTokenForDeveloperIdentityInput.
+-}
+getOpenIdTokenForDeveloperIdentityInputCodec : Codec GetOpenIdTokenForDeveloperIdentityInput
+getOpenIdTokenForDeveloperIdentityInputCodec =
+    Codec.object GetOpenIdTokenForDeveloperIdentityInput
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.field "Logins" .logins loginsMapCodec
+        |> Codec.optionalField "TokenDuration" .tokenDuration tokenDurationCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetOpenIdTokenForDeveloperIdentityResponse.
+-}
+getOpenIdTokenForDeveloperIdentityResponseCodec : Codec GetOpenIdTokenForDeveloperIdentityResponse
+getOpenIdTokenForDeveloperIdentityResponseCodec =
+    Codec.object GetOpenIdTokenForDeveloperIdentityResponse
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Token" .token oidctokenCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetOpenIdTokenInput.
+-}
+getOpenIdTokenInputCodec : Codec GetOpenIdTokenInput
+getOpenIdTokenInputCodec =
+    Codec.object GetOpenIdTokenInput
+        |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Logins" .logins loginsMapCodec
+        |> Codec.buildObject
+
+
+{-| Codec for GetOpenIdTokenResponse.
+-}
+getOpenIdTokenResponseCodec : Codec GetOpenIdTokenResponse
+getOpenIdTokenResponseCodec =
+    Codec.object GetOpenIdTokenResponse
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "Token" .token oidctokenCodec
+        |> Codec.buildObject
+
+
+{-| Codec for HideDisabled.
+-}
+hideDisabledCodec : Codec HideDisabled
+hideDisabledCodec =
+    Codec.bool
+
+
+{-| Codec for IdentitiesList.
+-}
+identitiesListCodec : Codec IdentitiesList
+identitiesListCodec =
+    Codec.list identityDescriptionCodec
+
+
+{-| Codec for IdentityDescription.
+-}
+identityDescriptionCodec : Codec IdentityDescription
+identityDescriptionCodec =
+    Codec.object IdentityDescription
+        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
+        |> Codec.optionalField "Logins" .logins loginsListCodec
+        |> Codec.buildObject
+
+
+{-| Codec for IdentityId.
+-}
+identityIdCodec : Codec IdentityId
+identityIdCodec =
+    Codec.build (Refined.encoder identityId) (Refined.decoder identityId)
+
+
+{-| Codec for IdentityIdList.
+-}
+identityIdListCodec : Codec IdentityIdList
+identityIdListCodec =
+    Codec.list identityIdCodec
 
 
 {-| Codec for IdentityPool.
@@ -1942,329 +1832,439 @@ identityPoolCodec =
         |> Codec.buildObject
 
 
-{-| Codec for IdentityIdList.
+{-| Codec for IdentityPoolId.
 -}
-identityIdListCodec : Codec IdentityIdList
-identityIdListCodec =
-    Codec.list identityIdCodec
+identityPoolIdCodec : Codec IdentityPoolId
+identityPoolIdCodec =
+    Codec.build (Refined.encoder identityPoolId) (Refined.decoder identityPoolId)
 
 
-{-| Codec for IdentityId.
+{-| Codec for IdentityPoolName.
 -}
-identityIdCodec : Codec IdentityId
-identityIdCodec =
-    Codec.build (Refined.encoder identityId) (Refined.decoder identityId)
+identityPoolNameCodec : Codec IdentityPoolName
+identityPoolNameCodec =
+    Codec.build (Refined.encoder identityPoolName) (Refined.decoder identityPoolName)
 
 
-{-| Codec for IdentityDescription.
+{-| Codec for IdentityPoolShortDescription.
 -}
-identityDescriptionCodec : Codec IdentityDescription
-identityDescriptionCodec =
-    Codec.object IdentityDescription
-        |> Codec.optionalField "CreationDate" .creationDate dateTypeCodec
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.optionalField "LastModifiedDate" .lastModifiedDate dateTypeCodec
-        |> Codec.optionalField "Logins" .logins loginsListCodec
-        |> Codec.buildObject
-
-
-{-| Codec for IdentitiesList.
--}
-identitiesListCodec : Codec IdentitiesList
-identitiesListCodec =
-    Codec.list identityDescriptionCodec
-
-
-{-| Codec for HideDisabled.
--}
-hideDisabledCodec : Codec HideDisabled
-hideDisabledCodec =
-    Codec.bool
-
-
-{-| Codec for GetOpenIdTokenResponse.
--}
-getOpenIdTokenResponseCodec : Codec GetOpenIdTokenResponse
-getOpenIdTokenResponseCodec =
-    Codec.object GetOpenIdTokenResponse
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.optionalField "Token" .token oidctokenCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetOpenIdTokenInput.
--}
-getOpenIdTokenInputCodec : Codec GetOpenIdTokenInput
-getOpenIdTokenInputCodec =
-    Codec.object GetOpenIdTokenInput
-        |> Codec.field "IdentityId" .identityId identityIdCodec
-        |> Codec.optionalField "Logins" .logins loginsMapCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetOpenIdTokenForDeveloperIdentityResponse.
--}
-getOpenIdTokenForDeveloperIdentityResponseCodec : Codec GetOpenIdTokenForDeveloperIdentityResponse
-getOpenIdTokenForDeveloperIdentityResponseCodec =
-    Codec.object GetOpenIdTokenForDeveloperIdentityResponse
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.optionalField "Token" .token oidctokenCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetOpenIdTokenForDeveloperIdentityInput.
--}
-getOpenIdTokenForDeveloperIdentityInputCodec : Codec GetOpenIdTokenForDeveloperIdentityInput
-getOpenIdTokenForDeveloperIdentityInputCodec =
-    Codec.object GetOpenIdTokenForDeveloperIdentityInput
-        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.field "Logins" .logins loginsMapCodec
-        |> Codec.optionalField "TokenDuration" .tokenDuration tokenDurationCodec
-        |> Codec.buildObject
-
-
-{-| Codec for GetIdentityPoolRolesResponse.
--}
-getIdentityPoolRolesResponseCodec : Codec GetIdentityPoolRolesResponse
-getIdentityPoolRolesResponseCodec =
-    Codec.object GetIdentityPoolRolesResponse
+identityPoolShortDescriptionCodec : Codec IdentityPoolShortDescription
+identityPoolShortDescriptionCodec =
+    Codec.object IdentityPoolShortDescription
         |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
-        |> Codec.optionalField "Roles" .roles rolesMapCodec
+        |> Codec.optionalField "IdentityPoolName" .identityPoolName identityPoolNameCodec
         |> Codec.buildObject
 
 
-{-| Codec for GetIdentityPoolRolesInput.
+{-| Codec for IdentityPoolTagsListType.
 -}
-getIdentityPoolRolesInputCodec : Codec GetIdentityPoolRolesInput
-getIdentityPoolRolesInputCodec =
-    Codec.object GetIdentityPoolRolesInput
+identityPoolTagsListTypeCodec : Codec IdentityPoolTagsListType
+identityPoolTagsListTypeCodec =
+    Codec.list tagKeysTypeCodec
+
+
+{-| Codec for IdentityPoolTagsType.
+-}
+identityPoolTagsTypeCodec : Codec IdentityPoolTagsType
+identityPoolTagsTypeCodec =
+    Codec.build
+        (Refined.dictEncoder tagKeysType (Codec.encoder tagValueTypeCodec))
+        (Refined.dictDecoder tagKeysType (Codec.decoder tagValueTypeCodec))
+
+
+{-| Codec for IdentityPoolUnauthenticated.
+-}
+identityPoolUnauthenticatedCodec : Codec IdentityPoolUnauthenticated
+identityPoolUnauthenticatedCodec =
+    Codec.bool
+
+
+{-| Codec for IdentityPoolsList.
+-}
+identityPoolsListCodec : Codec IdentityPoolsList
+identityPoolsListCodec =
+    Codec.list identityPoolShortDescriptionCodec
+
+
+{-| Codec for IdentityProviderId.
+-}
+identityProviderIdCodec : Codec IdentityProviderId
+identityProviderIdCodec =
+    Codec.build (Refined.encoder identityProviderId) (Refined.decoder identityProviderId)
+
+
+{-| Codec for IdentityProviderName.
+-}
+identityProviderNameCodec : Codec IdentityProviderName
+identityProviderNameCodec =
+    Codec.build (Refined.encoder identityProviderName) (Refined.decoder identityProviderName)
+
+
+{-| Codec for IdentityProviderToken.
+-}
+identityProviderTokenCodec : Codec IdentityProviderToken
+identityProviderTokenCodec =
+    Codec.build (Refined.encoder identityProviderToken) (Refined.decoder identityProviderToken)
+
+
+{-| Codec for IdentityProviders.
+-}
+identityProvidersCodec : Codec IdentityProviders
+identityProvidersCodec =
+    Codec.build
+        (Refined.dictEncoder identityProviderName (Codec.encoder identityProviderIdCodec))
+        (Refined.dictDecoder identityProviderName (Codec.decoder identityProviderIdCodec))
+
+
+{-| Codec for ListIdentitiesInput.
+-}
+listIdentitiesInputCodec : Codec ListIdentitiesInput
+listIdentitiesInputCodec =
+    Codec.object ListIdentitiesInput
+        |> Codec.optionalField "HideDisabled" .hideDisabled hideDisabledCodec
         |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.field "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
-{-| Codec for GetIdResponse.
+{-| Codec for ListIdentitiesResponse.
 -}
-getIdResponseCodec : Codec GetIdResponse
-getIdResponseCodec =
-    Codec.object GetIdResponse |> Codec.optionalField "IdentityId" .identityId identityIdCodec |> Codec.buildObject
+listIdentitiesResponseCodec : Codec ListIdentitiesResponse
+listIdentitiesResponseCodec =
+    Codec.object ListIdentitiesResponse
+        |> Codec.optionalField "Identities" .identities identitiesListCodec
+        |> Codec.optionalField "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
 
 
-{-| Codec for GetIdInput.
+{-| Codec for ListIdentityPoolsInput.
 -}
-getIdInputCodec : Codec GetIdInput
-getIdInputCodec =
-    Codec.object GetIdInput
-        |> Codec.optionalField "AccountId" .accountId accountIdCodec
+listIdentityPoolsInputCodec : Codec ListIdentityPoolsInput
+listIdentityPoolsInputCodec =
+    Codec.object ListIdentityPoolsInput
+        |> Codec.field "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListIdentityPoolsResponse.
+-}
+listIdentityPoolsResponseCodec : Codec ListIdentityPoolsResponse
+listIdentityPoolsResponseCodec =
+    Codec.object ListIdentityPoolsResponse
+        |> Codec.optionalField "IdentityPools" .identityPools identityPoolsListCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
+
+
+{-| Codec for ListTagsForResourceInput.
+-}
+listTagsForResourceInputCodec : Codec ListTagsForResourceInput
+listTagsForResourceInputCodec =
+    Codec.object ListTagsForResourceInput |> Codec.field "ResourceArn" .resourceArn arnstringCodec |> Codec.buildObject
+
+
+{-| Codec for ListTagsForResourceResponse.
+-}
+listTagsForResourceResponseCodec : Codec ListTagsForResourceResponse
+listTagsForResourceResponseCodec =
+    Codec.object ListTagsForResourceResponse
+        |> Codec.optionalField "Tags" .tags identityPoolTagsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for LoginsList.
+-}
+loginsListCodec : Codec LoginsList
+loginsListCodec =
+    Codec.list identityProviderNameCodec
+
+
+{-| Codec for LoginsMap.
+-}
+loginsMapCodec : Codec LoginsMap
+loginsMapCodec =
+    Codec.build
+        (Refined.dictEncoder identityProviderName (Codec.encoder identityProviderTokenCodec))
+        (Refined.dictDecoder identityProviderName (Codec.decoder identityProviderTokenCodec))
+
+
+{-| Codec for LookupDeveloperIdentityInput.
+-}
+lookupDeveloperIdentityInputCodec : Codec LookupDeveloperIdentityInput
+lookupDeveloperIdentityInputCodec =
+    Codec.object LookupDeveloperIdentityInput
+        |> Codec.optionalField "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
-        |> Codec.optionalField "Logins" .logins loginsMapCodec
+        |> Codec.optionalField "MaxResults" .maxResults queryLimitCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
         |> Codec.buildObject
 
 
-{-| Codec for GetCredentialsForIdentityResponse.
+{-| Codec for LookupDeveloperIdentityResponse.
 -}
-getCredentialsForIdentityResponseCodec : Codec GetCredentialsForIdentityResponse
-getCredentialsForIdentityResponseCodec =
-    Codec.object GetCredentialsForIdentityResponse
-        |> Codec.optionalField "Credentials" .credentials credentialsCodec
+lookupDeveloperIdentityResponseCodec : Codec LookupDeveloperIdentityResponse
+lookupDeveloperIdentityResponseCodec =
+    Codec.object LookupDeveloperIdentityResponse
+        |> Codec.optionalField
+            "DeveloperUserIdentifierList"
+            .developerUserIdentifierList
+            developerUserIdentifierListCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
+        |> Codec.optionalField "NextToken" .nextToken paginationKeyCodec
+        |> Codec.buildObject
+
+
+{-| Codec for MappingRule.
+-}
+mappingRuleCodec : Codec MappingRule
+mappingRuleCodec =
+    Codec.object MappingRule
+        |> Codec.field "Claim" .claim claimNameCodec
+        |> Codec.field "MatchType" .matchType mappingRuleMatchTypeCodec
+        |> Codec.field "RoleARN" .roleArn arnstringCodec
+        |> Codec.field "Value" .value claimValueCodec
+        |> Codec.buildObject
+
+
+{-| Codec for MappingRuleMatchType.
+-}
+mappingRuleMatchTypeCodec : Codec MappingRuleMatchType
+mappingRuleMatchTypeCodec =
+    Codec.build (Enum.encoder mappingRuleMatchType) (Enum.decoder mappingRuleMatchType)
+
+
+{-| Codec for MappingRulesList.
+-}
+mappingRulesListCodec : Codec MappingRulesList
+mappingRulesListCodec =
+    Codec.list mappingRuleCodec
+
+
+{-| Codec for MergeDeveloperIdentitiesInput.
+-}
+mergeDeveloperIdentitiesInputCodec : Codec MergeDeveloperIdentitiesInput
+mergeDeveloperIdentitiesInputCodec =
+    Codec.object MergeDeveloperIdentitiesInput
+        |> Codec.field "DestinationUserIdentifier" .destinationUserIdentifier developerUserIdentifierCodec
+        |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.field "SourceUserIdentifier" .sourceUserIdentifier developerUserIdentifierCodec
+        |> Codec.buildObject
+
+
+{-| Codec for MergeDeveloperIdentitiesResponse.
+-}
+mergeDeveloperIdentitiesResponseCodec : Codec MergeDeveloperIdentitiesResponse
+mergeDeveloperIdentitiesResponseCodec =
+    Codec.object MergeDeveloperIdentitiesResponse
         |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.buildObject
 
 
-{-| Codec for GetCredentialsForIdentityInput.
+{-| Codec for OidcproviderList.
 -}
-getCredentialsForIdentityInputCodec : Codec GetCredentialsForIdentityInput
-getCredentialsForIdentityInputCodec =
-    Codec.object GetCredentialsForIdentityInput
-        |> Codec.optionalField "CustomRoleArn" .customRoleArn arnstringCodec
+oidcproviderListCodec : Codec OidcproviderList
+oidcproviderListCodec =
+    Codec.list arnstringCodec
+
+
+{-| Codec for Oidctoken.
+-}
+oidctokenCodec : Codec Oidctoken
+oidctokenCodec =
+    Codec.string
+
+
+{-| Codec for PaginationKey.
+-}
+paginationKeyCodec : Codec PaginationKey
+paginationKeyCodec =
+    Codec.build (Refined.encoder paginationKey) (Refined.decoder paginationKey)
+
+
+{-| Codec for QueryLimit.
+-}
+queryLimitCodec : Codec QueryLimit
+queryLimitCodec =
+    Codec.build (Refined.encoder queryLimit) (Refined.decoder queryLimit)
+
+
+{-| Codec for RoleMapping.
+-}
+roleMappingCodec : Codec RoleMapping
+roleMappingCodec =
+    Codec.object RoleMapping
+        |> Codec.optionalField "AmbiguousRoleResolution" .ambiguousRoleResolution ambiguousRoleResolutionTypeCodec
+        |> Codec.optionalField "RulesConfiguration" .rulesConfiguration rulesConfigurationTypeCodec
+        |> Codec.field "Type" .type_ roleMappingTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for RoleMappingMap.
+-}
+roleMappingMapCodec : Codec RoleMappingMap
+roleMappingMapCodec =
+    Codec.build
+        (Refined.dictEncoder identityProviderName (Codec.encoder roleMappingCodec))
+        (Refined.dictDecoder identityProviderName (Codec.decoder roleMappingCodec))
+
+
+{-| Codec for RoleMappingType.
+-}
+roleMappingTypeCodec : Codec RoleMappingType
+roleMappingTypeCodec =
+    Codec.build (Enum.encoder roleMappingType) (Enum.decoder roleMappingType)
+
+
+{-| Codec for RoleType.
+-}
+roleTypeCodec : Codec RoleType
+roleTypeCodec =
+    Codec.build (Refined.encoder roleType) (Refined.decoder roleType)
+
+
+{-| Codec for RolesMap.
+-}
+rolesMapCodec : Codec RolesMap
+rolesMapCodec =
+    Codec.build
+        (Refined.dictEncoder roleType (Codec.encoder arnstringCodec))
+        (Refined.dictDecoder roleType (Codec.decoder arnstringCodec))
+
+
+{-| Codec for RulesConfigurationType.
+-}
+rulesConfigurationTypeCodec : Codec RulesConfigurationType
+rulesConfigurationTypeCodec =
+    Codec.object RulesConfigurationType |> Codec.field "Rules" .rules mappingRulesListCodec |> Codec.buildObject
+
+
+{-| Codec for SamlproviderList.
+-}
+samlproviderListCodec : Codec SamlproviderList
+samlproviderListCodec =
+    Codec.list arnstringCodec
+
+
+{-| Codec for SecretKeyString.
+-}
+secretKeyStringCodec : Codec SecretKeyString
+secretKeyStringCodec =
+    Codec.string
+
+
+{-| Codec for SessionTokenString.
+-}
+sessionTokenStringCodec : Codec SessionTokenString
+sessionTokenStringCodec =
+    Codec.string
+
+
+{-| Codec for SetIdentityPoolRolesInput.
+-}
+setIdentityPoolRolesInputCodec : Codec SetIdentityPoolRolesInput
+setIdentityPoolRolesInputCodec =
+    Codec.object SetIdentityPoolRolesInput
+        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+        |> Codec.optionalField "RoleMappings" .roleMappings roleMappingMapCodec
+        |> Codec.field "Roles" .roles rolesMapCodec
+        |> Codec.buildObject
+
+
+{-| Codec for TagKeysType.
+-}
+tagKeysTypeCodec : Codec TagKeysType
+tagKeysTypeCodec =
+    Codec.build (Refined.encoder tagKeysType) (Refined.decoder tagKeysType)
+
+
+{-| Codec for TagResourceInput.
+-}
+tagResourceInputCodec : Codec TagResourceInput
+tagResourceInputCodec =
+    Codec.object TagResourceInput
+        |> Codec.field "ResourceArn" .resourceArn arnstringCodec
+        |> Codec.optionalField "Tags" .tags identityPoolTagsTypeCodec
+        |> Codec.buildObject
+
+
+{-| Codec for TagResourceResponse.
+-}
+tagResourceResponseCodec : Codec TagResourceResponse
+tagResourceResponseCodec =
+    Codec.object TagResourceResponse |> Codec.buildObject
+
+
+{-| Codec for TagValueType.
+-}
+tagValueTypeCodec : Codec TagValueType
+tagValueTypeCodec =
+    Codec.build (Refined.encoder tagValueType) (Refined.decoder tagValueType)
+
+
+{-| Codec for TokenDuration.
+-}
+tokenDurationCodec : Codec TokenDuration
+tokenDurationCodec =
+    Codec.int
+
+
+{-| Codec for UnlinkDeveloperIdentityInput.
+-}
+unlinkDeveloperIdentityInputCodec : Codec UnlinkDeveloperIdentityInput
+unlinkDeveloperIdentityInputCodec =
+    Codec.object UnlinkDeveloperIdentityInput
+        |> Codec.field "DeveloperProviderName" .developerProviderName developerProviderNameCodec
+        |> Codec.field "DeveloperUserIdentifier" .developerUserIdentifier developerUserIdentifierCodec
         |> Codec.field "IdentityId" .identityId identityIdCodec
-        |> Codec.optionalField "Logins" .logins loginsMapCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ErrorCode.
--}
-errorCodeCodec : Codec ErrorCode
-errorCodeCodec =
-    Codec.build (Enum.encoder errorCode) (Enum.decoder errorCode)
-
-
-{-| Codec for DeveloperUserIdentifierList.
--}
-developerUserIdentifierListCodec : Codec DeveloperUserIdentifierList
-developerUserIdentifierListCodec =
-    Codec.list developerUserIdentifierCodec
-
-
-{-| Codec for DeveloperUserIdentifier.
--}
-developerUserIdentifierCodec : Codec DeveloperUserIdentifier
-developerUserIdentifierCodec =
-    Codec.build (Refined.encoder developerUserIdentifier) (Refined.decoder developerUserIdentifier)
-
-
-{-| Codec for DeveloperProviderName.
--}
-developerProviderNameCodec : Codec DeveloperProviderName
-developerProviderNameCodec =
-    Codec.build (Refined.encoder developerProviderName) (Refined.decoder developerProviderName)
-
-
-{-| Codec for DescribeIdentityPoolInput.
--}
-describeIdentityPoolInputCodec : Codec DescribeIdentityPoolInput
-describeIdentityPoolInputCodec =
-    Codec.object DescribeIdentityPoolInput
         |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
         |> Codec.buildObject
 
 
-{-| Codec for DescribeIdentityInput.
+{-| Codec for UnlinkIdentityInput.
 -}
-describeIdentityInputCodec : Codec DescribeIdentityInput
-describeIdentityInputCodec =
-    Codec.object DescribeIdentityInput |> Codec.field "IdentityId" .identityId identityIdCodec |> Codec.buildObject
-
-
-{-| Codec for DeleteIdentityPoolInput.
--}
-deleteIdentityPoolInputCodec : Codec DeleteIdentityPoolInput
-deleteIdentityPoolInputCodec =
-    Codec.object DeleteIdentityPoolInput
-        |> Codec.field "IdentityPoolId" .identityPoolId identityPoolIdCodec
+unlinkIdentityInputCodec : Codec UnlinkIdentityInput
+unlinkIdentityInputCodec =
+    Codec.object UnlinkIdentityInput
+        |> Codec.field "IdentityId" .identityId identityIdCodec
+        |> Codec.field "Logins" .logins loginsMapCodec
+        |> Codec.field "LoginsToRemove" .loginsToRemove loginsListCodec
         |> Codec.buildObject
 
 
-{-| Codec for DeleteIdentitiesResponse.
+{-| Codec for UnprocessedIdentityId.
 -}
-deleteIdentitiesResponseCodec : Codec DeleteIdentitiesResponse
-deleteIdentitiesResponseCodec =
-    Codec.object DeleteIdentitiesResponse
-        |> Codec.optionalField "UnprocessedIdentityIds" .unprocessedIdentityIds unprocessedIdentityIdListCodec
+unprocessedIdentityIdCodec : Codec UnprocessedIdentityId
+unprocessedIdentityIdCodec =
+    Codec.object UnprocessedIdentityId
+        |> Codec.optionalField "ErrorCode" .errorCode errorCodeCodec
+        |> Codec.optionalField "IdentityId" .identityId identityIdCodec
         |> Codec.buildObject
 
 
-{-| Codec for DeleteIdentitiesInput.
+{-| Codec for UnprocessedIdentityIdList.
 -}
-deleteIdentitiesInputCodec : Codec DeleteIdentitiesInput
-deleteIdentitiesInputCodec =
-    Codec.object DeleteIdentitiesInput
-        |> Codec.field "IdentityIdsToDelete" .identityIdsToDelete identityIdListCodec
+unprocessedIdentityIdListCodec : Codec UnprocessedIdentityIdList
+unprocessedIdentityIdListCodec =
+    Codec.list unprocessedIdentityIdCodec
+
+
+{-| Codec for UntagResourceInput.
+-}
+untagResourceInputCodec : Codec UntagResourceInput
+untagResourceInputCodec =
+    Codec.object UntagResourceInput
+        |> Codec.field "ResourceArn" .resourceArn arnstringCodec
+        |> Codec.optionalField "TagKeys" .tagKeys identityPoolTagsListTypeCodec
         |> Codec.buildObject
 
 
-{-| Codec for DateType.
+{-| Codec for UntagResourceResponse.
 -}
-dateTypeCodec : Codec DateType
-dateTypeCodec =
-    Codec.string
-
-
-{-| Codec for Credentials.
--}
-credentialsCodec : Codec Credentials
-credentialsCodec =
-    Codec.object Credentials
-        |> Codec.optionalField "AccessKeyId" .accessKeyId accessKeyStringCodec
-        |> Codec.optionalField "Expiration" .expiration dateTypeCodec
-        |> Codec.optionalField "SecretKey" .secretKey secretKeyStringCodec
-        |> Codec.optionalField "SessionToken" .sessionToken sessionTokenStringCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CreateIdentityPoolInput.
--}
-createIdentityPoolInputCodec : Codec CreateIdentityPoolInput
-createIdentityPoolInputCodec =
-    Codec.object CreateIdentityPoolInput
-        |> Codec.field "AllowUnauthenticatedIdentities" .allowUnauthenticatedIdentities identityPoolUnauthenticatedCodec
-        |> Codec.optionalField "CognitoIdentityProviders" .cognitoIdentityProviders cognitoIdentityProviderListCodec
-        |> Codec.optionalField "DeveloperProviderName" .developerProviderName developerProviderNameCodec
-        |> Codec.field "IdentityPoolName" .identityPoolName identityPoolNameCodec
-        |> Codec.optionalField "IdentityPoolTags" .identityPoolTags identityPoolTagsTypeCodec
-        |> Codec.optionalField "OpenIdConnectProviderARNs" .openIdConnectProviderArns oidcproviderListCodec
-        |> Codec.optionalField "SamlProviderARNs" .samlProviderArns samlproviderListCodec
-        |> Codec.optionalField "SupportedLoginProviders" .supportedLoginProviders identityProvidersCodec
-        |> Codec.buildObject
-
-
-{-| Codec for CognitoIdentityProviderTokenCheck.
--}
-cognitoIdentityProviderTokenCheckCodec : Codec CognitoIdentityProviderTokenCheck
-cognitoIdentityProviderTokenCheckCodec =
-    Codec.bool
-
-
-{-| Codec for CognitoIdentityProviderName.
--}
-cognitoIdentityProviderNameCodec : Codec CognitoIdentityProviderName
-cognitoIdentityProviderNameCodec =
-    Codec.build (Refined.encoder cognitoIdentityProviderName) (Refined.decoder cognitoIdentityProviderName)
-
-
-{-| Codec for CognitoIdentityProviderList.
--}
-cognitoIdentityProviderListCodec : Codec CognitoIdentityProviderList
-cognitoIdentityProviderListCodec =
-    Codec.list cognitoIdentityProviderCodec
-
-
-{-| Codec for CognitoIdentityProviderClientId.
--}
-cognitoIdentityProviderClientIdCodec : Codec CognitoIdentityProviderClientId
-cognitoIdentityProviderClientIdCodec =
-    Codec.build (Refined.encoder cognitoIdentityProviderClientId) (Refined.decoder cognitoIdentityProviderClientId)
-
-
-{-| Codec for CognitoIdentityProvider.
--}
-cognitoIdentityProviderCodec : Codec CognitoIdentityProvider
-cognitoIdentityProviderCodec =
-    Codec.object CognitoIdentityProvider
-        |> Codec.optionalField "ClientId" .clientId cognitoIdentityProviderClientIdCodec
-        |> Codec.optionalField "ProviderName" .providerName cognitoIdentityProviderNameCodec
-        |> Codec.optionalField "ServerSideTokenCheck" .serverSideTokenCheck cognitoIdentityProviderTokenCheckCodec
-        |> Codec.buildObject
-
-
-{-| Codec for ClaimValue.
--}
-claimValueCodec : Codec ClaimValue
-claimValueCodec =
-    Codec.build (Refined.encoder claimValue) (Refined.decoder claimValue)
-
-
-{-| Codec for ClaimName.
--}
-claimNameCodec : Codec ClaimName
-claimNameCodec =
-    Codec.build (Refined.encoder claimName) (Refined.decoder claimName)
-
-
-{-| Codec for AmbiguousRoleResolutionType.
--}
-ambiguousRoleResolutionTypeCodec : Codec AmbiguousRoleResolutionType
-ambiguousRoleResolutionTypeCodec =
-    Codec.build (Enum.encoder ambiguousRoleResolutionType) (Enum.decoder ambiguousRoleResolutionType)
-
-
-{-| Codec for AccountId.
--}
-accountIdCodec : Codec AccountId
-accountIdCodec =
-    Codec.build (Refined.encoder accountId) (Refined.decoder accountId)
-
-
-{-| Codec for AccessKeyString.
--}
-accessKeyStringCodec : Codec AccessKeyString
-accessKeyStringCodec =
-    Codec.string
-
-
-{-| Codec for Arnstring.
--}
-arnstringCodec : Codec Arnstring
-arnstringCodec =
-    Codec.build (Refined.encoder arnstring) (Refined.decoder arnstring)
+untagResourceResponseCodec : Codec UntagResourceResponse
+untagResourceResponseCodec =
+    Codec.object UntagResourceResponse |> Codec.buildObject
