@@ -504,7 +504,7 @@ verifyUserAttribute req =
         decoder =
             Codec.decoder verifyUserAttributeResponseCodec
     in
-    AWS.Core.Http.request "VerifyUserAttribute" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "VerifyUserAttribute" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Use this API to register a user's entered TOTP code and mark the user's software token MFA status as "verified" if successful. The request takes an access token or a session string, but not both.
@@ -518,7 +518,7 @@ verifySoftwareToken req =
         decoder =
             Codec.decoder verifySoftwareTokenResponseCodec
     in
-    AWS.Core.Http.request "VerifySoftwareToken" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "VerifySoftwareToken" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
@@ -547,7 +547,7 @@ updateUserPoolDomain req =
         decoder =
             Codec.decoder updateUserPoolDomainResponseCodec
     in
-    AWS.Core.Http.request "UpdateUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the specified user pool app client with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool app client settings with .
@@ -561,7 +561,7 @@ updateUserPoolClient req =
         decoder =
             Codec.decoder updateUserPoolClientResponseCodec
     in
-    AWS.Core.Http.request "UpdateUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the specified user pool with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool settings with .
@@ -575,7 +575,7 @@ updateUserPool req =
         decoder =
             Codec.decoder updateUserPoolResponseCodec
     in
-    AWS.Core.Http.request "UpdateUserPool" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Allows a user to update a specific attribute (one at a time).
@@ -589,7 +589,7 @@ updateUserAttributes req =
         decoder =
             Codec.decoder updateUserAttributesResponseCodec
     in
-    AWS.Core.Http.request "UpdateUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the name and scopes of resource server. All other fields are read-only.
@@ -603,7 +603,7 @@ updateResourceServer req =
         decoder =
             Codec.decoder updateResourceServerResponseCodec
     in
-    AWS.Core.Http.request "UpdateResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates identity provider information for a user pool.
@@ -617,7 +617,7 @@ updateIdentityProvider req =
         decoder =
             Codec.decoder updateIdentityProviderResponseCodec
     in
-    AWS.Core.Http.request "UpdateIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the specified group with the specified attributes.
@@ -634,7 +634,7 @@ updateGroup req =
         decoder =
             Codec.decoder updateGroupResponseCodec
     in
-    AWS.Core.Http.request "UpdateGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the device status.
@@ -648,7 +648,7 @@ updateDeviceStatus req =
         decoder =
             Codec.decoder updateDeviceStatusResponseCodec
     in
-    AWS.Core.Http.request "UpdateDeviceStatus" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateDeviceStatus" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Provides the feedback for an authentication event whether it was from a valid user or not. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
@@ -662,7 +662,7 @@ updateAuthEventFeedback req =
         decoder =
             Codec.decoder updateAuthEventFeedbackResponseCodec
     in
-    AWS.Core.Http.request "UpdateAuthEventFeedback" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UpdateAuthEventFeedback" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second, per account
@@ -676,7 +676,7 @@ untagResource req =
         decoder =
             Codec.decoder untagResourceResponseCodec
     in
-    AWS.Core.Http.request "UntagResource" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "UntagResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.
@@ -697,7 +697,7 @@ tagResource req =
         decoder =
             Codec.decoder tagResourceResponseCodec
     in
-    AWS.Core.Http.request "TagResource" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "TagResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Stops the user import job.
@@ -711,7 +711,7 @@ stopUserImportJob req =
         decoder =
             Codec.decoder stopUserImportJobResponseCodec
     in
-    AWS.Core.Http.request "StopUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "StopUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Starts the user import.
@@ -725,7 +725,7 @@ startUserImportJob req =
         decoder =
             Codec.decoder startUserImportJobResponseCodec
     in
-    AWS.Core.Http.request "StartUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "StartUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Registers the user in the specified user pool and creates a user name, password, and user attributes.
@@ -739,7 +739,7 @@ signUp req =
         decoder =
             Codec.decoder signUpResponseCodec
     in
-    AWS.Core.Http.request "SignUp" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "SignUp" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Sets the user settings like multi-factor authentication (MFA). If MFA is to be removed for a particular attribute pass the attribute with code delivery as null. If null list is passed, all MFA options are removed.
@@ -753,7 +753,7 @@ setUserSettings req =
         decoder =
             Codec.decoder setUserSettingsResponseCodec
     in
-    AWS.Core.Http.request "SetUserSettings" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "SetUserSettings" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Set the user pool MFA configuration.
@@ -767,7 +767,7 @@ setUserPoolMfaConfig req =
         decoder =
             Codec.decoder setUserPoolMfaConfigResponseCodec
     in
-    AWS.Core.Http.request "SetUserPoolMfaConfig" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "SetUserPoolMfaConfig" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Set the user's multi-factor authentication (MFA) method preference.
@@ -781,7 +781,7 @@ setUserMfapreference req =
         decoder =
             Codec.decoder setUserMfapreferenceResponseCodec
     in
-    AWS.Core.Http.request "SetUserMfapreference" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "SetUserMfapreference" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Sets the UI customization information for a user pool's built-in app UI.
@@ -800,7 +800,7 @@ setUicustomization req =
         decoder =
             Codec.decoder setUicustomizationResponseCodec
     in
-    AWS.Core.Http.request "SetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "SetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Configures actions on detected risks. To delete the risk configuration for `UserPoolId` or `ClientId`, pass null values for all four configuration types.
@@ -819,7 +819,7 @@ setRiskConfiguration req =
         decoder =
             Codec.decoder setRiskConfigurationResponseCodec
     in
-    AWS.Core.Http.request "SetRiskConfiguration" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "SetRiskConfiguration" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Responds to the authentication challenge.
@@ -833,7 +833,7 @@ respondToAuthChallenge req =
         decoder =
             Codec.decoder respondToAuthChallengeResponseCodec
     in
-    AWS.Core.Http.request "RespondToAuthChallenge" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "RespondToAuthChallenge" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Resends the confirmation (for confirmation of registration) to a specific user in the user pool.
@@ -847,7 +847,7 @@ resendConfirmationCode req =
         decoder =
             Codec.decoder resendConfirmationCodeResponseCodec
     in
-    AWS.Core.Http.request "ResendConfirmationCode" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ResendConfirmationCode" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the users in the specified group.
@@ -864,7 +864,7 @@ listUsersInGroup req =
         decoder =
             Codec.decoder listUsersInGroupResponseCodec
     in
-    AWS.Core.Http.request "ListUsersInGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListUsersInGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the users in the Amazon Cognito user pool.
@@ -878,7 +878,7 @@ listUsers req =
         decoder =
             Codec.decoder listUsersResponseCodec
     in
-    AWS.Core.Http.request "ListUsers" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListUsers" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the user pools associated with an AWS account.
@@ -892,7 +892,7 @@ listUserPools req =
         decoder =
             Codec.decoder listUserPoolsResponseCodec
     in
-    AWS.Core.Http.request "ListUserPools" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListUserPools" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the clients that have been created for the specified user pool.
@@ -906,7 +906,7 @@ listUserPoolClients req =
         decoder =
             Codec.decoder listUserPoolClientsResponseCodec
     in
-    AWS.Core.Http.request "ListUserPoolClients" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListUserPoolClients" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the user import jobs.
@@ -920,7 +920,7 @@ listUserImportJobs req =
         decoder =
             Codec.decoder listUserImportJobsResponseCodec
     in
-    AWS.Core.Http.request "ListUserImportJobs" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListUserImportJobs" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the tags that are assigned to an Amazon Cognito user pool.
@@ -939,7 +939,7 @@ listTagsForResource req =
         decoder =
             Codec.decoder listTagsForResourceResponseCodec
     in
-    AWS.Core.Http.request "ListTagsForResource" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListTagsForResource" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the resource servers for a user pool.
@@ -953,7 +953,7 @@ listResourceServers req =
         decoder =
             Codec.decoder listResourceServersResponseCodec
     in
-    AWS.Core.Http.request "ListResourceServers" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListResourceServers" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists information about all identity providers for a user pool.
@@ -967,7 +967,7 @@ listIdentityProviders req =
         decoder =
             Codec.decoder listIdentityProvidersResponseCodec
     in
-    AWS.Core.Http.request "ListIdentityProviders" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListIdentityProviders" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the groups associated with a user pool.
@@ -984,7 +984,7 @@ listGroups req =
         decoder =
             Codec.decoder listGroupsResponseCodec
     in
-    AWS.Core.Http.request "ListGroups" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListGroups" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the devices.
@@ -998,7 +998,7 @@ listDevices req =
         decoder =
             Codec.decoder listDevicesResponseCodec
     in
-    AWS.Core.Http.request "ListDevices" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ListDevices" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Initiates the authentication flow.
@@ -1012,7 +1012,7 @@ initiateAuth req =
         decoder =
             Codec.decoder initiateAuthResponseCodec
     in
-    AWS.Core.Http.request "InitiateAuth" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "InitiateAuth" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Signs out users from all devices.
@@ -1026,7 +1026,7 @@ globalSignOut req =
         decoder =
             Codec.decoder globalSignOutResponseCodec
     in
-    AWS.Core.Http.request "GlobalSignOut" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GlobalSignOut" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the user pool multi-factor authentication (MFA) configuration.
@@ -1040,7 +1040,7 @@ getUserPoolMfaConfig req =
         decoder =
             Codec.decoder getUserPoolMfaConfigResponseCodec
     in
-    AWS.Core.Http.request "GetUserPoolMfaConfig" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetUserPoolMfaConfig" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the user attribute verification code for the specified attribute name.
@@ -1054,7 +1054,7 @@ getUserAttributeVerificationCode req =
         decoder =
             Codec.decoder getUserAttributeVerificationCodeResponseCodec
     in
-    AWS.Core.Http.request "GetUserAttributeVerificationCode" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetUserAttributeVerificationCode" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the user attributes and metadata for a user.
@@ -1068,7 +1068,7 @@ getUser req =
         decoder =
             Codec.decoder getUserResponseCodec
     in
-    AWS.Core.Http.request "GetUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app `clientId` will be `ALL`), then that is returned. If nothing is present, then an empty shape is returned.
@@ -1082,7 +1082,7 @@ getUicustomization req =
         decoder =
             Codec.decoder getUicustomizationResponseCodec
     in
-    AWS.Core.Http.request "GetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetUicustomization" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| This method takes a user pool ID, and returns the signing certificate.
@@ -1096,7 +1096,7 @@ getSigningCertificate req =
         decoder =
             Codec.decoder getSigningCertificateResponseCodec
     in
-    AWS.Core.Http.request "GetSigningCertificate" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetSigningCertificate" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the specified identity provider.
@@ -1110,7 +1110,7 @@ getIdentityProviderByIdentifier req =
         decoder =
             Codec.decoder getIdentityProviderByIdentifierResponseCodec
     in
-    AWS.Core.Http.request "GetIdentityProviderByIdentifier" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetIdentityProviderByIdentifier" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets a group.
@@ -1127,7 +1127,7 @@ getGroup req =
         decoder =
             Codec.decoder getGroupResponseCodec
     in
-    AWS.Core.Http.request "GetGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the device.
@@ -1141,7 +1141,7 @@ getDevice req =
         decoder =
             Codec.decoder getDeviceResponseCodec
     in
-    AWS.Core.Http.request "GetDevice" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the header information for the .csv file to be used as input for the user import job.
@@ -1155,7 +1155,7 @@ getCsvheader req =
         decoder =
             Codec.decoder getCsvheaderResponseCodec
     in
-    AWS.Core.Http.request "GetCsvheader" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "GetCsvheader" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the `Username` parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists, `InvalidParameterException` is thrown. To use the confirmation code for resetting the password, call .
@@ -1169,7 +1169,7 @@ forgotPassword req =
         decoder =
             Codec.decoder forgotPasswordResponseCodec
     in
-    AWS.Core.Http.request "ForgotPassword" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ForgotPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Forgets the specified device.
@@ -1183,7 +1183,7 @@ forgetDevice req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "ForgetDevice" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ForgetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets information about a domain.
@@ -1197,7 +1197,7 @@ describeUserPoolDomain req =
         decoder =
             Codec.decoder describeUserPoolDomainResponseCodec
     in
-    AWS.Core.Http.request "DescribeUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Client method for returning the configuration information and metadata of the specified user pool app client.
@@ -1211,7 +1211,7 @@ describeUserPoolClient req =
         decoder =
             Codec.decoder describeUserPoolClientResponseCodec
     in
-    AWS.Core.Http.request "DescribeUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Returns the configuration information and metadata of the specified user pool.
@@ -1225,7 +1225,7 @@ describeUserPool req =
         decoder =
             Codec.decoder describeUserPoolResponseCodec
     in
-    AWS.Core.Http.request "DescribeUserPool" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Describes the user import job.
@@ -1239,7 +1239,7 @@ describeUserImportJob req =
         decoder =
             Codec.decoder describeUserImportJobResponseCodec
     in
-    AWS.Core.Http.request "DescribeUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Describes the risk configuration.
@@ -1253,7 +1253,7 @@ describeRiskConfiguration req =
         decoder =
             Codec.decoder describeRiskConfigurationResponseCodec
     in
-    AWS.Core.Http.request "DescribeRiskConfiguration" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeRiskConfiguration" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Describes a resource server.
@@ -1267,7 +1267,7 @@ describeResourceServer req =
         decoder =
             Codec.decoder describeResourceServerResponseCodec
     in
-    AWS.Core.Http.request "DescribeResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets information about a specific identity provider.
@@ -1281,7 +1281,7 @@ describeIdentityProvider req =
         decoder =
             Codec.decoder describeIdentityProviderResponseCodec
     in
-    AWS.Core.Http.request "DescribeIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DescribeIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes a domain for a user pool.
@@ -1295,7 +1295,7 @@ deleteUserPoolDomain req =
         decoder =
             Codec.decoder deleteUserPoolDomainResponseCodec
     in
-    AWS.Core.Http.request "DeleteUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Allows the developer to delete the user pool client.
@@ -1309,7 +1309,7 @@ deleteUserPoolClient req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "DeleteUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes the specified Amazon Cognito user pool.
@@ -1323,7 +1323,7 @@ deleteUserPool req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "DeleteUserPool" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes the attributes for a user.
@@ -1337,7 +1337,7 @@ deleteUserAttributes req =
         decoder =
             Codec.decoder deleteUserAttributesResponseCodec
     in
-    AWS.Core.Http.request "DeleteUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Allows a user to delete himself or herself.
@@ -1351,7 +1351,7 @@ deleteUser req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "DeleteUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes a resource server.
@@ -1365,7 +1365,7 @@ deleteResourceServer req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "DeleteResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes an identity provider for a user pool.
@@ -1379,7 +1379,7 @@ deleteIdentityProvider req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "DeleteIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes a group. Currently only groups with no members can be deleted.
@@ -1396,7 +1396,7 @@ deleteGroup req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "DeleteGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "DeleteGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates a new domain for a user pool.
@@ -1410,7 +1410,7 @@ createUserPoolDomain req =
         decoder =
             Codec.decoder createUserPoolDomainResponseCodec
     in
-    AWS.Core.Http.request "CreateUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateUserPoolDomain" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates the user pool client.
@@ -1424,7 +1424,7 @@ createUserPoolClient req =
         decoder =
             Codec.decoder createUserPoolClientResponseCodec
     in
-    AWS.Core.Http.request "CreateUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateUserPoolClient" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates a new Amazon Cognito user pool and sets the password policy for the pool.
@@ -1438,7 +1438,7 @@ createUserPool req =
         decoder =
             Codec.decoder createUserPoolResponseCodec
     in
-    AWS.Core.Http.request "CreateUserPool" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateUserPool" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates the user import job.
@@ -1452,7 +1452,7 @@ createUserImportJob req =
         decoder =
             Codec.decoder createUserImportJobResponseCodec
     in
-    AWS.Core.Http.request "CreateUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateUserImportJob" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates a new OAuth2.0 resource server and defines custom scopes in it.
@@ -1466,7 +1466,7 @@ createResourceServer req =
         decoder =
             Codec.decoder createResourceServerResponseCodec
     in
-    AWS.Core.Http.request "CreateResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateResourceServer" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates an identity provider for a user pool.
@@ -1480,7 +1480,7 @@ createIdentityProvider req =
         decoder =
             Codec.decoder createIdentityProviderResponseCodec
     in
-    AWS.Core.Http.request "CreateIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateIdentityProvider" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates a new group in the specified user pool.
@@ -1497,7 +1497,7 @@ createGroup req =
         decoder =
             Codec.decoder createGroupResponseCodec
     in
-    AWS.Core.Http.request "CreateGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "CreateGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Confirms registration of a user and handles the existing alias from a previous user.
@@ -1511,7 +1511,7 @@ confirmSignUp req =
         decoder =
             Codec.decoder confirmSignUpResponseCodec
     in
-    AWS.Core.Http.request "ConfirmSignUp" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ConfirmSignUp" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Allows a user to enter a confirmation code to reset a forgotten password.
@@ -1525,7 +1525,7 @@ confirmForgotPassword req =
         decoder =
             Codec.decoder confirmForgotPasswordResponseCodec
     in
-    AWS.Core.Http.request "ConfirmForgotPassword" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ConfirmForgotPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Confirms tracking of the device. This API call is the call that begins device tracking.
@@ -1539,7 +1539,7 @@ confirmDevice req =
         decoder =
             Codec.decoder confirmDeviceResponseCodec
     in
-    AWS.Core.Http.request "ConfirmDevice" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ConfirmDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Changes the password for a specified user in a user pool.
@@ -1553,7 +1553,7 @@ changePassword req =
         decoder =
             Codec.decoder changePasswordResponseCodec
     in
-    AWS.Core.Http.request "ChangePassword" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "ChangePassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Returns a unique generated shared secret key code for the user account. The request takes an access token or a session string, but not both.
@@ -1567,7 +1567,7 @@ associateSoftwareToken req =
         decoder =
             Codec.decoder associateSoftwareTokenResponseCodec
     in
-    AWS.Core.Http.request "AssociateSoftwareToken" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AssociateSoftwareToken" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Signs out users from all devices, as an administrator.
@@ -1584,7 +1584,7 @@ adminUserGlobalSignOut req =
         decoder =
             Codec.decoder adminUserGlobalSignOutResponseCodec
     in
-    AWS.Core.Http.request "AdminUserGlobalSignOut" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminUserGlobalSignOut" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
@@ -1605,7 +1605,7 @@ adminUpdateUserAttributes req =
         decoder =
             Codec.decoder adminUpdateUserAttributesResponseCodec
     in
-    AWS.Core.Http.request "AdminUpdateUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminUpdateUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Updates the device status as an administrator.
@@ -1622,7 +1622,7 @@ adminUpdateDeviceStatus req =
         decoder =
             Codec.decoder adminUpdateDeviceStatusResponseCodec
     in
-    AWS.Core.Http.request "AdminUpdateDeviceStatus" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminUpdateDeviceStatus" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
@@ -1636,7 +1636,7 @@ adminUpdateAuthEventFeedback req =
         decoder =
             Codec.decoder adminUpdateAuthEventFeedbackResponseCodec
     in
-    AWS.Core.Http.request "AdminUpdateAuthEventFeedback" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminUpdateAuthEventFeedback" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Sets all the user settings for a specified user name. Works on any user.
@@ -1653,7 +1653,7 @@ adminSetUserSettings req =
         decoder =
             Codec.decoder adminSetUserSettingsResponseCodec
     in
-    AWS.Core.Http.request "AdminSetUserSettings" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminSetUserSettings" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| -}
@@ -1666,7 +1666,7 @@ adminSetUserPassword req =
         decoder =
             Codec.decoder adminSetUserPasswordResponseCodec
     in
-    AWS.Core.Http.request "AdminSetUserPassword" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminSetUserPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Sets the user's multi-factor authentication (MFA) preference.
@@ -1680,7 +1680,7 @@ adminSetUserMfapreference req =
         decoder =
             Codec.decoder adminSetUserMfapreferenceResponseCodec
     in
-    AWS.Core.Http.request "AdminSetUserMfapreference" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminSetUserMfapreference" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Responds to an authentication challenge, as an administrator.
@@ -1697,7 +1697,7 @@ adminRespondToAuthChallenge req =
         decoder =
             Codec.decoder adminRespondToAuthChallengeResponseCodec
     in
-    AWS.Core.Http.request "AdminRespondToAuthChallenge" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminRespondToAuthChallenge" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Resets the specified user's password in a user pool as an administrator. Works on any user.
@@ -1716,7 +1716,7 @@ adminResetUserPassword req =
         decoder =
             Codec.decoder adminResetUserPasswordResponseCodec
     in
-    AWS.Core.Http.request "AdminResetUserPassword" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminResetUserPassword" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Removes the specified user from the specified group.
@@ -1733,7 +1733,7 @@ adminRemoveUserFromGroup req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "AdminRemoveUserFromGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminRemoveUserFromGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists a history of user activity and any risks detected as part of Amazon Cognito advanced security.
@@ -1747,7 +1747,7 @@ adminListUserAuthEvents req =
         decoder =
             Codec.decoder adminListUserAuthEventsResponseCodec
     in
-    AWS.Core.Http.request "AdminListUserAuthEvents" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminListUserAuthEvents" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists the groups that the user belongs to.
@@ -1764,7 +1764,7 @@ adminListGroupsForUser req =
         decoder =
             Codec.decoder adminListGroupsForUserResponseCodec
     in
-    AWS.Core.Http.request "AdminListGroupsForUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminListGroupsForUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Lists devices, as an administrator.
@@ -1781,7 +1781,7 @@ adminListDevices req =
         decoder =
             Codec.decoder adminListDevicesResponseCodec
     in
-    AWS.Core.Http.request "AdminListDevices" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminListDevices" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Links an existing user account in a user pool (`DestinationUser`) to an identity from an external identity provider (`SourceUser`) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
@@ -1804,7 +1804,7 @@ adminLinkProviderForUser req =
         decoder =
             Codec.decoder adminLinkProviderForUserResponseCodec
     in
-    AWS.Core.Http.request "AdminLinkProviderForUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminLinkProviderForUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Initiates the authentication flow, as an administrator.
@@ -1821,7 +1821,7 @@ adminInitiateAuth req =
         decoder =
             Codec.decoder adminInitiateAuthResponseCodec
     in
-    AWS.Core.Http.request "AdminInitiateAuth" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminInitiateAuth" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the specified user by user name in a user pool as an administrator. Works on any user.
@@ -1838,7 +1838,7 @@ adminGetUser req =
         decoder =
             Codec.decoder adminGetUserResponseCodec
     in
-    AWS.Core.Http.request "AdminGetUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminGetUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Gets the device, as an administrator.
@@ -1855,7 +1855,7 @@ adminGetDevice req =
         decoder =
             Codec.decoder adminGetDeviceResponseCodec
     in
-    AWS.Core.Http.request "AdminGetDevice" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminGetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Forgets the device, as an administrator.
@@ -1872,7 +1872,7 @@ adminForgetDevice req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "AdminForgetDevice" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminForgetDevice" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Enables the specified user as an administrator. Works on any user.
@@ -1889,7 +1889,7 @@ adminEnableUser req =
         decoder =
             Codec.decoder adminEnableUserResponseCodec
     in
-    AWS.Core.Http.request "AdminEnableUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminEnableUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Disables the specified user as an administrator. Works on any user.
@@ -1906,7 +1906,7 @@ adminDisableUser req =
         decoder =
             Codec.decoder adminDisableUserResponseCodec
     in
-    AWS.Core.Http.request "AdminDisableUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminDisableUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked `DestinationUser`) signs in, they must create a new user account. See .
@@ -1931,7 +1931,7 @@ adminDisableProviderForUser req =
         decoder =
             Codec.decoder adminDisableProviderForUserResponseCodec
     in
-    AWS.Core.Http.request "AdminDisableProviderForUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminDisableProviderForUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes the user attributes in a user pool as an administrator. Works on any user.
@@ -1948,7 +1948,7 @@ adminDeleteUserAttributes req =
         decoder =
             Codec.decoder adminDeleteUserAttributesResponseCodec
     in
-    AWS.Core.Http.request "AdminDeleteUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminDeleteUserAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Deletes a user as an administrator. Works on any user.
@@ -1965,7 +1965,7 @@ adminDeleteUser req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "AdminDeleteUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminDeleteUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Creates a new user in the specified user pool.
@@ -1990,7 +1990,7 @@ adminCreateUser req =
         decoder =
             Codec.decoder adminCreateUserResponseCodec
     in
-    AWS.Core.Http.request "AdminCreateUser" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminCreateUser" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Confirms user registration as an admin without using a confirmation code. Works on any user.
@@ -2007,7 +2007,7 @@ adminConfirmSignUp req =
         decoder =
             Codec.decoder adminConfirmSignUpResponseCodec
     in
-    AWS.Core.Http.request "AdminConfirmSignUp" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminConfirmSignUp" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Adds the specified user to the specified group.
@@ -2024,7 +2024,7 @@ adminAddUserToGroup req =
         decoder =
             Json.Decode.succeed ()
     in
-    AWS.Core.Http.request "AdminAddUserToGroup" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AdminAddUserToGroup" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| Adds additional user attributes to the user pool schema.
@@ -2038,7 +2038,7 @@ addCustomAttributes req =
         decoder =
             Codec.decoder addCustomAttributesResponseCodec
     in
-    AWS.Core.Http.request "AddCustomAttributes" AWS.Core.Http.POST "/" jsonBody decoder
+    AWS.Core.Http.requestWithJsonDecoder "AddCustomAttributes" AWS.Core.Http.POST "/" jsonBody decoder
 
 
 {-| The AwsaccountIdType data model.
