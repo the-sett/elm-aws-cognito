@@ -105,7 +105,7 @@ service region =
 You must use AWS Developer credentials to call this API.
 
 -}
-updateIdentityPool : IdentityPool -> AWS.Http.Request IdentityPool
+updateIdentityPool : IdentityPool -> AWS.Http.Request AWS.Http.AWSAppError IdentityPool
 updateIdentityPool req =
     let
         encoder val =
@@ -178,12 +178,12 @@ updateIdentityPool req =
                 |> Pipeline.required "AllowUnauthenticatedIdentities" (Codec.decoder identityPoolUnauthenticatedCodec)
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateIdentityPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Removes the specified tags from an Amazon Cognito identity pool. You can use this action up to 5 times per second, per account
 -}
-untagResource : UntagResourceInput -> AWS.Http.Request ()
+untagResource : UntagResourceInput -> AWS.Http.Request AWS.Http.AWSAppError ()
 untagResource req =
     let
         encoder val =
@@ -201,7 +201,7 @@ untagResource req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UntagResource" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UntagResource" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Unlinks a federated identity from an existing account. Unlinked logins will be considered new identities next time they are seen. Removing the last linked login will make this identity inaccessible.
@@ -209,7 +209,7 @@ untagResource req =
 This is a public API. You do not need any credentials to call this API.
 
 -}
-unlinkIdentity : UnlinkIdentityInput -> AWS.Http.Request ()
+unlinkIdentity : UnlinkIdentityInput -> AWS.Http.Request AWS.Http.AWSAppError ()
 unlinkIdentity req =
     let
         encoder val =
@@ -228,7 +228,7 @@ unlinkIdentity req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UnlinkIdentity" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UnlinkIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Unlinks a `DeveloperUserIdentifier` from an existing identity. Unlinked developer users will be considered new identities next time they are seen. If, for a given Cognito identity, you remove all federated identities as well as the developer user identifier, the Cognito identity becomes inaccessible.
@@ -236,7 +236,7 @@ unlinkIdentity req =
 You must use AWS Developer credentials to call this API.
 
 -}
-unlinkDeveloperIdentity : UnlinkDeveloperIdentityInput -> AWS.Http.Request ()
+unlinkDeveloperIdentity : UnlinkDeveloperIdentityInput -> AWS.Http.Request AWS.Http.AWSAppError ()
 unlinkDeveloperIdentity req =
     let
         encoder val =
@@ -258,7 +258,7 @@ unlinkDeveloperIdentity req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UnlinkDeveloperIdentity" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UnlinkDeveloperIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Assigns a set of tags to an Amazon Cognito identity pool. A tag is a label that you can use to categorize and manage identity pools in different ways, such as by purpose, owner, environment, or other criteria.
@@ -270,7 +270,7 @@ Tags are useful for cost tracking and access control. You can activate your tags
 You can use this action up to 5 times per second, per account. An identity pool can have as many as 50 tags.
 
 -}
-tagResource : TagResourceInput -> AWS.Http.Request ()
+tagResource : TagResourceInput -> AWS.Http.Request AWS.Http.AWSAppError ()
 tagResource req =
     let
         encoder val =
@@ -288,7 +288,7 @@ tagResource req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "TagResource" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "TagResource" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Sets the roles for an identity pool. These roles are used when making calls to `GetCredentialsForIdentity` action.
@@ -296,7 +296,7 @@ tagResource req =
 You must use AWS Developer credentials to call this API.
 
 -}
-setIdentityPoolRoles : SetIdentityPoolRolesInput -> AWS.Http.Request ()
+setIdentityPoolRoles : SetIdentityPoolRolesInput -> AWS.Http.Request AWS.Http.AWSAppError ()
 setIdentityPoolRoles req =
     let
         encoder val =
@@ -315,7 +315,7 @@ setIdentityPoolRoles req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "SetIdentityPoolRoles" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SetIdentityPoolRoles" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Merges two users having different `IdentityId`s, existing in the same identity pool, and identified by the same developer provider. You can use this action to request that discrete users be merged and identified as a single user in the Cognito environment. Cognito associates the given source user (`SourceUserIdentifier`) with the `IdentityId` of the `DestinationUserIdentifier`. Only developer-authenticated users can be merged. If the users to be merged are associated with the same public provider, but as two different users, an exception will be thrown.
@@ -325,7 +325,7 @@ The number of linked logins is limited to 20. So, the number of linked logins fo
 You must use AWS Developer credentials to call this API.
 
 -}
-mergeDeveloperIdentities : MergeDeveloperIdentitiesInput -> AWS.Http.Request MergeDeveloperIdentitiesResponse
+mergeDeveloperIdentities : MergeDeveloperIdentitiesInput -> AWS.Http.Request AWS.Http.AWSAppError MergeDeveloperIdentitiesResponse
 mergeDeveloperIdentities req =
     let
         encoder val =
@@ -350,7 +350,7 @@ mergeDeveloperIdentities req =
                 |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "MergeDeveloperIdentities" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "MergeDeveloperIdentities" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Retrieves the `IdentityID` associated with a `DeveloperUserIdentifier` or the list of `DeveloperUserIdentifier` values associated with an `IdentityId` for an existing identity. Either `IdentityID` or `DeveloperUserIdentifier` must not be null. If you supply only one of these values, the other value will be searched in the database and returned as a part of the response. If you supply both, `DeveloperUserIdentifier` will be matched against `IdentityID`. If the values are verified against the database, the response returns both values and is the same as the request. Otherwise a `ResourceConflictException` is thrown.
@@ -360,7 +360,7 @@ mergeDeveloperIdentities req =
 You must use AWS Developer credentials to call this API.
 
 -}
-lookupDeveloperIdentity : LookupDeveloperIdentityInput -> AWS.Http.Request LookupDeveloperIdentityResponse
+lookupDeveloperIdentity : LookupDeveloperIdentityInput -> AWS.Http.Request AWS.Http.AWSAppError LookupDeveloperIdentityResponse
 lookupDeveloperIdentity req =
     let
         encoder val =
@@ -396,7 +396,7 @@ lookupDeveloperIdentity req =
                     Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "LookupDeveloperIdentity" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "LookupDeveloperIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the tags that are assigned to an Amazon Cognito identity pool.
@@ -406,7 +406,7 @@ A tag is a label that you can apply to identity pools to categorize and manage t
 You can use this action up to 10 times per second, per account.
 
 -}
-listTagsForResource : ListTagsForResourceInput -> AWS.Http.Request ListTagsForResourceResponse
+listTagsForResource : ListTagsForResourceInput -> AWS.Http.Request AWS.Http.AWSAppError ListTagsForResourceResponse
 listTagsForResource req =
     let
         encoder val =
@@ -424,7 +424,7 @@ listTagsForResource req =
                 |> Pipeline.optional "Tags" (Json.Decode.maybe (Codec.decoder identityPoolTagsTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListTagsForResource" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListTagsForResource" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists all of the Cognito identity pools registered for your account.
@@ -432,7 +432,7 @@ listTagsForResource req =
 You must use AWS Developer credentials to call this API.
 
 -}
-listIdentityPools : ListIdentityPoolsInput -> AWS.Http.Request ListIdentityPoolsResponse
+listIdentityPools : ListIdentityPoolsInput -> AWS.Http.Request AWS.Http.AWSAppError ListIdentityPoolsResponse
 listIdentityPools req =
     let
         encoder val =
@@ -455,7 +455,7 @@ listIdentityPools req =
                 |> Pipeline.optional "IdentityPools" (Json.Decode.maybe identityPoolsListDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListIdentityPools" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListIdentityPools" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the identities in an identity pool.
@@ -463,7 +463,7 @@ listIdentityPools req =
 You must use AWS Developer credentials to call this API.
 
 -}
-listIdentities : ListIdentitiesInput -> AWS.Http.Request ListIdentitiesResponse
+listIdentities : ListIdentitiesInput -> AWS.Http.Request AWS.Http.AWSAppError ListIdentitiesResponse
 listIdentities req =
     let
         encoder val =
@@ -491,7 +491,7 @@ listIdentities req =
                 |> Pipeline.optional "Identities" (Json.Decode.maybe identitiesListDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListIdentities" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListIdentities" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Registers (or retrieves) a Cognito `IdentityId` and an OpenID Connect token for a user authenticated by your backend authentication process. Supplying multiple logins will create an implicit linked account. You can only specify one developer provider as part of the `Logins` map, which is linked to the identity pool. The developer provider is the "domain" by which Cognito will refer to your users.
@@ -501,7 +501,9 @@ You can use `GetOpenIdTokenForDeveloperIdentity` to create a new identity and to
 You must use AWS Developer credentials to call this API.
 
 -}
-getOpenIdTokenForDeveloperIdentity : GetOpenIdTokenForDeveloperIdentityInput -> AWS.Http.Request GetOpenIdTokenForDeveloperIdentityResponse
+getOpenIdTokenForDeveloperIdentity :
+    GetOpenIdTokenForDeveloperIdentityInput
+    -> AWS.Http.Request AWS.Http.AWSAppError GetOpenIdTokenForDeveloperIdentityResponse
 getOpenIdTokenForDeveloperIdentity req =
     let
         encoder val =
@@ -524,7 +526,7 @@ getOpenIdTokenForDeveloperIdentity req =
                 |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetOpenIdTokenForDeveloperIdentity" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetOpenIdTokenForDeveloperIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets an OpenID token, using a known Cognito ID. This known Cognito ID is returned by `GetId`. You can optionally add additional logins for the identity. Supplying multiple logins creates an implicit link.
@@ -534,7 +536,7 @@ The OpenId token is valid for 10 minutes.
 This is a public API. You do not need any credentials to call this API.
 
 -}
-getOpenIdToken : GetOpenIdTokenInput -> AWS.Http.Request GetOpenIdTokenResponse
+getOpenIdToken : GetOpenIdTokenInput -> AWS.Http.Request AWS.Http.AWSAppError GetOpenIdTokenResponse
 getOpenIdToken req =
     let
         encoder val =
@@ -555,7 +557,7 @@ getOpenIdToken req =
                 |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetOpenIdToken" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetOpenIdToken" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the roles for an identity pool.
@@ -563,7 +565,7 @@ getOpenIdToken req =
 You must use AWS Developer credentials to call this API.
 
 -}
-getIdentityPoolRoles : GetIdentityPoolRolesInput -> AWS.Http.Request GetIdentityPoolRolesResponse
+getIdentityPoolRoles : GetIdentityPoolRolesInput -> AWS.Http.Request AWS.Http.AWSAppError GetIdentityPoolRolesResponse
 getIdentityPoolRoles req =
     let
         encoder val =
@@ -587,7 +589,7 @@ getIdentityPoolRoles req =
                 |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe (Codec.decoder identityPoolIdCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetIdentityPoolRoles" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetIdentityPoolRoles" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Generates (or retrieves) a Cognito ID. Supplying multiple logins will create an implicit linked account.
@@ -595,7 +597,7 @@ getIdentityPoolRoles req =
 This is a public API. You do not need any credentials to call this API.
 
 -}
-getId : GetIdInput -> AWS.Http.Request GetIdResponse
+getId : GetIdInput -> AWS.Http.Request AWS.Http.AWSAppError GetIdResponse
 getId req =
     let
         encoder val =
@@ -616,7 +618,7 @@ getId req =
                 |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetId" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetId" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Returns credentials for the provided identity ID. Any provided logins will be validated against supported login providers. If the token is for cognito-identity.amazonaws.com, it will be passed through to AWS Security Token Service with the appropriate role for the token.
@@ -624,7 +626,7 @@ getId req =
 This is a public API. You do not need any credentials to call this API.
 
 -}
-getCredentialsForIdentity : GetCredentialsForIdentityInput -> AWS.Http.Request GetCredentialsForIdentityResponse
+getCredentialsForIdentity : GetCredentialsForIdentityInput -> AWS.Http.Request AWS.Http.AWSAppError GetCredentialsForIdentityResponse
 getCredentialsForIdentity req =
     let
         encoder val =
@@ -648,7 +650,7 @@ getCredentialsForIdentity req =
                 |> Pipeline.optional "Credentials" (Json.Decode.maybe credentialsDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetCredentialsForIdentity" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetCredentialsForIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets details about a particular identity pool, including the pool name, ID description, creation date, and current number of users.
@@ -656,7 +658,7 @@ getCredentialsForIdentity req =
 You must use AWS Developer credentials to call this API.
 
 -}
-describeIdentityPool : DescribeIdentityPoolInput -> AWS.Http.Request IdentityPool
+describeIdentityPool : DescribeIdentityPoolInput -> AWS.Http.Request AWS.Http.AWSAppError IdentityPool
 describeIdentityPool req =
     let
         encoder val =
@@ -713,7 +715,7 @@ describeIdentityPool req =
                 |> Pipeline.required "AllowUnauthenticatedIdentities" (Codec.decoder identityPoolUnauthenticatedCodec)
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeIdentityPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Returns metadata related to the given identity, including when the identity was created and any associated linked logins.
@@ -721,7 +723,7 @@ describeIdentityPool req =
 You must use AWS Developer credentials to call this API.
 
 -}
-describeIdentity : DescribeIdentityInput -> AWS.Http.Request IdentityDescription
+describeIdentity : DescribeIdentityInput -> AWS.Http.Request AWS.Http.AWSAppError IdentityDescription
 describeIdentity req =
     let
         encoder val =
@@ -750,7 +752,7 @@ describeIdentity req =
                 |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeIdentity" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes an identity pool. Once a pool is deleted, users will not be able to authenticate with the pool.
@@ -758,7 +760,7 @@ describeIdentity req =
 You must use AWS Developer credentials to call this API.
 
 -}
-deleteIdentityPool : DeleteIdentityPoolInput -> AWS.Http.Request ()
+deleteIdentityPool : DeleteIdentityPoolInput -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteIdentityPool req =
     let
         encoder val =
@@ -774,7 +776,7 @@ deleteIdentityPool req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteIdentityPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes identities from an identity pool. You can specify a list of 1-60 identities that you want to delete.
@@ -782,7 +784,7 @@ deleteIdentityPool req =
 You must use AWS Developer credentials to call this API.
 
 -}
-deleteIdentities : DeleteIdentitiesInput -> AWS.Http.Request DeleteIdentitiesResponse
+deleteIdentities : DeleteIdentitiesInput -> AWS.Http.Request AWS.Http.AWSAppError DeleteIdentitiesResponse
 deleteIdentities req =
     let
         encoder val =
@@ -805,7 +807,7 @@ deleteIdentities req =
                     Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DeleteIdentities" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteIdentities" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates a new identity pool. The identity pool is a store of user identity information that is specific to your AWS account. The limit on identity pools is 60 per account. The keys for `SupportedLoginProviders` are as follows:
@@ -815,7 +817,7 @@ deleteIdentities req =
 You must use AWS Developer credentials to call this API.
 
 -}
-createIdentityPool : CreateIdentityPoolInput -> AWS.Http.Request IdentityPool
+createIdentityPool : CreateIdentityPoolInput -> AWS.Http.Request AWS.Http.AWSAppError IdentityPool
 createIdentityPool req =
     let
         encoder val =
@@ -887,7 +889,7 @@ createIdentityPool req =
                 |> Pipeline.required "AllowUnauthenticatedIdentities" (Codec.decoder identityPoolUnauthenticatedCodec)
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateIdentityPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| The UntagResourceResponse data model.

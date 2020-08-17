@@ -15,7 +15,7 @@
         "elm/json": "1.1.3 <= v < 2.0.0",
         "elm-community/maybe-extra": "5.2.0 <= v < 6.0.0",
         "miniBill/elm-codec": "1.2.0 <= v < 2.0.0",
-        "the-sett/elm-aws-core": "7.0.0 <= v < 8.0.0",
+        "the-sett/elm-aws-core": "8.0.0 <= v < 9.0.0",
         "the-sett/elm-refine": "1.4.0 <= v < 2.0.0",
         "the-sett/json-optional": "1.0.0 <= v < 2.0.0"
     },

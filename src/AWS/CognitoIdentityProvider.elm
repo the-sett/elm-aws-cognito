@@ -284,7 +284,7 @@ service region =
 
 {-| Verifies the specified user attributes in the user pool.
 -}
-verifyUserAttribute : VerifyUserAttributeRequest -> AWS.Http.Request ()
+verifyUserAttribute : VerifyUserAttributeRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 verifyUserAttribute req =
     let
         encoder val =
@@ -303,12 +303,12 @@ verifyUserAttribute req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "VerifyUserAttribute" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "VerifyUserAttribute" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Use this API to register a user's entered TOTP code and mark the user's software token MFA status as "verified" if successful. The request takes an access token or a session string, but not both.
 -}
-verifySoftwareToken : VerifySoftwareTokenRequest -> AWS.Http.Request VerifySoftwareTokenResponse
+verifySoftwareToken : VerifySoftwareTokenRequest -> AWS.Http.Request AWS.Http.AWSAppError VerifySoftwareTokenResponse
 verifySoftwareToken req =
     let
         encoder val =
@@ -332,7 +332,7 @@ verifySoftwareToken req =
                 |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "VerifySoftwareToken" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "VerifySoftwareToken" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
@@ -352,7 +352,7 @@ After you submit your request, Amazon Cognito requires up to 1 hour to distribut
 For more information about adding a custom domain to your user pool, see `Using Your Own Domain for the Hosted UI`.
 
 -}
-updateUserPoolDomain : UpdateUserPoolDomainRequest -> AWS.Http.Request UpdateUserPoolDomainResponse
+updateUserPoolDomain : UpdateUserPoolDomainRequest -> AWS.Http.Request AWS.Http.AWSAppError UpdateUserPoolDomainResponse
 updateUserPoolDomain req =
     let
         encoder val =
@@ -374,12 +374,12 @@ updateUserPoolDomain req =
                 |> Pipeline.optional "CloudFrontDomain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateUserPoolDomain" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateUserPoolDomain" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the specified user pool app client with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool app client settings with .
 -}
-updateUserPoolClient : UpdateUserPoolClientRequest -> AWS.Http.Request UpdateUserPoolClientResponse
+updateUserPoolClient : UpdateUserPoolClientRequest -> AWS.Http.Request AWS.Http.AWSAppError UpdateUserPoolClientResponse
 updateUserPoolClient req =
     let
         encoder val =
@@ -422,12 +422,12 @@ updateUserPoolClient req =
                 |> Pipeline.optional "UserPoolClient" (Json.Decode.maybe userPoolClientTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateUserPoolClient" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateUserPoolClient" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the specified user pool with the specified attributes. If you don't provide a value for an attribute, it will be set to the default value. You can get a list of the current user pool settings with .
 -}
-updateUserPool : UpdateUserPoolRequest -> AWS.Http.Request ()
+updateUserPool : UpdateUserPoolRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 updateUserPool req =
     let
         encoder val =
@@ -471,12 +471,12 @@ updateUserPool req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UpdateUserPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateUserPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Allows a user to update a specific attribute (one at a time).
 -}
-updateUserAttributes : UpdateUserAttributesRequest -> AWS.Http.Request UpdateUserAttributesResponse
+updateUserAttributes : UpdateUserAttributesRequest -> AWS.Http.Request AWS.Http.AWSAppError UpdateUserAttributesResponse
 updateUserAttributes req =
     let
         encoder val =
@@ -501,12 +501,12 @@ updateUserAttributes req =
                     Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateUserAttributes" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateUserAttributes" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the name and scopes of resource server. All other fields are read-only.
 -}
-updateResourceServer : UpdateResourceServerRequest -> AWS.Http.Request UpdateResourceServerResponse
+updateResourceServer : UpdateResourceServerRequest -> AWS.Http.Request AWS.Http.AWSAppError UpdateResourceServerResponse
 updateResourceServer req =
     let
         encoder val =
@@ -528,12 +528,12 @@ updateResourceServer req =
                 |> Pipeline.required "ResourceServer" resourceServerTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateResourceServer" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateResourceServer" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates identity provider information for a user pool.
 -}
-updateIdentityProvider : UpdateIdentityProviderRequest -> AWS.Http.Request UpdateIdentityProviderResponse
+updateIdentityProvider : UpdateIdentityProviderRequest -> AWS.Http.Request AWS.Http.AWSAppError UpdateIdentityProviderResponse
 updateIdentityProvider req =
     let
         encoder val =
@@ -559,7 +559,7 @@ updateIdentityProvider req =
                 |> Pipeline.required "IdentityProvider" identityProviderTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateIdentityProvider" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateIdentityProvider" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the specified group with the specified attributes.
@@ -567,7 +567,7 @@ updateIdentityProvider req =
 Requires developer credentials.
 
 -}
-updateGroup : UpdateGroupRequest -> AWS.Http.Request UpdateGroupResponse
+updateGroup : UpdateGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError UpdateGroupResponse
 updateGroup req =
     let
         encoder val =
@@ -590,12 +590,12 @@ updateGroup req =
                 |> Pipeline.optional "Group" (Json.Decode.maybe groupTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "UpdateGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the device status.
 -}
-updateDeviceStatus : UpdateDeviceStatusRequest -> AWS.Http.Request ()
+updateDeviceStatus : UpdateDeviceStatusRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 updateDeviceStatus req =
     let
         encoder val =
@@ -615,12 +615,12 @@ updateDeviceStatus req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UpdateDeviceStatus" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateDeviceStatus" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Provides the feedback for an authentication event whether it was from a valid user or not. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
 -}
-updateAuthEventFeedback : UpdateAuthEventFeedbackRequest -> AWS.Http.Request ()
+updateAuthEventFeedback : UpdateAuthEventFeedbackRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 updateAuthEventFeedback req =
     let
         encoder val =
@@ -641,12 +641,12 @@ updateAuthEventFeedback req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UpdateAuthEventFeedback" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UpdateAuthEventFeedback" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second, per account
 -}
-untagResource : UntagResourceRequest -> AWS.Http.Request ()
+untagResource : UntagResourceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 untagResource req =
     let
         encoder val =
@@ -664,7 +664,7 @@ untagResource req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "UntagResource" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "UntagResource" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.
@@ -676,7 +676,7 @@ Tags are useful for cost tracking and access control. You can activate your tags
 You can use this action up to 5 times per second, per account. A user pool can have as many as 50 tags.
 
 -}
-tagResource : TagResourceRequest -> AWS.Http.Request ()
+tagResource : TagResourceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 tagResource req =
     let
         encoder val =
@@ -694,12 +694,12 @@ tagResource req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "TagResource" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "TagResource" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Stops the user import job.
 -}
-stopUserImportJob : StopUserImportJobRequest -> AWS.Http.Request StopUserImportJobResponse
+stopUserImportJob : StopUserImportJobRequest -> AWS.Http.Request AWS.Http.AWSAppError StopUserImportJobResponse
 stopUserImportJob req =
     let
         encoder val =
@@ -719,12 +719,12 @@ stopUserImportJob req =
                 |> Pipeline.optional "UserImportJob" (Json.Decode.maybe userImportJobTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "StopUserImportJob" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "StopUserImportJob" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Starts the user import.
 -}
-startUserImportJob : StartUserImportJobRequest -> AWS.Http.Request StartUserImportJobResponse
+startUserImportJob : StartUserImportJobRequest -> AWS.Http.Request AWS.Http.AWSAppError StartUserImportJobResponse
 startUserImportJob req =
     let
         encoder val =
@@ -744,12 +744,12 @@ startUserImportJob req =
                 |> Pipeline.optional "UserImportJob" (Json.Decode.maybe userImportJobTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "StartUserImportJob" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "StartUserImportJob" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Registers the user in the specified user pool and creates a user name, password, and user attributes.
 -}
-signUp : SignUpRequest -> AWS.Http.Request SignUpResponse
+signUp : SignUpRequest -> AWS.Http.Request AWS.Http.AWSAppError SignUpResponse
 signUp req =
     let
         encoder val =
@@ -784,12 +784,12 @@ signUp req =
                 |> Pipeline.optional "CodeDeliveryDetails" (Json.Decode.maybe codeDeliveryDetailsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "SignUp" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SignUp" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Sets the user settings like multi-factor authentication (MFA). If MFA is to be removed for a particular attribute pass the attribute with code delivery as null. If null list is passed, all MFA options are removed.
 -}
-setUserSettings : SetUserSettingsRequest -> AWS.Http.Request ()
+setUserSettings : SetUserSettingsRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 setUserSettings req =
     let
         encoder val =
@@ -807,12 +807,12 @@ setUserSettings req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "SetUserSettings" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SetUserSettings" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Set the user pool MFA configuration.
 -}
-setUserPoolMfaConfig : SetUserPoolMfaConfigRequest -> AWS.Http.Request SetUserPoolMfaConfigResponse
+setUserPoolMfaConfig : SetUserPoolMfaConfigRequest -> AWS.Http.Request AWS.Http.AWSAppError SetUserPoolMfaConfigResponse
 setUserPoolMfaConfig req =
     let
         encoder val =
@@ -852,12 +852,12 @@ setUserPoolMfaConfig req =
                 |> Pipeline.optional "MfaConfiguration" (Json.Decode.maybe (Codec.decoder userPoolMfaTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "SetUserPoolMfaConfig" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SetUserPoolMfaConfig" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Set the user's multi-factor authentication (MFA) method preference.
 -}
-setUserMfapreference : SetUserMfapreferenceRequest -> AWS.Http.Request ()
+setUserMfapreference : SetUserMfapreferenceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 setUserMfapreference req =
     let
         encoder val =
@@ -877,7 +877,7 @@ setUserMfapreference req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "SetUserMfapreference" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SetUserMfapreference" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Sets the UI customization information for a user pool's built-in app UI.
@@ -887,7 +887,7 @@ You can specify app UI customization settings for a single client (with a specif
 To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the app's pages, and the service will throw an error.
 
 -}
-setUicustomization : SetUicustomizationRequest -> AWS.Http.Request SetUicustomizationResponse
+setUicustomization : SetUicustomizationRequest -> AWS.Http.Request AWS.Http.AWSAppError SetUicustomizationResponse
 setUicustomization req =
     let
         encoder val =
@@ -909,7 +909,7 @@ setUicustomization req =
                 |> Pipeline.required "UICustomization" uicustomizationTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "SetUicustomization" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SetUicustomization" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Configures actions on detected risks. To delete the risk configuration for `UserPoolId` or `ClientId`, pass null values for all four configuration types.
@@ -919,7 +919,7 @@ To enable Amazon Cognito advanced security features, update the user pool to inc
 See .
 
 -}
-setRiskConfiguration : SetRiskConfigurationRequest -> AWS.Http.Request SetRiskConfigurationResponse
+setRiskConfiguration : SetRiskConfigurationRequest -> AWS.Http.Request AWS.Http.AWSAppError SetRiskConfigurationResponse
 setRiskConfiguration req =
     let
         encoder val =
@@ -945,12 +945,12 @@ setRiskConfiguration req =
                 |> Pipeline.required "RiskConfiguration" riskConfigurationTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "SetRiskConfiguration" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "SetRiskConfiguration" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Responds to the authentication challenge.
 -}
-respondToAuthChallenge : RespondToAuthChallengeRequest -> AWS.Http.Request RespondToAuthChallengeResponse
+respondToAuthChallenge : RespondToAuthChallengeRequest -> AWS.Http.Request AWS.Http.AWSAppError RespondToAuthChallengeResponse
 respondToAuthChallenge req =
     let
         encoder val =
@@ -985,12 +985,12 @@ respondToAuthChallenge req =
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "RespondToAuthChallenge" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "RespondToAuthChallenge" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Resends the confirmation (for confirmation of registration) to a specific user in the user pool.
 -}
-resendConfirmationCode : ResendConfirmationCodeRequest -> AWS.Http.Request ResendConfirmationCodeResponse
+resendConfirmationCode : ResendConfirmationCodeRequest -> AWS.Http.Request AWS.Http.AWSAppError ResendConfirmationCodeResponse
 resendConfirmationCode req =
     let
         encoder val =
@@ -1013,7 +1013,7 @@ resendConfirmationCode req =
                 |> Pipeline.optional "CodeDeliveryDetails" (Json.Decode.maybe codeDeliveryDetailsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ResendConfirmationCode" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ResendConfirmationCode" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the users in the specified group.
@@ -1021,7 +1021,7 @@ resendConfirmationCode req =
 Requires developer credentials.
 
 -}
-listUsersInGroup : ListUsersInGroupRequest -> AWS.Http.Request ListUsersInGroupResponse
+listUsersInGroup : ListUsersInGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError ListUsersInGroupResponse
 listUsersInGroup req =
     let
         encoder val =
@@ -1044,12 +1044,12 @@ listUsersInGroup req =
                 |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListUsersInGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListUsersInGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the users in the Amazon Cognito user pool.
 -}
-listUsers : ListUsersRequest -> AWS.Http.Request ListUsersResponse
+listUsers : ListUsersRequest -> AWS.Http.Request AWS.Http.AWSAppError ListUsersResponse
 listUsers req =
     let
         encoder val =
@@ -1080,12 +1080,12 @@ listUsers req =
                     Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListUsers" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListUsers" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the user pools associated with an AWS account.
 -}
-listUserPools : ListUserPoolsRequest -> AWS.Http.Request ListUserPoolsResponse
+listUserPools : ListUserPoolsRequest -> AWS.Http.Request AWS.Http.AWSAppError ListUserPoolsResponse
 listUserPools req =
     let
         encoder val =
@@ -1108,12 +1108,12 @@ listUserPools req =
                 |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListUserPools" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListUserPools" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the clients that have been created for the specified user pool.
 -}
-listUserPoolClients : ListUserPoolClientsRequest -> AWS.Http.Request ListUserPoolClientsResponse
+listUserPoolClients : ListUserPoolClientsRequest -> AWS.Http.Request AWS.Http.AWSAppError ListUserPoolClientsResponse
 listUserPoolClients req =
     let
         encoder val =
@@ -1137,12 +1137,12 @@ listUserPoolClients req =
                 |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListUserPoolClients" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListUserPoolClients" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the user import jobs.
 -}
-listUserImportJobs : ListUserImportJobsRequest -> AWS.Http.Request ListUserImportJobsResponse
+listUserImportJobs : ListUserImportJobsRequest -> AWS.Http.Request AWS.Http.AWSAppError ListUserImportJobsResponse
 listUserImportJobs req =
     let
         encoder val =
@@ -1172,7 +1172,7 @@ listUserImportJobs req =
                     Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListUserImportJobs" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListUserImportJobs" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the tags that are assigned to an Amazon Cognito user pool.
@@ -1182,7 +1182,7 @@ A tag is a label that you can apply to user pools to categorize and manage them 
 You can use this action up to 10 times per second, per account.
 
 -}
-listTagsForResource : ListTagsForResourceRequest -> AWS.Http.Request ListTagsForResourceResponse
+listTagsForResource : ListTagsForResourceRequest -> AWS.Http.Request AWS.Http.AWSAppError ListTagsForResourceResponse
 listTagsForResource req =
     let
         encoder val =
@@ -1200,12 +1200,12 @@ listTagsForResource req =
                 |> Pipeline.optional "Tags" (Json.Decode.maybe (Codec.decoder userPoolTagsTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListTagsForResource" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListTagsForResource" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the resource servers for a user pool.
 -}
-listResourceServers : ListResourceServersRequest -> AWS.Http.Request ListResourceServersResponse
+listResourceServers : ListResourceServersRequest -> AWS.Http.Request AWS.Http.AWSAppError ListResourceServersResponse
 listResourceServers req =
     let
         encoder val =
@@ -1229,12 +1229,12 @@ listResourceServers req =
                 |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListResourceServers" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListResourceServers" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists information about all identity providers for a user pool.
 -}
-listIdentityProviders : ListIdentityProvidersRequest -> AWS.Http.Request ListIdentityProvidersResponse
+listIdentityProviders : ListIdentityProvidersRequest -> AWS.Http.Request AWS.Http.AWSAppError ListIdentityProvidersResponse
 listIdentityProviders req =
     let
         encoder val =
@@ -1258,7 +1258,7 @@ listIdentityProviders req =
                 |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListIdentityProviders" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListIdentityProviders" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the groups associated with a user pool.
@@ -1266,7 +1266,7 @@ listIdentityProviders req =
 Requires developer credentials.
 
 -}
-listGroups : ListGroupsRequest -> AWS.Http.Request ListGroupsResponse
+listGroups : ListGroupsRequest -> AWS.Http.Request AWS.Http.AWSAppError ListGroupsResponse
 listGroups req =
     let
         encoder val =
@@ -1288,12 +1288,12 @@ listGroups req =
                 |> Pipeline.optional "Groups" (Json.Decode.maybe groupListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListGroups" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListGroups" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the devices.
 -}
-listDevices : ListDevicesRequest -> AWS.Http.Request ListDevicesResponse
+listDevices : ListDevicesRequest -> AWS.Http.Request AWS.Http.AWSAppError ListDevicesResponse
 listDevices req =
     let
         encoder val =
@@ -1321,12 +1321,12 @@ listDevices req =
                 |> Pipeline.optional "Devices" (Json.Decode.maybe deviceListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ListDevices" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ListDevices" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Initiates the authentication flow.
 -}
-initiateAuth : InitiateAuthRequest -> AWS.Http.Request InitiateAuthResponse
+initiateAuth : InitiateAuthRequest -> AWS.Http.Request AWS.Http.AWSAppError InitiateAuthResponse
 initiateAuth req =
     let
         encoder val =
@@ -1361,12 +1361,12 @@ initiateAuth req =
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "InitiateAuth" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "InitiateAuth" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Signs out users from all devices.
 -}
-globalSignOut : GlobalSignOutRequest -> AWS.Http.Request ()
+globalSignOut : GlobalSignOutRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 globalSignOut req =
     let
         encoder val =
@@ -1382,12 +1382,12 @@ globalSignOut req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "GlobalSignOut" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GlobalSignOut" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the user pool multi-factor authentication (MFA) configuration.
 -}
-getUserPoolMfaConfig : GetUserPoolMfaConfigRequest -> AWS.Http.Request GetUserPoolMfaConfigResponse
+getUserPoolMfaConfig : GetUserPoolMfaConfigRequest -> AWS.Http.Request AWS.Http.AWSAppError GetUserPoolMfaConfigResponse
 getUserPoolMfaConfig req =
     let
         encoder val =
@@ -1420,12 +1420,14 @@ getUserPoolMfaConfig req =
                 |> Pipeline.optional "MfaConfiguration" (Json.Decode.maybe (Codec.decoder userPoolMfaTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetUserPoolMfaConfig" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetUserPoolMfaConfig" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the user attribute verification code for the specified attribute name.
 -}
-getUserAttributeVerificationCode : GetUserAttributeVerificationCodeRequest -> AWS.Http.Request GetUserAttributeVerificationCodeResponse
+getUserAttributeVerificationCode :
+    GetUserAttributeVerificationCodeRequest
+    -> AWS.Http.Request AWS.Http.AWSAppError GetUserAttributeVerificationCodeResponse
 getUserAttributeVerificationCode req =
     let
         encoder val =
@@ -1445,12 +1447,12 @@ getUserAttributeVerificationCode req =
                 |> Pipeline.optional "CodeDeliveryDetails" (Json.Decode.maybe codeDeliveryDetailsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetUserAttributeVerificationCode" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetUserAttributeVerificationCode" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the user attributes and metadata for a user.
 -}
-getUser : GetUserRequest -> AWS.Http.Request GetUserResponse
+getUser : GetUserRequest -> AWS.Http.Request AWS.Http.AWSAppError GetUserResponse
 getUser req =
     let
         encoder val =
@@ -1481,12 +1483,12 @@ getUser req =
                 |> Pipeline.optional "MFAOptions" (Json.Decode.maybe (Codec.decoder mfaoptionListTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app `clientId` will be `ALL`), then that is returned. If nothing is present, then an empty shape is returned.
 -}
-getUicustomization : GetUicustomizationRequest -> AWS.Http.Request GetUicustomizationResponse
+getUicustomization : GetUicustomizationRequest -> AWS.Http.Request AWS.Http.AWSAppError GetUicustomizationResponse
 getUicustomization req =
     let
         encoder val =
@@ -1506,12 +1508,12 @@ getUicustomization req =
                 |> Pipeline.required "UICustomization" uicustomizationTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetUicustomization" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetUicustomization" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| This method takes a user pool ID, and returns the signing certificate.
 -}
-getSigningCertificate : GetSigningCertificateRequest -> AWS.Http.Request GetSigningCertificateResponse
+getSigningCertificate : GetSigningCertificateRequest -> AWS.Http.Request AWS.Http.AWSAppError GetSigningCertificateResponse
 getSigningCertificate req =
     let
         encoder val =
@@ -1529,12 +1531,14 @@ getSigningCertificate req =
                 |> Pipeline.optional "Certificate" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetSigningCertificate" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetSigningCertificate" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the specified identity provider.
 -}
-getIdentityProviderByIdentifier : GetIdentityProviderByIdentifierRequest -> AWS.Http.Request GetIdentityProviderByIdentifierResponse
+getIdentityProviderByIdentifier :
+    GetIdentityProviderByIdentifierRequest
+    -> AWS.Http.Request AWS.Http.AWSAppError GetIdentityProviderByIdentifierResponse
 getIdentityProviderByIdentifier req =
     let
         encoder val =
@@ -1554,7 +1558,7 @@ getIdentityProviderByIdentifier req =
                 |> Pipeline.required "IdentityProvider" identityProviderTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetIdentityProviderByIdentifier" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetIdentityProviderByIdentifier" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets a group.
@@ -1562,7 +1566,7 @@ getIdentityProviderByIdentifier req =
 Requires developer credentials.
 
 -}
-getGroup : GetGroupRequest -> AWS.Http.Request GetGroupResponse
+getGroup : GetGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError GetGroupResponse
 getGroup req =
     let
         encoder val =
@@ -1582,12 +1586,12 @@ getGroup req =
                 |> Pipeline.optional "Group" (Json.Decode.maybe groupTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the device.
 -}
-getDevice : GetDeviceRequest -> AWS.Http.Request GetDeviceResponse
+getDevice : GetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError GetDeviceResponse
 getDevice req =
     let
         encoder val =
@@ -1607,12 +1611,12 @@ getDevice req =
                 |> Pipeline.required "Device" deviceTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetDevice" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetDevice" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the header information for the .csv file to be used as input for the user import job.
 -}
-getCsvheader : GetCsvheaderRequest -> AWS.Http.Request GetCsvheaderResponse
+getCsvheader : GetCsvheaderRequest -> AWS.Http.Request AWS.Http.AWSAppError GetCsvheaderResponse
 getCsvheader req =
     let
         encoder val =
@@ -1633,12 +1637,12 @@ getCsvheader req =
                 |> Pipeline.optional "CSVHeader" (Json.Decode.maybe listOfStringTypesDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "GetCsvheader" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "GetCsvheader" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the `Username` parameter, you can use the username or user alias. If a verified phone number exists for the user, the confirmation code is sent to the phone number. Otherwise, if a verified email exists, the confirmation code is sent to the email. If neither a verified phone number nor a verified email exists, `InvalidParameterException` is thrown. To use the confirmation code for resetting the password, call .
 -}
-forgotPassword : ForgotPasswordRequest -> AWS.Http.Request ForgotPasswordResponse
+forgotPassword : ForgotPasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError ForgotPasswordResponse
 forgotPassword req =
     let
         encoder val =
@@ -1661,12 +1665,12 @@ forgotPassword req =
                 |> Pipeline.optional "CodeDeliveryDetails" (Json.Decode.maybe codeDeliveryDetailsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ForgotPassword" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ForgotPassword" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Forgets the specified device.
 -}
-forgetDevice : ForgetDeviceRequest -> AWS.Http.Request ()
+forgetDevice : ForgetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 forgetDevice req =
     let
         encoder val =
@@ -1684,12 +1688,12 @@ forgetDevice req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "ForgetDevice" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ForgetDevice" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets information about a domain.
 -}
-describeUserPoolDomain : DescribeUserPoolDomainRequest -> AWS.Http.Request DescribeUserPoolDomainResponse
+describeUserPoolDomain : DescribeUserPoolDomainRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeUserPoolDomainResponse
 describeUserPoolDomain req =
     let
         encoder val =
@@ -1706,12 +1710,12 @@ describeUserPoolDomain req =
                 |> Pipeline.optional "DomainDescription" (Json.Decode.maybe domainDescriptionTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeUserPoolDomain" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeUserPoolDomain" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Client method for returning the configuration information and metadata of the specified user pool app client.
 -}
-describeUserPoolClient : DescribeUserPoolClientRequest -> AWS.Http.Request DescribeUserPoolClientResponse
+describeUserPoolClient : DescribeUserPoolClientRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeUserPoolClientResponse
 describeUserPoolClient req =
     let
         encoder val =
@@ -1731,12 +1735,12 @@ describeUserPoolClient req =
                 |> Pipeline.optional "UserPoolClient" (Json.Decode.maybe userPoolClientTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeUserPoolClient" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeUserPoolClient" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Returns the configuration information and metadata of the specified user pool.
 -}
-describeUserPool : DescribeUserPoolRequest -> AWS.Http.Request DescribeUserPoolResponse
+describeUserPool : DescribeUserPoolRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeUserPoolResponse
 describeUserPool req =
     let
         encoder val =
@@ -1754,12 +1758,12 @@ describeUserPool req =
                 |> Pipeline.optional "UserPool" (Json.Decode.maybe userPoolTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeUserPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeUserPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Describes the user import job.
 -}
-describeUserImportJob : DescribeUserImportJobRequest -> AWS.Http.Request DescribeUserImportJobResponse
+describeUserImportJob : DescribeUserImportJobRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeUserImportJobResponse
 describeUserImportJob req =
     let
         encoder val =
@@ -1779,12 +1783,12 @@ describeUserImportJob req =
                 |> Pipeline.optional "UserImportJob" (Json.Decode.maybe userImportJobTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeUserImportJob" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeUserImportJob" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Describes the risk configuration.
 -}
-describeRiskConfiguration : DescribeRiskConfigurationRequest -> AWS.Http.Request DescribeRiskConfigurationResponse
+describeRiskConfiguration : DescribeRiskConfigurationRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeRiskConfigurationResponse
 describeRiskConfiguration req =
     let
         encoder val =
@@ -1804,12 +1808,12 @@ describeRiskConfiguration req =
                 |> Pipeline.required "RiskConfiguration" riskConfigurationTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeRiskConfiguration" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeRiskConfiguration" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Describes a resource server.
 -}
-describeResourceServer : DescribeResourceServerRequest -> AWS.Http.Request DescribeResourceServerResponse
+describeResourceServer : DescribeResourceServerRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeResourceServerResponse
 describeResourceServer req =
     let
         encoder val =
@@ -1829,12 +1833,12 @@ describeResourceServer req =
                 |> Pipeline.required "ResourceServer" resourceServerTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeResourceServer" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeResourceServer" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets information about a specific identity provider.
 -}
-describeIdentityProvider : DescribeIdentityProviderRequest -> AWS.Http.Request DescribeIdentityProviderResponse
+describeIdentityProvider : DescribeIdentityProviderRequest -> AWS.Http.Request AWS.Http.AWSAppError DescribeIdentityProviderResponse
 describeIdentityProvider req =
     let
         encoder val =
@@ -1854,12 +1858,12 @@ describeIdentityProvider req =
                 |> Pipeline.required "IdentityProvider" identityProviderTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "DescribeIdentityProvider" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DescribeIdentityProvider" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes a domain for a user pool.
 -}
-deleteUserPoolDomain : DeleteUserPoolDomainRequest -> AWS.Http.Request ()
+deleteUserPoolDomain : DeleteUserPoolDomainRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteUserPoolDomain req =
     let
         encoder val =
@@ -1877,12 +1881,12 @@ deleteUserPoolDomain req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteUserPoolDomain" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteUserPoolDomain" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Allows the developer to delete the user pool client.
 -}
-deleteUserPoolClient : DeleteUserPoolClientRequest -> AWS.Http.Request ()
+deleteUserPoolClient : DeleteUserPoolClientRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteUserPoolClient req =
     let
         encoder val =
@@ -1900,12 +1904,12 @@ deleteUserPoolClient req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteUserPoolClient" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteUserPoolClient" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes the specified Amazon Cognito user pool.
 -}
-deleteUserPool : DeleteUserPoolRequest -> AWS.Http.Request ()
+deleteUserPool : DeleteUserPoolRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteUserPool req =
     let
         encoder val =
@@ -1921,12 +1925,12 @@ deleteUserPool req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteUserPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteUserPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes the attributes for a user.
 -}
-deleteUserAttributes : DeleteUserAttributesRequest -> AWS.Http.Request ()
+deleteUserAttributes : DeleteUserAttributesRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteUserAttributes req =
     let
         encoder val =
@@ -1944,12 +1948,12 @@ deleteUserAttributes req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteUserAttributes" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteUserAttributes" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Allows a user to delete himself or herself.
 -}
-deleteUser : DeleteUserRequest -> AWS.Http.Request ()
+deleteUser : DeleteUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteUser req =
     let
         encoder val =
@@ -1965,12 +1969,12 @@ deleteUser req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes a resource server.
 -}
-deleteResourceServer : DeleteResourceServerRequest -> AWS.Http.Request ()
+deleteResourceServer : DeleteResourceServerRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteResourceServer req =
     let
         encoder val =
@@ -1988,12 +1992,12 @@ deleteResourceServer req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteResourceServer" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteResourceServer" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes an identity provider for a user pool.
 -}
-deleteIdentityProvider : DeleteIdentityProviderRequest -> AWS.Http.Request ()
+deleteIdentityProvider : DeleteIdentityProviderRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteIdentityProvider req =
     let
         encoder val =
@@ -2011,7 +2015,7 @@ deleteIdentityProvider req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteIdentityProvider" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteIdentityProvider" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes a group. Currently only groups with no members can be deleted.
@@ -2019,7 +2023,7 @@ deleteIdentityProvider req =
 Requires developer credentials.
 
 -}
-deleteGroup : DeleteGroupRequest -> AWS.Http.Request ()
+deleteGroup : DeleteGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteGroup req =
     let
         encoder val =
@@ -2037,12 +2041,12 @@ deleteGroup req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "DeleteGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "DeleteGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates a new domain for a user pool.
 -}
-createUserPoolDomain : CreateUserPoolDomainRequest -> AWS.Http.Request CreateUserPoolDomainResponse
+createUserPoolDomain : CreateUserPoolDomainRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateUserPoolDomainResponse
 createUserPoolDomain req =
     let
         encoder val =
@@ -2064,12 +2068,12 @@ createUserPoolDomain req =
                 |> Pipeline.optional "CloudFrontDomain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateUserPoolDomain" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateUserPoolDomain" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates the user pool client.
 -}
-createUserPoolClient : CreateUserPoolClientRequest -> AWS.Http.Request CreateUserPoolClientResponse
+createUserPoolClient : CreateUserPoolClientRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateUserPoolClientResponse
 createUserPoolClient req =
     let
         encoder val =
@@ -2112,12 +2116,12 @@ createUserPoolClient req =
                 |> Pipeline.optional "UserPoolClient" (Json.Decode.maybe userPoolClientTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateUserPoolClient" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateUserPoolClient" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates a new Amazon Cognito user pool and sets the password policy for the pool.
 -}
-createUserPool : CreateUserPoolRequest -> AWS.Http.Request CreateUserPoolResponse
+createUserPool : CreateUserPoolRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateUserPoolResponse
 createUserPool req =
     let
         encoder val =
@@ -2168,12 +2172,12 @@ createUserPool req =
                 |> Pipeline.optional "UserPool" (Json.Decode.maybe userPoolTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateUserPool" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateUserPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates the user import job.
 -}
-createUserImportJob : CreateUserImportJobRequest -> AWS.Http.Request CreateUserImportJobResponse
+createUserImportJob : CreateUserImportJobRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateUserImportJobResponse
 createUserImportJob req =
     let
         encoder val =
@@ -2194,12 +2198,12 @@ createUserImportJob req =
                 |> Pipeline.optional "UserImportJob" (Json.Decode.maybe userImportJobTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateUserImportJob" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateUserImportJob" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates a new OAuth2.0 resource server and defines custom scopes in it.
 -}
-createResourceServer : CreateResourceServerRequest -> AWS.Http.Request CreateResourceServerResponse
+createResourceServer : CreateResourceServerRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateResourceServerResponse
 createResourceServer req =
     let
         encoder val =
@@ -2221,12 +2225,12 @@ createResourceServer req =
                 |> Pipeline.required "ResourceServer" resourceServerTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateResourceServer" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateResourceServer" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates an identity provider for a user pool.
 -}
-createIdentityProvider : CreateIdentityProviderRequest -> AWS.Http.Request CreateIdentityProviderResponse
+createIdentityProvider : CreateIdentityProviderRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateIdentityProviderResponse
 createIdentityProvider req =
     let
         encoder val =
@@ -2252,7 +2256,7 @@ createIdentityProvider req =
                 |> Pipeline.required "IdentityProvider" identityProviderTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateIdentityProvider" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateIdentityProvider" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates a new group in the specified user pool.
@@ -2260,7 +2264,7 @@ createIdentityProvider req =
 Requires developer credentials.
 
 -}
-createGroup : CreateGroupRequest -> AWS.Http.Request CreateGroupResponse
+createGroup : CreateGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError CreateGroupResponse
 createGroup req =
     let
         encoder val =
@@ -2283,12 +2287,12 @@ createGroup req =
                 |> Pipeline.optional "Group" (Json.Decode.maybe groupTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "CreateGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "CreateGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Confirms registration of a user and handles the existing alias from a previous user.
 -}
-confirmSignUp : ConfirmSignUpRequest -> AWS.Http.Request ()
+confirmSignUp : ConfirmSignUpRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 confirmSignUp req =
     let
         encoder val =
@@ -2311,12 +2315,12 @@ confirmSignUp req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "ConfirmSignUp" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ConfirmSignUp" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Allows a user to enter a confirmation code to reset a forgotten password.
 -}
-confirmForgotPassword : ConfirmForgotPasswordRequest -> AWS.Http.Request ()
+confirmForgotPassword : ConfirmForgotPasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 confirmForgotPassword req =
     let
         encoder val =
@@ -2339,12 +2343,12 @@ confirmForgotPassword req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "ConfirmForgotPassword" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ConfirmForgotPassword" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Confirms tracking of the device. This API call is the call that begins device tracking.
 -}
-confirmDevice : ConfirmDeviceRequest -> AWS.Http.Request ConfirmDeviceResponse
+confirmDevice : ConfirmDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError ConfirmDeviceResponse
 confirmDevice req =
     let
         encoder val =
@@ -2372,12 +2376,12 @@ confirmDevice req =
                     Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "ConfirmDevice" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ConfirmDevice" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Changes the password for a specified user in a user pool.
 -}
-changePassword : ChangePasswordRequest -> AWS.Http.Request ()
+changePassword : ChangePasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 changePassword req =
     let
         encoder val =
@@ -2396,12 +2400,12 @@ changePassword req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "ChangePassword" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "ChangePassword" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Returns a unique generated shared secret key code for the user account. The request takes an access token or a session string, but not both.
 -}
-associateSoftwareToken : AssociateSoftwareTokenRequest -> AWS.Http.Request AssociateSoftwareTokenResponse
+associateSoftwareToken : AssociateSoftwareTokenRequest -> AWS.Http.Request AWS.Http.AWSAppError AssociateSoftwareTokenResponse
 associateSoftwareToken req =
     let
         encoder val =
@@ -2422,7 +2426,7 @@ associateSoftwareToken req =
                 |> Pipeline.optional "SecretCode" (Json.Decode.maybe secretCodeTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AssociateSoftwareToken" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AssociateSoftwareToken" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Signs out users from all devices, as an administrator.
@@ -2430,7 +2434,7 @@ associateSoftwareToken req =
 Requires developer credentials.
 
 -}
-adminUserGlobalSignOut : AdminUserGlobalSignOutRequest -> AWS.Http.Request ()
+adminUserGlobalSignOut : AdminUserGlobalSignOutRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminUserGlobalSignOut req =
     let
         encoder val =
@@ -2448,7 +2452,7 @@ adminUserGlobalSignOut req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminUserGlobalSignOut" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminUserGlobalSignOut" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
@@ -2460,7 +2464,7 @@ In addition to updating user attributes, this API can also be used to mark phone
 Requires developer credentials.
 
 -}
-adminUpdateUserAttributes : AdminUpdateUserAttributesRequest -> AWS.Http.Request ()
+adminUpdateUserAttributes : AdminUpdateUserAttributesRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminUpdateUserAttributes req =
     let
         encoder val =
@@ -2479,7 +2483,7 @@ adminUpdateUserAttributes req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminUpdateUserAttributes" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminUpdateUserAttributes" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Updates the device status as an administrator.
@@ -2487,7 +2491,7 @@ adminUpdateUserAttributes req =
 Requires developer credentials.
 
 -}
-adminUpdateDeviceStatus : AdminUpdateDeviceStatusRequest -> AWS.Http.Request ()
+adminUpdateDeviceStatus : AdminUpdateDeviceStatusRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminUpdateDeviceStatus req =
     let
         encoder val =
@@ -2508,12 +2512,12 @@ adminUpdateDeviceStatus req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminUpdateDeviceStatus" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminUpdateDeviceStatus" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
 -}
-adminUpdateAuthEventFeedback : AdminUpdateAuthEventFeedbackRequest -> AWS.Http.Request ()
+adminUpdateAuthEventFeedback : AdminUpdateAuthEventFeedbackRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminUpdateAuthEventFeedback req =
     let
         encoder val =
@@ -2533,7 +2537,7 @@ adminUpdateAuthEventFeedback req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminUpdateAuthEventFeedback" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminUpdateAuthEventFeedback" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Sets all the user settings for a specified user name. Works on any user.
@@ -2541,7 +2545,7 @@ adminUpdateAuthEventFeedback req =
 Requires developer credentials.
 
 -}
-adminSetUserSettings : AdminSetUserSettingsRequest -> AWS.Http.Request ()
+adminSetUserSettings : AdminSetUserSettingsRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminSetUserSettings req =
     let
         encoder val =
@@ -2560,11 +2564,11 @@ adminSetUserSettings req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminSetUserSettings" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminSetUserSettings" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| -}
-adminSetUserPassword : AdminSetUserPasswordRequest -> AWS.Http.Request ()
+adminSetUserPassword : AdminSetUserPasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminSetUserPassword req =
     let
         encoder val =
@@ -2584,12 +2588,12 @@ adminSetUserPassword req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminSetUserPassword" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminSetUserPassword" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Sets the user's multi-factor authentication (MFA) preference.
 -}
-adminSetUserMfapreference : AdminSetUserMfapreferenceRequest -> AWS.Http.Request ()
+adminSetUserMfapreference : AdminSetUserMfapreferenceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminSetUserMfapreference req =
     let
         encoder val =
@@ -2610,7 +2614,7 @@ adminSetUserMfapreference req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminSetUserMfapreference" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminSetUserMfapreference" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Responds to an authentication challenge, as an administrator.
@@ -2618,7 +2622,7 @@ adminSetUserMfapreference req =
 Requires developer credentials.
 
 -}
-adminRespondToAuthChallenge : AdminRespondToAuthChallengeRequest -> AWS.Http.Request AdminRespondToAuthChallengeResponse
+adminRespondToAuthChallenge : AdminRespondToAuthChallengeRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminRespondToAuthChallengeResponse
 adminRespondToAuthChallenge req =
     let
         encoder val =
@@ -2654,7 +2658,7 @@ adminRespondToAuthChallenge req =
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminRespondToAuthChallenge" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminRespondToAuthChallenge" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Resets the specified user's password in a user pool as an administrator. Works on any user.
@@ -2664,7 +2668,7 @@ When a developer calls this API, the current password is invalidated, so it must
 Requires developer credentials.
 
 -}
-adminResetUserPassword : AdminResetUserPasswordRequest -> AWS.Http.Request ()
+adminResetUserPassword : AdminResetUserPasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminResetUserPassword req =
     let
         encoder val =
@@ -2682,7 +2686,7 @@ adminResetUserPassword req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminResetUserPassword" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminResetUserPassword" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Removes the specified user from the specified group.
@@ -2690,7 +2694,7 @@ adminResetUserPassword req =
 Requires developer credentials.
 
 -}
-adminRemoveUserFromGroup : AdminRemoveUserFromGroupRequest -> AWS.Http.Request ()
+adminRemoveUserFromGroup : AdminRemoveUserFromGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminRemoveUserFromGroup req =
     let
         encoder val =
@@ -2709,12 +2713,12 @@ adminRemoveUserFromGroup req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminRemoveUserFromGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminRemoveUserFromGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists a history of user activity and any risks detected as part of Amazon Cognito advanced security.
 -}
-adminListUserAuthEvents : AdminListUserAuthEventsRequest -> AWS.Http.Request AdminListUserAuthEventsResponse
+adminListUserAuthEvents : AdminListUserAuthEventsRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminListUserAuthEventsResponse
 adminListUserAuthEvents req =
     let
         encoder val =
@@ -2739,7 +2743,7 @@ adminListUserAuthEvents req =
                 |> Pipeline.optional "AuthEvents" (Json.Decode.maybe authEventsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminListUserAuthEvents" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminListUserAuthEvents" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists the groups that the user belongs to.
@@ -2747,7 +2751,7 @@ adminListUserAuthEvents req =
 Requires developer credentials.
 
 -}
-adminListGroupsForUser : AdminListGroupsForUserRequest -> AWS.Http.Request AdminListGroupsForUserResponse
+adminListGroupsForUser : AdminListGroupsForUserRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminListGroupsForUserResponse
 adminListGroupsForUser req =
     let
         encoder val =
@@ -2770,7 +2774,7 @@ adminListGroupsForUser req =
                 |> Pipeline.optional "Groups" (Json.Decode.maybe groupListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminListGroupsForUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminListGroupsForUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Lists devices, as an administrator.
@@ -2778,7 +2782,7 @@ adminListGroupsForUser req =
 Requires developer credentials.
 
 -}
-adminListDevices : AdminListDevicesRequest -> AWS.Http.Request AdminListDevicesResponse
+adminListDevices : AdminListDevicesRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminListDevicesResponse
 adminListDevices req =
     let
         encoder val =
@@ -2807,7 +2811,7 @@ adminListDevices req =
                 |> Pipeline.optional "Devices" (Json.Decode.maybe deviceListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminListDevices" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminListDevices" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Links an existing user account in a user pool (`DestinationUser`) to an identity from an external identity provider (`SourceUser`) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
@@ -2821,7 +2825,7 @@ See also .
 This action is enabled only for admin access and requires developer credentials.
 
 -}
-adminLinkProviderForUser : AdminLinkProviderForUserRequest -> AWS.Http.Request ()
+adminLinkProviderForUser : AdminLinkProviderForUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminLinkProviderForUser req =
     let
         encoder val =
@@ -2840,7 +2844,7 @@ adminLinkProviderForUser req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminLinkProviderForUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminLinkProviderForUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Initiates the authentication flow, as an administrator.
@@ -2848,7 +2852,7 @@ adminLinkProviderForUser req =
 Requires developer credentials.
 
 -}
-adminInitiateAuth : AdminInitiateAuthRequest -> AWS.Http.Request AdminInitiateAuthResponse
+adminInitiateAuth : AdminInitiateAuthRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminInitiateAuthResponse
 adminInitiateAuth req =
     let
         encoder val =
@@ -2884,7 +2888,7 @@ adminInitiateAuth req =
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminInitiateAuth" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminInitiateAuth" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the specified user by user name in a user pool as an administrator. Works on any user.
@@ -2892,7 +2896,7 @@ adminInitiateAuth req =
 Requires developer credentials.
 
 -}
-adminGetUser : AdminGetUserRequest -> AWS.Http.Request AdminGetUserResponse
+adminGetUser : AdminGetUserRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminGetUserResponse
 adminGetUser req =
     let
         encoder val =
@@ -2933,7 +2937,7 @@ adminGetUser req =
                 |> Pipeline.optional "Enabled" (Json.Decode.maybe (Codec.decoder booleanTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminGetUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminGetUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Gets the device, as an administrator.
@@ -2941,7 +2945,7 @@ adminGetUser req =
 Requires developer credentials.
 
 -}
-adminGetDevice : AdminGetDeviceRequest -> AWS.Http.Request AdminGetDeviceResponse
+adminGetDevice : AdminGetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminGetDeviceResponse
 adminGetDevice req =
     let
         encoder val =
@@ -2962,7 +2966,7 @@ adminGetDevice req =
                 |> Pipeline.required "Device" deviceTypeDecoder
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminGetDevice" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminGetDevice" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Forgets the device, as an administrator.
@@ -2970,7 +2974,7 @@ adminGetDevice req =
 Requires developer credentials.
 
 -}
-adminForgetDevice : AdminForgetDeviceRequest -> AWS.Http.Request ()
+adminForgetDevice : AdminForgetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminForgetDevice req =
     let
         encoder val =
@@ -2989,7 +2993,7 @@ adminForgetDevice req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminForgetDevice" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminForgetDevice" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Enables the specified user as an administrator. Works on any user.
@@ -2997,7 +3001,7 @@ adminForgetDevice req =
 Requires developer credentials.
 
 -}
-adminEnableUser : AdminEnableUserRequest -> AWS.Http.Request ()
+adminEnableUser : AdminEnableUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminEnableUser req =
     let
         encoder val =
@@ -3015,7 +3019,7 @@ adminEnableUser req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminEnableUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminEnableUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Disables the specified user as an administrator. Works on any user.
@@ -3023,7 +3027,7 @@ adminEnableUser req =
 Requires developer credentials.
 
 -}
-adminDisableUser : AdminDisableUserRequest -> AWS.Http.Request ()
+adminDisableUser : AdminDisableUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminDisableUser req =
     let
         encoder val =
@@ -3041,7 +3045,7 @@ adminDisableUser req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminDisableUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminDisableUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked `DestinationUser`) signs in, they must create a new user account. See .
@@ -3057,7 +3061,7 @@ The `ProviderAttributeName` must always be `Cognito_Subject` for social identity
 For de-linking a SAML identity, there are two scenarios. If the linked identity has not yet been used to sign-in, the `ProviderAttributeName` and `ProviderAttributeValue` must be the same values that were used for the `SourceUser` when the identities were originally linked in the call. (If the linking was done with `ProviderAttributeName` set to `Cognito_Subject`, the same applies here). However, if the user has already signed in, the `ProviderAttributeName` must be `Cognito_Subject` and `ProviderAttributeValue` must be the subject of the SAML assertion.
 
 -}
-adminDisableProviderForUser : AdminDisableProviderForUserRequest -> AWS.Http.Request ()
+adminDisableProviderForUser : AdminDisableProviderForUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminDisableProviderForUser req =
     let
         encoder val =
@@ -3075,7 +3079,7 @@ adminDisableProviderForUser req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminDisableProviderForUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminDisableProviderForUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes the user attributes in a user pool as an administrator. Works on any user.
@@ -3083,7 +3087,7 @@ adminDisableProviderForUser req =
 Requires developer credentials.
 
 -}
-adminDeleteUserAttributes : AdminDeleteUserAttributesRequest -> AWS.Http.Request ()
+adminDeleteUserAttributes : AdminDeleteUserAttributesRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminDeleteUserAttributes req =
     let
         encoder val =
@@ -3102,7 +3106,7 @@ adminDeleteUserAttributes req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminDeleteUserAttributes" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminDeleteUserAttributes" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Deletes a user as an administrator. Works on any user.
@@ -3110,7 +3114,7 @@ adminDeleteUserAttributes req =
 Requires developer credentials.
 
 -}
-adminDeleteUser : AdminDeleteUserRequest -> AWS.Http.Request ()
+adminDeleteUser : AdminDeleteUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminDeleteUser req =
     let
         encoder val =
@@ -3128,7 +3132,7 @@ adminDeleteUser req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminDeleteUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminDeleteUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Creates a new user in the specified user pool.
@@ -3144,7 +3148,7 @@ In either case, the user will be in the `FORCE_CHANGE_PASSWORD` state until they
 AdminCreateUser requires developer credentials.
 
 -}
-adminCreateUser : AdminCreateUserRequest -> AWS.Http.Request AdminCreateUserResponse
+adminCreateUser : AdminCreateUserRequest -> AWS.Http.Request AWS.Http.AWSAppError AdminCreateUserResponse
 adminCreateUser req =
     let
         encoder val =
@@ -3171,7 +3175,7 @@ adminCreateUser req =
                 |> Pipeline.optional "User" (Json.Decode.maybe userTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
-    AWS.Http.request "AdminCreateUser" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminCreateUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Confirms user registration as an admin without using a confirmation code. Works on any user.
@@ -3179,7 +3183,7 @@ adminCreateUser req =
 Requires developer credentials.
 
 -}
-adminConfirmSignUp : AdminConfirmSignUpRequest -> AWS.Http.Request ()
+adminConfirmSignUp : AdminConfirmSignUpRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminConfirmSignUp req =
     let
         encoder val =
@@ -3197,7 +3201,7 @@ adminConfirmSignUp req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminConfirmSignUp" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminConfirmSignUp" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Adds the specified user to the specified group.
@@ -3205,7 +3209,7 @@ adminConfirmSignUp req =
 Requires developer credentials.
 
 -}
-adminAddUserToGroup : AdminAddUserToGroupRequest -> AWS.Http.Request ()
+adminAddUserToGroup : AdminAddUserToGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 adminAddUserToGroup req =
     let
         encoder val =
@@ -3224,12 +3228,12 @@ adminAddUserToGroup req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AdminAddUserToGroup" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AdminAddUserToGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| Adds additional user attributes to the user pool schema.
 -}
-addCustomAttributes : AddCustomAttributesRequest -> AWS.Http.Request ()
+addCustomAttributes : AddCustomAttributesRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 addCustomAttributes req =
     let
         encoder val =
@@ -3247,7 +3251,7 @@ addCustomAttributes req =
         decoder =
             AWS.Http.constantDecoder ()
     in
-    AWS.Http.request "AddCustomAttributes" AWS.Http.POST url jsonBody decoder
+    AWS.Http.request "AddCustomAttributes" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
 
 
 {-| The VerifyUserAttributeResponse data model.
