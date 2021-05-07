@@ -1651,7 +1651,7 @@ type alias DeleteIdentitiesInput =
 {-| The DateType data model.
 -}
 type alias DateType =
-    String
+    Int
 
 
 {-| The Credentials data model.
@@ -1956,7 +1956,7 @@ credentialsDecoder =
 -}
 dateTypeDecoder : Decoder DateType
 dateTypeDecoder =
-    Json.Decode.string
+    Json.Decode.int
 
 
 {-| Codec for DeveloperProviderName.
