@@ -4,25 +4,19 @@ module AWS.CognitoIdentity exposing
     , getIdentityPoolRoles, getOpenIdToken, getOpenIdTokenForDeveloperIdentity, listIdentities, listIdentityPools, listTagsForResource
     , lookupDeveloperIdentity, mergeDeveloperIdentities, setIdentityPoolRoles, tagResource, unlinkDeveloperIdentity, unlinkIdentity
     , untagResource, updateIdentityPool
-    , AccessKeyString, AccountId, AmbiguousRoleResolutionType(..), Arnstring, ClaimName, ClaimValue, CognitoIdentityProvider
-    , CognitoIdentityProviderClientId, CognitoIdentityProviderList, CognitoIdentityProviderName, CognitoIdentityProviderTokenCheck
-    , CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput
-    , DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperProviderName, DeveloperUserIdentifier, DeveloperUserIdentifierList
-    , ErrorCode(..), GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
-    , GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput, GetOpenIdTokenForDeveloperIdentityResponse
-    , GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityId, IdentityIdList
-    , IdentityPool, IdentityPoolId, IdentityPoolName, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType
-    , IdentityPoolUnauthenticated, IdentityPoolsList, IdentityProviderId, IdentityProviderName, IdentityProviderToken, IdentityProviders
-    , ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse, ListTagsForResourceInput
-    , ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput, LookupDeveloperIdentityResponse, MappingRule
-    , MappingRuleMatchType(..), MappingRulesList, MergeDeveloperIdentitiesInput, MergeDeveloperIdentitiesResponse, OidcproviderList
-    , Oidctoken, PaginationKey, QueryLimit, RoleMapping, RoleMappingMap, RoleMappingType(..), RoleType, RolesMap, RulesConfigurationType
-    , SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagKeysType, TagResourceInput, TagResourceResponse
-    , TagValueType, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList
-    , UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName, claimValue
-    , cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier, errorCode
-    , identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken, mappingRuleMatchType
-    , paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
+    , AmbiguousRoleResolutionType(..), CognitoIdentityProvider, CognitoIdentityProviderList, CreateIdentityPoolInput, Credentials
+    , DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput, DescribeIdentityInput, DescribeIdentityPoolInput
+    , DeveloperUserIdentifierList, ErrorCode(..), GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput
+    , GetIdResponse, GetIdentityPoolRolesInput, GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput
+    , GetOpenIdTokenForDeveloperIdentityResponse, GetOpenIdTokenInput, GetOpenIdTokenResponse, IdentitiesList, IdentityDescription
+    , IdentityIdList, IdentityPool, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType, IdentityPoolsList
+    , IdentityProviders, ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse
+    , ListTagsForResourceInput, ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput
+    , LookupDeveloperIdentityResponse, MappingRule, MappingRuleMatchType(..), MappingRulesList, MergeDeveloperIdentitiesInput
+    , MergeDeveloperIdentitiesResponse, OidcproviderList, RoleMapping, RoleMappingMap, RoleMappingType(..), RolesMap, RulesConfigurationType
+    , SamlproviderList, SetIdentityPoolRolesInput, TagResourceInput, TagResourceResponse, UnlinkDeveloperIdentityInput
+    , UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList, UntagResourceInput, UntagResourceResponse
+    , ambiguousRoleResolutionType, errorCode, mappingRuleMatchType, roleMappingType
     )
 
 {-|
@@ -54,25 +48,19 @@ For more information see `Amazon Cognito Federated Identities`.
 
 # API data model.
 
-@docs AccessKeyString, AccountId, AmbiguousRoleResolutionType, Arnstring, ClaimName, ClaimValue, CognitoIdentityProvider
-@docs CognitoIdentityProviderClientId, CognitoIdentityProviderList, CognitoIdentityProviderName, CognitoIdentityProviderTokenCheck
-@docs CreateIdentityPoolInput, Credentials, DateType, DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput
-@docs DescribeIdentityInput, DescribeIdentityPoolInput, DeveloperProviderName, DeveloperUserIdentifier, DeveloperUserIdentifierList
-@docs ErrorCode, GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput, GetIdResponse, GetIdentityPoolRolesInput
-@docs GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput, GetOpenIdTokenForDeveloperIdentityResponse
-@docs GetOpenIdTokenInput, GetOpenIdTokenResponse, HideDisabled, IdentitiesList, IdentityDescription, IdentityId, IdentityIdList
-@docs IdentityPool, IdentityPoolId, IdentityPoolName, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType
-@docs IdentityPoolUnauthenticated, IdentityPoolsList, IdentityProviderId, IdentityProviderName, IdentityProviderToken, IdentityProviders
-@docs ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse, ListTagsForResourceInput
-@docs ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput, LookupDeveloperIdentityResponse, MappingRule
-@docs MappingRuleMatchType, MappingRulesList, MergeDeveloperIdentitiesInput, MergeDeveloperIdentitiesResponse, OidcproviderList
-@docs Oidctoken, PaginationKey, QueryLimit, RoleMapping, RoleMappingMap, RoleMappingType, RoleType, RolesMap, RulesConfigurationType
-@docs SamlproviderList, SecretKeyString, SessionTokenString, SetIdentityPoolRolesInput, TagKeysType, TagResourceInput, TagResourceResponse
-@docs TagValueType, TokenDuration, UnlinkDeveloperIdentityInput, UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList
-@docs UntagResourceInput, UntagResourceResponse, accountId, ambiguousRoleResolutionType, arnstring, claimName, claimValue
-@docs cognitoIdentityProviderClientId, cognitoIdentityProviderName, developerProviderName, developerUserIdentifier, errorCode
-@docs identityId, identityPoolId, identityPoolName, identityProviderId, identityProviderName, identityProviderToken, mappingRuleMatchType
-@docs paginationKey, queryLimit, roleMappingType, roleType, tagKeysType, tagValueType
+@docs AmbiguousRoleResolutionType, CognitoIdentityProvider, CognitoIdentityProviderList, CreateIdentityPoolInput, Credentials
+@docs DeleteIdentitiesInput, DeleteIdentitiesResponse, DeleteIdentityPoolInput, DescribeIdentityInput, DescribeIdentityPoolInput
+@docs DeveloperUserIdentifierList, ErrorCode, GetCredentialsForIdentityInput, GetCredentialsForIdentityResponse, GetIdInput
+@docs GetIdResponse, GetIdentityPoolRolesInput, GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityInput
+@docs GetOpenIdTokenForDeveloperIdentityResponse, GetOpenIdTokenInput, GetOpenIdTokenResponse, IdentitiesList, IdentityDescription
+@docs IdentityIdList, IdentityPool, IdentityPoolShortDescription, IdentityPoolTagsListType, IdentityPoolTagsType, IdentityPoolsList
+@docs IdentityProviders, ListIdentitiesInput, ListIdentitiesResponse, ListIdentityPoolsInput, ListIdentityPoolsResponse
+@docs ListTagsForResourceInput, ListTagsForResourceResponse, LoginsList, LoginsMap, LookupDeveloperIdentityInput
+@docs LookupDeveloperIdentityResponse, MappingRule, MappingRuleMatchType, MappingRulesList, MergeDeveloperIdentitiesInput
+@docs MergeDeveloperIdentitiesResponse, OidcproviderList, RoleMapping, RoleMappingMap, RoleMappingType, RolesMap, RulesConfigurationType
+@docs SamlproviderList, SetIdentityPoolRolesInput, TagResourceInput, TagResourceResponse, UnlinkDeveloperIdentityInput
+@docs UnlinkIdentityInput, UnprocessedIdentityId, UnprocessedIdentityIdList, UntagResourceInput, UntagResourceResponse
+@docs ambiguousRoleResolutionType, errorCode, mappingRuleMatchType, roleMappingType
 
 -}
 
@@ -81,13 +69,12 @@ import AWS.Http
 import AWS.KVDecode exposing (KVDecoder)
 import AWS.Service
 import Codec exposing (Codec)
-import Dict.Refined
+import Dict exposing (Dict)
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder, Value)
 import Json.Decode.Pipeline as Pipeline
 import Json.Encode exposing (Value)
 import Json.Encode.Optional as EncodeOpt
-import Refined exposing (IntError, Refined, StringError)
 
 
 {-| Configuration for this service.
@@ -117,14 +104,13 @@ updateIdentityPool req =
                 |> EncodeOpt.optionalField (Codec.encoder oidcproviderListCodec)
             , ( "IdentityPoolTags", val.identityPoolTags )
                 |> EncodeOpt.optionalField (Codec.encoder identityPoolTagsTypeCodec)
-            , ( "IdentityPoolName", val.identityPoolName ) |> EncodeOpt.field (Codec.encoder identityPoolNameCodec)
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "DeveloperProviderName", val.developerProviderName )
-                |> EncodeOpt.optionalField (Codec.encoder developerProviderNameCodec)
+            , ( "IdentityPoolName", val.identityPoolName ) |> EncodeOpt.field Json.Encode.string
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeveloperProviderName", val.developerProviderName ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "CognitoIdentityProviders", val.cognitoIdentityProviders )
                 |> EncodeOpt.optionalField (Codec.encoder cognitoIdentityProviderListCodec)
             , ( "AllowUnauthenticatedIdentities", val.allowUnauthenticatedIdentities )
-                |> EncodeOpt.field (Codec.encoder identityPoolUnauthenticatedCodec)
+                |> EncodeOpt.field Json.Encode.bool
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -165,17 +151,14 @@ updateIdentityPool req =
                     "IdentityPoolTags"
                     (Json.Decode.maybe (Codec.decoder identityPoolTagsTypeCodec))
                     Nothing
-                |> Pipeline.required "IdentityPoolName" (Codec.decoder identityPoolNameCodec)
-                |> Pipeline.required "IdentityPoolId" (Codec.decoder identityPoolIdCodec)
-                |> Pipeline.optional
-                    "DeveloperProviderName"
-                    (Json.Decode.maybe (Codec.decoder developerProviderNameCodec))
-                    Nothing
+                |> Pipeline.required "IdentityPoolName" Json.Decode.string
+                |> Pipeline.required "IdentityPoolId" Json.Decode.string
+                |> Pipeline.optional "DeveloperProviderName" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional
                     "CognitoIdentityProviders"
                     (Json.Decode.maybe (Codec.decoder cognitoIdentityProviderListCodec))
                     Nothing
-                |> Pipeline.required "AllowUnauthenticatedIdentities" (Codec.decoder identityPoolUnauthenticatedCodec)
+                |> Pipeline.required "AllowUnauthenticatedIdentities" Json.Decode.bool
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "UpdateIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -188,7 +171,7 @@ untagResource req =
     let
         encoder val =
             [ ( "TagKeys", val.tagKeys ) |> EncodeOpt.optionalField identityPoolTagsListTypeEncoder
-            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field (Codec.encoder arnstringCodec)
+            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -215,7 +198,7 @@ unlinkIdentity req =
         encoder val =
             [ ( "LoginsToRemove", val.loginsToRemove ) |> EncodeOpt.field (Codec.encoder loginsListCodec)
             , ( "Logins", val.logins ) |> EncodeOpt.field loginsMapEncoder
-            , ( "IdentityId", val.identityId ) |> EncodeOpt.field (Codec.encoder identityIdCodec)
+            , ( "IdentityId", val.identityId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -240,12 +223,10 @@ unlinkDeveloperIdentity : UnlinkDeveloperIdentityInput -> AWS.Http.Request AWS.H
 unlinkDeveloperIdentity req =
     let
         encoder val =
-            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "IdentityId", val.identityId ) |> EncodeOpt.field (Codec.encoder identityIdCodec)
-            , ( "DeveloperUserIdentifier", val.developerUserIdentifier )
-                |> EncodeOpt.field (Codec.encoder developerUserIdentifierCodec)
-            , ( "DeveloperProviderName", val.developerProviderName )
-                |> EncodeOpt.field (Codec.encoder developerProviderNameCodec)
+            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "IdentityId", val.identityId ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeveloperUserIdentifier", val.developerUserIdentifier ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeveloperProviderName", val.developerProviderName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -275,7 +256,7 @@ tagResource req =
     let
         encoder val =
             [ ( "Tags", val.tags ) |> EncodeOpt.optionalField (Codec.encoder identityPoolTagsTypeCodec)
-            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field (Codec.encoder arnstringCodec)
+            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -302,7 +283,7 @@ setIdentityPoolRoles req =
         encoder val =
             [ ( "Roles", val.roles ) |> EncodeOpt.field (Codec.encoder rolesMapCodec)
             , ( "RoleMappings", val.roleMappings ) |> EncodeOpt.optionalField (Codec.encoder roleMappingMapCodec)
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -329,13 +310,10 @@ mergeDeveloperIdentities : MergeDeveloperIdentitiesInput -> AWS.Http.Request AWS
 mergeDeveloperIdentities req =
     let
         encoder val =
-            [ ( "SourceUserIdentifier", val.sourceUserIdentifier )
-                |> EncodeOpt.field (Codec.encoder developerUserIdentifierCodec)
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "DeveloperProviderName", val.developerProviderName )
-                |> EncodeOpt.field (Codec.encoder developerProviderNameCodec)
-            , ( "DestinationUserIdentifier", val.destinationUserIdentifier )
-                |> EncodeOpt.field (Codec.encoder developerUserIdentifierCodec)
+            [ ( "SourceUserIdentifier", val.sourceUserIdentifier ) |> EncodeOpt.field Json.Encode.string
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeveloperProviderName", val.developerProviderName ) |> EncodeOpt.field Json.Encode.string
+            , ( "DestinationUserIdentifier", val.destinationUserIdentifier ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -347,7 +325,7 @@ mergeDeveloperIdentities req =
 
         decoder =
             ((\identityIdFld -> { identityId = identityIdFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "MergeDeveloperIdentities" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -364,12 +342,11 @@ lookupDeveloperIdentity : LookupDeveloperIdentityInput -> AWS.Http.Request AWS.H
 lookupDeveloperIdentity req =
     let
         encoder val =
-            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField queryLimitEncoder
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "IdentityId", val.identityId ) |> EncodeOpt.optionalField (Codec.encoder identityIdCodec)
-            , ( "DeveloperUserIdentifier", val.developerUserIdentifier )
-                |> EncodeOpt.optionalField (Codec.encoder developerUserIdentifierCodec)
+            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField Json.Encode.int
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "IdentityId", val.identityId ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "DeveloperUserIdentifier", val.developerUserIdentifier ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -388,8 +365,8 @@ lookupDeveloperIdentity req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional
                     "DeveloperUserIdentifierList"
                     (Json.Decode.maybe developerUserIdentifierListDecoder)
@@ -410,8 +387,7 @@ listTagsForResource : ListTagsForResourceInput -> AWS.Http.Request AWS.Http.AWSA
 listTagsForResource req =
     let
         encoder val =
-            [ ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field (Codec.encoder arnstringCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -436,8 +412,8 @@ listIdentityPools : ListIdentityPoolsInput -> AWS.Http.Request AWS.Http.AWSAppEr
 listIdentityPools req =
     let
         encoder val =
-            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field queryLimitEncoder
+            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -451,7 +427,7 @@ listIdentityPools req =
             ((\nextTokenFld identityPoolsFld -> { identityPools = identityPoolsFld, nextToken = nextTokenFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "IdentityPools" (Json.Decode.maybe identityPoolsListDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -467,10 +443,10 @@ listIdentities : ListIdentitiesInput -> AWS.Http.Request AWS.Http.AWSAppError Li
 listIdentities req =
     let
         encoder val =
-            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field queryLimitEncoder
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "HideDisabled", val.hideDisabled ) |> EncodeOpt.optionalField hideDisabledEncoder
+            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field Json.Encode.int
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "HideDisabled", val.hideDisabled ) |> EncodeOpt.optionalField Json.Encode.bool
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -486,8 +462,8 @@ listIdentities req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
-                |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe (Codec.decoder identityPoolIdCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "Identities" (Json.Decode.maybe identitiesListDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -507,10 +483,10 @@ getOpenIdTokenForDeveloperIdentity :
 getOpenIdTokenForDeveloperIdentity req =
     let
         encoder val =
-            [ ( "TokenDuration", val.tokenDuration ) |> EncodeOpt.optionalField tokenDurationEncoder
+            [ ( "TokenDuration", val.tokenDuration ) |> EncodeOpt.optionalField Json.Encode.int
             , ( "Logins", val.logins ) |> EncodeOpt.field loginsMapEncoder
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "IdentityId", val.identityId ) |> EncodeOpt.optionalField (Codec.encoder identityIdCodec)
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "IdentityId", val.identityId ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -522,8 +498,8 @@ getOpenIdTokenForDeveloperIdentity req =
 
         decoder =
             ((\tokenFld identityIdFld -> { identityId = identityIdFld, token = tokenFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "Token" (Json.Decode.maybe oidctokenDecoder) Nothing
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+                |> Pipeline.optional "Token" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "GetOpenIdTokenForDeveloperIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -541,7 +517,7 @@ getOpenIdToken req =
     let
         encoder val =
             [ ( "Logins", val.logins ) |> EncodeOpt.optionalField loginsMapEncoder
-            , ( "IdentityId", val.identityId ) |> EncodeOpt.field (Codec.encoder identityIdCodec)
+            , ( "IdentityId", val.identityId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -553,8 +529,8 @@ getOpenIdToken req =
 
         decoder =
             ((\tokenFld identityIdFld -> { identityId = identityIdFld, token = tokenFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "Token" (Json.Decode.maybe oidctokenDecoder) Nothing
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+                |> Pipeline.optional "Token" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "GetOpenIdToken" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -569,7 +545,7 @@ getIdentityPoolRoles : GetIdentityPoolRolesInput -> AWS.Http.Request AWS.Http.AW
 getIdentityPoolRoles req =
     let
         encoder val =
-            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec) ]
+            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string ]
                 |> EncodeOpt.objectMaySkip
 
         jsonBody =
@@ -586,7 +562,7 @@ getIdentityPoolRoles req =
             )
                 |> Pipeline.optional "Roles" (Json.Decode.maybe (Codec.decoder rolesMapCodec)) Nothing
                 |> Pipeline.optional "RoleMappings" (Json.Decode.maybe (Codec.decoder roleMappingMapCodec)) Nothing
-                |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe (Codec.decoder identityPoolIdCodec)) Nothing
+                |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "GetIdentityPoolRoles" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -602,8 +578,8 @@ getId req =
     let
         encoder val =
             [ ( "Logins", val.logins ) |> EncodeOpt.optionalField loginsMapEncoder
-            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec)
-            , ( "AccountId", val.accountId ) |> EncodeOpt.optionalField accountIdEncoder
+            , ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccountId", val.accountId ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -615,7 +591,7 @@ getId req =
 
         decoder =
             ((\identityIdFld -> { identityId = identityIdFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "GetId" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -631,8 +607,8 @@ getCredentialsForIdentity req =
     let
         encoder val =
             [ ( "Logins", val.logins ) |> EncodeOpt.optionalField loginsMapEncoder
-            , ( "IdentityId", val.identityId ) |> EncodeOpt.field (Codec.encoder identityIdCodec)
-            , ( "CustomRoleArn", val.customRoleArn ) |> EncodeOpt.optionalField (Codec.encoder arnstringCodec)
+            , ( "IdentityId", val.identityId ) |> EncodeOpt.field Json.Encode.string
+            , ( "CustomRoleArn", val.customRoleArn ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -646,7 +622,7 @@ getCredentialsForIdentity req =
             ((\identityIdFld credentialsFld -> { credentials = credentialsFld, identityId = identityIdFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "Credentials" (Json.Decode.maybe credentialsDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -662,7 +638,7 @@ describeIdentityPool : DescribeIdentityPoolInput -> AWS.Http.Request AWS.Http.AW
 describeIdentityPool req =
     let
         encoder val =
-            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec) ]
+            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string ]
                 |> EncodeOpt.objectMaySkip
 
         jsonBody =
@@ -702,17 +678,14 @@ describeIdentityPool req =
                     "IdentityPoolTags"
                     (Json.Decode.maybe (Codec.decoder identityPoolTagsTypeCodec))
                     Nothing
-                |> Pipeline.required "IdentityPoolName" (Codec.decoder identityPoolNameCodec)
-                |> Pipeline.required "IdentityPoolId" (Codec.decoder identityPoolIdCodec)
-                |> Pipeline.optional
-                    "DeveloperProviderName"
-                    (Json.Decode.maybe (Codec.decoder developerProviderNameCodec))
-                    Nothing
+                |> Pipeline.required "IdentityPoolName" Json.Decode.string
+                |> Pipeline.required "IdentityPoolId" Json.Decode.string
+                |> Pipeline.optional "DeveloperProviderName" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional
                     "CognitoIdentityProviders"
                     (Json.Decode.maybe (Codec.decoder cognitoIdentityProviderListCodec))
                     Nothing
-                |> Pipeline.required "AllowUnauthenticatedIdentities" (Codec.decoder identityPoolUnauthenticatedCodec)
+                |> Pipeline.required "AllowUnauthenticatedIdentities" Json.Decode.bool
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "DescribeIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -727,8 +700,7 @@ describeIdentity : DescribeIdentityInput -> AWS.Http.Request AWS.Http.AWSAppErro
 describeIdentity req =
     let
         encoder val =
-            [ ( "IdentityId", val.identityId ) |> EncodeOpt.field (Codec.encoder identityIdCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "IdentityId", val.identityId ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -747,9 +719,9 @@ describeIdentity req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.optional "Logins" (Json.Decode.maybe (Codec.decoder loginsListCodec)) Nothing
-                |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-                |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
-                |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+                |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "DescribeIdentity" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -764,7 +736,7 @@ deleteIdentityPool : DeleteIdentityPoolInput -> AWS.Http.Request AWS.Http.AWSApp
 deleteIdentityPool req =
     let
         encoder val =
-            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field (Codec.encoder identityPoolIdCodec) ]
+            [ ( "IdentityPoolId", val.identityPoolId ) |> EncodeOpt.field Json.Encode.string ]
                 |> EncodeOpt.objectMaySkip
 
         jsonBody =
@@ -829,13 +801,12 @@ createIdentityPool req =
                 |> EncodeOpt.optionalField (Codec.encoder oidcproviderListCodec)
             , ( "IdentityPoolTags", val.identityPoolTags )
                 |> EncodeOpt.optionalField (Codec.encoder identityPoolTagsTypeCodec)
-            , ( "IdentityPoolName", val.identityPoolName ) |> EncodeOpt.field (Codec.encoder identityPoolNameCodec)
-            , ( "DeveloperProviderName", val.developerProviderName )
-                |> EncodeOpt.optionalField (Codec.encoder developerProviderNameCodec)
+            , ( "IdentityPoolName", val.identityPoolName ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeveloperProviderName", val.developerProviderName ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "CognitoIdentityProviders", val.cognitoIdentityProviders )
                 |> EncodeOpt.optionalField (Codec.encoder cognitoIdentityProviderListCodec)
             , ( "AllowUnauthenticatedIdentities", val.allowUnauthenticatedIdentities )
-                |> EncodeOpt.field (Codec.encoder identityPoolUnauthenticatedCodec)
+                |> EncodeOpt.field Json.Encode.bool
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -876,17 +847,14 @@ createIdentityPool req =
                     "IdentityPoolTags"
                     (Json.Decode.maybe (Codec.decoder identityPoolTagsTypeCodec))
                     Nothing
-                |> Pipeline.required "IdentityPoolName" (Codec.decoder identityPoolNameCodec)
-                |> Pipeline.required "IdentityPoolId" (Codec.decoder identityPoolIdCodec)
-                |> Pipeline.optional
-                    "DeveloperProviderName"
-                    (Json.Decode.maybe (Codec.decoder developerProviderNameCodec))
-                    Nothing
+                |> Pipeline.required "IdentityPoolName" Json.Decode.string
+                |> Pipeline.required "IdentityPoolId" Json.Decode.string
+                |> Pipeline.optional "DeveloperProviderName" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional
                     "CognitoIdentityProviders"
                     (Json.Decode.maybe (Codec.decoder cognitoIdentityProviderListCodec))
                     Nothing
-                |> Pipeline.required "AllowUnauthenticatedIdentities" (Codec.decoder identityPoolUnauthenticatedCodec)
+                |> Pipeline.required "AllowUnauthenticatedIdentities" Json.Decode.bool
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "CreateIdentityPool" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -901,7 +869,7 @@ type alias UntagResourceResponse =
 {-| The UntagResourceInput data model.
 -}
 type alias UntagResourceInput =
-    { resourceArn : Arnstring, tagKeys : Maybe IdentityPoolTagsListType }
+    { resourceArn : String, tagKeys : Maybe IdentityPoolTagsListType }
 
 
 {-| The UnprocessedIdentityIdList data model.
@@ -913,49 +881,19 @@ type alias UnprocessedIdentityIdList =
 {-| The UnprocessedIdentityId data model.
 -}
 type alias UnprocessedIdentityId =
-    { errorCode : Maybe ErrorCode, identityId : Maybe IdentityId }
+    { errorCode : Maybe ErrorCode, identityId : Maybe String }
 
 
 {-| The UnlinkIdentityInput data model.
 -}
 type alias UnlinkIdentityInput =
-    { identityId : IdentityId, logins : LoginsMap, loginsToRemove : LoginsList }
+    { identityId : String, logins : LoginsMap, loginsToRemove : LoginsList }
 
 
 {-| The UnlinkDeveloperIdentityInput data model.
 -}
 type alias UnlinkDeveloperIdentityInput =
-    { developerProviderName : DeveloperProviderName
-    , developerUserIdentifier : DeveloperUserIdentifier
-    , identityId : IdentityId
-    , identityPoolId : IdentityPoolId
-    }
-
-
-{-| The TokenDuration data model.
--}
-type alias TokenDuration =
-    Int
-
-
-{-| The TagValueType data model.
--}
-type TagValueType
-    = TagValueType String
-
-
-{-| The TagValueType data model.
--}
-tagValueType : Refined String TagValueType StringError
-tagValueType =
-    let
-        guardFn val =
-            Refined.minLength 0 val |> Result.andThen (Refined.maxLength 256) |> Result.map TagValueType
-
-        unboxFn (TagValueType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { developerProviderName : String, developerUserIdentifier : String, identityId : String, identityPoolId : String }
 
 
 {-| The TagResourceResponse data model.
@@ -967,51 +905,19 @@ type alias TagResourceResponse =
 {-| The TagResourceInput data model.
 -}
 type alias TagResourceInput =
-    { resourceArn : Arnstring, tags : Maybe IdentityPoolTagsType }
-
-
-{-| The TagKeysType data model.
--}
-type TagKeysType
-    = TagKeysType String
-
-
-{-| The TagKeysType data model.
--}
-tagKeysType : Refined String TagKeysType StringError
-tagKeysType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 128) |> Result.map TagKeysType
-
-        unboxFn (TagKeysType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { resourceArn : String, tags : Maybe IdentityPoolTagsType }
 
 
 {-| The SetIdentityPoolRolesInput data model.
 -}
 type alias SetIdentityPoolRolesInput =
-    { identityPoolId : IdentityPoolId, roleMappings : Maybe RoleMappingMap, roles : RolesMap }
-
-
-{-| The SessionTokenString data model.
--}
-type alias SessionTokenString =
-    String
-
-
-{-| The SecretKeyString data model.
--}
-type alias SecretKeyString =
-    String
+    { identityPoolId : String, roleMappings : Maybe RoleMappingMap, roles : RolesMap }
 
 
 {-| The SamlproviderList data model.
 -}
 type alias SamlproviderList =
-    List Arnstring
+    List String
 
 
 {-| The RulesConfigurationType data model.
@@ -1023,27 +929,7 @@ type alias RulesConfigurationType =
 {-| The RolesMap data model.
 -}
 type alias RolesMap =
-    Dict.Refined.Dict String RoleType Arnstring
-
-
-{-| The RoleType data model.
--}
-type RoleType
-    = RoleType String
-
-
-{-| The RoleType data model.
--}
-roleType : Refined String RoleType StringError
-roleType =
-    let
-        guardFn val =
-            Refined.regexMatch "(un)?authenticated" val |> Result.map RoleType
-
-        unboxFn (RoleType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    Dict String String
 
 
 {-| The RoleMappingType data model.
@@ -1072,7 +958,7 @@ roleMappingType =
 {-| The RoleMappingMap data model.
 -}
 type alias RoleMappingMap =
-    Dict.Refined.Dict String IdentityProviderName RoleMapping
+    Dict String RoleMapping
 
 
 {-| The RoleMapping data model.
@@ -1084,71 +970,25 @@ type alias RoleMapping =
     }
 
 
-{-| The QueryLimit data model.
--}
-type QueryLimit
-    = QueryLimit Int
-
-
-{-| The QueryLimit data model.
--}
-queryLimit : Refined Int QueryLimit IntError
-queryLimit =
-    let
-        guardFn val =
-            Refined.gte 1 val |> Result.andThen (Refined.lte 60) |> Result.map QueryLimit
-
-        unboxFn (QueryLimit val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The PaginationKey data model.
--}
-type PaginationKey
-    = PaginationKey String
-
-
-{-| The PaginationKey data model.
--}
-paginationKey : Refined String PaginationKey StringError
-paginationKey =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.regexMatch "[\\S]+") |> Result.map PaginationKey
-
-        unboxFn (PaginationKey val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The Oidctoken data model.
--}
-type alias Oidctoken =
-    String
-
-
 {-| The OidcproviderList data model.
 -}
 type alias OidcproviderList =
-    List Arnstring
+    List String
 
 
 {-| The MergeDeveloperIdentitiesResponse data model.
 -}
 type alias MergeDeveloperIdentitiesResponse =
-    { identityId : Maybe IdentityId }
+    { identityId : Maybe String }
 
 
 {-| The MergeDeveloperIdentitiesInput data model.
 -}
 type alias MergeDeveloperIdentitiesInput =
-    { destinationUserIdentifier : DeveloperUserIdentifier
-    , developerProviderName : DeveloperProviderName
-    , identityPoolId : IdentityPoolId
-    , sourceUserIdentifier : DeveloperUserIdentifier
+    { destinationUserIdentifier : String
+    , developerProviderName : String
+    , identityPoolId : String
+    , sourceUserIdentifier : String
     }
 
 
@@ -1196,39 +1036,39 @@ mappingRuleMatchType =
 {-| The MappingRule data model.
 -}
 type alias MappingRule =
-    { claim : ClaimName, matchType : MappingRuleMatchType, roleArn : Arnstring, value : ClaimValue }
+    { claim : String, matchType : MappingRuleMatchType, roleArn : String, value : String }
 
 
 {-| The LookupDeveloperIdentityResponse data model.
 -}
 type alias LookupDeveloperIdentityResponse =
     { developerUserIdentifierList : Maybe DeveloperUserIdentifierList
-    , identityId : Maybe IdentityId
-    , nextToken : Maybe PaginationKey
+    , identityId : Maybe String
+    , nextToken : Maybe String
     }
 
 
 {-| The LookupDeveloperIdentityInput data model.
 -}
 type alias LookupDeveloperIdentityInput =
-    { developerUserIdentifier : Maybe DeveloperUserIdentifier
-    , identityId : Maybe IdentityId
-    , identityPoolId : IdentityPoolId
-    , maxResults : Maybe QueryLimit
-    , nextToken : Maybe PaginationKey
+    { developerUserIdentifier : Maybe String
+    , identityId : Maybe String
+    , identityPoolId : String
+    , maxResults : Maybe Int
+    , nextToken : Maybe String
     }
 
 
 {-| The LoginsMap data model.
 -}
 type alias LoginsMap =
-    Dict.Refined.Dict String IdentityProviderName IdentityProviderToken
+    Dict String String
 
 
 {-| The LoginsList data model.
 -}
 type alias LoginsList =
-    List IdentityProviderName
+    List String
 
 
 {-| The ListTagsForResourceResponse data model.
@@ -1240,104 +1080,37 @@ type alias ListTagsForResourceResponse =
 {-| The ListTagsForResourceInput data model.
 -}
 type alias ListTagsForResourceInput =
-    { resourceArn : Arnstring }
+    { resourceArn : String }
 
 
 {-| The ListIdentityPoolsResponse data model.
 -}
 type alias ListIdentityPoolsResponse =
-    { identityPools : Maybe IdentityPoolsList, nextToken : Maybe PaginationKey }
+    { identityPools : Maybe IdentityPoolsList, nextToken : Maybe String }
 
 
 {-| The ListIdentityPoolsInput data model.
 -}
 type alias ListIdentityPoolsInput =
-    { maxResults : QueryLimit, nextToken : Maybe PaginationKey }
+    { maxResults : Int, nextToken : Maybe String }
 
 
 {-| The ListIdentitiesResponse data model.
 -}
 type alias ListIdentitiesResponse =
-    { identities : Maybe IdentitiesList, identityPoolId : Maybe IdentityPoolId, nextToken : Maybe PaginationKey }
+    { identities : Maybe IdentitiesList, identityPoolId : Maybe String, nextToken : Maybe String }
 
 
 {-| The ListIdentitiesInput data model.
 -}
 type alias ListIdentitiesInput =
-    { hideDisabled : Maybe HideDisabled
-    , identityPoolId : IdentityPoolId
-    , maxResults : QueryLimit
-    , nextToken : Maybe PaginationKey
-    }
+    { hideDisabled : Maybe Bool, identityPoolId : String, maxResults : Int, nextToken : Maybe String }
 
 
 {-| The IdentityProviders data model.
 -}
 type alias IdentityProviders =
-    Dict.Refined.Dict String IdentityProviderName IdentityProviderId
-
-
-{-| The IdentityProviderToken data model.
--}
-type IdentityProviderToken
-    = IdentityProviderToken String
-
-
-{-| The IdentityProviderToken data model.
--}
-identityProviderToken : Refined String IdentityProviderToken StringError
-identityProviderToken =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 50000) |> Result.map IdentityProviderToken
-
-        unboxFn (IdentityProviderToken val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The IdentityProviderName data model.
--}
-type IdentityProviderName
-    = IdentityProviderName String
-
-
-{-| The IdentityProviderName data model.
--}
-identityProviderName : Refined String IdentityProviderName StringError
-identityProviderName =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 128) |> Result.map IdentityProviderName
-
-        unboxFn (IdentityProviderName val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The IdentityProviderId data model.
--}
-type IdentityProviderId
-    = IdentityProviderId String
-
-
-{-| The IdentityProviderId data model.
--}
-identityProviderId : Refined String IdentityProviderId StringError
-identityProviderId =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w.;_/-]+")
-                |> Result.map IdentityProviderId
-
-        unboxFn (IdentityProviderId val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    Dict String String
 
 
 {-| The IdentityPoolsList data model.
@@ -1346,84 +1119,32 @@ type alias IdentityPoolsList =
     List IdentityPoolShortDescription
 
 
-{-| The IdentityPoolUnauthenticated data model.
--}
-type alias IdentityPoolUnauthenticated =
-    Bool
-
-
 {-| The IdentityPoolTagsType data model.
 -}
 type alias IdentityPoolTagsType =
-    Dict.Refined.Dict String TagKeysType TagValueType
+    Dict String String
 
 
 {-| The IdentityPoolTagsListType data model.
 -}
 type alias IdentityPoolTagsListType =
-    List TagKeysType
+    List String
 
 
 {-| The IdentityPoolShortDescription data model.
 -}
 type alias IdentityPoolShortDescription =
-    { identityPoolId : Maybe IdentityPoolId, identityPoolName : Maybe IdentityPoolName }
-
-
-{-| The IdentityPoolName data model.
--}
-type IdentityPoolName
-    = IdentityPoolName String
-
-
-{-| The IdentityPoolName data model.
--}
-identityPoolName : Refined String IdentityPoolName StringError
-identityPoolName =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w ]+")
-                |> Result.map IdentityPoolName
-
-        unboxFn (IdentityPoolName val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The IdentityPoolId data model.
--}
-type IdentityPoolId
-    = IdentityPoolId String
-
-
-{-| The IdentityPoolId data model.
--}
-identityPoolId : Refined String IdentityPoolId StringError
-identityPoolId =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 55)
-                |> Result.andThen (Refined.regexMatch "[\\w-]+:[0-9a-f-]+")
-                |> Result.map IdentityPoolId
-
-        unboxFn (IdentityPoolId val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { identityPoolId : Maybe String, identityPoolName : Maybe String }
 
 
 {-| The IdentityPool data model.
 -}
 type alias IdentityPool =
-    { allowUnauthenticatedIdentities : IdentityPoolUnauthenticated
+    { allowUnauthenticatedIdentities : Bool
     , cognitoIdentityProviders : Maybe CognitoIdentityProviderList
-    , developerProviderName : Maybe DeveloperProviderName
-    , identityPoolId : IdentityPoolId
-    , identityPoolName : IdentityPoolName
+    , developerProviderName : Maybe String
+    , identityPoolId : String
+    , identityPoolName : String
     , identityPoolTags : Maybe IdentityPoolTagsType
     , openIdConnectProviderArns : Maybe OidcproviderList
     , samlProviderArns : Maybe SamlproviderList
@@ -1434,38 +1155,15 @@ type alias IdentityPool =
 {-| The IdentityIdList data model.
 -}
 type alias IdentityIdList =
-    List IdentityId
-
-
-{-| The IdentityId data model.
--}
-type IdentityId
-    = IdentityId String
-
-
-{-| The IdentityId data model.
--}
-identityId : Refined String IdentityId StringError
-identityId =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 55)
-                |> Result.andThen (Refined.regexMatch "[\\w-]+:[0-9a-f-]+")
-                |> Result.map IdentityId
-
-        unboxFn (IdentityId val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    List String
 
 
 {-| The IdentityDescription data model.
 -}
 type alias IdentityDescription =
-    { creationDate : Maybe DateType
-    , identityId : Maybe IdentityId
-    , lastModifiedDate : Maybe DateType
+    { creationDate : Maybe String
+    , identityId : Maybe String
+    , lastModifiedDate : Maybe String
     , logins : Maybe LoginsList
     }
 
@@ -1476,74 +1174,64 @@ type alias IdentitiesList =
     List IdentityDescription
 
 
-{-| The HideDisabled data model.
--}
-type alias HideDisabled =
-    Bool
-
-
 {-| The GetOpenIdTokenResponse data model.
 -}
 type alias GetOpenIdTokenResponse =
-    { identityId : Maybe IdentityId, token : Maybe Oidctoken }
+    { identityId : Maybe String, token : Maybe String }
 
 
 {-| The GetOpenIdTokenInput data model.
 -}
 type alias GetOpenIdTokenInput =
-    { identityId : IdentityId, logins : Maybe LoginsMap }
+    { identityId : String, logins : Maybe LoginsMap }
 
 
 {-| The GetOpenIdTokenForDeveloperIdentityResponse data model.
 -}
 type alias GetOpenIdTokenForDeveloperIdentityResponse =
-    { identityId : Maybe IdentityId, token : Maybe Oidctoken }
+    { identityId : Maybe String, token : Maybe String }
 
 
 {-| The GetOpenIdTokenForDeveloperIdentityInput data model.
 -}
 type alias GetOpenIdTokenForDeveloperIdentityInput =
-    { identityId : Maybe IdentityId
-    , identityPoolId : IdentityPoolId
-    , logins : LoginsMap
-    , tokenDuration : Maybe TokenDuration
-    }
+    { identityId : Maybe String, identityPoolId : String, logins : LoginsMap, tokenDuration : Maybe Int }
 
 
 {-| The GetIdentityPoolRolesResponse data model.
 -}
 type alias GetIdentityPoolRolesResponse =
-    { identityPoolId : Maybe IdentityPoolId, roleMappings : Maybe RoleMappingMap, roles : Maybe RolesMap }
+    { identityPoolId : Maybe String, roleMappings : Maybe RoleMappingMap, roles : Maybe RolesMap }
 
 
 {-| The GetIdentityPoolRolesInput data model.
 -}
 type alias GetIdentityPoolRolesInput =
-    { identityPoolId : IdentityPoolId }
+    { identityPoolId : String }
 
 
 {-| The GetIdResponse data model.
 -}
 type alias GetIdResponse =
-    { identityId : Maybe IdentityId }
+    { identityId : Maybe String }
 
 
 {-| The GetIdInput data model.
 -}
 type alias GetIdInput =
-    { accountId : Maybe AccountId, identityPoolId : IdentityPoolId, logins : Maybe LoginsMap }
+    { accountId : Maybe String, identityPoolId : String, logins : Maybe LoginsMap }
 
 
 {-| The GetCredentialsForIdentityResponse data model.
 -}
 type alias GetCredentialsForIdentityResponse =
-    { credentials : Maybe Credentials, identityId : Maybe IdentityId }
+    { credentials : Maybe Credentials, identityId : Maybe String }
 
 
 {-| The GetCredentialsForIdentityInput data model.
 -}
 type alias GetCredentialsForIdentityInput =
-    { customRoleArn : Maybe Arnstring, identityId : IdentityId, logins : Maybe LoginsMap }
+    { customRoleArn : Maybe String, identityId : String, logins : Maybe LoginsMap }
 
 
 {-| The ErrorCode data model.
@@ -1572,68 +1260,25 @@ errorCode =
 {-| The DeveloperUserIdentifierList data model.
 -}
 type alias DeveloperUserIdentifierList =
-    List DeveloperUserIdentifier
-
-
-{-| The DeveloperUserIdentifier data model.
--}
-type DeveloperUserIdentifier
-    = DeveloperUserIdentifier String
-
-
-{-| The DeveloperUserIdentifier data model.
--}
-developerUserIdentifier : Refined String DeveloperUserIdentifier StringError
-developerUserIdentifier =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 1024) |> Result.map DeveloperUserIdentifier
-
-        unboxFn (DeveloperUserIdentifier val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The DeveloperProviderName data model.
--}
-type DeveloperProviderName
-    = DeveloperProviderName String
-
-
-{-| The DeveloperProviderName data model.
--}
-developerProviderName : Refined String DeveloperProviderName StringError
-developerProviderName =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w._-]+")
-                |> Result.map DeveloperProviderName
-
-        unboxFn (DeveloperProviderName val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    List String
 
 
 {-| The DescribeIdentityPoolInput data model.
 -}
 type alias DescribeIdentityPoolInput =
-    { identityPoolId : IdentityPoolId }
+    { identityPoolId : String }
 
 
 {-| The DescribeIdentityInput data model.
 -}
 type alias DescribeIdentityInput =
-    { identityId : IdentityId }
+    { identityId : String }
 
 
 {-| The DeleteIdentityPoolInput data model.
 -}
 type alias DeleteIdentityPoolInput =
-    { identityPoolId : IdentityPoolId }
+    { identityPoolId : String }
 
 
 {-| The DeleteIdentitiesResponse data model.
@@ -1648,63 +1293,24 @@ type alias DeleteIdentitiesInput =
     { identityIdsToDelete : IdentityIdList }
 
 
-{-| The DateType data model.
--}
-type alias DateType =
-    String
-
-
 {-| The Credentials data model.
 -}
 type alias Credentials =
-    { accessKeyId : Maybe AccessKeyString
-    , expiration : Maybe DateType
-    , secretKey : Maybe SecretKeyString
-    , sessionToken : Maybe SessionTokenString
-    }
+    { accessKeyId : Maybe String, expiration : Maybe String, secretKey : Maybe String, sessionToken : Maybe String }
 
 
 {-| The CreateIdentityPoolInput data model.
 -}
 type alias CreateIdentityPoolInput =
-    { allowUnauthenticatedIdentities : IdentityPoolUnauthenticated
+    { allowUnauthenticatedIdentities : Bool
     , cognitoIdentityProviders : Maybe CognitoIdentityProviderList
-    , developerProviderName : Maybe DeveloperProviderName
-    , identityPoolName : IdentityPoolName
+    , developerProviderName : Maybe String
+    , identityPoolName : String
     , identityPoolTags : Maybe IdentityPoolTagsType
     , openIdConnectProviderArns : Maybe OidcproviderList
     , samlProviderArns : Maybe SamlproviderList
     , supportedLoginProviders : Maybe IdentityProviders
     }
-
-
-{-| The CognitoIdentityProviderTokenCheck data model.
--}
-type alias CognitoIdentityProviderTokenCheck =
-    Bool
-
-
-{-| The CognitoIdentityProviderName data model.
--}
-type CognitoIdentityProviderName
-    = CognitoIdentityProviderName String
-
-
-{-| The CognitoIdentityProviderName data model.
--}
-cognitoIdentityProviderName : Refined String CognitoIdentityProviderName StringError
-cognitoIdentityProviderName =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w._:/-]+")
-                |> Result.map CognitoIdentityProviderName
-
-        unboxFn (CognitoIdentityProviderName val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The CognitoIdentityProviderList data model.
@@ -1713,79 +1319,10 @@ type alias CognitoIdentityProviderList =
     List CognitoIdentityProvider
 
 
-{-| The CognitoIdentityProviderClientId data model.
--}
-type CognitoIdentityProviderClientId
-    = CognitoIdentityProviderClientId String
-
-
-{-| The CognitoIdentityProviderClientId data model.
--}
-cognitoIdentityProviderClientId : Refined String CognitoIdentityProviderClientId StringError
-cognitoIdentityProviderClientId =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w_]+")
-                |> Result.map CognitoIdentityProviderClientId
-
-        unboxFn (CognitoIdentityProviderClientId val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The CognitoIdentityProvider data model.
 -}
 type alias CognitoIdentityProvider =
-    { clientId : Maybe CognitoIdentityProviderClientId
-    , providerName : Maybe CognitoIdentityProviderName
-    , serverSideTokenCheck : Maybe CognitoIdentityProviderTokenCheck
-    }
-
-
-{-| The ClaimValue data model.
--}
-type ClaimValue
-    = ClaimValue String
-
-
-{-| The ClaimValue data model.
--}
-claimValue : Refined String ClaimValue StringError
-claimValue =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 128) |> Result.map ClaimValue
-
-        unboxFn (ClaimValue val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The ClaimName data model.
--}
-type ClaimName
-    = ClaimName String
-
-
-{-| The ClaimName data model.
--}
-claimName : Refined String ClaimName StringError
-claimName =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 64)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map ClaimName
-
-        unboxFn (ClaimName val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { clientId : Maybe String, providerName : Maybe String, serverSideTokenCheck : Maybe Bool }
 
 
 {-| The AmbiguousRoleResolutionType data model.
@@ -1811,76 +1348,6 @@ ambiguousRoleResolutionType =
         )
 
 
-{-| The AccountId data model.
--}
-type AccountId
-    = AccountId String
-
-
-{-| The AccountId data model.
--}
-accountId : Refined String AccountId StringError
-accountId =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 15)
-                |> Result.andThen (Refined.regexMatch "\\d+")
-                |> Result.map AccountId
-
-        unboxFn (AccountId val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The AccessKeyString data model.
--}
-type alias AccessKeyString =
-    String
-
-
-{-| The Arnstring data model.
--}
-type Arnstring
-    = Arnstring String
-
-
-{-| The Arnstring data model.
--}
-arnstring : Refined String Arnstring StringError
-arnstring =
-    let
-        guardFn val =
-            Refined.minLength 20 val |> Result.andThen (Refined.maxLength 2048) |> Result.map Arnstring
-
-        unboxFn (Arnstring val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| Codec for Arnstring.
--}
-arnstringCodec : Codec Arnstring
-arnstringCodec =
-    Codec.build (Refined.encoder arnstring) (Refined.decoder arnstring)
-
-
-{-| Decoder for AccessKeyString.
--}
-accessKeyStringDecoder : Decoder AccessKeyString
-accessKeyStringDecoder =
-    Json.Decode.string
-
-
-{-| Encoder for AccountId.
--}
-accountIdEncoder : AccountId -> Value
-accountIdEncoder =
-    Refined.encoder accountId
-
-
 {-| Codec for AmbiguousRoleResolutionType.
 -}
 ambiguousRoleResolutionTypeCodec : Codec AmbiguousRoleResolutionType
@@ -1888,36 +1355,15 @@ ambiguousRoleResolutionTypeCodec =
     Codec.build (Enum.encoder ambiguousRoleResolutionType) (Enum.decoder ambiguousRoleResolutionType)
 
 
-{-| Codec for ClaimName.
--}
-claimNameCodec : Codec ClaimName
-claimNameCodec =
-    Codec.build (Refined.encoder claimName) (Refined.decoder claimName)
-
-
-{-| Codec for ClaimValue.
--}
-claimValueCodec : Codec ClaimValue
-claimValueCodec =
-    Codec.build (Refined.encoder claimValue) (Refined.decoder claimValue)
-
-
 {-| Codec for CognitoIdentityProvider.
 -}
 cognitoIdentityProviderCodec : Codec CognitoIdentityProvider
 cognitoIdentityProviderCodec =
     Codec.object CognitoIdentityProvider
-        |> Codec.optionalField "ClientId" .clientId cognitoIdentityProviderClientIdCodec
-        |> Codec.optionalField "ProviderName" .providerName cognitoIdentityProviderNameCodec
-        |> Codec.optionalField "ServerSideTokenCheck" .serverSideTokenCheck cognitoIdentityProviderTokenCheckCodec
+        |> Codec.optionalField "ClientId" .clientId Codec.string
+        |> Codec.optionalField "ProviderName" .providerName Codec.string
+        |> Codec.optionalField "ServerSideTokenCheck" .serverSideTokenCheck Codec.bool
         |> Codec.buildObject
-
-
-{-| Codec for CognitoIdentityProviderClientId.
--}
-cognitoIdentityProviderClientIdCodec : Codec CognitoIdentityProviderClientId
-cognitoIdentityProviderClientIdCodec =
-    Codec.build (Refined.encoder cognitoIdentityProviderClientId) (Refined.decoder cognitoIdentityProviderClientId)
 
 
 {-| Codec for CognitoIdentityProviderList.
@@ -1927,57 +1373,22 @@ cognitoIdentityProviderListCodec =
     Codec.list cognitoIdentityProviderCodec
 
 
-{-| Codec for CognitoIdentityProviderName.
--}
-cognitoIdentityProviderNameCodec : Codec CognitoIdentityProviderName
-cognitoIdentityProviderNameCodec =
-    Codec.build (Refined.encoder cognitoIdentityProviderName) (Refined.decoder cognitoIdentityProviderName)
-
-
-{-| Codec for CognitoIdentityProviderTokenCheck.
--}
-cognitoIdentityProviderTokenCheckCodec : Codec CognitoIdentityProviderTokenCheck
-cognitoIdentityProviderTokenCheckCodec =
-    Codec.bool
-
-
 {-| Decoder for Credentials.
 -}
 credentialsDecoder : Decoder Credentials
 credentialsDecoder =
     Json.Decode.succeed Credentials
-        |> Pipeline.optional "AccessKeyId" (Json.Decode.maybe accessKeyStringDecoder) Nothing
-        |> Pipeline.optional "Expiration" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "SecretKey" (Json.Decode.maybe secretKeyStringDecoder) Nothing
-        |> Pipeline.optional "SessionToken" (Json.Decode.maybe sessionTokenStringDecoder) Nothing
-
-
-{-| Decoder for DateType.
--}
-dateTypeDecoder : Decoder DateType
-dateTypeDecoder =
-    Json.Decode.string
-
-
-{-| Codec for DeveloperProviderName.
--}
-developerProviderNameCodec : Codec DeveloperProviderName
-developerProviderNameCodec =
-    Codec.build (Refined.encoder developerProviderName) (Refined.decoder developerProviderName)
-
-
-{-| Codec for DeveloperUserIdentifier.
--}
-developerUserIdentifierCodec : Codec DeveloperUserIdentifier
-developerUserIdentifierCodec =
-    Codec.build (Refined.encoder developerUserIdentifier) (Refined.decoder developerUserIdentifier)
+        |> Pipeline.optional "AccessKeyId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Expiration" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "SecretKey" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "SessionToken" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for DeveloperUserIdentifierList.
 -}
 developerUserIdentifierListDecoder : Decoder DeveloperUserIdentifierList
 developerUserIdentifierListDecoder =
-    Json.Decode.list (Codec.decoder developerUserIdentifierCodec)
+    Json.Decode.list Json.Decode.string
 
 
 {-| Decoder for ErrorCode.
@@ -1985,13 +1396,6 @@ developerUserIdentifierListDecoder =
 errorCodeDecoder : Decoder ErrorCode
 errorCodeDecoder =
     Enum.decoder errorCode
-
-
-{-| Encoder for HideDisabled.
--}
-hideDisabledEncoder : HideDisabled -> Value
-hideDisabledEncoder val =
-    Json.Encode.bool val
 
 
 {-| Decoder for IdentitiesList.
@@ -2006,38 +1410,17 @@ identitiesListDecoder =
 identityDescriptionDecoder : Decoder IdentityDescription
 identityDescriptionDecoder =
     Json.Decode.succeed IdentityDescription
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Logins" (Json.Decode.maybe (Codec.decoder loginsListCodec)) Nothing
-
-
-{-| Codec for IdentityId.
--}
-identityIdCodec : Codec IdentityId
-identityIdCodec =
-    Codec.build (Refined.encoder identityId) (Refined.decoder identityId)
 
 
 {-| Encoder for IdentityIdList.
 -}
 identityIdListEncoder : IdentityIdList -> Value
 identityIdListEncoder val =
-    Json.Encode.list (Codec.encoder identityIdCodec) val
-
-
-{-| Codec for IdentityPoolId.
--}
-identityPoolIdCodec : Codec IdentityPoolId
-identityPoolIdCodec =
-    Codec.build (Refined.encoder identityPoolId) (Refined.decoder identityPoolId)
-
-
-{-| Codec for IdentityPoolName.
--}
-identityPoolNameCodec : Codec IdentityPoolName
-identityPoolNameCodec =
-    Codec.build (Refined.encoder identityPoolName) (Refined.decoder identityPoolName)
+    Json.Encode.list Json.Encode.string val
 
 
 {-| Decoder for IdentityPoolShortDescription.
@@ -2045,31 +1428,22 @@ identityPoolNameCodec =
 identityPoolShortDescriptionDecoder : Decoder IdentityPoolShortDescription
 identityPoolShortDescriptionDecoder =
     Json.Decode.succeed IdentityPoolShortDescription
-        |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe (Codec.decoder identityPoolIdCodec)) Nothing
-        |> Pipeline.optional "IdentityPoolName" (Json.Decode.maybe (Codec.decoder identityPoolNameCodec)) Nothing
+        |> Pipeline.optional "IdentityPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "IdentityPoolName" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Encoder for IdentityPoolTagsListType.
 -}
 identityPoolTagsListTypeEncoder : IdentityPoolTagsListType -> Value
 identityPoolTagsListTypeEncoder val =
-    Json.Encode.list (Codec.encoder tagKeysTypeCodec) val
+    Json.Encode.list Json.Encode.string val
 
 
 {-| Codec for IdentityPoolTagsType.
 -}
 identityPoolTagsTypeCodec : Codec IdentityPoolTagsType
 identityPoolTagsTypeCodec =
-    Codec.build
-        (Refined.dictEncoder tagKeysType (Codec.encoder tagValueTypeCodec))
-        (Refined.dictDecoder tagKeysType (Codec.decoder tagValueTypeCodec))
-
-
-{-| Codec for IdentityPoolUnauthenticated.
--}
-identityPoolUnauthenticatedCodec : Codec IdentityPoolUnauthenticated
-identityPoolUnauthenticatedCodec =
-    Codec.bool
+    Codec.dict Codec.string
 
 
 {-| Decoder for IdentityPoolsList.
@@ -2079,48 +1453,25 @@ identityPoolsListDecoder =
     Json.Decode.list identityPoolShortDescriptionDecoder
 
 
-{-| Codec for IdentityProviderId.
--}
-identityProviderIdCodec : Codec IdentityProviderId
-identityProviderIdCodec =
-    Codec.build (Refined.encoder identityProviderId) (Refined.decoder identityProviderId)
-
-
-{-| Codec for IdentityProviderName.
--}
-identityProviderNameCodec : Codec IdentityProviderName
-identityProviderNameCodec =
-    Codec.build (Refined.encoder identityProviderName) (Refined.decoder identityProviderName)
-
-
-{-| Encoder for IdentityProviderToken.
--}
-identityProviderTokenEncoder : IdentityProviderToken -> Value
-identityProviderTokenEncoder =
-    Refined.encoder identityProviderToken
-
-
 {-| Codec for IdentityProviders.
 -}
 identityProvidersCodec : Codec IdentityProviders
 identityProvidersCodec =
-    Codec.build
-        (Refined.dictEncoder identityProviderName (Codec.encoder identityProviderIdCodec))
-        (Refined.dictDecoder identityProviderName (Codec.decoder identityProviderIdCodec))
+    Codec.dict Codec.string
 
 
 {-| Codec for LoginsList.
 -}
 loginsListCodec : Codec LoginsList
 loginsListCodec =
-    Codec.list identityProviderNameCodec
+    Codec.list Codec.string
 
 
 {-| Encoder for LoginsMap.
 -}
 loginsMapEncoder : LoginsMap -> Value
 loginsMapEncoder val =
-    Refined.dictEncoder identityProviderName identityProviderTokenEncoder val
+    Json.Encode.dict identity Json.Encode.string val
 
 
 {-| Codec for MappingRule.
@@ -2128,10 +1479,10 @@ loginsMapEncoder val =
 mappingRuleCodec : Codec MappingRule
 mappingRuleCodec =
     Codec.object MappingRule
-        |> Codec.field "Claim" .claim claimNameCodec
+        |> Codec.field "Claim" .claim Codec.string
         |> Codec.field "MatchType" .matchType mappingRuleMatchTypeCodec
-        |> Codec.field "RoleARN" .roleArn arnstringCodec
-        |> Codec.field "Value" .value claimValueCodec
+        |> Codec.field "RoleARN" .roleArn Codec.string
+        |> Codec.field "Value" .value Codec.string
         |> Codec.buildObject
 
 
@@ -2153,28 +1504,7 @@ mappingRulesListCodec =
 -}
 oidcproviderListCodec : Codec OidcproviderList
 oidcproviderListCodec =
-    Codec.list arnstringCodec
-
-
-{-| Decoder for Oidctoken.
--}
-oidctokenDecoder : Decoder Oidctoken
-oidctokenDecoder =
-    Json.Decode.string
-
-
-{-| Codec for PaginationKey.
--}
-paginationKeyCodec : Codec PaginationKey
-paginationKeyCodec =
-    Codec.build (Refined.encoder paginationKey) (Refined.decoder paginationKey)
-
-
-{-| Encoder for QueryLimit.
--}
-queryLimitEncoder : QueryLimit -> Value
-queryLimitEncoder =
-    Refined.encoder queryLimit
+    Codec.list Codec.string
 
 
 {-| Codec for RoleMapping.
@@ -2192,9 +1522,7 @@ roleMappingCodec =
 -}
 roleMappingMapCodec : Codec RoleMappingMap
 roleMappingMapCodec =
-    Codec.build
-        (Refined.dictEncoder identityProviderName (Codec.encoder roleMappingCodec))
-        (Refined.dictDecoder identityProviderName (Codec.decoder roleMappingCodec))
+    Codec.dict roleMappingCodec
 
 
 {-| Codec for RoleMappingType.
@@ -2204,20 +1532,11 @@ roleMappingTypeCodec =
     Codec.build (Enum.encoder roleMappingType) (Enum.decoder roleMappingType)
 
 
-{-| Codec for RoleType.
--}
-roleTypeCodec : Codec RoleType
-roleTypeCodec =
-    Codec.build (Refined.encoder roleType) (Refined.decoder roleType)
-
-
 {-| Codec for RolesMap.
 -}
 rolesMapCodec : Codec RolesMap
 rolesMapCodec =
-    Codec.build
-        (Refined.dictEncoder roleType (Codec.encoder arnstringCodec))
-        (Refined.dictDecoder roleType (Codec.decoder arnstringCodec))
+    Codec.dict Codec.string
 
 
 {-| Codec for RulesConfigurationType.
@@ -2231,42 +1550,7 @@ rulesConfigurationTypeCodec =
 -}
 samlproviderListCodec : Codec SamlproviderList
 samlproviderListCodec =
-    Codec.list arnstringCodec
-
-
-{-| Decoder for SecretKeyString.
--}
-secretKeyStringDecoder : Decoder SecretKeyString
-secretKeyStringDecoder =
-    Json.Decode.string
-
-
-{-| Decoder for SessionTokenString.
--}
-sessionTokenStringDecoder : Decoder SessionTokenString
-sessionTokenStringDecoder =
-    Json.Decode.string
-
-
-{-| Codec for TagKeysType.
--}
-tagKeysTypeCodec : Codec TagKeysType
-tagKeysTypeCodec =
-    Codec.build (Refined.encoder tagKeysType) (Refined.decoder tagKeysType)
-
-
-{-| Codec for TagValueType.
--}
-tagValueTypeCodec : Codec TagValueType
-tagValueTypeCodec =
-    Codec.build (Refined.encoder tagValueType) (Refined.decoder tagValueType)
-
-
-{-| Encoder for TokenDuration.
--}
-tokenDurationEncoder : TokenDuration -> Value
-tokenDurationEncoder val =
-    Json.Encode.int val
+    Codec.list Codec.string
 
 
 {-| Decoder for UnprocessedIdentityId.
@@ -2275,7 +1559,7 @@ unprocessedIdentityIdDecoder : Decoder UnprocessedIdentityId
 unprocessedIdentityIdDecoder =
     Json.Decode.succeed UnprocessedIdentityId
         |> Pipeline.optional "ErrorCode" (Json.Decode.maybe errorCodeDecoder) Nothing
-        |> Pipeline.optional "IdentityId" (Json.Decode.maybe (Codec.decoder identityIdCodec)) Nothing
+        |> Pipeline.optional "IdentityId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for UnprocessedIdentityIdList.

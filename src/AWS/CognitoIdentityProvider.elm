@@ -17,14 +17,13 @@ module AWS.CognitoIdentityProvider exposing
     , signUp, startUserImportJob, stopUserImportJob, tagResource, untagResource, updateAuthEventFeedback, updateDeviceStatus, updateGroup
     , updateIdentityProvider, updateResourceServer, updateUserAttributes, updateUserPool, updateUserPoolClient, updateUserPoolDomain
     , verifySoftwareToken, verifyUserAttribute
-    , AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType(..)
-    , AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest
-    , AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest
-    , AdminCreateUserResponse, AdminCreateUserUnusedAccountValidityDaysType, AdminDeleteUserAttributesRequest
-    , AdminDeleteUserAttributesResponse, AdminDeleteUserRequest, AdminDisableProviderForUserRequest
-    , AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse, AdminEnableUserRequest
-    , AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse, AdminGetUserRequest
-    , AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
+    , AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType(..), AccountTakeoverRiskConfigurationType
+    , AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest, AdminConfirmSignUpRequest
+    , AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest, AdminCreateUserResponse
+    , AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResponse, AdminDeleteUserRequest
+    , AdminDisableProviderForUserRequest, AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse
+    , AdminEnableUserRequest, AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse
+    , AdminGetUserRequest, AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
     , AdminLinkProviderForUserResponse, AdminListDevicesRequest, AdminListDevicesResponse, AdminListGroupsForUserRequest
     , AdminListGroupsForUserResponse, AdminListUserAuthEventsRequest, AdminListUserAuthEventsResponse
     , AdminRemoveUserFromGroupRequest, AdminResetUserPasswordRequest, AdminResetUserPasswordResponse
@@ -33,90 +32,68 @@ module AWS.CognitoIdentityProvider exposing
     , AdminSetUserSettingsResponse, AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResponse
     , AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResponse, AdminUpdateUserAttributesRequest
     , AdminUpdateUserAttributesResponse, AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResponse, AdvancedSecurityModeType(..)
-    , AliasAttributeType(..), AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, ArnType
-    , AssociateSoftwareTokenRequest, AssociateSoftwareTokenResponse, AttributeDataType(..), AttributeListType, AttributeMappingKeyType
-    , AttributeMappingType, AttributeNameListType, AttributeNameType, AttributeType, AttributeValueType, AuthEventType, AuthEventsType
-    , AuthFlowType(..), AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType, BooleanType
+    , AliasAttributeType(..), AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, AssociateSoftwareTokenRequest
+    , AssociateSoftwareTokenResponse, AttributeDataType(..), AttributeListType, AttributeMappingType, AttributeNameListType, AttributeType
+    , AuthEventType, AuthEventsType, AuthFlowType(..), AuthParametersType, AuthenticationResultType, BlockedIprangeListType
     , CallbackUrlsListType, ChallengeName(..), ChallengeNameType(..), ChallengeParametersType, ChallengeResponse(..), ChallengeResponseListType
-    , ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientIdType, ClientMetadataType
-    , ClientNameType, ClientPermissionListType, ClientPermissionType, ClientSecretType, CodeDeliveryDetailsListType
-    , CodeDeliveryDetailsType, CompletionMessageType, CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType(..)
-    , CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest
-    , ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse, ConfirmationCodeType, ContextDataType
-    , CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse
+    , ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientMetadataType
+    , ClientPermissionListType, CodeDeliveryDetailsListType, CodeDeliveryDetailsType, CompromisedCredentialsActionsType
+    , CompromisedCredentialsEventActionType(..), CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest
+    , ConfirmDeviceResponse, ConfirmForgotPasswordRequest, ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse
+    , ContextDataType, CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse
     , CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest, CreateUserImportJobResponse
     , CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest, CreateUserPoolDomainResponse
-    , CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributeNameType, CustomAttributesListType
-    , CustomDomainConfigType, DateType, DefaultEmailOptionType(..), DeleteGroupRequest, DeleteIdentityProviderRequest
-    , DeleteResourceServerRequest, DeleteUserAttributesRequest, DeleteUserAttributesResponse, DeleteUserPoolClientRequest
-    , DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse, DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType
-    , DeliveryMediumType(..), DescribeIdentityProviderRequest, DescribeIdentityProviderResponse, DescribeResourceServerRequest
-    , DescribeResourceServerResponse, DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse
-    , DescribeUserImportJobRequest, DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse
-    , DescribeUserPoolDomainRequest, DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse
-    , DescriptionType, DeviceConfigurationType, DeviceKeyType, DeviceListType, DeviceNameType, DeviceRememberedStatusType(..)
-    , DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType(..), DomainType, DomainVersionType, EmailAddressType
-    , EmailConfigurationType, EmailNotificationBodyType, EmailNotificationSubjectType, EmailSendingAccountType(..)
-    , EmailVerificationMessageByLinkType, EmailVerificationMessageType, EmailVerificationSubjectByLinkType
-    , EmailVerificationSubjectType, EventContextDataType, EventFeedbackType, EventFilterType(..), EventFiltersType, EventIdType
-    , EventResponseType(..), EventRiskType, EventType(..), ExplicitAuthFlowsListType, ExplicitAuthFlowsType(..), FeedbackValueType(..), ForceAliasCreation
-    , ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret, GetCsvheaderRequest, GetCsvheaderResponse
-    , GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest
+    , CreateUserPoolRequest, CreateUserPoolResponse, CustomAttributesListType, CustomDomainConfigType, DefaultEmailOptionType(..)
+    , DeleteGroupRequest, DeleteIdentityProviderRequest, DeleteResourceServerRequest, DeleteUserAttributesRequest
+    , DeleteUserAttributesResponse, DeleteUserPoolClientRequest, DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse
+    , DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType, DeliveryMediumType(..), DescribeIdentityProviderRequest
+    , DescribeIdentityProviderResponse, DescribeResourceServerRequest, DescribeResourceServerResponse
+    , DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse, DescribeUserImportJobRequest
+    , DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse, DescribeUserPoolDomainRequest
+    , DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse, DeviceConfigurationType, DeviceListType
+    , DeviceRememberedStatusType(..), DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType(..)
+    , EmailConfigurationType, EmailSendingAccountType(..), EventContextDataType, EventFeedbackType, EventFilterType(..), EventFiltersType
+    , EventResponseType(..), EventRiskType, EventType(..), ExplicitAuthFlowsListType, ExplicitAuthFlowsType(..), FeedbackValueType(..)
+    , ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GetCsvheaderRequest, GetCsvheaderResponse, GetDeviceRequest
+    , GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest
     , GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest, GetSigningCertificateResponse
     , GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
     , GetUserAttributeVerificationCodeResponse, GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResponse, GetUserRequest
-    , GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupNameType, GroupType, HexStringType, HttpHeader
-    , HttpHeaderList, IdentityProviderType, IdentityProviderTypeType(..), IdpIdentifierType, IdpIdentifiersListType, ImageFileType
-    , ImageUrlType, InitiateAuthRequest, InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse
-    , ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes
-    , ListProvidersLimitType, ListResourceServersLimitType, ListResourceServersRequest, ListResourceServersResponse
+    , GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupType, HttpHeader, HttpHeaderList
+    , IdentityProviderType, IdentityProviderTypeType(..), IdpIdentifiersListType, InitiateAuthRequest, InitiateAuthResponse
+    , LambdaConfigType, ListDevicesRequest, ListDevicesResponse, ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest
+    , ListIdentityProvidersResponse, ListOfStringTypes, ListResourceServersRequest, ListResourceServersResponse
     , ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest, ListUserImportJobsResponse
     , ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse, ListUsersInGroupRequest
-    , ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType, MessageActionType(..), MessageTemplateType
+    , ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, MessageActionType(..), MessageTemplateType
     , MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType, NotifyEmailType, NumberAttributeConstraintsType
-    , OauthFlowType(..), OauthFlowsType, PaginationKey, PaginationKeyType, PasswordPolicyMinLengthType, PasswordPolicyType, PasswordType
-    , PoolQueryLimitType, PreSignedUrlType, PrecedenceType, ProviderDescription, ProviderDetailsType, ProviderNameType, ProviderNameTypeV1
-    , ProviderUserIdentifierType, ProvidersListType, QueryLimit, QueryLimitType, RedirectUrlType, RefreshTokenValidityType
-    , ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerIdentifierType, ResourceServerNameType
-    , ResourceServerScopeDescriptionType, ResourceServerScopeListType, ResourceServerScopeNameType, ResourceServerScopeType
-    , ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse
-    , RiskConfigurationType, RiskDecisionType(..), RiskExceptionConfigurationType, RiskLevelType(..), S3BucketType, SchemaAttributeType
-    , SchemaAttributesListType, ScopeListType, ScopeType, SearchPaginationTokenType, SearchedAttributeNamesListType, SecretCodeType
-    , SecretHashType, SessionType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
-    , SetUicustomizationResponse, SetUserMfapreferenceRequest, SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest
-    , SetUserPoolMfaConfigResponse, SetUserSettingsRequest, SetUserSettingsResponse, SignUpRequest, SignUpResponse
-    , SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsVerificationMessageType, SmsmfaSettingsType
-    , SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, SoftwareTokenMfauserCodeType, StartUserImportJobRequest
+    , OauthFlowType(..), OauthFlowsType, PasswordPolicyType, ProviderDescription, ProviderDetailsType, ProviderUserIdentifierType
+    , ProvidersListType, ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerScopeListType
+    , ResourceServerScopeType, ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest
+    , RespondToAuthChallengeResponse, RiskConfigurationType, RiskDecisionType(..), RiskExceptionConfigurationType, RiskLevelType(..)
+    , SchemaAttributeType, SchemaAttributesListType, ScopeListType, SearchedAttributeNamesListType, SetRiskConfigurationRequest
+    , SetRiskConfigurationResponse, SetUicustomizationRequest, SetUicustomizationResponse, SetUserMfapreferenceRequest
+    , SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest, SetUserPoolMfaConfigResponse, SetUserSettingsRequest
+    , SetUserSettingsResponse, SignUpRequest, SignUpResponse, SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType
+    , SmsmfaSettingsType, SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, StartUserImportJobRequest
     , StartUserImportJobResponse, StatusType(..), StopUserImportJobRequest, StopUserImportJobResponse, StringAttributeConstraintsType
-    , StringType, SupportedIdentityProvidersListType, TagKeysType, TagResourceRequest, TagResourceResponse, TagValueType
-    , TemporaryPasswordValidityDaysType, TokenModelType, UicustomizationType, UntagResourceRequest, UntagResourceResponse
-    , UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse
-    , UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest, UpdateIdentityProviderResponse
-    , UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest, UpdateUserAttributesResponse
-    , UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse
-    , UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserFilterType, UserImportJobIdType, UserImportJobNameType
-    , UserImportJobStatusType(..), UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType
-    , UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolIdType, UserPoolListType
-    , UserPoolMfaType(..), UserPoolNameType, UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType(..), UserType
-    , UsernameAttributeType(..), UsernameAttributesListType, UsernameType, UsersListType, VerificationMessageTemplateType
-    , VerifiedAttributeType(..), VerifiedAttributesListType, VerifySoftwareTokenRequest, VerifySoftwareTokenResponse
-    , VerifySoftwareTokenResponseType(..), VerifyUserAttributeRequest, VerifyUserAttributeResponse, accountTakeoverEventActionType
-    , adminCreateUserUnusedAccountValidityDaysType, advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType
-    , attributeMappingKeyType, attributeNameType, attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse
-    , clientIdType, clientNameType, clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType
-    , confirmationCodeType, customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType
-    , deviceNameType, deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType
-    , emailNotificationBodyType, emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType
-    , emailVerificationMessageType, emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType
-    , eventResponseType, eventType, explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType
-    , idpIdentifierType, listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey
-    , paginationKeyType, passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
-    , providerNameTypeV1, queryLimit, queryLimitType, redirectUrlType, refreshTokenValidityType, resourceServerIdentifierType
-    , resourceServerNameType, resourceServerScopeDescriptionType, resourceServerScopeNameType, riskDecisionType, riskLevelType
-    , s3BucketType, scopeType, searchPaginationTokenType, secretCodeType, secretHashType, sessionType, smsVerificationMessageType
-    , softwareTokenMfauserCodeType, statusType, tagKeysType, tagValueType, temporaryPasswordValidityDaysType, tokenModelType
-    , userFilterType, userImportJobIdType, userImportJobNameType, userImportJobStatusType, userPoolIdType, userPoolMfaType
-    , userPoolNameType, userStatusType, usernameAttributeType, usernameType, verifiedAttributeType, verifySoftwareTokenResponseType
+    , SupportedIdentityProvidersListType, TagResourceRequest, TagResourceResponse, UicustomizationType, UntagResourceRequest
+    , UntagResourceResponse, UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest
+    , UpdateDeviceStatusResponse, UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest
+    , UpdateIdentityProviderResponse, UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest
+    , UpdateUserAttributesResponse, UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest
+    , UpdateUserPoolDomainResponse, UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserImportJobStatusType(..)
+    , UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType, UserPoolClientDescription
+    , UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolListType, UserPoolMfaType(..), UserPoolPolicyType
+    , UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType(..), UserType, UsernameAttributeType(..), UsernameAttributesListType
+    , UsersListType, VerificationMessageTemplateType, VerifiedAttributeType(..), VerifiedAttributesListType, VerifySoftwareTokenRequest
+    , VerifySoftwareTokenResponse, VerifySoftwareTokenResponseType(..), VerifyUserAttributeRequest, VerifyUserAttributeResponse
+    , accountTakeoverEventActionType, advancedSecurityModeType, aliasAttributeType, attributeDataType, authFlowType, challengeName
+    , challengeNameType, challengeResponse, compromisedCredentialsEventActionType, defaultEmailOptionType, deliveryMediumType
+    , deviceRememberedStatusType, domainStatusType, emailSendingAccountType, eventFilterType, eventResponseType, eventType
+    , explicitAuthFlowsType, feedbackValueType, identityProviderTypeType, messageActionType, oauthFlowType, riskDecisionType
+    , riskLevelType, statusType, userImportJobStatusType, userPoolMfaType, userStatusType, usernameAttributeType, verifiedAttributeType
+    , verifySoftwareTokenResponseType
     )
 
 {-| Using the Amazon Cognito User Pools API, you can create a user pool to manage directories and users. You can authenticate a user to obtain tokens related to user identity and access policies.
@@ -154,14 +131,13 @@ For more information, see the Amazon Cognito Documentation.
 
 # API data model.
 
-@docs AccountTakeoverActionNotifyType, AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType
-@docs AccountTakeoverRiskConfigurationType, AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest
-@docs AdminConfirmSignUpRequest, AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest
-@docs AdminCreateUserResponse, AdminCreateUserUnusedAccountValidityDaysType, AdminDeleteUserAttributesRequest
-@docs AdminDeleteUserAttributesResponse, AdminDeleteUserRequest, AdminDisableProviderForUserRequest
-@docs AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse, AdminEnableUserRequest
-@docs AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse, AdminGetUserRequest
-@docs AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
+@docs AccountTakeoverActionType, AccountTakeoverActionsType, AccountTakeoverEventActionType, AccountTakeoverRiskConfigurationType
+@docs AddCustomAttributesRequest, AddCustomAttributesResponse, AdminAddUserToGroupRequest, AdminConfirmSignUpRequest
+@docs AdminConfirmSignUpResponse, AdminCreateUserConfigType, AdminCreateUserRequest, AdminCreateUserResponse
+@docs AdminDeleteUserAttributesRequest, AdminDeleteUserAttributesResponse, AdminDeleteUserRequest
+@docs AdminDisableProviderForUserRequest, AdminDisableProviderForUserResponse, AdminDisableUserRequest, AdminDisableUserResponse
+@docs AdminEnableUserRequest, AdminEnableUserResponse, AdminForgetDeviceRequest, AdminGetDeviceRequest, AdminGetDeviceResponse
+@docs AdminGetUserRequest, AdminGetUserResponse, AdminInitiateAuthRequest, AdminInitiateAuthResponse, AdminLinkProviderForUserRequest
 @docs AdminLinkProviderForUserResponse, AdminListDevicesRequest, AdminListDevicesResponse, AdminListGroupsForUserRequest
 @docs AdminListGroupsForUserResponse, AdminListUserAuthEventsRequest, AdminListUserAuthEventsResponse
 @docs AdminRemoveUserFromGroupRequest, AdminResetUserPasswordRequest, AdminResetUserPasswordResponse
@@ -170,90 +146,68 @@ For more information, see the Amazon Cognito Documentation.
 @docs AdminSetUserSettingsResponse, AdminUpdateAuthEventFeedbackRequest, AdminUpdateAuthEventFeedbackResponse
 @docs AdminUpdateDeviceStatusRequest, AdminUpdateDeviceStatusResponse, AdminUpdateUserAttributesRequest
 @docs AdminUpdateUserAttributesResponse, AdminUserGlobalSignOutRequest, AdminUserGlobalSignOutResponse, AdvancedSecurityModeType
-@docs AliasAttributeType, AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, ArnType
-@docs AssociateSoftwareTokenRequest, AssociateSoftwareTokenResponse, AttributeDataType, AttributeListType, AttributeMappingKeyType
-@docs AttributeMappingType, AttributeNameListType, AttributeNameType, AttributeType, AttributeValueType, AuthEventType, AuthEventsType
-@docs AuthFlowType, AuthParametersType, AuthenticationResultType, AwsaccountIdType, BlockedIprangeListType, BooleanType
+@docs AliasAttributeType, AliasAttributesListType, AnalyticsConfigurationType, AnalyticsMetadataType, AssociateSoftwareTokenRequest
+@docs AssociateSoftwareTokenResponse, AttributeDataType, AttributeListType, AttributeMappingType, AttributeNameListType, AttributeType
+@docs AuthEventType, AuthEventsType, AuthFlowType, AuthParametersType, AuthenticationResultType, BlockedIprangeListType
 @docs CallbackUrlsListType, ChallengeName, ChallengeNameType, ChallengeParametersType, ChallengeResponse, ChallengeResponseListType
-@docs ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientIdType, ClientMetadataType
-@docs ClientNameType, ClientPermissionListType, ClientPermissionType, ClientSecretType, CodeDeliveryDetailsListType
-@docs CodeDeliveryDetailsType, CompletionMessageType, CompromisedCredentialsActionsType, CompromisedCredentialsEventActionType
-@docs CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest, ConfirmDeviceResponse, ConfirmForgotPasswordRequest
-@docs ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse, ConfirmationCodeType, ContextDataType
-@docs CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse
+@docs ChallengeResponseType, ChallengeResponsesType, ChangePasswordRequest, ChangePasswordResponse, ClientMetadataType
+@docs ClientPermissionListType, CodeDeliveryDetailsListType, CodeDeliveryDetailsType, CompromisedCredentialsActionsType
+@docs CompromisedCredentialsEventActionType, CompromisedCredentialsRiskConfigurationType, ConfirmDeviceRequest
+@docs ConfirmDeviceResponse, ConfirmForgotPasswordRequest, ConfirmForgotPasswordResponse, ConfirmSignUpRequest, ConfirmSignUpResponse
+@docs ContextDataType, CreateGroupRequest, CreateGroupResponse, CreateIdentityProviderRequest, CreateIdentityProviderResponse
 @docs CreateResourceServerRequest, CreateResourceServerResponse, CreateUserImportJobRequest, CreateUserImportJobResponse
 @docs CreateUserPoolClientRequest, CreateUserPoolClientResponse, CreateUserPoolDomainRequest, CreateUserPoolDomainResponse
-@docs CreateUserPoolRequest, CreateUserPoolResponse, Csstype, CssversionType, CustomAttributeNameType, CustomAttributesListType
-@docs CustomDomainConfigType, DateType, DefaultEmailOptionType, DeleteGroupRequest, DeleteIdentityProviderRequest
-@docs DeleteResourceServerRequest, DeleteUserAttributesRequest, DeleteUserAttributesResponse, DeleteUserPoolClientRequest
-@docs DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse, DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType
-@docs DeliveryMediumType, DescribeIdentityProviderRequest, DescribeIdentityProviderResponse, DescribeResourceServerRequest
-@docs DescribeResourceServerResponse, DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse
-@docs DescribeUserImportJobRequest, DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse
-@docs DescribeUserPoolDomainRequest, DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse
-@docs DescriptionType, DeviceConfigurationType, DeviceKeyType, DeviceListType, DeviceNameType, DeviceRememberedStatusType
-@docs DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType, DomainType, DomainVersionType, EmailAddressType
-@docs EmailConfigurationType, EmailNotificationBodyType, EmailNotificationSubjectType, EmailSendingAccountType
-@docs EmailVerificationMessageByLinkType, EmailVerificationMessageType, EmailVerificationSubjectByLinkType
-@docs EmailVerificationSubjectType, EventContextDataType, EventFeedbackType, EventFilterType, EventFiltersType, EventIdType
-@docs EventResponseType, EventRiskType, EventType, ExplicitAuthFlowsListType, ExplicitAuthFlowsType, FeedbackValueType, ForceAliasCreation
-@docs ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GenerateSecret, GetCsvheaderRequest, GetCsvheaderResponse
-@docs GetDeviceRequest, GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest
+@docs CreateUserPoolRequest, CreateUserPoolResponse, CustomAttributesListType, CustomDomainConfigType, DefaultEmailOptionType
+@docs DeleteGroupRequest, DeleteIdentityProviderRequest, DeleteResourceServerRequest, DeleteUserAttributesRequest
+@docs DeleteUserAttributesResponse, DeleteUserPoolClientRequest, DeleteUserPoolDomainRequest, DeleteUserPoolDomainResponse
+@docs DeleteUserPoolRequest, DeleteUserRequest, DeliveryMediumListType, DeliveryMediumType, DescribeIdentityProviderRequest
+@docs DescribeIdentityProviderResponse, DescribeResourceServerRequest, DescribeResourceServerResponse
+@docs DescribeRiskConfigurationRequest, DescribeRiskConfigurationResponse, DescribeUserImportJobRequest
+@docs DescribeUserImportJobResponse, DescribeUserPoolClientRequest, DescribeUserPoolClientResponse, DescribeUserPoolDomainRequest
+@docs DescribeUserPoolDomainResponse, DescribeUserPoolRequest, DescribeUserPoolResponse, DeviceConfigurationType, DeviceListType
+@docs DeviceRememberedStatusType, DeviceSecretVerifierConfigType, DeviceType, DomainDescriptionType, DomainStatusType
+@docs EmailConfigurationType, EmailSendingAccountType, EventContextDataType, EventFeedbackType, EventFilterType, EventFiltersType
+@docs EventResponseType, EventRiskType, EventType, ExplicitAuthFlowsListType, ExplicitAuthFlowsType, FeedbackValueType
+@docs ForgetDeviceRequest, ForgotPasswordRequest, ForgotPasswordResponse, GetCsvheaderRequest, GetCsvheaderResponse, GetDeviceRequest
+@docs GetDeviceResponse, GetGroupRequest, GetGroupResponse, GetIdentityProviderByIdentifierRequest
 @docs GetIdentityProviderByIdentifierResponse, GetSigningCertificateRequest, GetSigningCertificateResponse
 @docs GetUicustomizationRequest, GetUicustomizationResponse, GetUserAttributeVerificationCodeRequest
 @docs GetUserAttributeVerificationCodeResponse, GetUserPoolMfaConfigRequest, GetUserPoolMfaConfigResponse, GetUserRequest
-@docs GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupNameType, GroupType, HexStringType, HttpHeader
-@docs HttpHeaderList, IdentityProviderType, IdentityProviderTypeType, IdpIdentifierType, IdpIdentifiersListType, ImageFileType
-@docs ImageUrlType, InitiateAuthRequest, InitiateAuthResponse, IntegerType, LambdaConfigType, ListDevicesRequest, ListDevicesResponse
-@docs ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest, ListIdentityProvidersResponse, ListOfStringTypes
-@docs ListProvidersLimitType, ListResourceServersLimitType, ListResourceServersRequest, ListResourceServersResponse
+@docs GetUserResponse, GlobalSignOutRequest, GlobalSignOutResponse, GroupListType, GroupType, HttpHeader, HttpHeaderList
+@docs IdentityProviderType, IdentityProviderTypeType, IdpIdentifiersListType, InitiateAuthRequest, InitiateAuthResponse
+@docs LambdaConfigType, ListDevicesRequest, ListDevicesResponse, ListGroupsRequest, ListGroupsResponse, ListIdentityProvidersRequest
+@docs ListIdentityProvidersResponse, ListOfStringTypes, ListResourceServersRequest, ListResourceServersResponse
 @docs ListTagsForResourceRequest, ListTagsForResourceResponse, ListUserImportJobsRequest, ListUserImportJobsResponse
 @docs ListUserPoolClientsRequest, ListUserPoolClientsResponse, ListUserPoolsRequest, ListUserPoolsResponse, ListUsersInGroupRequest
-@docs ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, LongType, MessageActionType, MessageTemplateType
+@docs ListUsersInGroupResponse, ListUsersRequest, ListUsersResponse, LogoutUrlsListType, MessageActionType, MessageTemplateType
 @docs MfaoptionListType, MfaoptionType, NewDeviceMetadataType, NotifyConfigurationType, NotifyEmailType, NumberAttributeConstraintsType
-@docs OauthFlowType, OauthFlowsType, PaginationKey, PaginationKeyType, PasswordPolicyMinLengthType, PasswordPolicyType, PasswordType
-@docs PoolQueryLimitType, PreSignedUrlType, PrecedenceType, ProviderDescription, ProviderDetailsType, ProviderNameType, ProviderNameTypeV1
-@docs ProviderUserIdentifierType, ProvidersListType, QueryLimit, QueryLimitType, RedirectUrlType, RefreshTokenValidityType
-@docs ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerIdentifierType, ResourceServerNameType
-@docs ResourceServerScopeDescriptionType, ResourceServerScopeListType, ResourceServerScopeNameType, ResourceServerScopeType
-@docs ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest, RespondToAuthChallengeResponse
-@docs RiskConfigurationType, RiskDecisionType, RiskExceptionConfigurationType, RiskLevelType, S3BucketType, SchemaAttributeType
-@docs SchemaAttributesListType, ScopeListType, ScopeType, SearchPaginationTokenType, SearchedAttributeNamesListType, SecretCodeType
-@docs SecretHashType, SessionType, SetRiskConfigurationRequest, SetRiskConfigurationResponse, SetUicustomizationRequest
-@docs SetUicustomizationResponse, SetUserMfapreferenceRequest, SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest
-@docs SetUserPoolMfaConfigResponse, SetUserSettingsRequest, SetUserSettingsResponse, SignUpRequest, SignUpResponse
-@docs SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType, SmsVerificationMessageType, SmsmfaSettingsType
-@docs SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, SoftwareTokenMfauserCodeType, StartUserImportJobRequest
+@docs OauthFlowType, OauthFlowsType, PasswordPolicyType, ProviderDescription, ProviderDetailsType, ProviderUserIdentifierType
+@docs ProvidersListType, ResendConfirmationCodeRequest, ResendConfirmationCodeResponse, ResourceServerScopeListType
+@docs ResourceServerScopeType, ResourceServerType, ResourceServersListType, RespondToAuthChallengeRequest
+@docs RespondToAuthChallengeResponse, RiskConfigurationType, RiskDecisionType, RiskExceptionConfigurationType, RiskLevelType
+@docs SchemaAttributeType, SchemaAttributesListType, ScopeListType, SearchedAttributeNamesListType, SetRiskConfigurationRequest
+@docs SetRiskConfigurationResponse, SetUicustomizationRequest, SetUicustomizationResponse, SetUserMfapreferenceRequest
+@docs SetUserMfapreferenceResponse, SetUserPoolMfaConfigRequest, SetUserPoolMfaConfigResponse, SetUserSettingsRequest
+@docs SetUserSettingsResponse, SignUpRequest, SignUpResponse, SkippedIprangeListType, SmsConfigurationType, SmsMfaConfigType
+@docs SmsmfaSettingsType, SoftwareTokenMfaConfigType, SoftwareTokenMfaSettingsType, StartUserImportJobRequest
 @docs StartUserImportJobResponse, StatusType, StopUserImportJobRequest, StopUserImportJobResponse, StringAttributeConstraintsType
-@docs StringType, SupportedIdentityProvidersListType, TagKeysType, TagResourceRequest, TagResourceResponse, TagValueType
-@docs TemporaryPasswordValidityDaysType, TokenModelType, UicustomizationType, UntagResourceRequest, UntagResourceResponse
-@docs UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest, UpdateDeviceStatusResponse
-@docs UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest, UpdateIdentityProviderResponse
-@docs UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest, UpdateUserAttributesResponse
-@docs UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest, UpdateUserPoolDomainResponse
-@docs UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserFilterType, UserImportJobIdType, UserImportJobNameType
-@docs UserImportJobStatusType, UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType
-@docs UserPoolClientDescription, UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolIdType, UserPoolListType
-@docs UserPoolMfaType, UserPoolNameType, UserPoolPolicyType, UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType, UserType
-@docs UsernameAttributeType, UsernameAttributesListType, UsernameType, UsersListType, VerificationMessageTemplateType
-@docs VerifiedAttributeType, VerifiedAttributesListType, VerifySoftwareTokenRequest, VerifySoftwareTokenResponse
-@docs VerifySoftwareTokenResponseType, VerifyUserAttributeRequest, VerifyUserAttributeResponse, accountTakeoverEventActionType
-@docs adminCreateUserUnusedAccountValidityDaysType, advancedSecurityModeType, aliasAttributeType, arnType, attributeDataType
-@docs attributeMappingKeyType, attributeNameType, attributeValueType, authFlowType, challengeName, challengeNameType, challengeResponse
-@docs clientIdType, clientNameType, clientPermissionType, clientSecretType, completionMessageType, compromisedCredentialsEventActionType
-@docs confirmationCodeType, customAttributeNameType, defaultEmailOptionType, deliveryMediumType, descriptionType, deviceKeyType
-@docs deviceNameType, deviceRememberedStatusType, domainStatusType, domainType, domainVersionType, emailAddressType
-@docs emailNotificationBodyType, emailNotificationSubjectType, emailSendingAccountType, emailVerificationMessageByLinkType
-@docs emailVerificationMessageType, emailVerificationSubjectByLinkType, emailVerificationSubjectType, eventFilterType, eventIdType
-@docs eventResponseType, eventType, explicitAuthFlowsType, feedbackValueType, groupNameType, hexStringType, identityProviderTypeType
-@docs idpIdentifierType, listProvidersLimitType, listResourceServersLimitType, messageActionType, oauthFlowType, paginationKey
-@docs paginationKeyType, passwordPolicyMinLengthType, passwordType, poolQueryLimitType, preSignedUrlType, precedenceType, providerNameType
-@docs providerNameTypeV1, queryLimit, queryLimitType, redirectUrlType, refreshTokenValidityType, resourceServerIdentifierType
-@docs resourceServerNameType, resourceServerScopeDescriptionType, resourceServerScopeNameType, riskDecisionType, riskLevelType
-@docs s3BucketType, scopeType, searchPaginationTokenType, secretCodeType, secretHashType, sessionType, smsVerificationMessageType
-@docs softwareTokenMfauserCodeType, statusType, tagKeysType, tagValueType, temporaryPasswordValidityDaysType, tokenModelType
-@docs userFilterType, userImportJobIdType, userImportJobNameType, userImportJobStatusType, userPoolIdType, userPoolMfaType
-@docs userPoolNameType, userStatusType, usernameAttributeType, usernameType, verifiedAttributeType, verifySoftwareTokenResponseType
+@docs SupportedIdentityProvidersListType, TagResourceRequest, TagResourceResponse, UicustomizationType, UntagResourceRequest
+@docs UntagResourceResponse, UpdateAuthEventFeedbackRequest, UpdateAuthEventFeedbackResponse, UpdateDeviceStatusRequest
+@docs UpdateDeviceStatusResponse, UpdateGroupRequest, UpdateGroupResponse, UpdateIdentityProviderRequest
+@docs UpdateIdentityProviderResponse, UpdateResourceServerRequest, UpdateResourceServerResponse, UpdateUserAttributesRequest
+@docs UpdateUserAttributesResponse, UpdateUserPoolClientRequest, UpdateUserPoolClientResponse, UpdateUserPoolDomainRequest
+@docs UpdateUserPoolDomainResponse, UpdateUserPoolRequest, UpdateUserPoolResponse, UserContextDataType, UserImportJobStatusType
+@docs UserImportJobType, UserImportJobsListType, UserMfasettingListType, UserPoolAddOnsType, UserPoolClientDescription
+@docs UserPoolClientListType, UserPoolClientType, UserPoolDescriptionType, UserPoolListType, UserPoolMfaType, UserPoolPolicyType
+@docs UserPoolTagsListType, UserPoolTagsType, UserPoolType, UserStatusType, UserType, UsernameAttributeType, UsernameAttributesListType
+@docs UsersListType, VerificationMessageTemplateType, VerifiedAttributeType, VerifiedAttributesListType, VerifySoftwareTokenRequest
+@docs VerifySoftwareTokenResponse, VerifySoftwareTokenResponseType, VerifyUserAttributeRequest, VerifyUserAttributeResponse
+@docs accountTakeoverEventActionType, advancedSecurityModeType, aliasAttributeType, attributeDataType, authFlowType, challengeName
+@docs challengeNameType, challengeResponse, compromisedCredentialsEventActionType, defaultEmailOptionType, deliveryMediumType
+@docs deviceRememberedStatusType, domainStatusType, emailSendingAccountType, eventFilterType, eventResponseType, eventType
+@docs explicitAuthFlowsType, feedbackValueType, identityProviderTypeType, messageActionType, oauthFlowType, riskDecisionType
+@docs riskLevelType, statusType, userImportJobStatusType, userPoolMfaType, userStatusType, usernameAttributeType, verifiedAttributeType
+@docs verifySoftwareTokenResponseType
 
 -}
 
@@ -263,13 +217,11 @@ import AWS.KVDecode exposing (KVDecoder)
 import AWS.Service
 import Codec exposing (Codec)
 import Dict exposing (Dict)
-import Dict.Refined
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder, Value)
 import Json.Decode.Pipeline as Pipeline
 import Json.Encode exposing (Value)
 import Json.Encode.Optional as EncodeOpt
-import Refined exposing (IntError, Refined, StringError)
 
 
 {-| Configuration for this service.
@@ -288,9 +240,9 @@ verifyUserAttribute : VerifyUserAttributeRequest -> AWS.Http.Request AWS.Http.AW
 verifyUserAttribute req =
     let
         encoder val =
-            [ ( "Code", val.code ) |> EncodeOpt.field confirmationCodeTypeEncoder
-            , ( "AttributeName", val.attributeName ) |> EncodeOpt.field (Codec.encoder attributeNameTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            [ ( "Code", val.code ) |> EncodeOpt.field Json.Encode.string
+            , ( "AttributeName", val.attributeName ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -312,11 +264,10 @@ verifySoftwareToken : VerifySoftwareTokenRequest -> AWS.Http.Request AWS.Http.AW
 verifySoftwareToken req =
     let
         encoder val =
-            [ ( "UserCode", val.userCode ) |> EncodeOpt.field softwareTokenMfauserCodeTypeEncoder
-            , ( "Session", val.session ) |> EncodeOpt.optionalField (Codec.encoder sessionTypeCodec)
-            , ( "FriendlyDeviceName", val.friendlyDeviceName )
-                |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField (Codec.encoder tokenModelTypeCodec)
+            [ ( "UserCode", val.userCode ) |> EncodeOpt.field Json.Encode.string
+            , ( "Session", val.session ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "FriendlyDeviceName", val.friendlyDeviceName ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -329,7 +280,7 @@ verifySoftwareToken req =
         decoder =
             ((\statusFld sessionFld -> { session = sessionFld, status = statusFld }) |> Json.Decode.succeed)
                 |> Pipeline.optional "Status" (Json.Decode.maybe verifySoftwareTokenResponseTypeDecoder) Nothing
-                |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
+                |> Pipeline.optional "Session" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "VerifySoftwareToken" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -356,8 +307,8 @@ updateUserPoolDomain : UpdateUserPoolDomainRequest -> AWS.Http.Request AWS.Http.
 updateUserPoolDomain req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Domain", val.domain ) |> EncodeOpt.field (Codec.encoder domainTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Domain", val.domain ) |> EncodeOpt.field Json.Encode.string
             , ( "CustomDomainConfig", val.customDomainConfig )
                 |> EncodeOpt.field (Codec.encoder customDomainConfigTypeCodec)
             ]
@@ -371,7 +322,7 @@ updateUserPoolDomain req =
 
         decoder =
             ((\cloudFrontDomainFld -> { cloudFrontDomain = cloudFrontDomainFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "CloudFrontDomain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
+                |> Pipeline.optional "CloudFrontDomain" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "UpdateUserPoolDomain" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -385,27 +336,25 @@ updateUserPoolClient req =
         encoder val =
             [ ( "WriteAttributes", val.writeAttributes )
                 |> EncodeOpt.optionalField (Codec.encoder clientPermissionListTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "SupportedIdentityProviders", val.supportedIdentityProviders )
                 |> EncodeOpt.optionalField (Codec.encoder supportedIdentityProvidersListTypeCodec)
-            , ( "RefreshTokenValidity", val.refreshTokenValidity )
-                |> EncodeOpt.optionalField (Codec.encoder refreshTokenValidityTypeCodec)
+            , ( "RefreshTokenValidity", val.refreshTokenValidity ) |> EncodeOpt.optionalField Json.Encode.int
             , ( "ReadAttributes", val.readAttributes )
                 |> EncodeOpt.optionalField (Codec.encoder clientPermissionListTypeCodec)
             , ( "LogoutURLs", val.logoutUrls ) |> EncodeOpt.optionalField (Codec.encoder logoutUrlsListTypeCodec)
             , ( "ExplicitAuthFlows", val.explicitAuthFlows )
                 |> EncodeOpt.optionalField (Codec.encoder explicitAuthFlowsListTypeCodec)
-            , ( "DefaultRedirectURI", val.defaultRedirectUri )
-                |> EncodeOpt.optionalField (Codec.encoder redirectUrlTypeCodec)
-            , ( "ClientName", val.clientName ) |> EncodeOpt.optionalField (Codec.encoder clientNameTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "DefaultRedirectURI", val.defaultRedirectUri ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientName", val.clientName ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "CallbackURLs", val.callbackUrls ) |> EncodeOpt.optionalField (Codec.encoder callbackUrlsListTypeCodec)
             , ( "AnalyticsConfiguration", val.analyticsConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder analyticsConfigurationTypeCodec)
             , ( "AllowedOAuthScopes", val.allowedOauthScopes )
                 |> EncodeOpt.optionalField (Codec.encoder scopeListTypeCodec)
             , ( "AllowedOAuthFlowsUserPoolClient", val.allowedOauthFlowsUserPoolClient )
-                |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
+                |> EncodeOpt.optionalField Json.Encode.bool
             , ( "AllowedOAuthFlows", val.allowedOauthFlows )
                 |> EncodeOpt.optionalField (Codec.encoder oauthFlowsTypeCodec)
             ]
@@ -434,23 +383,19 @@ updateUserPool req =
             [ ( "VerificationMessageTemplate", val.verificationMessageTemplate )
                 |> EncodeOpt.optionalField (Codec.encoder verificationMessageTemplateTypeCodec)
             , ( "UserPoolTags", val.userPoolTags ) |> EncodeOpt.optionalField (Codec.encoder userPoolTagsTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "UserPoolAddOns", val.userPoolAddOns )
                 |> EncodeOpt.optionalField (Codec.encoder userPoolAddOnsTypeCodec)
-            , ( "SmsVerificationMessage", val.smsVerificationMessage )
-                |> EncodeOpt.optionalField (Codec.encoder smsVerificationMessageTypeCodec)
+            , ( "SmsVerificationMessage", val.smsVerificationMessage ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "SmsConfiguration", val.smsConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder smsConfigurationTypeCodec)
-            , ( "SmsAuthenticationMessage", val.smsAuthenticationMessage )
-                |> EncodeOpt.optionalField (Codec.encoder smsVerificationMessageTypeCodec)
+            , ( "SmsAuthenticationMessage", val.smsAuthenticationMessage ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "Policies", val.policies ) |> EncodeOpt.optionalField (Codec.encoder userPoolPolicyTypeCodec)
             , ( "MfaConfiguration", val.mfaConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder userPoolMfaTypeCodec)
             , ( "LambdaConfig", val.lambdaConfig ) |> EncodeOpt.optionalField (Codec.encoder lambdaConfigTypeCodec)
-            , ( "EmailVerificationSubject", val.emailVerificationSubject )
-                |> EncodeOpt.optionalField (Codec.encoder emailVerificationSubjectTypeCodec)
-            , ( "EmailVerificationMessage", val.emailVerificationMessage )
-                |> EncodeOpt.optionalField (Codec.encoder emailVerificationMessageTypeCodec)
+            , ( "EmailVerificationSubject", val.emailVerificationSubject ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "EmailVerificationMessage", val.emailVerificationMessage ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "EmailConfiguration", val.emailConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder emailConfigurationTypeCodec)
             , ( "DeviceConfiguration", val.deviceConfiguration )
@@ -481,7 +426,7 @@ updateUserAttributes req =
     let
         encoder val =
             [ ( "UserAttributes", val.userAttributes ) |> EncodeOpt.field (Codec.encoder attributeListTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -510,10 +455,10 @@ updateResourceServer : UpdateResourceServerRequest -> AWS.Http.Request AWS.Http.
 updateResourceServer req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "Scopes", val.scopes ) |> EncodeOpt.optionalField (Codec.encoder resourceServerScopeListTypeCodec)
-            , ( "Name", val.name ) |> EncodeOpt.field (Codec.encoder resourceServerNameTypeCodec)
-            , ( "Identifier", val.identifier ) |> EncodeOpt.field (Codec.encoder resourceServerIdentifierTypeCodec)
+            , ( "Name", val.name ) |> EncodeOpt.field Json.Encode.string
+            , ( "Identifier", val.identifier ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -537,8 +482,8 @@ updateIdentityProvider : UpdateIdentityProviderRequest -> AWS.Http.Request AWS.H
 updateIdentityProvider req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ProviderName", val.providerName ) |> EncodeOpt.field (Codec.encoder providerNameTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ProviderName", val.providerName ) |> EncodeOpt.field Json.Encode.string
             , ( "ProviderDetails", val.providerDetails )
                 |> EncodeOpt.optionalField (Codec.encoder providerDetailsTypeCodec)
             , ( "IdpIdentifiers", val.idpIdentifiers )
@@ -571,11 +516,11 @@ updateGroup : UpdateGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError Update
 updateGroup req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "RoleArn", val.roleArn ) |> EncodeOpt.optionalField (Codec.encoder arnTypeCodec)
-            , ( "Precedence", val.precedence ) |> EncodeOpt.optionalField (Codec.encoder precedenceTypeCodec)
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
-            , ( "Description", val.description ) |> EncodeOpt.optionalField (Codec.encoder descriptionTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "RoleArn", val.roleArn ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Precedence", val.precedence ) |> EncodeOpt.optionalField Json.Encode.int
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
+            , ( "Description", val.description ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -601,8 +546,8 @@ updateDeviceStatus req =
         encoder val =
             [ ( "DeviceRememberedStatus", val.deviceRememberedStatus )
                 |> EncodeOpt.optionalField deviceRememberedStatusTypeEncoder
-            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -624,11 +569,11 @@ updateAuthEventFeedback : UpdateAuthEventFeedbackRequest -> AWS.Http.Request AWS
 updateAuthEventFeedback req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "FeedbackValue", val.feedbackValue ) |> EncodeOpt.field (Codec.encoder feedbackValueTypeCodec)
-            , ( "FeedbackToken", val.feedbackToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
-            , ( "EventId", val.eventId ) |> EncodeOpt.field eventIdTypeEncoder
+            , ( "FeedbackToken", val.feedbackToken ) |> EncodeOpt.field Json.Encode.string
+            , ( "EventId", val.eventId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -651,7 +596,7 @@ untagResource req =
     let
         encoder val =
             [ ( "TagKeys", val.tagKeys ) |> EncodeOpt.optionalField userPoolTagsListTypeEncoder
-            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field (Codec.encoder arnTypeCodec)
+            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -681,7 +626,7 @@ tagResource req =
     let
         encoder val =
             [ ( "Tags", val.tags ) |> EncodeOpt.optionalField (Codec.encoder userPoolTagsTypeCodec)
-            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field (Codec.encoder arnTypeCodec)
+            , ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -703,8 +648,8 @@ stopUserImportJob : StopUserImportJobRequest -> AWS.Http.Request AWS.Http.AWSApp
 stopUserImportJob req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "JobId", val.jobId ) |> EncodeOpt.field (Codec.encoder userImportJobIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "JobId", val.jobId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -728,8 +673,8 @@ startUserImportJob : StartUserImportJobRequest -> AWS.Http.Request AWS.Http.AWSA
 startUserImportJob req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "JobId", val.jobId ) |> EncodeOpt.field (Codec.encoder userImportJobIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "JobId", val.jobId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -754,12 +699,12 @@ signUp req =
     let
         encoder val =
             [ ( "ValidationData", val.validationData ) |> EncodeOpt.optionalField (Codec.encoder attributeListTypeCodec)
-            , ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
+            , ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
             , ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
             , ( "UserAttributes", val.userAttributes ) |> EncodeOpt.optionalField (Codec.encoder attributeListTypeCodec)
-            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField secretHashTypeEncoder
-            , ( "Password", val.password ) |> EncodeOpt.field passwordTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Password", val.password ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -779,8 +724,8 @@ signUp req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.required "UserSub" (Codec.decoder stringTypeCodec)
-                |> Pipeline.required "UserConfirmed" (Codec.decoder booleanTypeCodec)
+                |> Pipeline.required "UserSub" Json.Decode.string
+                |> Pipeline.required "UserConfirmed" Json.Decode.bool
                 |> Pipeline.optional "CodeDeliveryDetails" (Json.Decode.maybe codeDeliveryDetailsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -794,7 +739,7 @@ setUserSettings req =
     let
         encoder val =
             [ ( "MFAOptions", val.mfaoptions ) |> EncodeOpt.field (Codec.encoder mfaoptionListTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -816,7 +761,7 @@ setUserPoolMfaConfig : SetUserPoolMfaConfigRequest -> AWS.Http.Request AWS.Http.
 setUserPoolMfaConfig req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "SoftwareTokenMfaConfiguration", val.softwareTokenMfaConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder softwareTokenMfaConfigTypeCodec)
             , ( "SmsMfaConfiguration", val.smsMfaConfiguration )
@@ -864,7 +809,7 @@ setUserMfapreference req =
             [ ( "SoftwareTokenMfaSettings", val.softwareTokenMfaSettings )
                 |> EncodeOpt.optionalField softwareTokenMfaSettingsTypeEncoder
             , ( "SMSMfaSettings", val.smsmfaSettings ) |> EncodeOpt.optionalField smsmfaSettingsTypeEncoder
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -891,10 +836,10 @@ setUicustomization : SetUicustomizationRequest -> AWS.Http.Request AWS.Http.AWSA
 setUicustomization req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ImageFile", val.imageFile ) |> EncodeOpt.optionalField imageFileTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField (Codec.encoder clientIdTypeCodec)
-            , ( "CSS", val.css ) |> EncodeOpt.optionalField (Codec.encoder csstypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ImageFile", val.imageFile ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "CSS", val.css ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -923,12 +868,12 @@ setRiskConfiguration : SetRiskConfigurationRequest -> AWS.Http.Request AWS.Http.
 setRiskConfiguration req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "RiskExceptionConfiguration", val.riskExceptionConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder riskExceptionConfigurationTypeCodec)
             , ( "CompromisedCredentialsRiskConfiguration", val.compromisedCredentialsRiskConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder compromisedCredentialsRiskConfigurationTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField (Codec.encoder clientIdTypeCodec)
+            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "AccountTakeoverRiskConfiguration", val.accountTakeoverRiskConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder accountTakeoverRiskConfigurationTypeCodec)
             ]
@@ -955,8 +900,8 @@ respondToAuthChallenge req =
     let
         encoder val =
             [ ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
-            , ( "Session", val.session ) |> EncodeOpt.optionalField (Codec.encoder sessionTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "Session", val.session ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "ChallengeResponses", val.challengeResponses ) |> EncodeOpt.optionalField challengeResponsesTypeEncoder
             , ( "ChallengeName", val.challengeName ) |> EncodeOpt.field (Codec.encoder challengeNameTypeCodec)
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
@@ -979,7 +924,7 @@ respondToAuthChallenge req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
+                |> Pipeline.optional "Session" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "ChallengeParameters" (Json.Decode.maybe challengeParametersTypeDecoder) Nothing
                 |> Pipeline.optional "ChallengeName" (Json.Decode.maybe (Codec.decoder challengeNameTypeCodec)) Nothing
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
@@ -994,10 +939,10 @@ resendConfirmationCode : ResendConfirmationCodeRequest -> AWS.Http.Request AWS.H
 resendConfirmationCode req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
             , ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
-            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField secretHashTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -1025,10 +970,10 @@ listUsersInGroup : ListUsersInGroupRequest -> AWS.Http.Request AWS.Http.AWSAppEr
 listUsersInGroup req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "Limit", val.limit ) |> EncodeOpt.optionalField queryLimitTypeEncoder
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Limit", val.limit ) |> EncodeOpt.optionalField Json.Encode.int
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1041,7 +986,7 @@ listUsersInGroup req =
         decoder =
             ((\usersFld nextTokenFld -> { nextToken = nextTokenFld, users = usersFld }) |> Json.Decode.succeed)
                 |> Pipeline.optional "Users" (Json.Decode.maybe usersListTypeDecoder) Nothing
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListUsersInGroup" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1053,11 +998,10 @@ listUsers : ListUsersRequest -> AWS.Http.Request AWS.Http.AWSAppError ListUsersR
 listUsers req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "PaginationToken", val.paginationToken )
-                |> EncodeOpt.optionalField (Codec.encoder searchPaginationTokenTypeCodec)
-            , ( "Limit", val.limit ) |> EncodeOpt.optionalField queryLimitTypeEncoder
-            , ( "Filter", val.filter ) |> EncodeOpt.optionalField userFilterTypeEncoder
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "PaginationToken", val.paginationToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Limit", val.limit ) |> EncodeOpt.optionalField Json.Encode.int
+            , ( "Filter", val.filter ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "AttributesToGet", val.attributesToGet )
                 |> EncodeOpt.optionalField searchedAttributeNamesListTypeEncoder
             ]
@@ -1074,10 +1018,7 @@ listUsers req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.optional "Users" (Json.Decode.maybe usersListTypeDecoder) Nothing
-                |> Pipeline.optional
-                    "PaginationToken"
-                    (Json.Decode.maybe (Codec.decoder searchPaginationTokenTypeCodec))
-                    Nothing
+                |> Pipeline.optional "PaginationToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListUsers" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1089,8 +1030,8 @@ listUserPools : ListUserPoolsRequest -> AWS.Http.Request AWS.Http.AWSAppError Li
 listUserPools req =
     let
         encoder val =
-            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyTypeCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field poolQueryLimitTypeEncoder
+            [ ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1105,7 +1046,7 @@ listUserPools req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.optional "UserPools" (Json.Decode.maybe userPoolListTypeDecoder) Nothing
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListUserPools" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1117,9 +1058,9 @@ listUserPoolClients : ListUserPoolClientsRequest -> AWS.Http.Request AWS.Http.AW
 listUserPoolClients req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField queryLimitEncoder
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1134,7 +1075,7 @@ listUserPoolClients req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.optional "UserPoolClients" (Json.Decode.maybe userPoolClientListTypeDecoder) Nothing
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListUserPoolClients" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1146,10 +1087,9 @@ listUserImportJobs : ListUserImportJobsRequest -> AWS.Http.Request AWS.Http.AWSA
 listUserImportJobs req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "PaginationToken", val.paginationToken )
-                |> EncodeOpt.optionalField (Codec.encoder paginationKeyTypeCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field poolQueryLimitTypeEncoder
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "PaginationToken", val.paginationToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.field Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1166,10 +1106,7 @@ listUserImportJobs req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.optional "UserImportJobs" (Json.Decode.maybe userImportJobsListTypeDecoder) Nothing
-                |> Pipeline.optional
-                    "PaginationToken"
-                    (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec))
-                    Nothing
+                |> Pipeline.optional "PaginationToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListUserImportJobs" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1186,8 +1123,7 @@ listTagsForResource : ListTagsForResourceRequest -> AWS.Http.Request AWS.Http.AW
 listTagsForResource req =
     let
         encoder val =
-            [ ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field (Codec.encoder arnTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "ResourceArn", val.resourceArn ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1209,9 +1145,9 @@ listResourceServers : ListResourceServersRequest -> AWS.Http.Request AWS.Http.AW
 listResourceServers req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyTypeCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField listResourceServersLimitTypeEncoder
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1226,7 +1162,7 @@ listResourceServers req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.required "ResourceServers" resourceServersListTypeDecoder
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListResourceServers" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1238,9 +1174,9 @@ listIdentityProviders : ListIdentityProvidersRequest -> AWS.Http.Request AWS.Htt
 listIdentityProviders req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyTypeCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField listProvidersLimitTypeEncoder
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1255,7 +1191,7 @@ listIdentityProviders req =
                 |> Json.Decode.succeed
             )
                 |> Pipeline.required "Providers" providersListTypeDecoder
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyTypeCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ListIdentityProviders" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1270,9 +1206,9 @@ listGroups : ListGroupsRequest -> AWS.Http.Request AWS.Http.AWSAppError ListGrou
 listGroups req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "Limit", val.limit ) |> EncodeOpt.optionalField queryLimitTypeEncoder
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Limit", val.limit ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1284,7 +1220,7 @@ listGroups req =
 
         decoder =
             ((\nextTokenFld groupsFld -> { groups = groupsFld, nextToken = nextTokenFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "Groups" (Json.Decode.maybe groupListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -1297,10 +1233,9 @@ listDevices : ListDevicesRequest -> AWS.Http.Request AWS.Http.AWSAppError ListDe
 listDevices req =
     let
         encoder val =
-            [ ( "PaginationToken", val.paginationToken )
-                |> EncodeOpt.optionalField (Codec.encoder searchPaginationTokenTypeCodec)
-            , ( "Limit", val.limit ) |> EncodeOpt.optionalField queryLimitTypeEncoder
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            [ ( "PaginationToken", val.paginationToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Limit", val.limit ) |> EncodeOpt.optionalField Json.Encode.int
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1314,10 +1249,7 @@ listDevices req =
             ((\paginationTokenFld devicesFld -> { devices = devicesFld, paginationToken = paginationTokenFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional
-                    "PaginationToken"
-                    (Json.Decode.maybe (Codec.decoder searchPaginationTokenTypeCodec))
-                    Nothing
+                |> Pipeline.optional "PaginationToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "Devices" (Json.Decode.maybe deviceListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -1332,7 +1264,7 @@ initiateAuth req =
         encoder val =
             [ ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
             , ( "ClientMetadata", val.clientMetadata ) |> EncodeOpt.optionalField clientMetadataTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AuthParameters", val.authParameters ) |> EncodeOpt.optionalField authParametersTypeEncoder
             , ( "AuthFlow", val.authFlow ) |> EncodeOpt.field authFlowTypeEncoder
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
@@ -1355,7 +1287,7 @@ initiateAuth req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
+                |> Pipeline.optional "Session" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "ChallengeParameters" (Json.Decode.maybe challengeParametersTypeDecoder) Nothing
                 |> Pipeline.optional "ChallengeName" (Json.Decode.maybe (Codec.decoder challengeNameTypeCodec)) Nothing
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
@@ -1370,8 +1302,7 @@ globalSignOut : GlobalSignOutRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 globalSignOut req =
     let
         encoder val =
-            [ ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1391,8 +1322,7 @@ getUserPoolMfaConfig : GetUserPoolMfaConfigRequest -> AWS.Http.Request AWS.Http.
 getUserPoolMfaConfig req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1431,8 +1361,8 @@ getUserAttributeVerificationCode :
 getUserAttributeVerificationCode req =
     let
         encoder val =
-            [ ( "AttributeName", val.attributeName ) |> EncodeOpt.field (Codec.encoder attributeNameTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            [ ( "AttributeName", val.attributeName ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1456,8 +1386,7 @@ getUser : GetUserRequest -> AWS.Http.Request AWS.Http.AWSAppError GetUserRespons
 getUser req =
     let
         encoder val =
-            [ ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1476,10 +1405,10 @@ getUser req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.required "Username" (Codec.decoder usernameTypeCodec)
+                |> Pipeline.required "Username" Json.Decode.string
                 |> Pipeline.optional "UserMFASettingList" (Json.Decode.maybe userMfasettingListTypeDecoder) Nothing
                 |> Pipeline.required "UserAttributes" (Codec.decoder attributeListTypeCodec)
-                |> Pipeline.optional "PreferredMfaSetting" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+                |> Pipeline.optional "PreferredMfaSetting" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "MFAOptions" (Json.Decode.maybe (Codec.decoder mfaoptionListTypeCodec)) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -1492,8 +1421,8 @@ getUicustomization : GetUicustomizationRequest -> AWS.Http.Request AWS.Http.AWSA
 getUicustomization req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField (Codec.encoder clientIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1517,8 +1446,7 @@ getSigningCertificate : GetSigningCertificateRequest -> AWS.Http.Request AWS.Htt
 getSigningCertificate req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1528,7 +1456,7 @@ getSigningCertificate req =
 
         decoder =
             ((\certificateFld -> { certificate = certificateFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "Certificate" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+                |> Pipeline.optional "Certificate" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "GetSigningCertificate" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -1542,8 +1470,8 @@ getIdentityProviderByIdentifier :
 getIdentityProviderByIdentifier req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "IdpIdentifier", val.idpIdentifier ) |> EncodeOpt.field (Codec.encoder idpIdentifierTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "IdpIdentifier", val.idpIdentifier ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1570,8 +1498,8 @@ getGroup : GetGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError GetGroupResp
 getGroup req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1595,8 +1523,8 @@ getDevice : GetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError GetDeviceR
 getDevice req =
     let
         encoder val =
-            [ ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField (Codec.encoder tokenModelTypeCodec)
+            [ ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1620,8 +1548,7 @@ getCsvheader : GetCsvheaderRequest -> AWS.Http.Request AWS.Http.AWSAppError GetC
 getCsvheader req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1633,7 +1560,7 @@ getCsvheader req =
             ((\userPoolIdFld csvheaderFld -> { csvheader = csvheaderFld, userPoolId = userPoolIdFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+                |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "CSVHeader" (Json.Decode.maybe listOfStringTypesDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -1646,10 +1573,10 @@ forgotPassword : ForgotPasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError 
 forgotPassword req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
             , ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
-            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField secretHashTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -1674,8 +1601,8 @@ forgetDevice : ForgetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 forgetDevice req =
     let
         encoder val =
-            [ ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField (Codec.encoder tokenModelTypeCodec)
+            [ ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1697,7 +1624,7 @@ describeUserPoolDomain : DescribeUserPoolDomainRequest -> AWS.Http.Request AWS.H
 describeUserPoolDomain req =
     let
         encoder val =
-            [ ( "Domain", val.domain ) |> EncodeOpt.field (Codec.encoder domainTypeCodec) ] |> EncodeOpt.objectMaySkip
+            [ ( "Domain", val.domain ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1719,8 +1646,8 @@ describeUserPoolClient : DescribeUserPoolClientRequest -> AWS.Http.Request AWS.H
 describeUserPoolClient req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1744,8 +1671,7 @@ describeUserPool : DescribeUserPoolRequest -> AWS.Http.Request AWS.Http.AWSAppEr
 describeUserPool req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1767,8 +1693,8 @@ describeUserImportJob : DescribeUserImportJobRequest -> AWS.Http.Request AWS.Htt
 describeUserImportJob req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "JobId", val.jobId ) |> EncodeOpt.field (Codec.encoder userImportJobIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "JobId", val.jobId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1792,8 +1718,8 @@ describeRiskConfiguration : DescribeRiskConfigurationRequest -> AWS.Http.Request
 describeRiskConfiguration req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField (Codec.encoder clientIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1817,8 +1743,8 @@ describeResourceServer : DescribeResourceServerRequest -> AWS.Http.Request AWS.H
 describeResourceServer req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Identifier", val.identifier ) |> EncodeOpt.field (Codec.encoder resourceServerIdentifierTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Identifier", val.identifier ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1842,8 +1768,8 @@ describeIdentityProvider : DescribeIdentityProviderRequest -> AWS.Http.Request A
 describeIdentityProvider req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ProviderName", val.providerName ) |> EncodeOpt.field (Codec.encoder providerNameTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ProviderName", val.providerName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1867,8 +1793,8 @@ deleteUserPoolDomain : DeleteUserPoolDomainRequest -> AWS.Http.Request AWS.Http.
 deleteUserPoolDomain req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Domain", val.domain ) |> EncodeOpt.field (Codec.encoder domainTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Domain", val.domain ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1890,8 +1816,8 @@ deleteUserPoolClient : DeleteUserPoolClientRequest -> AWS.Http.Request AWS.Http.
 deleteUserPoolClient req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1913,8 +1839,7 @@ deleteUserPool : DeleteUserPoolRequest -> AWS.Http.Request AWS.Http.AWSAppError 
 deleteUserPool req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1935,7 +1860,7 @@ deleteUserAttributes req =
     let
         encoder val =
             [ ( "UserAttributeNames", val.userAttributeNames ) |> EncodeOpt.field attributeNameListTypeEncoder
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -1957,8 +1882,7 @@ deleteUser : DeleteUserRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteUser req =
     let
         encoder val =
-            [ ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec) ]
-                |> EncodeOpt.objectMaySkip
+            [ ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
         jsonBody =
             req |> encoder |> AWS.Http.jsonBody
@@ -1978,8 +1902,8 @@ deleteResourceServer : DeleteResourceServerRequest -> AWS.Http.Request AWS.Http.
 deleteResourceServer req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Identifier", val.identifier ) |> EncodeOpt.field (Codec.encoder resourceServerIdentifierTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Identifier", val.identifier ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2001,8 +1925,8 @@ deleteIdentityProvider : DeleteIdentityProviderRequest -> AWS.Http.Request AWS.H
 deleteIdentityProvider req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "ProviderName", val.providerName ) |> EncodeOpt.field (Codec.encoder providerNameTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "ProviderName", val.providerName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2027,8 +1951,8 @@ deleteGroup : DeleteGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 deleteGroup req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2050,8 +1974,8 @@ createUserPoolDomain : CreateUserPoolDomainRequest -> AWS.Http.Request AWS.Http.
 createUserPoolDomain req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Domain", val.domain ) |> EncodeOpt.field (Codec.encoder domainTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Domain", val.domain ) |> EncodeOpt.field Json.Encode.string
             , ( "CustomDomainConfig", val.customDomainConfig )
                 |> EncodeOpt.optionalField (Codec.encoder customDomainConfigTypeCodec)
             ]
@@ -2065,7 +1989,7 @@ createUserPoolDomain req =
 
         decoder =
             ((\cloudFrontDomainFld -> { cloudFrontDomain = cloudFrontDomainFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "CloudFrontDomain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
+                |> Pipeline.optional "CloudFrontDomain" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "CreateUserPoolDomain" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -2079,27 +2003,25 @@ createUserPoolClient req =
         encoder val =
             [ ( "WriteAttributes", val.writeAttributes )
                 |> EncodeOpt.optionalField (Codec.encoder clientPermissionListTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "SupportedIdentityProviders", val.supportedIdentityProviders )
                 |> EncodeOpt.optionalField (Codec.encoder supportedIdentityProvidersListTypeCodec)
-            , ( "RefreshTokenValidity", val.refreshTokenValidity )
-                |> EncodeOpt.optionalField (Codec.encoder refreshTokenValidityTypeCodec)
+            , ( "RefreshTokenValidity", val.refreshTokenValidity ) |> EncodeOpt.optionalField Json.Encode.int
             , ( "ReadAttributes", val.readAttributes )
                 |> EncodeOpt.optionalField (Codec.encoder clientPermissionListTypeCodec)
             , ( "LogoutURLs", val.logoutUrls ) |> EncodeOpt.optionalField (Codec.encoder logoutUrlsListTypeCodec)
-            , ( "GenerateSecret", val.generateSecret ) |> EncodeOpt.optionalField generateSecretEncoder
+            , ( "GenerateSecret", val.generateSecret ) |> EncodeOpt.optionalField Json.Encode.bool
             , ( "ExplicitAuthFlows", val.explicitAuthFlows )
                 |> EncodeOpt.optionalField (Codec.encoder explicitAuthFlowsListTypeCodec)
-            , ( "DefaultRedirectURI", val.defaultRedirectUri )
-                |> EncodeOpt.optionalField (Codec.encoder redirectUrlTypeCodec)
-            , ( "ClientName", val.clientName ) |> EncodeOpt.field (Codec.encoder clientNameTypeCodec)
+            , ( "DefaultRedirectURI", val.defaultRedirectUri ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ClientName", val.clientName ) |> EncodeOpt.field Json.Encode.string
             , ( "CallbackURLs", val.callbackUrls ) |> EncodeOpt.optionalField (Codec.encoder callbackUrlsListTypeCodec)
             , ( "AnalyticsConfiguration", val.analyticsConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder analyticsConfigurationTypeCodec)
             , ( "AllowedOAuthScopes", val.allowedOauthScopes )
                 |> EncodeOpt.optionalField (Codec.encoder scopeListTypeCodec)
             , ( "AllowedOAuthFlowsUserPoolClient", val.allowedOauthFlowsUserPoolClient )
-                |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
+                |> EncodeOpt.optionalField Json.Encode.bool
             , ( "AllowedOAuthFlows", val.allowedOauthFlows )
                 |> EncodeOpt.optionalField (Codec.encoder oauthFlowsTypeCodec)
             ]
@@ -2132,22 +2054,18 @@ createUserPool req =
             , ( "UserPoolTags", val.userPoolTags ) |> EncodeOpt.optionalField (Codec.encoder userPoolTagsTypeCodec)
             , ( "UserPoolAddOns", val.userPoolAddOns )
                 |> EncodeOpt.optionalField (Codec.encoder userPoolAddOnsTypeCodec)
-            , ( "SmsVerificationMessage", val.smsVerificationMessage )
-                |> EncodeOpt.optionalField (Codec.encoder smsVerificationMessageTypeCodec)
+            , ( "SmsVerificationMessage", val.smsVerificationMessage ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "SmsConfiguration", val.smsConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder smsConfigurationTypeCodec)
-            , ( "SmsAuthenticationMessage", val.smsAuthenticationMessage )
-                |> EncodeOpt.optionalField (Codec.encoder smsVerificationMessageTypeCodec)
+            , ( "SmsAuthenticationMessage", val.smsAuthenticationMessage ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "Schema", val.schema ) |> EncodeOpt.optionalField (Codec.encoder schemaAttributesListTypeCodec)
-            , ( "PoolName", val.poolName ) |> EncodeOpt.field (Codec.encoder userPoolNameTypeCodec)
+            , ( "PoolName", val.poolName ) |> EncodeOpt.field Json.Encode.string
             , ( "Policies", val.policies ) |> EncodeOpt.optionalField (Codec.encoder userPoolPolicyTypeCodec)
             , ( "MfaConfiguration", val.mfaConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder userPoolMfaTypeCodec)
             , ( "LambdaConfig", val.lambdaConfig ) |> EncodeOpt.optionalField (Codec.encoder lambdaConfigTypeCodec)
-            , ( "EmailVerificationSubject", val.emailVerificationSubject )
-                |> EncodeOpt.optionalField (Codec.encoder emailVerificationSubjectTypeCodec)
-            , ( "EmailVerificationMessage", val.emailVerificationMessage )
-                |> EncodeOpt.optionalField (Codec.encoder emailVerificationMessageTypeCodec)
+            , ( "EmailVerificationSubject", val.emailVerificationSubject ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "EmailVerificationMessage", val.emailVerificationMessage ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "EmailConfiguration", val.emailConfiguration )
                 |> EncodeOpt.optionalField (Codec.encoder emailConfigurationTypeCodec)
             , ( "DeviceConfiguration", val.deviceConfiguration )
@@ -2181,9 +2099,9 @@ createUserImportJob : CreateUserImportJobRequest -> AWS.Http.Request AWS.Http.AW
 createUserImportJob req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "JobName", val.jobName ) |> EncodeOpt.field (Codec.encoder userImportJobNameTypeCodec)
-            , ( "CloudWatchLogsRoleArn", val.cloudWatchLogsRoleArn ) |> EncodeOpt.field (Codec.encoder arnTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "JobName", val.jobName ) |> EncodeOpt.field Json.Encode.string
+            , ( "CloudWatchLogsRoleArn", val.cloudWatchLogsRoleArn ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2207,10 +2125,10 @@ createResourceServer : CreateResourceServerRequest -> AWS.Http.Request AWS.Http.
 createResourceServer req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "Scopes", val.scopes ) |> EncodeOpt.optionalField (Codec.encoder resourceServerScopeListTypeCodec)
-            , ( "Name", val.name ) |> EncodeOpt.field (Codec.encoder resourceServerNameTypeCodec)
-            , ( "Identifier", val.identifier ) |> EncodeOpt.field (Codec.encoder resourceServerIdentifierTypeCodec)
+            , ( "Name", val.name ) |> EncodeOpt.field Json.Encode.string
+            , ( "Identifier", val.identifier ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2234,9 +2152,9 @@ createIdentityProvider : CreateIdentityProviderRequest -> AWS.Http.Request AWS.H
 createIdentityProvider req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "ProviderType", val.providerType ) |> EncodeOpt.field (Codec.encoder identityProviderTypeTypeCodec)
-            , ( "ProviderName", val.providerName ) |> EncodeOpt.field providerNameTypeV1Encoder
+            , ( "ProviderName", val.providerName ) |> EncodeOpt.field Json.Encode.string
             , ( "ProviderDetails", val.providerDetails ) |> EncodeOpt.field (Codec.encoder providerDetailsTypeCodec)
             , ( "IdpIdentifiers", val.idpIdentifiers )
                 |> EncodeOpt.optionalField (Codec.encoder idpIdentifiersListTypeCodec)
@@ -2268,11 +2186,11 @@ createGroup : CreateGroupRequest -> AWS.Http.Request AWS.Http.AWSAppError Create
 createGroup req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "RoleArn", val.roleArn ) |> EncodeOpt.optionalField (Codec.encoder arnTypeCodec)
-            , ( "Precedence", val.precedence ) |> EncodeOpt.optionalField (Codec.encoder precedenceTypeCodec)
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
-            , ( "Description", val.description ) |> EncodeOpt.optionalField (Codec.encoder descriptionTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "RoleArn", val.roleArn ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Precedence", val.precedence ) |> EncodeOpt.optionalField Json.Encode.int
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
+            , ( "Description", val.description ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2296,12 +2214,12 @@ confirmSignUp : ConfirmSignUpRequest -> AWS.Http.Request AWS.Http.AWSAppError ()
 confirmSignUp req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
             , ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
-            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField secretHashTypeEncoder
-            , ( "ForceAliasCreation", val.forceAliasCreation ) |> EncodeOpt.optionalField forceAliasCreationEncoder
-            , ( "ConfirmationCode", val.confirmationCode ) |> EncodeOpt.field confirmationCodeTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "ForceAliasCreation", val.forceAliasCreation ) |> EncodeOpt.optionalField Json.Encode.bool
+            , ( "ConfirmationCode", val.confirmationCode ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -2324,12 +2242,12 @@ confirmForgotPassword : ConfirmForgotPasswordRequest -> AWS.Http.Request AWS.Htt
 confirmForgotPassword req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
             , ( "UserContextData", val.userContextData ) |> EncodeOpt.optionalField userContextDataTypeEncoder
-            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField secretHashTypeEncoder
-            , ( "Password", val.password ) |> EncodeOpt.field passwordTypeEncoder
-            , ( "ConfirmationCode", val.confirmationCode ) |> EncodeOpt.field confirmationCodeTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "SecretHash", val.secretHash ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Password", val.password ) |> EncodeOpt.field Json.Encode.string
+            , ( "ConfirmationCode", val.confirmationCode ) |> EncodeOpt.field Json.Encode.string
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -2354,9 +2272,9 @@ confirmDevice req =
         encoder val =
             [ ( "DeviceSecretVerifierConfig", val.deviceSecretVerifierConfig )
                 |> EncodeOpt.optionalField deviceSecretVerifierConfigTypeEncoder
-            , ( "DeviceName", val.deviceName ) |> EncodeOpt.optionalField deviceNameTypeEncoder
-            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            , ( "DeviceName", val.deviceName ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2370,10 +2288,7 @@ confirmDevice req =
             ((\userConfirmationNecessaryFld -> { userConfirmationNecessary = userConfirmationNecessaryFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional
-                    "UserConfirmationNecessary"
-                    (Json.Decode.maybe (Codec.decoder booleanTypeCodec))
-                    Nothing
+                |> Pipeline.optional "UserConfirmationNecessary" (Json.Decode.maybe Json.Decode.bool) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "ConfirmDevice" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -2385,9 +2300,9 @@ changePassword : ChangePasswordRequest -> AWS.Http.Request AWS.Http.AWSAppError 
 changePassword req =
     let
         encoder val =
-            [ ( "ProposedPassword", val.proposedPassword ) |> EncodeOpt.field passwordTypeEncoder
-            , ( "PreviousPassword", val.previousPassword ) |> EncodeOpt.field passwordTypeEncoder
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field (Codec.encoder tokenModelTypeCodec)
+            [ ( "ProposedPassword", val.proposedPassword ) |> EncodeOpt.field Json.Encode.string
+            , ( "PreviousPassword", val.previousPassword ) |> EncodeOpt.field Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2409,8 +2324,8 @@ associateSoftwareToken : AssociateSoftwareTokenRequest -> AWS.Http.Request AWS.H
 associateSoftwareToken req =
     let
         encoder val =
-            [ ( "Session", val.session ) |> EncodeOpt.optionalField (Codec.encoder sessionTypeCodec)
-            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField (Codec.encoder tokenModelTypeCodec)
+            [ ( "Session", val.session ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "AccessToken", val.accessToken ) |> EncodeOpt.optionalField Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2422,8 +2337,8 @@ associateSoftwareToken req =
 
         decoder =
             ((\sessionFld secretCodeFld -> { secretCode = secretCodeFld, session = sessionFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
-                |> Pipeline.optional "SecretCode" (Json.Decode.maybe secretCodeTypeDecoder) Nothing
+                |> Pipeline.optional "Session" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "SecretCode" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "AssociateSoftwareToken" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -2438,8 +2353,8 @@ adminUserGlobalSignOut : AdminUserGlobalSignOutRequest -> AWS.Http.Request AWS.H
 adminUserGlobalSignOut req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2468,8 +2383,8 @@ adminUpdateUserAttributes : AdminUpdateUserAttributesRequest -> AWS.Http.Request
 adminUpdateUserAttributes req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "UserAttributes", val.userAttributes ) |> EncodeOpt.field (Codec.encoder attributeListTypeCodec)
             ]
                 |> EncodeOpt.objectMaySkip
@@ -2495,11 +2410,11 @@ adminUpdateDeviceStatus : AdminUpdateDeviceStatusRequest -> AWS.Http.Request AWS
 adminUpdateDeviceStatus req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "DeviceRememberedStatus", val.deviceRememberedStatus )
                 |> EncodeOpt.optionalField deviceRememberedStatusTypeEncoder
-            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
+            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2521,10 +2436,10 @@ adminUpdateAuthEventFeedback : AdminUpdateAuthEventFeedbackRequest -> AWS.Http.R
 adminUpdateAuthEventFeedback req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "FeedbackValue", val.feedbackValue ) |> EncodeOpt.field (Codec.encoder feedbackValueTypeCodec)
-            , ( "EventId", val.eventId ) |> EncodeOpt.field eventIdTypeEncoder
+            , ( "EventId", val.eventId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2549,8 +2464,8 @@ adminSetUserSettings : AdminSetUserSettingsRequest -> AWS.Http.Request AWS.Http.
 adminSetUserSettings req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "MFAOptions", val.mfaoptions ) |> EncodeOpt.field (Codec.encoder mfaoptionListTypeCodec)
             ]
                 |> EncodeOpt.objectMaySkip
@@ -2572,10 +2487,10 @@ adminSetUserPassword : AdminSetUserPasswordRequest -> AWS.Http.Request AWS.Http.
 adminSetUserPassword req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Permanent", val.permanent ) |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
-            , ( "Password", val.password ) |> EncodeOpt.field passwordTypeEncoder
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Permanent", val.permanent ) |> EncodeOpt.optionalField Json.Encode.bool
+            , ( "Password", val.password ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2597,8 +2512,8 @@ adminSetUserMfapreference : AdminSetUserMfapreferenceRequest -> AWS.Http.Request
 adminSetUserMfapreference req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "SoftwareTokenMfaSettings", val.softwareTokenMfaSettings )
                 |> EncodeOpt.optionalField softwareTokenMfaSettingsTypeEncoder
             , ( "SMSMfaSettings", val.smsmfaSettings ) |> EncodeOpt.optionalField smsmfaSettingsTypeEncoder
@@ -2626,10 +2541,10 @@ adminRespondToAuthChallenge : AdminRespondToAuthChallengeRequest -> AWS.Http.Req
 adminRespondToAuthChallenge req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "Session", val.session ) |> EncodeOpt.optionalField (Codec.encoder sessionTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "Session", val.session ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "ContextData", val.contextData ) |> EncodeOpt.optionalField contextDataTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "ChallengeResponses", val.challengeResponses ) |> EncodeOpt.optionalField challengeResponsesTypeEncoder
             , ( "ChallengeName", val.challengeName ) |> EncodeOpt.field (Codec.encoder challengeNameTypeCodec)
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
@@ -2652,7 +2567,7 @@ adminRespondToAuthChallenge req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
+                |> Pipeline.optional "Session" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "ChallengeParameters" (Json.Decode.maybe challengeParametersTypeDecoder) Nothing
                 |> Pipeline.optional "ChallengeName" (Json.Decode.maybe (Codec.decoder challengeNameTypeCodec)) Nothing
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
@@ -2672,8 +2587,8 @@ adminResetUserPassword : AdminResetUserPasswordRequest -> AWS.Http.Request AWS.H
 adminResetUserPassword req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2698,9 +2613,9 @@ adminRemoveUserFromGroup : AdminRemoveUserFromGroupRequest -> AWS.Http.Request A
 adminRemoveUserFromGroup req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2722,10 +2637,10 @@ adminListUserAuthEvents : AdminListUserAuthEventsRequest -> AWS.Http.Request AWS
 adminListUserAuthEvents req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField queryLimitTypeEncoder
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "MaxResults", val.maxResults ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2739,7 +2654,7 @@ adminListUserAuthEvents req =
             ((\nextTokenFld authEventsFld -> { authEvents = authEventsFld, nextToken = nextTokenFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "AuthEvents" (Json.Decode.maybe authEventsTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -2755,10 +2670,10 @@ adminListGroupsForUser : AdminListGroupsForUserRequest -> AWS.Http.Request AWS.H
 adminListGroupsForUser req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField (Codec.encoder paginationKeyCodec)
-            , ( "Limit", val.limit ) |> EncodeOpt.optionalField queryLimitTypeEncoder
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "NextToken", val.nextToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Limit", val.limit ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2770,7 +2685,7 @@ adminListGroupsForUser req =
 
         decoder =
             ((\nextTokenFld groupsFld -> { groups = groupsFld, nextToken = nextTokenFld }) |> Json.Decode.succeed)
-                |> Pipeline.optional "NextToken" (Json.Decode.maybe (Codec.decoder paginationKeyCodec)) Nothing
+                |> Pipeline.optional "NextToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "Groups" (Json.Decode.maybe groupListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -2786,11 +2701,10 @@ adminListDevices : AdminListDevicesRequest -> AWS.Http.Request AWS.Http.AWSAppEr
 adminListDevices req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "PaginationToken", val.paginationToken )
-                |> EncodeOpt.optionalField (Codec.encoder searchPaginationTokenTypeCodec)
-            , ( "Limit", val.limit ) |> EncodeOpt.optionalField queryLimitTypeEncoder
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "PaginationToken", val.paginationToken ) |> EncodeOpt.optionalField Json.Encode.string
+            , ( "Limit", val.limit ) |> EncodeOpt.optionalField Json.Encode.int
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2804,10 +2718,7 @@ adminListDevices req =
             ((\paginationTokenFld devicesFld -> { devices = devicesFld, paginationToken = paginationTokenFld })
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional
-                    "PaginationToken"
-                    (Json.Decode.maybe (Codec.decoder searchPaginationTokenTypeCodec))
-                    Nothing
+                |> Pipeline.optional "PaginationToken" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "Devices" (Json.Decode.maybe deviceListTypeDecoder) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
@@ -2829,7 +2740,7 @@ adminLinkProviderForUser : AdminLinkProviderForUserRequest -> AWS.Http.Request A
 adminLinkProviderForUser req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder stringTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "SourceUser", val.sourceUser ) |> EncodeOpt.field providerUserIdentifierTypeEncoder
             , ( "DestinationUser", val.destinationUser ) |> EncodeOpt.field providerUserIdentifierTypeEncoder
             ]
@@ -2856,10 +2767,10 @@ adminInitiateAuth : AdminInitiateAuthRequest -> AWS.Http.Request AWS.Http.AWSApp
 adminInitiateAuth req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "ContextData", val.contextData ) |> EncodeOpt.optionalField contextDataTypeEncoder
             , ( "ClientMetadata", val.clientMetadata ) |> EncodeOpt.optionalField clientMetadataTypeEncoder
-            , ( "ClientId", val.clientId ) |> EncodeOpt.field (Codec.encoder clientIdTypeCodec)
+            , ( "ClientId", val.clientId ) |> EncodeOpt.field Json.Encode.string
             , ( "AuthParameters", val.authParameters ) |> EncodeOpt.optionalField authParametersTypeEncoder
             , ( "AuthFlow", val.authFlow ) |> EncodeOpt.field authFlowTypeEncoder
             , ( "AnalyticsMetadata", val.analyticsMetadata ) |> EncodeOpt.optionalField analyticsMetadataTypeEncoder
@@ -2882,7 +2793,7 @@ adminInitiateAuth req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.optional "Session" (Json.Decode.maybe (Codec.decoder sessionTypeCodec)) Nothing
+                |> Pipeline.optional "Session" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "ChallengeParameters" (Json.Decode.maybe challengeParametersTypeDecoder) Nothing
                 |> Pipeline.optional "ChallengeName" (Json.Decode.maybe (Codec.decoder challengeNameTypeCodec)) Nothing
                 |> Pipeline.optional "AuthenticationResult" (Json.Decode.maybe authenticationResultTypeDecoder) Nothing
@@ -2900,8 +2811,8 @@ adminGetUser : AdminGetUserRequest -> AWS.Http.Request AWS.Http.AWSAppError Admi
 adminGetUser req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2926,15 +2837,15 @@ adminGetUser req =
              )
                 |> Json.Decode.succeed
             )
-                |> Pipeline.required "Username" (Codec.decoder usernameTypeCodec)
+                |> Pipeline.required "Username" Json.Decode.string
                 |> Pipeline.optional "UserStatus" (Json.Decode.maybe userStatusTypeDecoder) Nothing
                 |> Pipeline.optional "UserMFASettingList" (Json.Decode.maybe userMfasettingListTypeDecoder) Nothing
-                |> Pipeline.optional "UserLastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-                |> Pipeline.optional "UserCreateDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+                |> Pipeline.optional "UserLastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+                |> Pipeline.optional "UserCreateDate" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "UserAttributes" (Json.Decode.maybe (Codec.decoder attributeListTypeCodec)) Nothing
-                |> Pipeline.optional "PreferredMfaSetting" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+                |> Pipeline.optional "PreferredMfaSetting" (Json.Decode.maybe Json.Decode.string) Nothing
                 |> Pipeline.optional "MFAOptions" (Json.Decode.maybe (Codec.decoder mfaoptionListTypeCodec)) Nothing
-                |> Pipeline.optional "Enabled" (Json.Decode.maybe (Codec.decoder booleanTypeCodec)) Nothing
+                |> Pipeline.optional "Enabled" (Json.Decode.maybe Json.Decode.bool) Nothing
                 |> AWS.Http.jsonBodyDecoder
     in
     AWS.Http.request "AdminGetUser" AWS.Http.POST url jsonBody decoder AWS.Http.awsAppErrDecoder
@@ -2949,9 +2860,9 @@ adminGetDevice : AdminGetDeviceRequest -> AWS.Http.Request AWS.Http.AWSAppError 
 adminGetDevice req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -2978,9 +2889,9 @@ adminForgetDevice : AdminForgetDeviceRequest -> AWS.Http.Request AWS.Http.AWSApp
 adminForgetDevice req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field (Codec.encoder deviceKeyTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "DeviceKey", val.deviceKey ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -3005,8 +2916,8 @@ adminEnableUser : AdminEnableUserRequest -> AWS.Http.Request AWS.Http.AWSAppErro
 adminEnableUser req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -3031,8 +2942,8 @@ adminDisableUser : AdminDisableUserRequest -> AWS.Http.Request AWS.Http.AWSAppEr
 adminDisableUser req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -3065,7 +2976,7 @@ adminDisableProviderForUser : AdminDisableProviderForUserRequest -> AWS.Http.Req
 adminDisableProviderForUser req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder stringTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "User", val.user ) |> EncodeOpt.field providerUserIdentifierTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -3091,8 +3002,8 @@ adminDeleteUserAttributes : AdminDeleteUserAttributesRequest -> AWS.Http.Request
 adminDeleteUserAttributes req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "UserAttributeNames", val.userAttributeNames ) |> EncodeOpt.field attributeNameListTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -3118,8 +3029,8 @@ adminDeleteUser : AdminDeleteUserRequest -> AWS.Http.Request AWS.Http.AWSAppErro
 adminDeleteUser req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -3153,12 +3064,12 @@ adminCreateUser req =
     let
         encoder val =
             [ ( "ValidationData", val.validationData ) |> EncodeOpt.optionalField (Codec.encoder attributeListTypeCodec)
-            , ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            , ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "UserAttributes", val.userAttributes ) |> EncodeOpt.optionalField (Codec.encoder attributeListTypeCodec)
-            , ( "TemporaryPassword", val.temporaryPassword ) |> EncodeOpt.optionalField passwordTypeEncoder
+            , ( "TemporaryPassword", val.temporaryPassword ) |> EncodeOpt.optionalField Json.Encode.string
             , ( "MessageAction", val.messageAction ) |> EncodeOpt.optionalField messageActionTypeEncoder
-            , ( "ForceAliasCreation", val.forceAliasCreation ) |> EncodeOpt.optionalField forceAliasCreationEncoder
+            , ( "ForceAliasCreation", val.forceAliasCreation ) |> EncodeOpt.optionalField Json.Encode.bool
             , ( "DesiredDeliveryMediums", val.desiredDeliveryMediums )
                 |> EncodeOpt.optionalField deliveryMediumListTypeEncoder
             ]
@@ -3187,8 +3098,8 @@ adminConfirmSignUp : AdminConfirmSignUpRequest -> AWS.Http.Request AWS.Http.AWSA
 adminConfirmSignUp req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -3213,9 +3124,9 @@ adminAddUserToGroup : AdminAddUserToGroupRequest -> AWS.Http.Request AWS.Http.AW
 adminAddUserToGroup req =
     let
         encoder val =
-            [ ( "Username", val.username ) |> EncodeOpt.field (Codec.encoder usernameTypeCodec)
-            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
-            , ( "GroupName", val.groupName ) |> EncodeOpt.field (Codec.encoder groupNameTypeCodec)
+            [ ( "Username", val.username ) |> EncodeOpt.field Json.Encode.string
+            , ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
+            , ( "GroupName", val.groupName ) |> EncodeOpt.field Json.Encode.string
             ]
                 |> EncodeOpt.objectMaySkip
 
@@ -3237,7 +3148,7 @@ addCustomAttributes : AddCustomAttributesRequest -> AWS.Http.Request AWS.Http.AW
 addCustomAttributes req =
     let
         encoder val =
-            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field (Codec.encoder userPoolIdTypeCodec)
+            [ ( "UserPoolId", val.userPoolId ) |> EncodeOpt.field Json.Encode.string
             , ( "CustomAttributes", val.customAttributes ) |> EncodeOpt.field customAttributesListTypeEncoder
             ]
                 |> EncodeOpt.objectMaySkip
@@ -3263,7 +3174,7 @@ type alias VerifyUserAttributeResponse =
 {-| The VerifyUserAttributeRequest data model.
 -}
 type alias VerifyUserAttributeRequest =
-    { accessToken : TokenModelType, attributeName : AttributeNameType, code : ConfirmationCodeType }
+    { accessToken : String, attributeName : String, code : String }
 
 
 {-| The VerifySoftwareTokenResponseType data model.
@@ -3292,17 +3203,13 @@ verifySoftwareTokenResponseType =
 {-| The VerifySoftwareTokenResponse data model.
 -}
 type alias VerifySoftwareTokenResponse =
-    { session : Maybe SessionType, status : Maybe VerifySoftwareTokenResponseType }
+    { session : Maybe String, status : Maybe VerifySoftwareTokenResponseType }
 
 
 {-| The VerifySoftwareTokenRequest data model.
 -}
 type alias VerifySoftwareTokenRequest =
-    { accessToken : Maybe TokenModelType
-    , friendlyDeviceName : Maybe StringType
-    , session : Maybe SessionType
-    , userCode : SoftwareTokenMfauserCodeType
-    }
+    { accessToken : Maybe String, friendlyDeviceName : Maybe String, session : Maybe String, userCode : String }
 
 
 {-| The VerifiedAttributesListType data model.
@@ -3338,11 +3245,11 @@ verifiedAttributeType =
 -}
 type alias VerificationMessageTemplateType =
     { defaultEmailOption : Maybe DefaultEmailOptionType
-    , emailMessage : Maybe EmailVerificationMessageType
-    , emailMessageByLink : Maybe EmailVerificationMessageByLinkType
-    , emailSubject : Maybe EmailVerificationSubjectType
-    , emailSubjectByLink : Maybe EmailVerificationSubjectByLinkType
-    , smsMessage : Maybe SmsVerificationMessageType
+    , emailMessage : Maybe String
+    , emailMessageByLink : Maybe String
+    , emailSubject : Maybe String
+    , emailSubjectByLink : Maybe String
+    , smsMessage : Maybe String
     }
 
 
@@ -3350,29 +3257,6 @@ type alias VerificationMessageTemplateType =
 -}
 type alias UsersListType =
     List UserType
-
-
-{-| The UsernameType data model.
--}
-type UsernameType
-    = UsernameType String
-
-
-{-| The UsernameType data model.
--}
-usernameType : Refined String UsernameType StringError
-usernameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map UsernameType
-
-        unboxFn (UsernameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The UsernameAttributesListType data model.
@@ -3408,12 +3292,12 @@ usernameAttributeType =
 -}
 type alias UserType =
     { attributes : Maybe AttributeListType
-    , enabled : Maybe BooleanType
+    , enabled : Maybe Bool
     , mfaoptions : Maybe MfaoptionListType
-    , userCreateDate : Maybe DateType
-    , userLastModifiedDate : Maybe DateType
+    , userCreateDate : Maybe String
+    , userLastModifiedDate : Maybe String
     , userStatus : Maybe UserStatusType
-    , username : Maybe UsernameType
+    , username : Maybe String
     }
 
 
@@ -3472,28 +3356,28 @@ userStatusType =
 type alias UserPoolType =
     { adminCreateUserConfig : Maybe AdminCreateUserConfigType
     , aliasAttributes : Maybe AliasAttributesListType
-    , arn : Maybe ArnType
+    , arn : Maybe String
     , autoVerifiedAttributes : Maybe VerifiedAttributesListType
-    , creationDate : Maybe DateType
-    , customDomain : Maybe DomainType
+    , creationDate : Maybe String
+    , customDomain : Maybe String
     , deviceConfiguration : Maybe DeviceConfigurationType
-    , domain : Maybe DomainType
+    , domain : Maybe String
     , emailConfiguration : Maybe EmailConfigurationType
-    , emailConfigurationFailure : Maybe StringType
-    , emailVerificationMessage : Maybe EmailVerificationMessageType
-    , emailVerificationSubject : Maybe EmailVerificationSubjectType
-    , estimatedNumberOfUsers : Maybe IntegerType
-    , id : Maybe UserPoolIdType
+    , emailConfigurationFailure : Maybe String
+    , emailVerificationMessage : Maybe String
+    , emailVerificationSubject : Maybe String
+    , estimatedNumberOfUsers : Maybe Int
+    , id : Maybe String
     , lambdaConfig : Maybe LambdaConfigType
-    , lastModifiedDate : Maybe DateType
+    , lastModifiedDate : Maybe String
     , mfaConfiguration : Maybe UserPoolMfaType
-    , name : Maybe UserPoolNameType
+    , name : Maybe String
     , policies : Maybe UserPoolPolicyType
     , schemaAttributes : Maybe SchemaAttributesListType
-    , smsAuthenticationMessage : Maybe SmsVerificationMessageType
+    , smsAuthenticationMessage : Maybe String
     , smsConfiguration : Maybe SmsConfigurationType
-    , smsConfigurationFailure : Maybe StringType
-    , smsVerificationMessage : Maybe SmsVerificationMessageType
+    , smsConfigurationFailure : Maybe String
+    , smsVerificationMessage : Maybe String
     , status : Maybe StatusType
     , userPoolAddOns : Maybe UserPoolAddOnsType
     , userPoolTags : Maybe UserPoolTagsType
@@ -3505,42 +3389,19 @@ type alias UserPoolType =
 {-| The UserPoolTagsType data model.
 -}
 type alias UserPoolTagsType =
-    Dict.Refined.Dict String TagKeysType TagValueType
+    Dict String String
 
 
 {-| The UserPoolTagsListType data model.
 -}
 type alias UserPoolTagsListType =
-    List TagKeysType
+    List String
 
 
 {-| The UserPoolPolicyType data model.
 -}
 type alias UserPoolPolicyType =
     { passwordPolicy : Maybe PasswordPolicyType }
-
-
-{-| The UserPoolNameType data model.
--}
-type UserPoolNameType
-    = UserPoolNameType String
-
-
-{-| The UserPoolNameType data model.
--}
-userPoolNameType : Refined String UserPoolNameType StringError
-userPoolNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w\\s+=,.@-]+")
-                |> Result.map UserPoolNameType
-
-        unboxFn (UserPoolNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The UserPoolMfaType data model.
@@ -3576,37 +3437,14 @@ type alias UserPoolListType =
     List UserPoolDescriptionType
 
 
-{-| The UserPoolIdType data model.
--}
-type UserPoolIdType
-    = UserPoolIdType String
-
-
-{-| The UserPoolIdType data model.
--}
-userPoolIdType : Refined String UserPoolIdType StringError
-userPoolIdType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 55)
-                |> Result.andThen (Refined.regexMatch "[\\w-]+_[0-9a-zA-Z]+")
-                |> Result.map UserPoolIdType
-
-        unboxFn (UserPoolIdType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The UserPoolDescriptionType data model.
 -}
 type alias UserPoolDescriptionType =
-    { creationDate : Maybe DateType
-    , id : Maybe UserPoolIdType
+    { creationDate : Maybe String
+    , id : Maybe String
     , lambdaConfig : Maybe LambdaConfigType
-    , lastModifiedDate : Maybe DateType
-    , name : Maybe UserPoolNameType
+    , lastModifiedDate : Maybe String
+    , name : Maybe String
     , status : Maybe StatusType
     }
 
@@ -3615,22 +3453,22 @@ type alias UserPoolDescriptionType =
 -}
 type alias UserPoolClientType =
     { allowedOauthFlows : Maybe OauthFlowsType
-    , allowedOauthFlowsUserPoolClient : Maybe BooleanType
+    , allowedOauthFlowsUserPoolClient : Maybe Bool
     , allowedOauthScopes : Maybe ScopeListType
     , analyticsConfiguration : Maybe AnalyticsConfigurationType
     , callbackUrls : Maybe CallbackUrlsListType
-    , clientId : Maybe ClientIdType
-    , clientName : Maybe ClientNameType
-    , clientSecret : Maybe ClientSecretType
-    , creationDate : Maybe DateType
-    , defaultRedirectUri : Maybe RedirectUrlType
+    , clientId : Maybe String
+    , clientName : Maybe String
+    , clientSecret : Maybe String
+    , creationDate : Maybe String
+    , defaultRedirectUri : Maybe String
     , explicitAuthFlows : Maybe ExplicitAuthFlowsListType
-    , lastModifiedDate : Maybe DateType
+    , lastModifiedDate : Maybe String
     , logoutUrls : Maybe LogoutUrlsListType
     , readAttributes : Maybe ClientPermissionListType
-    , refreshTokenValidity : Maybe RefreshTokenValidityType
+    , refreshTokenValidity : Maybe Int
     , supportedIdentityProviders : Maybe SupportedIdentityProvidersListType
-    , userPoolId : Maybe UserPoolIdType
+    , userPoolId : Maybe String
     , writeAttributes : Maybe ClientPermissionListType
     }
 
@@ -3644,7 +3482,7 @@ type alias UserPoolClientListType =
 {-| The UserPoolClientDescription data model.
 -}
 type alias UserPoolClientDescription =
-    { clientId : Maybe ClientIdType, clientName : Maybe ClientNameType, userPoolId : Maybe UserPoolIdType }
+    { clientId : Maybe String, clientName : Maybe String, userPoolId : Maybe String }
 
 
 {-| The UserPoolAddOnsType data model.
@@ -3656,7 +3494,7 @@ type alias UserPoolAddOnsType =
 {-| The UserMfasettingListType data model.
 -}
 type alias UserMfasettingListType =
-    List StringType
+    List String
 
 
 {-| The UserImportJobsListType data model.
@@ -3668,19 +3506,19 @@ type alias UserImportJobsListType =
 {-| The UserImportJobType data model.
 -}
 type alias UserImportJobType =
-    { cloudWatchLogsRoleArn : Maybe ArnType
-    , completionDate : Maybe DateType
-    , completionMessage : Maybe CompletionMessageType
-    , creationDate : Maybe DateType
-    , failedUsers : Maybe LongType
-    , importedUsers : Maybe LongType
-    , jobId : Maybe UserImportJobIdType
-    , jobName : Maybe UserImportJobNameType
-    , preSignedUrl : Maybe PreSignedUrlType
-    , skippedUsers : Maybe LongType
-    , startDate : Maybe DateType
+    { cloudWatchLogsRoleArn : Maybe String
+    , completionDate : Maybe String
+    , completionMessage : Maybe String
+    , creationDate : Maybe String
+    , failedUsers : Maybe Int
+    , importedUsers : Maybe Int
+    , jobId : Maybe String
+    , jobName : Maybe String
+    , preSignedUrl : Maybe String
+    , skippedUsers : Maybe Int
+    , startDate : Maybe String
     , status : Maybe UserImportJobStatusType
-    , userPoolId : Maybe UserPoolIdType
+    , userPoolId : Maybe String
     }
 
 
@@ -3739,76 +3577,10 @@ userImportJobStatusType =
         )
 
 
-{-| The UserImportJobNameType data model.
--}
-type UserImportJobNameType
-    = UserImportJobNameType String
-
-
-{-| The UserImportJobNameType data model.
--}
-userImportJobNameType : Refined String UserImportJobNameType StringError
-userImportJobNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w\\s+=,.@-]+")
-                |> Result.map UserImportJobNameType
-
-        unboxFn (UserImportJobNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The UserImportJobIdType data model.
--}
-type UserImportJobIdType
-    = UserImportJobIdType String
-
-
-{-| The UserImportJobIdType data model.
--}
-userImportJobIdType : Refined String UserImportJobIdType StringError
-userImportJobIdType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 55)
-                |> Result.andThen (Refined.regexMatch "import-[0-9a-zA-Z-]+")
-                |> Result.map UserImportJobIdType
-
-        unboxFn (UserImportJobIdType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The UserFilterType data model.
--}
-type UserFilterType
-    = UserFilterType String
-
-
-{-| The UserFilterType data model.
--}
-userFilterType : Refined String UserFilterType StringError
-userFilterType =
-    let
-        guardFn val =
-            Refined.maxLength 256 val |> Result.map UserFilterType
-
-        unboxFn (UserFilterType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The UserContextDataType data model.
 -}
 type alias UserContextDataType =
-    { encodedData : Maybe StringType }
+    { encodedData : Maybe String }
 
 
 {-| The UpdateUserPoolResponse data model.
@@ -3824,16 +3596,16 @@ type alias UpdateUserPoolRequest =
     , autoVerifiedAttributes : Maybe VerifiedAttributesListType
     , deviceConfiguration : Maybe DeviceConfigurationType
     , emailConfiguration : Maybe EmailConfigurationType
-    , emailVerificationMessage : Maybe EmailVerificationMessageType
-    , emailVerificationSubject : Maybe EmailVerificationSubjectType
+    , emailVerificationMessage : Maybe String
+    , emailVerificationSubject : Maybe String
     , lambdaConfig : Maybe LambdaConfigType
     , mfaConfiguration : Maybe UserPoolMfaType
     , policies : Maybe UserPoolPolicyType
-    , smsAuthenticationMessage : Maybe SmsVerificationMessageType
+    , smsAuthenticationMessage : Maybe String
     , smsConfiguration : Maybe SmsConfigurationType
-    , smsVerificationMessage : Maybe SmsVerificationMessageType
+    , smsVerificationMessage : Maybe String
     , userPoolAddOns : Maybe UserPoolAddOnsType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     , userPoolTags : Maybe UserPoolTagsType
     , verificationMessageTemplate : Maybe VerificationMessageTemplateType
     }
@@ -3842,13 +3614,13 @@ type alias UpdateUserPoolRequest =
 {-| The UpdateUserPoolDomainResponse data model.
 -}
 type alias UpdateUserPoolDomainResponse =
-    { cloudFrontDomain : Maybe DomainType }
+    { cloudFrontDomain : Maybe String }
 
 
 {-| The UpdateUserPoolDomainRequest data model.
 -}
 type alias UpdateUserPoolDomainRequest =
-    { customDomainConfig : CustomDomainConfigType, domain : DomainType, userPoolId : UserPoolIdType }
+    { customDomainConfig : CustomDomainConfigType, domain : String, userPoolId : String }
 
 
 {-| The UpdateUserPoolClientResponse data model.
@@ -3861,19 +3633,19 @@ type alias UpdateUserPoolClientResponse =
 -}
 type alias UpdateUserPoolClientRequest =
     { allowedOauthFlows : Maybe OauthFlowsType
-    , allowedOauthFlowsUserPoolClient : Maybe BooleanType
+    , allowedOauthFlowsUserPoolClient : Maybe Bool
     , allowedOauthScopes : Maybe ScopeListType
     , analyticsConfiguration : Maybe AnalyticsConfigurationType
     , callbackUrls : Maybe CallbackUrlsListType
-    , clientId : ClientIdType
-    , clientName : Maybe ClientNameType
-    , defaultRedirectUri : Maybe RedirectUrlType
+    , clientId : String
+    , clientName : Maybe String
+    , defaultRedirectUri : Maybe String
     , explicitAuthFlows : Maybe ExplicitAuthFlowsListType
     , logoutUrls : Maybe LogoutUrlsListType
     , readAttributes : Maybe ClientPermissionListType
-    , refreshTokenValidity : Maybe RefreshTokenValidityType
+    , refreshTokenValidity : Maybe Int
     , supportedIdentityProviders : Maybe SupportedIdentityProvidersListType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     , writeAttributes : Maybe ClientPermissionListType
     }
 
@@ -3887,7 +3659,7 @@ type alias UpdateUserAttributesResponse =
 {-| The UpdateUserAttributesRequest data model.
 -}
 type alias UpdateUserAttributesRequest =
-    { accessToken : TokenModelType, userAttributes : AttributeListType }
+    { accessToken : String, userAttributes : AttributeListType }
 
 
 {-| The UpdateResourceServerResponse data model.
@@ -3899,11 +3671,7 @@ type alias UpdateResourceServerResponse =
 {-| The UpdateResourceServerRequest data model.
 -}
 type alias UpdateResourceServerRequest =
-    { identifier : ResourceServerIdentifierType
-    , name : ResourceServerNameType
-    , scopes : Maybe ResourceServerScopeListType
-    , userPoolId : UserPoolIdType
-    }
+    { identifier : String, name : String, scopes : Maybe ResourceServerScopeListType, userPoolId : String }
 
 
 {-| The UpdateIdentityProviderResponse data model.
@@ -3918,8 +3686,8 @@ type alias UpdateIdentityProviderRequest =
     { attributeMapping : Maybe AttributeMappingType
     , idpIdentifiers : Maybe IdpIdentifiersListType
     , providerDetails : Maybe ProviderDetailsType
-    , providerName : ProviderNameType
-    , userPoolId : UserPoolIdType
+    , providerName : String
+    , userPoolId : String
     }
 
 
@@ -3932,11 +3700,11 @@ type alias UpdateGroupResponse =
 {-| The UpdateGroupRequest data model.
 -}
 type alias UpdateGroupRequest =
-    { description : Maybe DescriptionType
-    , groupName : GroupNameType
-    , precedence : Maybe PrecedenceType
-    , roleArn : Maybe ArnType
-    , userPoolId : UserPoolIdType
+    { description : Maybe String
+    , groupName : String
+    , precedence : Maybe Int
+    , roleArn : Maybe String
+    , userPoolId : String
     }
 
 
@@ -3949,10 +3717,7 @@ type alias UpdateDeviceStatusResponse =
 {-| The UpdateDeviceStatusRequest data model.
 -}
 type alias UpdateDeviceStatusRequest =
-    { accessToken : TokenModelType
-    , deviceKey : DeviceKeyType
-    , deviceRememberedStatus : Maybe DeviceRememberedStatusType
-    }
+    { accessToken : String, deviceKey : String, deviceRememberedStatus : Maybe DeviceRememberedStatusType }
 
 
 {-| The UpdateAuthEventFeedbackResponse data model.
@@ -3964,11 +3729,11 @@ type alias UpdateAuthEventFeedbackResponse =
 {-| The UpdateAuthEventFeedbackRequest data model.
 -}
 type alias UpdateAuthEventFeedbackRequest =
-    { eventId : EventIdType
-    , feedbackToken : TokenModelType
+    { eventId : String
+    , feedbackToken : String
     , feedbackValue : FeedbackValueType
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
+    , userPoolId : String
+    , username : String
     }
 
 
@@ -3981,80 +3746,20 @@ type alias UntagResourceResponse =
 {-| The UntagResourceRequest data model.
 -}
 type alias UntagResourceRequest =
-    { resourceArn : ArnType, tagKeys : Maybe UserPoolTagsListType }
+    { resourceArn : String, tagKeys : Maybe UserPoolTagsListType }
 
 
 {-| The UicustomizationType data model.
 -}
 type alias UicustomizationType =
-    { css : Maybe Csstype
-    , cssversion : Maybe CssversionType
-    , clientId : Maybe ClientIdType
-    , creationDate : Maybe DateType
-    , imageUrl : Maybe ImageUrlType
-    , lastModifiedDate : Maybe DateType
-    , userPoolId : Maybe UserPoolIdType
+    { css : Maybe String
+    , cssversion : Maybe String
+    , clientId : Maybe String
+    , creationDate : Maybe String
+    , imageUrl : Maybe String
+    , lastModifiedDate : Maybe String
+    , userPoolId : Maybe String
     }
-
-
-{-| The TokenModelType data model.
--}
-type TokenModelType
-    = TokenModelType String
-
-
-{-| The TokenModelType data model.
--}
-tokenModelType : Refined String TokenModelType StringError
-tokenModelType =
-    let
-        guardFn val =
-            Refined.regexMatch "[A-Za-z0-9-_=.]+" val |> Result.map TokenModelType
-
-        unboxFn (TokenModelType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The TemporaryPasswordValidityDaysType data model.
--}
-type TemporaryPasswordValidityDaysType
-    = TemporaryPasswordValidityDaysType Int
-
-
-{-| The TemporaryPasswordValidityDaysType data model.
--}
-temporaryPasswordValidityDaysType : Refined Int TemporaryPasswordValidityDaysType IntError
-temporaryPasswordValidityDaysType =
-    let
-        guardFn val =
-            Refined.gte 0 val |> Result.andThen (Refined.lte 365) |> Result.map TemporaryPasswordValidityDaysType
-
-        unboxFn (TemporaryPasswordValidityDaysType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The TagValueType data model.
--}
-type TagValueType
-    = TagValueType String
-
-
-{-| The TagValueType data model.
--}
-tagValueType : Refined String TagValueType StringError
-tagValueType =
-    let
-        guardFn val =
-            Refined.minLength 0 val |> Result.andThen (Refined.maxLength 256) |> Result.map TagValueType
-
-        unboxFn (TagValueType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The TagResourceResponse data model.
@@ -4066,45 +3771,19 @@ type alias TagResourceResponse =
 {-| The TagResourceRequest data model.
 -}
 type alias TagResourceRequest =
-    { resourceArn : ArnType, tags : Maybe UserPoolTagsType }
-
-
-{-| The TagKeysType data model.
--}
-type TagKeysType
-    = TagKeysType String
-
-
-{-| The TagKeysType data model.
--}
-tagKeysType : Refined String TagKeysType StringError
-tagKeysType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 128) |> Result.map TagKeysType
-
-        unboxFn (TagKeysType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { resourceArn : String, tags : Maybe UserPoolTagsType }
 
 
 {-| The SupportedIdentityProvidersListType data model.
 -}
 type alias SupportedIdentityProvidersListType =
-    List ProviderNameType
-
-
-{-| The StringType data model.
--}
-type alias StringType =
-    String
+    List String
 
 
 {-| The StringAttributeConstraintsType data model.
 -}
 type alias StringAttributeConstraintsType =
-    { maxLength : Maybe StringType, minLength : Maybe StringType }
+    { maxLength : Maybe String, minLength : Maybe String }
 
 
 {-| The StopUserImportJobResponse data model.
@@ -4116,7 +3795,7 @@ type alias StopUserImportJobResponse =
 {-| The StopUserImportJobRequest data model.
 -}
 type alias StopUserImportJobRequest =
-    { jobId : UserImportJobIdType, userPoolId : UserPoolIdType }
+    { jobId : String, userPoolId : String }
 
 
 {-| The StatusType data model.
@@ -4151,101 +3830,55 @@ type alias StartUserImportJobResponse =
 {-| The StartUserImportJobRequest data model.
 -}
 type alias StartUserImportJobRequest =
-    { jobId : UserImportJobIdType, userPoolId : UserPoolIdType }
+    { jobId : String, userPoolId : String }
 
 
 {-| The SoftwareTokenMfaSettingsType data model.
 -}
 type alias SoftwareTokenMfaSettingsType =
-    { enabled : Maybe BooleanType, preferredMfa : Maybe BooleanType }
+    { enabled : Maybe Bool, preferredMfa : Maybe Bool }
 
 
 {-| The SoftwareTokenMfaConfigType data model.
 -}
 type alias SoftwareTokenMfaConfigType =
-    { enabled : Maybe BooleanType }
-
-
-{-| The SoftwareTokenMfauserCodeType data model.
--}
-type SoftwareTokenMfauserCodeType
-    = SoftwareTokenMfauserCodeType String
-
-
-{-| The SoftwareTokenMfauserCodeType data model.
--}
-softwareTokenMfauserCodeType : Refined String SoftwareTokenMfauserCodeType StringError
-softwareTokenMfauserCodeType =
-    let
-        guardFn val =
-            Refined.minLength 6 val
-                |> Result.andThen (Refined.maxLength 6)
-                |> Result.andThen (Refined.regexMatch "[0-9]+")
-                |> Result.map SoftwareTokenMfauserCodeType
-
-        unboxFn (SoftwareTokenMfauserCodeType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The SmsVerificationMessageType data model.
--}
-type SmsVerificationMessageType
-    = SmsVerificationMessageType String
-
-
-{-| The SmsVerificationMessageType data model.
--}
-smsVerificationMessageType : Refined String SmsVerificationMessageType StringError
-smsVerificationMessageType =
-    let
-        guardFn val =
-            Refined.minLength 6 val
-                |> Result.andThen (Refined.maxLength 140)
-                |> Result.andThen (Refined.regexMatch ".*\\{####\\}.*")
-                |> Result.map SmsVerificationMessageType
-
-        unboxFn (SmsVerificationMessageType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { enabled : Maybe Bool }
 
 
 {-| The SmsMfaConfigType data model.
 -}
 type alias SmsMfaConfigType =
-    { smsAuthenticationMessage : Maybe SmsVerificationMessageType, smsConfiguration : Maybe SmsConfigurationType }
+    { smsAuthenticationMessage : Maybe String, smsConfiguration : Maybe SmsConfigurationType }
 
 
 {-| The SmsConfigurationType data model.
 -}
 type alias SmsConfigurationType =
-    { externalId : Maybe StringType, snsCallerArn : ArnType }
+    { externalId : Maybe String, snsCallerArn : String }
 
 
 {-| The SkippedIprangeListType data model.
 -}
 type alias SkippedIprangeListType =
-    List StringType
+    List String
 
 
 {-| The SignUpResponse data model.
 -}
 type alias SignUpResponse =
-    { codeDeliveryDetails : Maybe CodeDeliveryDetailsType, userConfirmed : BooleanType, userSub : StringType }
+    { codeDeliveryDetails : Maybe CodeDeliveryDetailsType, userConfirmed : Bool, userSub : String }
 
 
 {-| The SignUpRequest data model.
 -}
 type alias SignUpRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
-    , clientId : ClientIdType
-    , password : PasswordType
-    , secretHash : Maybe SecretHashType
+    , clientId : String
+    , password : String
+    , secretHash : Maybe String
     , userAttributes : Maybe AttributeListType
     , userContextData : Maybe UserContextDataType
-    , username : UsernameType
+    , username : String
     , validationData : Maybe AttributeListType
     }
 
@@ -4259,7 +3892,7 @@ type alias SetUserSettingsResponse =
 {-| The SetUserSettingsRequest data model.
 -}
 type alias SetUserSettingsRequest =
-    { accessToken : TokenModelType, mfaoptions : MfaoptionListType }
+    { accessToken : String, mfaoptions : MfaoptionListType }
 
 
 {-| The SetUserPoolMfaConfigResponse data model.
@@ -4277,7 +3910,7 @@ type alias SetUserPoolMfaConfigRequest =
     { mfaConfiguration : Maybe UserPoolMfaType
     , smsMfaConfiguration : Maybe SmsMfaConfigType
     , softwareTokenMfaConfiguration : Maybe SoftwareTokenMfaConfigType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     }
 
 
@@ -4290,7 +3923,7 @@ type alias SetUserMfapreferenceResponse =
 {-| The SetUserMfapreferenceRequest data model.
 -}
 type alias SetUserMfapreferenceRequest =
-    { accessToken : TokenModelType
+    { accessToken : String
     , smsmfaSettings : Maybe SmsmfaSettingsType
     , softwareTokenMfaSettings : Maybe SoftwareTokenMfaSettingsType
     }
@@ -4305,7 +3938,7 @@ type alias SetUicustomizationResponse =
 {-| The SetUicustomizationRequest data model.
 -}
 type alias SetUicustomizationRequest =
-    { css : Maybe Csstype, clientId : Maybe ClientIdType, imageFile : Maybe ImageFileType, userPoolId : UserPoolIdType }
+    { css : Maybe String, clientId : Maybe String, imageFile : Maybe String, userPoolId : String }
 
 
 {-| The SetRiskConfigurationResponse data model.
@@ -4318,131 +3951,23 @@ type alias SetRiskConfigurationResponse =
 -}
 type alias SetRiskConfigurationRequest =
     { accountTakeoverRiskConfiguration : Maybe AccountTakeoverRiskConfigurationType
-    , clientId : Maybe ClientIdType
+    , clientId : Maybe String
     , compromisedCredentialsRiskConfiguration : Maybe CompromisedCredentialsRiskConfigurationType
     , riskExceptionConfiguration : Maybe RiskExceptionConfigurationType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     }
-
-
-{-| The SessionType data model.
--}
-type SessionType
-    = SessionType String
-
-
-{-| The SessionType data model.
--}
-sessionType : Refined String SessionType StringError
-sessionType =
-    let
-        guardFn val =
-            Refined.minLength 20 val |> Result.andThen (Refined.maxLength 2048) |> Result.map SessionType
-
-        unboxFn (SessionType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The SecretHashType data model.
--}
-type SecretHashType
-    = SecretHashType String
-
-
-{-| The SecretHashType data model.
--}
-secretHashType : Refined String SecretHashType StringError
-secretHashType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w+=/]+")
-                |> Result.map SecretHashType
-
-        unboxFn (SecretHashType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The SecretCodeType data model.
--}
-type SecretCodeType
-    = SecretCodeType String
-
-
-{-| The SecretCodeType data model.
--}
-secretCodeType : Refined String SecretCodeType StringError
-secretCodeType =
-    let
-        guardFn val =
-            Refined.minLength 16 val |> Result.andThen (Refined.regexMatch "[A-Za-z0-9]+") |> Result.map SecretCodeType
-
-        unboxFn (SecretCodeType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The SearchedAttributeNamesListType data model.
 -}
 type alias SearchedAttributeNamesListType =
-    List AttributeNameType
-
-
-{-| The SearchPaginationTokenType data model.
--}
-type SearchPaginationTokenType
-    = SearchPaginationTokenType String
-
-
-{-| The SearchPaginationTokenType data model.
--}
-searchPaginationTokenType : Refined String SearchPaginationTokenType StringError
-searchPaginationTokenType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.regexMatch "[\\S]+")
-                |> Result.map SearchPaginationTokenType
-
-        unboxFn (SearchPaginationTokenType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The ScopeType data model.
--}
-type ScopeType
-    = ScopeType String
-
-
-{-| The ScopeType data model.
--}
-scopeType : Refined String ScopeType StringError
-scopeType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 256)
-                |> Result.andThen (Refined.regexMatch "[\\x21\\x23-\\x5B\\x5D-\\x7E]+")
-                |> Result.map ScopeType
-
-        unboxFn (ScopeType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    List String
 
 
 {-| The ScopeListType data model.
 -}
 type alias ScopeListType =
-    List ScopeType
+    List String
 
 
 {-| The SchemaAttributesListType data model.
@@ -4455,11 +3980,11 @@ type alias SchemaAttributesListType =
 -}
 type alias SchemaAttributeType =
     { attributeDataType : Maybe AttributeDataType
-    , developerOnlyAttribute : Maybe BooleanType
-    , mutable : Maybe BooleanType
-    , name : Maybe CustomAttributeNameType
+    , developerOnlyAttribute : Maybe Bool
+    , mutable : Maybe Bool
+    , name : Maybe String
     , numberAttributeConstraints : Maybe NumberAttributeConstraintsType
-    , required : Maybe BooleanType
+    , required : Maybe Bool
     , stringAttributeConstraints : Maybe StringAttributeConstraintsType
     }
 
@@ -4467,30 +3992,7 @@ type alias SchemaAttributeType =
 {-| The SmsmfaSettingsType data model.
 -}
 type alias SmsmfaSettingsType =
-    { enabled : Maybe BooleanType, preferredMfa : Maybe BooleanType }
-
-
-{-| The S3BucketType data model.
--}
-type S3BucketType
-    = S3BucketType String
-
-
-{-| The S3BucketType data model.
--}
-s3BucketType : Refined String S3BucketType StringError
-s3BucketType =
-    let
-        guardFn val =
-            Refined.minLength 3 val
-                |> Result.andThen (Refined.maxLength 1024)
-                |> Result.andThen (Refined.regexMatch "^[0-9A-Za-z\\.\\-_]*(?<!\\.)$")
-                |> Result.map S3BucketType
-
-        unboxFn (S3BucketType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { enabled : Maybe Bool, preferredMfa : Maybe Bool }
 
 
 {-| The RiskLevelType data model.
@@ -4557,11 +4059,11 @@ riskDecisionType =
 -}
 type alias RiskConfigurationType =
     { accountTakeoverRiskConfiguration : Maybe AccountTakeoverRiskConfigurationType
-    , clientId : Maybe ClientIdType
+    , clientId : Maybe String
     , compromisedCredentialsRiskConfiguration : Maybe CompromisedCredentialsRiskConfigurationType
-    , lastModifiedDate : Maybe DateType
+    , lastModifiedDate : Maybe String
     , riskExceptionConfiguration : Maybe RiskExceptionConfigurationType
-    , userPoolId : Maybe UserPoolIdType
+    , userPoolId : Maybe String
     }
 
 
@@ -4571,7 +4073,7 @@ type alias RespondToAuthChallengeResponse =
     { authenticationResult : Maybe AuthenticationResultType
     , challengeName : Maybe ChallengeNameType
     , challengeParameters : Maybe ChallengeParametersType
-    , session : Maybe SessionType
+    , session : Maybe String
     }
 
 
@@ -4581,8 +4083,8 @@ type alias RespondToAuthChallengeRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
     , challengeName : ChallengeNameType
     , challengeResponses : Maybe ChallengeResponsesType
-    , clientId : ClientIdType
-    , session : Maybe SessionType
+    , clientId : String
+    , session : Maybe String
     , userContextData : Maybe UserContextDataType
     }
 
@@ -4596,114 +4098,23 @@ type alias ResourceServersListType =
 {-| The ResourceServerType data model.
 -}
 type alias ResourceServerType =
-    { identifier : Maybe ResourceServerIdentifierType
-    , name : Maybe ResourceServerNameType
+    { identifier : Maybe String
+    , name : Maybe String
     , scopes : Maybe ResourceServerScopeListType
-    , userPoolId : Maybe UserPoolIdType
+    , userPoolId : Maybe String
     }
 
 
 {-| The ResourceServerScopeType data model.
 -}
 type alias ResourceServerScopeType =
-    { scopeDescription : ResourceServerScopeDescriptionType, scopeName : ResourceServerScopeNameType }
-
-
-{-| The ResourceServerScopeNameType data model.
--}
-type ResourceServerScopeNameType
-    = ResourceServerScopeNameType String
-
-
-{-| The ResourceServerScopeNameType data model.
--}
-resourceServerScopeNameType : Refined String ResourceServerScopeNameType StringError
-resourceServerScopeNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 256)
-                |> Result.andThen (Refined.regexMatch "[\\x21\\x23-\\x2E\\x30-\\x5B\\x5D-\\x7E]+")
-                |> Result.map ResourceServerScopeNameType
-
-        unboxFn (ResourceServerScopeNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { scopeDescription : String, scopeName : String }
 
 
 {-| The ResourceServerScopeListType data model.
 -}
 type alias ResourceServerScopeListType =
     List ResourceServerScopeType
-
-
-{-| The ResourceServerScopeDescriptionType data model.
--}
-type ResourceServerScopeDescriptionType
-    = ResourceServerScopeDescriptionType String
-
-
-{-| The ResourceServerScopeDescriptionType data model.
--}
-resourceServerScopeDescriptionType : Refined String ResourceServerScopeDescriptionType StringError
-resourceServerScopeDescriptionType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 256)
-                |> Result.map ResourceServerScopeDescriptionType
-
-        unboxFn (ResourceServerScopeDescriptionType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The ResourceServerNameType data model.
--}
-type ResourceServerNameType
-    = ResourceServerNameType String
-
-
-{-| The ResourceServerNameType data model.
--}
-resourceServerNameType : Refined String ResourceServerNameType StringError
-resourceServerNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 256)
-                |> Result.andThen (Refined.regexMatch "[\\w\\s+=,.@-]+")
-                |> Result.map ResourceServerNameType
-
-        unboxFn (ResourceServerNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The ResourceServerIdentifierType data model.
--}
-type ResourceServerIdentifierType
-    = ResourceServerIdentifierType String
-
-
-{-| The ResourceServerIdentifierType data model.
--}
-resourceServerIdentifierType : Refined String ResourceServerIdentifierType StringError
-resourceServerIdentifierType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 256)
-                |> Result.andThen (Refined.regexMatch "[\\x21\\x23-\\x5B\\x5D-\\x7E]+")
-                |> Result.map ResourceServerIdentifierType
-
-        unboxFn (ResourceServerIdentifierType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The ResendConfirmationCodeResponse data model.
@@ -4716,94 +4127,11 @@ type alias ResendConfirmationCodeResponse =
 -}
 type alias ResendConfirmationCodeRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
-    , clientId : ClientIdType
-    , secretHash : Maybe SecretHashType
+    , clientId : String
+    , secretHash : Maybe String
     , userContextData : Maybe UserContextDataType
-    , username : UsernameType
+    , username : String
     }
-
-
-{-| The RefreshTokenValidityType data model.
--}
-type RefreshTokenValidityType
-    = RefreshTokenValidityType Int
-
-
-{-| The RefreshTokenValidityType data model.
--}
-refreshTokenValidityType : Refined Int RefreshTokenValidityType IntError
-refreshTokenValidityType =
-    let
-        guardFn val =
-            Refined.gte 0 val |> Result.andThen (Refined.lte 3650) |> Result.map RefreshTokenValidityType
-
-        unboxFn (RefreshTokenValidityType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The RedirectUrlType data model.
--}
-type RedirectUrlType
-    = RedirectUrlType String
-
-
-{-| The RedirectUrlType data model.
--}
-redirectUrlType : Refined String RedirectUrlType StringError
-redirectUrlType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 1024)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map RedirectUrlType
-
-        unboxFn (RedirectUrlType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The QueryLimitType data model.
--}
-type QueryLimitType
-    = QueryLimitType Int
-
-
-{-| The QueryLimitType data model.
--}
-queryLimitType : Refined Int QueryLimitType IntError
-queryLimitType =
-    let
-        guardFn val =
-            Refined.gte 0 val |> Result.andThen (Refined.lte 60) |> Result.map QueryLimitType
-
-        unboxFn (QueryLimitType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The QueryLimit data model.
--}
-type QueryLimit
-    = QueryLimit Int
-
-
-{-| The QueryLimit data model.
--}
-queryLimit : Refined Int QueryLimit IntError
-queryLimit =
-    let
-        guardFn val =
-            Refined.gte 1 val |> Result.andThen (Refined.lte 60) |> Result.map QueryLimit
-
-        unboxFn (QueryLimit val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
 
 
 {-| The ProvidersListType data model.
@@ -4815,227 +4143,35 @@ type alias ProvidersListType =
 {-| The ProviderUserIdentifierType data model.
 -}
 type alias ProviderUserIdentifierType =
-    { providerAttributeName : Maybe StringType
-    , providerAttributeValue : Maybe StringType
-    , providerName : Maybe ProviderNameType
-    }
-
-
-{-| The ProviderNameTypeV1 data model.
--}
-type ProviderNameTypeV1
-    = ProviderNameTypeV1 String
-
-
-{-| The ProviderNameTypeV1 data model.
--}
-providerNameTypeV1 : Refined String ProviderNameTypeV1 StringError
-providerNameTypeV1 =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 32)
-                |> Result.andThen (Refined.regexMatch "[^_][\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}][^_]+")
-                |> Result.map ProviderNameTypeV1
-
-        unboxFn (ProviderNameTypeV1 val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The ProviderNameType data model.
--}
-type ProviderNameType
-    = ProviderNameType String
-
-
-{-| The ProviderNameType data model.
--}
-providerNameType : Refined String ProviderNameType StringError
-providerNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 32)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map ProviderNameType
-
-        unboxFn (ProviderNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { providerAttributeName : Maybe String, providerAttributeValue : Maybe String, providerName : Maybe String }
 
 
 {-| The ProviderDetailsType data model.
 -}
 type alias ProviderDetailsType =
-    Dict StringType StringType
+    Dict String String
 
 
 {-| The ProviderDescription data model.
 -}
 type alias ProviderDescription =
-    { creationDate : Maybe DateType
-    , lastModifiedDate : Maybe DateType
-    , providerName : Maybe ProviderNameType
+    { creationDate : Maybe String
+    , lastModifiedDate : Maybe String
+    , providerName : Maybe String
     , providerType : Maybe IdentityProviderTypeType
     }
-
-
-{-| The PrecedenceType data model.
--}
-type PrecedenceType
-    = PrecedenceType Int
-
-
-{-| The PrecedenceType data model.
--}
-precedenceType : Refined Int PrecedenceType IntError
-precedenceType =
-    let
-        guardFn val =
-            Refined.gte 0 val |> Result.map PrecedenceType
-
-        unboxFn (PrecedenceType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The PreSignedUrlType data model.
--}
-type PreSignedUrlType
-    = PreSignedUrlType String
-
-
-{-| The PreSignedUrlType data model.
--}
-preSignedUrlType : Refined String PreSignedUrlType StringError
-preSignedUrlType =
-    let
-        guardFn val =
-            Refined.minLength 0 val |> Result.andThen (Refined.maxLength 2048) |> Result.map PreSignedUrlType
-
-        unboxFn (PreSignedUrlType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The PoolQueryLimitType data model.
--}
-type PoolQueryLimitType
-    = PoolQueryLimitType Int
-
-
-{-| The PoolQueryLimitType data model.
--}
-poolQueryLimitType : Refined Int PoolQueryLimitType IntError
-poolQueryLimitType =
-    let
-        guardFn val =
-            Refined.gte 1 val |> Result.andThen (Refined.lte 60) |> Result.map PoolQueryLimitType
-
-        unboxFn (PoolQueryLimitType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The PasswordType data model.
--}
-type PasswordType
-    = PasswordType String
-
-
-{-| The PasswordType data model.
--}
-passwordType : Refined String PasswordType StringError
-passwordType =
-    let
-        guardFn val =
-            Refined.minLength 6 val
-                |> Result.andThen (Refined.maxLength 256)
-                |> Result.andThen (Refined.regexMatch "[\\S]+")
-                |> Result.map PasswordType
-
-        unboxFn (PasswordType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The PasswordPolicyType data model.
 -}
 type alias PasswordPolicyType =
-    { minimumLength : Maybe PasswordPolicyMinLengthType
-    , requireLowercase : Maybe BooleanType
-    , requireNumbers : Maybe BooleanType
-    , requireSymbols : Maybe BooleanType
-    , requireUppercase : Maybe BooleanType
-    , temporaryPasswordValidityDays : Maybe TemporaryPasswordValidityDaysType
+    { minimumLength : Maybe Int
+    , requireLowercase : Maybe Bool
+    , requireNumbers : Maybe Bool
+    , requireSymbols : Maybe Bool
+    , requireUppercase : Maybe Bool
+    , temporaryPasswordValidityDays : Maybe Int
     }
-
-
-{-| The PasswordPolicyMinLengthType data model.
--}
-type PasswordPolicyMinLengthType
-    = PasswordPolicyMinLengthType Int
-
-
-{-| The PasswordPolicyMinLengthType data model.
--}
-passwordPolicyMinLengthType : Refined Int PasswordPolicyMinLengthType IntError
-passwordPolicyMinLengthType =
-    let
-        guardFn val =
-            Refined.gte 6 val |> Result.andThen (Refined.lte 99) |> Result.map PasswordPolicyMinLengthType
-
-        unboxFn (PasswordPolicyMinLengthType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The PaginationKeyType data model.
--}
-type PaginationKeyType
-    = PaginationKeyType String
-
-
-{-| The PaginationKeyType data model.
--}
-paginationKeyType : Refined String PaginationKeyType StringError
-paginationKeyType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.regexMatch "[\\S]+") |> Result.map PaginationKeyType
-
-        unboxFn (PaginationKeyType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The PaginationKey data model.
--}
-type PaginationKey
-    = PaginationKey String
-
-
-{-| The PaginationKey data model.
--}
-paginationKey : Refined String PaginationKey StringError
-paginationKey =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.regexMatch "[\\S]+") |> Result.map PaginationKey
-
-        unboxFn (PaginationKey val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The OauthFlowsType data model.
@@ -5074,43 +4210,37 @@ oauthFlowType =
 {-| The NumberAttributeConstraintsType data model.
 -}
 type alias NumberAttributeConstraintsType =
-    { maxValue : Maybe StringType, minValue : Maybe StringType }
+    { maxValue : Maybe String, minValue : Maybe String }
 
 
 {-| The NotifyEmailType data model.
 -}
 type alias NotifyEmailType =
-    { htmlBody : Maybe EmailNotificationBodyType
-    , subject : EmailNotificationSubjectType
-    , textBody : Maybe EmailNotificationBodyType
-    }
+    { htmlBody : Maybe String, subject : String, textBody : Maybe String }
 
 
 {-| The NotifyConfigurationType data model.
 -}
 type alias NotifyConfigurationType =
     { blockEmail : Maybe NotifyEmailType
-    , from : Maybe StringType
+    , from : Maybe String
     , mfaEmail : Maybe NotifyEmailType
     , noActionEmail : Maybe NotifyEmailType
-    , replyTo : Maybe StringType
-    , sourceArn : ArnType
+    , replyTo : Maybe String
+    , sourceArn : String
     }
 
 
 {-| The NewDeviceMetadataType data model.
 -}
 type alias NewDeviceMetadataType =
-    { deviceGroupKey : Maybe StringType, deviceKey : Maybe DeviceKeyType }
+    { deviceGroupKey : Maybe String, deviceKey : Maybe String }
 
 
 {-| The MessageTemplateType data model.
 -}
 type alias MessageTemplateType =
-    { emailMessage : Maybe EmailVerificationMessageType
-    , emailSubject : Maybe EmailVerificationSubjectType
-    , smsmessage : Maybe SmsVerificationMessageType
-    }
+    { emailMessage : Maybe String, emailSubject : Maybe String, smsmessage : Maybe String }
 
 
 {-| The MessageActionType data model.
@@ -5139,7 +4269,7 @@ messageActionType =
 {-| The MfaoptionType data model.
 -}
 type alias MfaoptionType =
-    { attributeName : Maybe AttributeNameType, deliveryMedium : Maybe DeliveryMediumType }
+    { attributeName : Maybe String, deliveryMedium : Maybe DeliveryMediumType }
 
 
 {-| The MfaoptionListType data model.
@@ -5148,85 +4278,75 @@ type alias MfaoptionListType =
     List MfaoptionType
 
 
-{-| The LongType data model.
--}
-type alias LongType =
-    Int
-
-
 {-| The LogoutUrlsListType data model.
 -}
 type alias LogoutUrlsListType =
-    List RedirectUrlType
+    List String
 
 
 {-| The ListUsersResponse data model.
 -}
 type alias ListUsersResponse =
-    { paginationToken : Maybe SearchPaginationTokenType, users : Maybe UsersListType }
+    { paginationToken : Maybe String, users : Maybe UsersListType }
 
 
 {-| The ListUsersRequest data model.
 -}
 type alias ListUsersRequest =
     { attributesToGet : Maybe SearchedAttributeNamesListType
-    , filter : Maybe UserFilterType
-    , limit : Maybe QueryLimitType
-    , paginationToken : Maybe SearchPaginationTokenType
-    , userPoolId : UserPoolIdType
+    , filter : Maybe String
+    , limit : Maybe Int
+    , paginationToken : Maybe String
+    , userPoolId : String
     }
 
 
 {-| The ListUsersInGroupResponse data model.
 -}
 type alias ListUsersInGroupResponse =
-    { nextToken : Maybe PaginationKey, users : Maybe UsersListType }
+    { nextToken : Maybe String, users : Maybe UsersListType }
 
 
 {-| The ListUsersInGroupRequest data model.
 -}
 type alias ListUsersInGroupRequest =
-    { groupName : GroupNameType
-    , limit : Maybe QueryLimitType
-    , nextToken : Maybe PaginationKey
-    , userPoolId : UserPoolIdType
-    }
+    { groupName : String, limit : Maybe Int, nextToken : Maybe String, userPoolId : String }
 
 
 {-| The ListUserPoolsResponse data model.
 -}
 type alias ListUserPoolsResponse =
-    { nextToken : Maybe PaginationKeyType, userPools : Maybe UserPoolListType }
+    { nextToken : Maybe String, userPools : Maybe UserPoolListType }
 
 
 {-| The ListUserPoolsRequest data model.
 -}
 type alias ListUserPoolsRequest =
-    { maxResults : PoolQueryLimitType, nextToken : Maybe PaginationKeyType }
+    { maxResults : Int, nextToken : Maybe String }
 
 
 {-| The ListUserPoolClientsResponse data model.
 -}
 type alias ListUserPoolClientsResponse =
-    { nextToken : Maybe PaginationKey, userPoolClients : Maybe UserPoolClientListType }
+    { nextToken : Maybe String, userPoolClients : Maybe UserPoolClientListType }
 
 
 {-| The ListUserPoolClientsRequest data model.
 -}
 type alias ListUserPoolClientsRequest =
-    { maxResults : Maybe QueryLimit, nextToken : Maybe PaginationKey, userPoolId : UserPoolIdType }
+    { maxResults : Maybe Int, nextToken : Maybe String, userPoolId : String }
 
 
 {-| The ListUserImportJobsResponse data model.
 -}
 type alias ListUserImportJobsResponse =
-    { paginationToken : Maybe PaginationKeyType, userImportJobs : Maybe UserImportJobsListType }
+    { paginationToken : Maybe String, userImportJobs : Maybe UserImportJobsListType }
 
 
 {-| The ListUserImportJobsRequest data model.
 -}
 type alias ListUserImportJobsRequest =
-    { maxResults : PoolQueryLimitType, paginationToken : Maybe PaginationKeyType, userPoolId : UserPoolIdType }
+    { maxResults : Int, paginationToken : Maybe String, userPoolId : String }
 
 
 {-| The ListTagsForResourceResponse data model.
@@ -5238,126 +4358,77 @@ type alias ListTagsForResourceResponse =
 {-| The ListTagsForResourceRequest data model.
 -}
 type alias ListTagsForResourceRequest =
-    { resourceArn : ArnType }
+    { resourceArn : String }
 
 
 {-| The ListResourceServersResponse data model.
 -}
 type alias ListResourceServersResponse =
-    { nextToken : Maybe PaginationKeyType, resourceServers : ResourceServersListType }
+    { nextToken : Maybe String, resourceServers : ResourceServersListType }
 
 
 {-| The ListResourceServersRequest data model.
 -}
 type alias ListResourceServersRequest =
-    { maxResults : Maybe ListResourceServersLimitType
-    , nextToken : Maybe PaginationKeyType
-    , userPoolId : UserPoolIdType
-    }
-
-
-{-| The ListResourceServersLimitType data model.
--}
-type ListResourceServersLimitType
-    = ListResourceServersLimitType Int
-
-
-{-| The ListResourceServersLimitType data model.
--}
-listResourceServersLimitType : Refined Int ListResourceServersLimitType IntError
-listResourceServersLimitType =
-    let
-        guardFn val =
-            Refined.gte 1 val |> Result.andThen (Refined.lte 50) |> Result.map ListResourceServersLimitType
-
-        unboxFn (ListResourceServersLimitType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
-
-
-{-| The ListProvidersLimitType data model.
--}
-type ListProvidersLimitType
-    = ListProvidersLimitType Int
-
-
-{-| The ListProvidersLimitType data model.
--}
-listProvidersLimitType : Refined Int ListProvidersLimitType IntError
-listProvidersLimitType =
-    let
-        guardFn val =
-            Refined.gte 0 val |> Result.andThen (Refined.lte 60) |> Result.map ListProvidersLimitType
-
-        unboxFn (ListProvidersLimitType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
+    { maxResults : Maybe Int, nextToken : Maybe String, userPoolId : String }
 
 
 {-| The ListOfStringTypes data model.
 -}
 type alias ListOfStringTypes =
-    List StringType
+    List String
 
 
 {-| The ListIdentityProvidersResponse data model.
 -}
 type alias ListIdentityProvidersResponse =
-    { nextToken : Maybe PaginationKeyType, providers : ProvidersListType }
+    { nextToken : Maybe String, providers : ProvidersListType }
 
 
 {-| The ListIdentityProvidersRequest data model.
 -}
 type alias ListIdentityProvidersRequest =
-    { maxResults : Maybe ListProvidersLimitType, nextToken : Maybe PaginationKeyType, userPoolId : UserPoolIdType }
+    { maxResults : Maybe Int, nextToken : Maybe String, userPoolId : String }
 
 
 {-| The ListGroupsResponse data model.
 -}
 type alias ListGroupsResponse =
-    { groups : Maybe GroupListType, nextToken : Maybe PaginationKey }
+    { groups : Maybe GroupListType, nextToken : Maybe String }
 
 
 {-| The ListGroupsRequest data model.
 -}
 type alias ListGroupsRequest =
-    { limit : Maybe QueryLimitType, nextToken : Maybe PaginationKey, userPoolId : UserPoolIdType }
+    { limit : Maybe Int, nextToken : Maybe String, userPoolId : String }
 
 
 {-| The ListDevicesResponse data model.
 -}
 type alias ListDevicesResponse =
-    { devices : Maybe DeviceListType, paginationToken : Maybe SearchPaginationTokenType }
+    { devices : Maybe DeviceListType, paginationToken : Maybe String }
 
 
 {-| The ListDevicesRequest data model.
 -}
 type alias ListDevicesRequest =
-    { accessToken : TokenModelType, limit : Maybe QueryLimitType, paginationToken : Maybe SearchPaginationTokenType }
+    { accessToken : String, limit : Maybe Int, paginationToken : Maybe String }
 
 
 {-| The LambdaConfigType data model.
 -}
 type alias LambdaConfigType =
-    { createAuthChallenge : Maybe ArnType
-    , customMessage : Maybe ArnType
-    , defineAuthChallenge : Maybe ArnType
-    , postAuthentication : Maybe ArnType
-    , postConfirmation : Maybe ArnType
-    , preAuthentication : Maybe ArnType
-    , preSignUp : Maybe ArnType
-    , preTokenGeneration : Maybe ArnType
-    , userMigration : Maybe ArnType
-    , verifyAuthChallengeResponse : Maybe ArnType
+    { createAuthChallenge : Maybe String
+    , customMessage : Maybe String
+    , defineAuthChallenge : Maybe String
+    , postAuthentication : Maybe String
+    , postConfirmation : Maybe String
+    , preAuthentication : Maybe String
+    , preSignUp : Maybe String
+    , preTokenGeneration : Maybe String
+    , userMigration : Maybe String
+    , verifyAuthChallengeResponse : Maybe String
     }
-
-
-{-| The IntegerType data model.
--}
-type alias IntegerType =
-    Int
 
 
 {-| The InitiateAuthResponse data model.
@@ -5366,7 +4437,7 @@ type alias InitiateAuthResponse =
     { authenticationResult : Maybe AuthenticationResultType
     , challengeName : Maybe ChallengeNameType
     , challengeParameters : Maybe ChallengeParametersType
-    , session : Maybe SessionType
+    , session : Maybe String
     }
 
 
@@ -5376,51 +4447,16 @@ type alias InitiateAuthRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
     , authFlow : AuthFlowType
     , authParameters : Maybe AuthParametersType
-    , clientId : ClientIdType
+    , clientId : String
     , clientMetadata : Maybe ClientMetadataType
     , userContextData : Maybe UserContextDataType
     }
 
 
-{-| The ImageUrlType data model.
--}
-type alias ImageUrlType =
-    String
-
-
-{-| The ImageFileType data model.
--}
-type alias ImageFileType =
-    String
-
-
 {-| The IdpIdentifiersListType data model.
 -}
 type alias IdpIdentifiersListType =
-    List IdpIdentifierType
-
-
-{-| The IdpIdentifierType data model.
--}
-type IdpIdentifierType
-    = IdpIdentifierType String
-
-
-{-| The IdpIdentifierType data model.
--}
-idpIdentifierType : Refined String IdpIdentifierType StringError
-idpIdentifierType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 40)
-                |> Result.andThen (Refined.regexMatch "[\\w\\s+=.@-]+")
-                |> Result.map IdpIdentifierType
-
-        unboxFn (IdpIdentifierType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    List String
 
 
 {-| The IdentityProviderTypeType data model.
@@ -5467,13 +4503,13 @@ identityProviderTypeType =
 -}
 type alias IdentityProviderType =
     { attributeMapping : Maybe AttributeMappingType
-    , creationDate : Maybe DateType
+    , creationDate : Maybe String
     , idpIdentifiers : Maybe IdpIdentifiersListType
-    , lastModifiedDate : Maybe DateType
+    , lastModifiedDate : Maybe String
     , providerDetails : Maybe ProviderDetailsType
-    , providerName : Maybe ProviderNameType
+    , providerName : Maybe String
     , providerType : Maybe IdentityProviderTypeType
-    , userPoolId : Maybe UserPoolIdType
+    , userPoolId : Maybe String
     }
 
 
@@ -5486,63 +4522,20 @@ type alias HttpHeaderList =
 {-| The HttpHeader data model.
 -}
 type alias HttpHeader =
-    { headerName : Maybe StringType, headerValue : Maybe StringType }
-
-
-{-| The HexStringType data model.
--}
-type HexStringType
-    = HexStringType String
-
-
-{-| The HexStringType data model.
--}
-hexStringType : Refined String HexStringType StringError
-hexStringType =
-    let
-        guardFn val =
-            Refined.regexMatch "^[0-9a-fA-F]+$" val |> Result.map HexStringType
-
-        unboxFn (HexStringType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { headerName : Maybe String, headerValue : Maybe String }
 
 
 {-| The GroupType data model.
 -}
 type alias GroupType =
-    { creationDate : Maybe DateType
-    , description : Maybe DescriptionType
-    , groupName : Maybe GroupNameType
-    , lastModifiedDate : Maybe DateType
-    , precedence : Maybe PrecedenceType
-    , roleArn : Maybe ArnType
-    , userPoolId : Maybe UserPoolIdType
+    { creationDate : Maybe String
+    , description : Maybe String
+    , groupName : Maybe String
+    , lastModifiedDate : Maybe String
+    , precedence : Maybe Int
+    , roleArn : Maybe String
+    , userPoolId : Maybe String
     }
-
-
-{-| The GroupNameType data model.
--}
-type GroupNameType
-    = GroupNameType String
-
-
-{-| The GroupNameType data model.
--}
-groupNameType : Refined String GroupNameType StringError
-groupNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map GroupNameType
-
-        unboxFn (GroupNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The GroupListType data model.
@@ -5560,24 +4553,24 @@ type alias GlobalSignOutResponse =
 {-| The GlobalSignOutRequest data model.
 -}
 type alias GlobalSignOutRequest =
-    { accessToken : TokenModelType }
+    { accessToken : String }
 
 
 {-| The GetUserResponse data model.
 -}
 type alias GetUserResponse =
     { mfaoptions : Maybe MfaoptionListType
-    , preferredMfaSetting : Maybe StringType
+    , preferredMfaSetting : Maybe String
     , userAttributes : AttributeListType
     , userMfasettingList : Maybe UserMfasettingListType
-    , username : UsernameType
+    , username : String
     }
 
 
 {-| The GetUserRequest data model.
 -}
 type alias GetUserRequest =
-    { accessToken : TokenModelType }
+    { accessToken : String }
 
 
 {-| The GetUserPoolMfaConfigResponse data model.
@@ -5592,7 +4585,7 @@ type alias GetUserPoolMfaConfigResponse =
 {-| The GetUserPoolMfaConfigRequest data model.
 -}
 type alias GetUserPoolMfaConfigRequest =
-    { userPoolId : UserPoolIdType }
+    { userPoolId : String }
 
 
 {-| The GetUserAttributeVerificationCodeResponse data model.
@@ -5604,7 +4597,7 @@ type alias GetUserAttributeVerificationCodeResponse =
 {-| The GetUserAttributeVerificationCodeRequest data model.
 -}
 type alias GetUserAttributeVerificationCodeRequest =
-    { accessToken : TokenModelType, attributeName : AttributeNameType }
+    { accessToken : String, attributeName : String }
 
 
 {-| The GetUicustomizationResponse data model.
@@ -5616,19 +4609,19 @@ type alias GetUicustomizationResponse =
 {-| The GetUicustomizationRequest data model.
 -}
 type alias GetUicustomizationRequest =
-    { clientId : Maybe ClientIdType, userPoolId : UserPoolIdType }
+    { clientId : Maybe String, userPoolId : String }
 
 
 {-| The GetSigningCertificateResponse data model.
 -}
 type alias GetSigningCertificateResponse =
-    { certificate : Maybe StringType }
+    { certificate : Maybe String }
 
 
 {-| The GetSigningCertificateRequest data model.
 -}
 type alias GetSigningCertificateRequest =
-    { userPoolId : UserPoolIdType }
+    { userPoolId : String }
 
 
 {-| The GetIdentityProviderByIdentifierResponse data model.
@@ -5640,7 +4633,7 @@ type alias GetIdentityProviderByIdentifierResponse =
 {-| The GetIdentityProviderByIdentifierRequest data model.
 -}
 type alias GetIdentityProviderByIdentifierRequest =
-    { idpIdentifier : IdpIdentifierType, userPoolId : UserPoolIdType }
+    { idpIdentifier : String, userPoolId : String }
 
 
 {-| The GetGroupResponse data model.
@@ -5652,7 +4645,7 @@ type alias GetGroupResponse =
 {-| The GetGroupRequest data model.
 -}
 type alias GetGroupRequest =
-    { groupName : GroupNameType, userPoolId : UserPoolIdType }
+    { groupName : String, userPoolId : String }
 
 
 {-| The GetDeviceResponse data model.
@@ -5664,25 +4657,19 @@ type alias GetDeviceResponse =
 {-| The GetDeviceRequest data model.
 -}
 type alias GetDeviceRequest =
-    { accessToken : Maybe TokenModelType, deviceKey : DeviceKeyType }
+    { accessToken : Maybe String, deviceKey : String }
 
 
 {-| The GetCsvheaderResponse data model.
 -}
 type alias GetCsvheaderResponse =
-    { csvheader : Maybe ListOfStringTypes, userPoolId : Maybe UserPoolIdType }
+    { csvheader : Maybe ListOfStringTypes, userPoolId : Maybe String }
 
 
 {-| The GetCsvheaderRequest data model.
 -}
 type alias GetCsvheaderRequest =
-    { userPoolId : UserPoolIdType }
-
-
-{-| The GenerateSecret data model.
--}
-type alias GenerateSecret =
-    Bool
+    { userPoolId : String }
 
 
 {-| The ForgotPasswordResponse data model.
@@ -5695,23 +4682,17 @@ type alias ForgotPasswordResponse =
 -}
 type alias ForgotPasswordRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
-    , clientId : ClientIdType
-    , secretHash : Maybe SecretHashType
+    , clientId : String
+    , secretHash : Maybe String
     , userContextData : Maybe UserContextDataType
-    , username : UsernameType
+    , username : String
     }
 
 
 {-| The ForgetDeviceRequest data model.
 -}
 type alias ForgetDeviceRequest =
-    { accessToken : Maybe TokenModelType, deviceKey : DeviceKeyType }
-
-
-{-| The ForceAliasCreation data model.
--}
-type alias ForceAliasCreation =
-    Bool
+    { accessToken : Maybe String, deviceKey : String }
 
 
 {-| The FeedbackValueType data model.
@@ -5829,29 +4810,6 @@ eventResponseType =
         )
 
 
-{-| The EventIdType data model.
--}
-type EventIdType
-    = EventIdType String
-
-
-{-| The EventIdType data model.
--}
-eventIdType : Refined String EventIdType StringError
-eventIdType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 50)
-                |> Result.andThen (Refined.regexMatch "[\\w+-]+")
-                |> Result.map EventIdType
-
-        unboxFn (EventIdType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The EventFiltersType data model.
 -}
 type alias EventFiltersType =
@@ -5888,116 +4846,18 @@ eventFilterType =
 {-| The EventFeedbackType data model.
 -}
 type alias EventFeedbackType =
-    { feedbackDate : Maybe DateType, feedbackValue : FeedbackValueType, provider : StringType }
+    { feedbackDate : Maybe String, feedbackValue : FeedbackValueType, provider : String }
 
 
 {-| The EventContextDataType data model.
 -}
 type alias EventContextDataType =
-    { city : Maybe StringType
-    , country : Maybe StringType
-    , deviceName : Maybe StringType
-    , ipAddress : Maybe StringType
-    , timezone : Maybe StringType
+    { city : Maybe String
+    , country : Maybe String
+    , deviceName : Maybe String
+    , ipAddress : Maybe String
+    , timezone : Maybe String
     }
-
-
-{-| The EmailVerificationSubjectType data model.
--}
-type EmailVerificationSubjectType
-    = EmailVerificationSubjectType String
-
-
-{-| The EmailVerificationSubjectType data model.
--}
-emailVerificationSubjectType : Refined String EmailVerificationSubjectType StringError
-emailVerificationSubjectType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 140)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s]+")
-                |> Result.map EmailVerificationSubjectType
-
-        unboxFn (EmailVerificationSubjectType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The EmailVerificationSubjectByLinkType data model.
--}
-type EmailVerificationSubjectByLinkType
-    = EmailVerificationSubjectByLinkType String
-
-
-{-| The EmailVerificationSubjectByLinkType data model.
--}
-emailVerificationSubjectByLinkType : Refined String EmailVerificationSubjectByLinkType StringError
-emailVerificationSubjectByLinkType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 140)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s]+")
-                |> Result.map EmailVerificationSubjectByLinkType
-
-        unboxFn (EmailVerificationSubjectByLinkType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The EmailVerificationMessageType data model.
--}
-type EmailVerificationMessageType
-    = EmailVerificationMessageType String
-
-
-{-| The EmailVerificationMessageType data model.
--}
-emailVerificationMessageType : Refined String EmailVerificationMessageType StringError
-emailVerificationMessageType =
-    let
-        guardFn val =
-            Refined.minLength 6 val
-                |> Result.andThen (Refined.maxLength 20000)
-                |> Result.andThen
-                    (Refined.regexMatch
-                        "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s*]*\\{####\\}[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s*]*"
-                    )
-                |> Result.map EmailVerificationMessageType
-
-        unboxFn (EmailVerificationMessageType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The EmailVerificationMessageByLinkType data model.
--}
-type EmailVerificationMessageByLinkType
-    = EmailVerificationMessageByLinkType String
-
-
-{-| The EmailVerificationMessageByLinkType data model.
--}
-emailVerificationMessageByLinkType : Refined String EmailVerificationMessageByLinkType StringError
-emailVerificationMessageByLinkType =
-    let
-        guardFn val =
-            Refined.minLength 6 val
-                |> Result.andThen (Refined.maxLength 20000)
-                |> Result.andThen
-                    (Refined.regexMatch
-                        "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s*]*\\{##[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s*]*##\\}[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s*]*"
-                    )
-                |> Result.map EmailVerificationMessageByLinkType
-
-        unboxFn (EmailVerificationMessageByLinkType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The EmailSendingAccountType data model.
@@ -6023,123 +4883,13 @@ emailSendingAccountType =
         )
 
 
-{-| The EmailNotificationSubjectType data model.
--}
-type EmailNotificationSubjectType
-    = EmailNotificationSubjectType String
-
-
-{-| The EmailNotificationSubjectType data model.
--}
-emailNotificationSubjectType : Refined String EmailNotificationSubjectType StringError
-emailNotificationSubjectType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 140)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s]+")
-                |> Result.map EmailNotificationSubjectType
-
-        unboxFn (EmailNotificationSubjectType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The EmailNotificationBodyType data model.
--}
-type EmailNotificationBodyType
-    = EmailNotificationBodyType String
-
-
-{-| The EmailNotificationBodyType data model.
--}
-emailNotificationBodyType : Refined String EmailNotificationBodyType StringError
-emailNotificationBodyType =
-    let
-        guardFn val =
-            Refined.minLength 6 val
-                |> Result.andThen (Refined.maxLength 20000)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\s*]+")
-                |> Result.map EmailNotificationBodyType
-
-        unboxFn (EmailNotificationBodyType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The EmailConfigurationType data model.
 -}
 type alias EmailConfigurationType =
     { emailSendingAccount : Maybe EmailSendingAccountType
-    , replyToEmailAddress : Maybe EmailAddressType
-    , sourceArn : Maybe ArnType
+    , replyToEmailAddress : Maybe String
+    , sourceArn : Maybe String
     }
-
-
-{-| The EmailAddressType data model.
--}
-type EmailAddressType
-    = EmailAddressType String
-
-
-{-| The EmailAddressType data model.
--}
-emailAddressType : Refined String EmailAddressType StringError
-emailAddressType =
-    let
-        guardFn val =
-            Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+@[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+" val
-                |> Result.map EmailAddressType
-
-        unboxFn (EmailAddressType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The DomainVersionType data model.
--}
-type DomainVersionType
-    = DomainVersionType String
-
-
-{-| The DomainVersionType data model.
--}
-domainVersionType : Refined String DomainVersionType StringError
-domainVersionType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 20) |> Result.map DomainVersionType
-
-        unboxFn (DomainVersionType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The DomainType data model.
--}
-type DomainType
-    = DomainType String
-
-
-{-| The DomainType data model.
--}
-domainType : Refined String DomainType StringError
-domainType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 63)
-                |> Result.andThen (Refined.regexMatch "^[a-z0-9](?:[a-z0-9\\-]{0,61}[a-z0-9])?$")
-                |> Result.map DomainType
-
-        unboxFn (DomainType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The DomainStatusType data model.
@@ -6185,14 +4935,14 @@ domainStatusType =
 {-| The DomainDescriptionType data model.
 -}
 type alias DomainDescriptionType =
-    { awsaccountId : Maybe AwsaccountIdType
-    , cloudFrontDistribution : Maybe StringType
+    { awsaccountId : Maybe String
+    , cloudFrontDistribution : Maybe String
     , customDomainConfig : Maybe CustomDomainConfigType
-    , domain : Maybe DomainType
-    , s3Bucket : Maybe S3BucketType
+    , domain : Maybe String
+    , s3Bucket : Maybe String
     , status : Maybe DomainStatusType
-    , userPoolId : Maybe UserPoolIdType
-    , version : Maybe DomainVersionType
+    , userPoolId : Maybe String
+    , version : Maybe String
     }
 
 
@@ -6200,17 +4950,17 @@ type alias DomainDescriptionType =
 -}
 type alias DeviceType =
     { deviceAttributes : Maybe AttributeListType
-    , deviceCreateDate : Maybe DateType
-    , deviceKey : Maybe DeviceKeyType
-    , deviceLastAuthenticatedDate : Maybe DateType
-    , deviceLastModifiedDate : Maybe DateType
+    , deviceCreateDate : Maybe String
+    , deviceKey : Maybe String
+    , deviceLastAuthenticatedDate : Maybe String
+    , deviceLastModifiedDate : Maybe String
     }
 
 
 {-| The DeviceSecretVerifierConfigType data model.
 -}
 type alias DeviceSecretVerifierConfigType =
-    { passwordVerifier : Maybe StringType, salt : Maybe StringType }
+    { passwordVerifier : Maybe String, salt : Maybe String }
 
 
 {-| The DeviceRememberedStatusType data model.
@@ -6236,79 +4986,16 @@ deviceRememberedStatusType =
         )
 
 
-{-| The DeviceNameType data model.
--}
-type DeviceNameType
-    = DeviceNameType String
-
-
-{-| The DeviceNameType data model.
--}
-deviceNameType : Refined String DeviceNameType StringError
-deviceNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 1024) |> Result.map DeviceNameType
-
-        unboxFn (DeviceNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The DeviceListType data model.
 -}
 type alias DeviceListType =
     List DeviceType
 
 
-{-| The DeviceKeyType data model.
--}
-type DeviceKeyType
-    = DeviceKeyType String
-
-
-{-| The DeviceKeyType data model.
--}
-deviceKeyType : Refined String DeviceKeyType StringError
-deviceKeyType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 55)
-                |> Result.andThen (Refined.regexMatch "[\\w-]+_[0-9a-f-]+")
-                |> Result.map DeviceKeyType
-
-        unboxFn (DeviceKeyType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The DeviceConfigurationType data model.
 -}
 type alias DeviceConfigurationType =
-    { challengeRequiredOnNewDevice : Maybe BooleanType, deviceOnlyRememberedOnUserPrompt : Maybe BooleanType }
-
-
-{-| The DescriptionType data model.
--}
-type DescriptionType
-    = DescriptionType String
-
-
-{-| The DescriptionType data model.
--}
-descriptionType : Refined String DescriptionType StringError
-descriptionType =
-    let
-        guardFn val =
-            Refined.maxLength 2048 val |> Result.map DescriptionType
-
-        unboxFn (DescriptionType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { challengeRequiredOnNewDevice : Maybe Bool, deviceOnlyRememberedOnUserPrompt : Maybe Bool }
 
 
 {-| The DescribeUserPoolResponse data model.
@@ -6320,7 +5007,7 @@ type alias DescribeUserPoolResponse =
 {-| The DescribeUserPoolRequest data model.
 -}
 type alias DescribeUserPoolRequest =
-    { userPoolId : UserPoolIdType }
+    { userPoolId : String }
 
 
 {-| The DescribeUserPoolDomainResponse data model.
@@ -6332,7 +5019,7 @@ type alias DescribeUserPoolDomainResponse =
 {-| The DescribeUserPoolDomainRequest data model.
 -}
 type alias DescribeUserPoolDomainRequest =
-    { domain : DomainType }
+    { domain : String }
 
 
 {-| The DescribeUserPoolClientResponse data model.
@@ -6344,7 +5031,7 @@ type alias DescribeUserPoolClientResponse =
 {-| The DescribeUserPoolClientRequest data model.
 -}
 type alias DescribeUserPoolClientRequest =
-    { clientId : ClientIdType, userPoolId : UserPoolIdType }
+    { clientId : String, userPoolId : String }
 
 
 {-| The DescribeUserImportJobResponse data model.
@@ -6356,7 +5043,7 @@ type alias DescribeUserImportJobResponse =
 {-| The DescribeUserImportJobRequest data model.
 -}
 type alias DescribeUserImportJobRequest =
-    { jobId : UserImportJobIdType, userPoolId : UserPoolIdType }
+    { jobId : String, userPoolId : String }
 
 
 {-| The DescribeRiskConfigurationResponse data model.
@@ -6368,7 +5055,7 @@ type alias DescribeRiskConfigurationResponse =
 {-| The DescribeRiskConfigurationRequest data model.
 -}
 type alias DescribeRiskConfigurationRequest =
-    { clientId : Maybe ClientIdType, userPoolId : UserPoolIdType }
+    { clientId : Maybe String, userPoolId : String }
 
 
 {-| The DescribeResourceServerResponse data model.
@@ -6380,7 +5067,7 @@ type alias DescribeResourceServerResponse =
 {-| The DescribeResourceServerRequest data model.
 -}
 type alias DescribeResourceServerRequest =
-    { identifier : ResourceServerIdentifierType, userPoolId : UserPoolIdType }
+    { identifier : String, userPoolId : String }
 
 
 {-| The DescribeIdentityProviderResponse data model.
@@ -6392,7 +5079,7 @@ type alias DescribeIdentityProviderResponse =
 {-| The DescribeIdentityProviderRequest data model.
 -}
 type alias DescribeIdentityProviderRequest =
-    { providerName : ProviderNameType, userPoolId : UserPoolIdType }
+    { providerName : String, userPoolId : String }
 
 
 {-| The DeliveryMediumType data model.
@@ -6427,13 +5114,13 @@ type alias DeliveryMediumListType =
 {-| The DeleteUserRequest data model.
 -}
 type alias DeleteUserRequest =
-    { accessToken : TokenModelType }
+    { accessToken : String }
 
 
 {-| The DeleteUserPoolRequest data model.
 -}
 type alias DeleteUserPoolRequest =
-    { userPoolId : UserPoolIdType }
+    { userPoolId : String }
 
 
 {-| The DeleteUserPoolDomainResponse data model.
@@ -6445,13 +5132,13 @@ type alias DeleteUserPoolDomainResponse =
 {-| The DeleteUserPoolDomainRequest data model.
 -}
 type alias DeleteUserPoolDomainRequest =
-    { domain : DomainType, userPoolId : UserPoolIdType }
+    { domain : String, userPoolId : String }
 
 
 {-| The DeleteUserPoolClientRequest data model.
 -}
 type alias DeleteUserPoolClientRequest =
-    { clientId : ClientIdType, userPoolId : UserPoolIdType }
+    { clientId : String, userPoolId : String }
 
 
 {-| The DeleteUserAttributesResponse data model.
@@ -6463,25 +5150,25 @@ type alias DeleteUserAttributesResponse =
 {-| The DeleteUserAttributesRequest data model.
 -}
 type alias DeleteUserAttributesRequest =
-    { accessToken : TokenModelType, userAttributeNames : AttributeNameListType }
+    { accessToken : String, userAttributeNames : AttributeNameListType }
 
 
 {-| The DeleteResourceServerRequest data model.
 -}
 type alias DeleteResourceServerRequest =
-    { identifier : ResourceServerIdentifierType, userPoolId : UserPoolIdType }
+    { identifier : String, userPoolId : String }
 
 
 {-| The DeleteIdentityProviderRequest data model.
 -}
 type alias DeleteIdentityProviderRequest =
-    { providerName : ProviderNameType, userPoolId : UserPoolIdType }
+    { providerName : String, userPoolId : String }
 
 
 {-| The DeleteGroupRequest data model.
 -}
 type alias DeleteGroupRequest =
-    { groupName : GroupNameType, userPoolId : UserPoolIdType }
+    { groupName : String, userPoolId : String }
 
 
 {-| The DefaultEmailOptionType data model.
@@ -6507,45 +5194,16 @@ defaultEmailOptionType =
         )
 
 
-{-| The DateType data model.
--}
-type alias DateType =
-    String
-
-
 {-| The CustomDomainConfigType data model.
 -}
 type alias CustomDomainConfigType =
-    { certificateArn : ArnType }
+    { certificateArn : String }
 
 
 {-| The CustomAttributesListType data model.
 -}
 type alias CustomAttributesListType =
     List SchemaAttributeType
-
-
-{-| The CustomAttributeNameType data model.
--}
-type CustomAttributeNameType
-    = CustomAttributeNameType String
-
-
-{-| The CustomAttributeNameType data model.
--}
-customAttributeNameType : Refined String CustomAttributeNameType StringError
-customAttributeNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 20)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map CustomAttributeNameType
-
-        unboxFn (CustomAttributeNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The CreateUserPoolResponse data model.
@@ -6562,16 +5220,16 @@ type alias CreateUserPoolRequest =
     , autoVerifiedAttributes : Maybe VerifiedAttributesListType
     , deviceConfiguration : Maybe DeviceConfigurationType
     , emailConfiguration : Maybe EmailConfigurationType
-    , emailVerificationMessage : Maybe EmailVerificationMessageType
-    , emailVerificationSubject : Maybe EmailVerificationSubjectType
+    , emailVerificationMessage : Maybe String
+    , emailVerificationSubject : Maybe String
     , lambdaConfig : Maybe LambdaConfigType
     , mfaConfiguration : Maybe UserPoolMfaType
     , policies : Maybe UserPoolPolicyType
-    , poolName : UserPoolNameType
+    , poolName : String
     , schema : Maybe SchemaAttributesListType
-    , smsAuthenticationMessage : Maybe SmsVerificationMessageType
+    , smsAuthenticationMessage : Maybe String
     , smsConfiguration : Maybe SmsConfigurationType
-    , smsVerificationMessage : Maybe SmsVerificationMessageType
+    , smsVerificationMessage : Maybe String
     , userPoolAddOns : Maybe UserPoolAddOnsType
     , userPoolTags : Maybe UserPoolTagsType
     , usernameAttributes : Maybe UsernameAttributesListType
@@ -6582,13 +5240,13 @@ type alias CreateUserPoolRequest =
 {-| The CreateUserPoolDomainResponse data model.
 -}
 type alias CreateUserPoolDomainResponse =
-    { cloudFrontDomain : Maybe DomainType }
+    { cloudFrontDomain : Maybe String }
 
 
 {-| The CreateUserPoolDomainRequest data model.
 -}
 type alias CreateUserPoolDomainRequest =
-    { customDomainConfig : Maybe CustomDomainConfigType, domain : DomainType, userPoolId : UserPoolIdType }
+    { customDomainConfig : Maybe CustomDomainConfigType, domain : String, userPoolId : String }
 
 
 {-| The CreateUserPoolClientResponse data model.
@@ -6601,19 +5259,19 @@ type alias CreateUserPoolClientResponse =
 -}
 type alias CreateUserPoolClientRequest =
     { allowedOauthFlows : Maybe OauthFlowsType
-    , allowedOauthFlowsUserPoolClient : Maybe BooleanType
+    , allowedOauthFlowsUserPoolClient : Maybe Bool
     , allowedOauthScopes : Maybe ScopeListType
     , analyticsConfiguration : Maybe AnalyticsConfigurationType
     , callbackUrls : Maybe CallbackUrlsListType
-    , clientName : ClientNameType
-    , defaultRedirectUri : Maybe RedirectUrlType
+    , clientName : String
+    , defaultRedirectUri : Maybe String
     , explicitAuthFlows : Maybe ExplicitAuthFlowsListType
-    , generateSecret : Maybe GenerateSecret
+    , generateSecret : Maybe Bool
     , logoutUrls : Maybe LogoutUrlsListType
     , readAttributes : Maybe ClientPermissionListType
-    , refreshTokenValidity : Maybe RefreshTokenValidityType
+    , refreshTokenValidity : Maybe Int
     , supportedIdentityProviders : Maybe SupportedIdentityProvidersListType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     , writeAttributes : Maybe ClientPermissionListType
     }
 
@@ -6627,7 +5285,7 @@ type alias CreateUserImportJobResponse =
 {-| The CreateUserImportJobRequest data model.
 -}
 type alias CreateUserImportJobRequest =
-    { cloudWatchLogsRoleArn : ArnType, jobName : UserImportJobNameType, userPoolId : UserPoolIdType }
+    { cloudWatchLogsRoleArn : String, jobName : String, userPoolId : String }
 
 
 {-| The CreateResourceServerResponse data model.
@@ -6639,11 +5297,7 @@ type alias CreateResourceServerResponse =
 {-| The CreateResourceServerRequest data model.
 -}
 type alias CreateResourceServerRequest =
-    { identifier : ResourceServerIdentifierType
-    , name : ResourceServerNameType
-    , scopes : Maybe ResourceServerScopeListType
-    , userPoolId : UserPoolIdType
-    }
+    { identifier : String, name : String, scopes : Maybe ResourceServerScopeListType, userPoolId : String }
 
 
 {-| The CreateIdentityProviderResponse data model.
@@ -6658,9 +5312,9 @@ type alias CreateIdentityProviderRequest =
     { attributeMapping : Maybe AttributeMappingType
     , idpIdentifiers : Maybe IdpIdentifiersListType
     , providerDetails : ProviderDetailsType
-    , providerName : ProviderNameTypeV1
+    , providerName : String
     , providerType : IdentityProviderTypeType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     }
 
 
@@ -6673,46 +5327,23 @@ type alias CreateGroupResponse =
 {-| The CreateGroupRequest data model.
 -}
 type alias CreateGroupRequest =
-    { description : Maybe DescriptionType
-    , groupName : GroupNameType
-    , precedence : Maybe PrecedenceType
-    , roleArn : Maybe ArnType
-    , userPoolId : UserPoolIdType
+    { description : Maybe String
+    , groupName : String
+    , precedence : Maybe Int
+    , roleArn : Maybe String
+    , userPoolId : String
     }
 
 
 {-| The ContextDataType data model.
 -}
 type alias ContextDataType =
-    { encodedData : Maybe StringType
+    { encodedData : Maybe String
     , httpHeaders : HttpHeaderList
-    , ipAddress : StringType
-    , serverName : StringType
-    , serverPath : StringType
+    , ipAddress : String
+    , serverName : String
+    , serverPath : String
     }
-
-
-{-| The ConfirmationCodeType data model.
--}
-type ConfirmationCodeType
-    = ConfirmationCodeType String
-
-
-{-| The ConfirmationCodeType data model.
--}
-confirmationCodeType : Refined String ConfirmationCodeType StringError
-confirmationCodeType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 2048)
-                |> Result.andThen (Refined.regexMatch "[\\S]+")
-                |> Result.map ConfirmationCodeType
-
-        unboxFn (ConfirmationCodeType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
 
 
 {-| The ConfirmSignUpResponse data model.
@@ -6725,12 +5356,12 @@ type alias ConfirmSignUpResponse =
 -}
 type alias ConfirmSignUpRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
-    , clientId : ClientIdType
-    , confirmationCode : ConfirmationCodeType
-    , forceAliasCreation : Maybe ForceAliasCreation
-    , secretHash : Maybe SecretHashType
+    , clientId : String
+    , confirmationCode : String
+    , forceAliasCreation : Maybe Bool
+    , secretHash : Maybe String
     , userContextData : Maybe UserContextDataType
-    , username : UsernameType
+    , username : String
     }
 
 
@@ -6744,27 +5375,27 @@ type alias ConfirmForgotPasswordResponse =
 -}
 type alias ConfirmForgotPasswordRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
-    , clientId : ClientIdType
-    , confirmationCode : ConfirmationCodeType
-    , password : PasswordType
-    , secretHash : Maybe SecretHashType
+    , clientId : String
+    , confirmationCode : String
+    , password : String
+    , secretHash : Maybe String
     , userContextData : Maybe UserContextDataType
-    , username : UsernameType
+    , username : String
     }
 
 
 {-| The ConfirmDeviceResponse data model.
 -}
 type alias ConfirmDeviceResponse =
-    { userConfirmationNecessary : Maybe BooleanType }
+    { userConfirmationNecessary : Maybe Bool }
 
 
 {-| The ConfirmDeviceRequest data model.
 -}
 type alias ConfirmDeviceRequest =
-    { accessToken : TokenModelType
-    , deviceKey : DeviceKeyType
-    , deviceName : Maybe DeviceNameType
+    { accessToken : String
+    , deviceKey : String
+    , deviceName : Maybe String
     , deviceSecretVerifierConfig : Maybe DeviceSecretVerifierConfigType
     }
 
@@ -6804,36 +5435,10 @@ type alias CompromisedCredentialsActionsType =
     { eventAction : CompromisedCredentialsEventActionType }
 
 
-{-| The CompletionMessageType data model.
--}
-type CompletionMessageType
-    = CompletionMessageType String
-
-
-{-| The CompletionMessageType data model.
--}
-completionMessageType : Refined String CompletionMessageType StringError
-completionMessageType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w]+")
-                |> Result.map CompletionMessageType
-
-        unboxFn (CompletionMessageType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The CodeDeliveryDetailsType data model.
 -}
 type alias CodeDeliveryDetailsType =
-    { attributeName : Maybe AttributeNameType
-    , deliveryMedium : Maybe DeliveryMediumType
-    , destination : Maybe StringType
-    }
+    { attributeName : Maybe String, deliveryMedium : Maybe DeliveryMediumType, destination : Maybe String }
 
 
 {-| The CodeDeliveryDetailsListType data model.
@@ -6842,105 +5447,16 @@ type alias CodeDeliveryDetailsListType =
     List CodeDeliveryDetailsType
 
 
-{-| The ClientSecretType data model.
--}
-type ClientSecretType
-    = ClientSecretType String
-
-
-{-| The ClientSecretType data model.
--}
-clientSecretType : Refined String ClientSecretType StringError
-clientSecretType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 64)
-                |> Result.andThen (Refined.regexMatch "[\\w+]+")
-                |> Result.map ClientSecretType
-
-        unboxFn (ClientSecretType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
-{-| The ClientPermissionType data model.
--}
-type ClientPermissionType
-    = ClientPermissionType String
-
-
-{-| The ClientPermissionType data model.
--}
-clientPermissionType : Refined String ClientPermissionType StringError
-clientPermissionType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 2048) |> Result.map ClientPermissionType
-
-        unboxFn (ClientPermissionType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The ClientPermissionListType data model.
 -}
 type alias ClientPermissionListType =
-    List ClientPermissionType
-
-
-{-| The ClientNameType data model.
--}
-type ClientNameType
-    = ClientNameType String
-
-
-{-| The ClientNameType data model.
--}
-clientNameType : Refined String ClientNameType StringError
-clientNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w\\s+=,.@-]+")
-                |> Result.map ClientNameType
-
-        unboxFn (ClientNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    List String
 
 
 {-| The ClientMetadataType data model.
 -}
 type alias ClientMetadataType =
-    Dict StringType StringType
-
-
-{-| The ClientIdType data model.
--}
-type ClientIdType
-    = ClientIdType String
-
-
-{-| The ClientIdType data model.
--}
-clientIdType : Refined String ClientIdType StringError
-clientIdType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 128)
-                |> Result.andThen (Refined.regexMatch "[\\w+]+")
-                |> Result.map ClientIdType
-
-        unboxFn (ClientIdType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    Dict String String
 
 
 {-| The ChangePasswordResponse data model.
@@ -6952,13 +5468,13 @@ type alias ChangePasswordResponse =
 {-| The ChangePasswordRequest data model.
 -}
 type alias ChangePasswordRequest =
-    { accessToken : TokenModelType, previousPassword : PasswordType, proposedPassword : PasswordType }
+    { accessToken : String, previousPassword : String, proposedPassword : String }
 
 
 {-| The ChallengeResponsesType data model.
 -}
 type alias ChallengeResponsesType =
-    Dict StringType StringType
+    Dict String String
 
 
 {-| The ChallengeResponseType data model.
@@ -6999,7 +5515,7 @@ challengeResponse =
 {-| The ChallengeParametersType data model.
 -}
 type alias ChallengeParametersType =
-    Dict StringType StringType
+    Dict String String
 
 
 {-| The ChallengeNameType data model.
@@ -7093,49 +5609,31 @@ challengeName =
 {-| The CallbackUrlsListType data model.
 -}
 type alias CallbackUrlsListType =
-    List RedirectUrlType
-
-
-{-| The CssversionType data model.
--}
-type alias CssversionType =
-    String
-
-
-{-| The Csstype data model.
--}
-type alias Csstype =
-    String
-
-
-{-| The BooleanType data model.
--}
-type alias BooleanType =
-    Bool
+    List String
 
 
 {-| The BlockedIprangeListType data model.
 -}
 type alias BlockedIprangeListType =
-    List StringType
+    List String
 
 
 {-| The AuthenticationResultType data model.
 -}
 type alias AuthenticationResultType =
-    { accessToken : Maybe TokenModelType
-    , expiresIn : Maybe IntegerType
-    , idToken : Maybe TokenModelType
+    { accessToken : Maybe String
+    , expiresIn : Maybe Int
+    , idToken : Maybe String
     , newDeviceMetadata : Maybe NewDeviceMetadataType
-    , refreshToken : Maybe TokenModelType
-    , tokenType : Maybe StringType
+    , refreshToken : Maybe String
+    , tokenType : Maybe String
     }
 
 
 {-| The AuthParametersType data model.
 -}
 type alias AuthParametersType =
-    Dict StringType StringType
+    Dict String String
 
 
 {-| The AuthFlowType data model.
@@ -7193,95 +5691,32 @@ type alias AuthEventsType =
 -}
 type alias AuthEventType =
     { challengeResponses : Maybe ChallengeResponseListType
-    , creationDate : Maybe DateType
+    , creationDate : Maybe String
     , eventContextData : Maybe EventContextDataType
     , eventFeedback : Maybe EventFeedbackType
-    , eventId : Maybe StringType
+    , eventId : Maybe String
     , eventResponse : Maybe EventResponseType
     , eventRisk : Maybe EventRiskType
     , eventType : Maybe EventType
     }
 
 
-{-| The AttributeValueType data model.
--}
-type AttributeValueType
-    = AttributeValueType String
-
-
-{-| The AttributeValueType data model.
--}
-attributeValueType : Refined String AttributeValueType StringError
-attributeValueType =
-    let
-        guardFn val =
-            Refined.maxLength 2048 val |> Result.map AttributeValueType
-
-        unboxFn (AttributeValueType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
-
-
 {-| The AttributeType data model.
 -}
 type alias AttributeType =
-    { name : AttributeNameType, value : Maybe AttributeValueType }
-
-
-{-| The AttributeNameType data model.
--}
-type AttributeNameType
-    = AttributeNameType String
-
-
-{-| The AttributeNameType data model.
--}
-attributeNameType : Refined String AttributeNameType StringError
-attributeNameType =
-    let
-        guardFn val =
-            Refined.minLength 1 val
-                |> Result.andThen (Refined.maxLength 32)
-                |> Result.andThen (Refined.regexMatch "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+")
-                |> Result.map AttributeNameType
-
-        unboxFn (AttributeNameType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { name : String, value : Maybe String }
 
 
 {-| The AttributeNameListType data model.
 -}
 type alias AttributeNameListType =
-    List AttributeNameType
+    List String
 
 
 {-| The AttributeMappingType data model.
 -}
 type alias AttributeMappingType =
-    Dict.Refined.Dict String AttributeMappingKeyType StringType
-
-
-{-| The AttributeMappingKeyType data model.
--}
-type AttributeMappingKeyType
-    = AttributeMappingKeyType String
-
-
-{-| The AttributeMappingKeyType data model.
--}
-attributeMappingKeyType : Refined String AttributeMappingKeyType StringError
-attributeMappingKeyType =
-    let
-        guardFn val =
-            Refined.minLength 1 val |> Result.andThen (Refined.maxLength 32) |> Result.map AttributeMappingKeyType
-
-        unboxFn (AttributeMappingKeyType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    Dict String String
 
 
 {-| The AttributeListType data model.
@@ -7324,51 +5759,25 @@ attributeDataType =
 {-| The AssociateSoftwareTokenResponse data model.
 -}
 type alias AssociateSoftwareTokenResponse =
-    { secretCode : Maybe SecretCodeType, session : Maybe SessionType }
+    { secretCode : Maybe String, session : Maybe String }
 
 
 {-| The AssociateSoftwareTokenRequest data model.
 -}
 type alias AssociateSoftwareTokenRequest =
-    { accessToken : Maybe TokenModelType, session : Maybe SessionType }
-
-
-{-| The ArnType data model.
--}
-type ArnType
-    = ArnType String
-
-
-{-| The ArnType data model.
--}
-arnType : Refined String ArnType StringError
-arnType =
-    let
-        guardFn val =
-            Refined.minLength 20 val
-                |> Result.andThen (Refined.maxLength 2048)
-                |> Result.andThen
-                    (Refined.regexMatch
-                        "arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:([\\w+=/,.@-]*)?:[0-9]+:[\\w+=/,.@-]+(:[\\w+=/,.@-]+)?(:[\\w+=/,.@-]+)?"
-                    )
-                |> Result.map ArnType
-
-        unboxFn (ArnType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.string Json.Encode.string Refined.stringErrorToString unboxFn
+    { accessToken : Maybe String, session : Maybe String }
 
 
 {-| The AnalyticsMetadataType data model.
 -}
 type alias AnalyticsMetadataType =
-    { analyticsEndpointId : Maybe StringType }
+    { analyticsEndpointId : Maybe String }
 
 
 {-| The AnalyticsConfigurationType data model.
 -}
 type alias AnalyticsConfigurationType =
-    { applicationId : HexStringType, externalId : StringType, roleArn : ArnType, userDataShared : Maybe BooleanType }
+    { applicationId : String, externalId : String, roleArn : String, userDataShared : Maybe Bool }
 
 
 {-| The AliasAttributesListType data model.
@@ -7440,7 +5849,7 @@ type alias AdminUserGlobalSignOutResponse =
 {-| The AdminUserGlobalSignOutRequest data model.
 -}
 type alias AdminUserGlobalSignOutRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminUpdateUserAttributesResponse data model.
@@ -7452,7 +5861,7 @@ type alias AdminUpdateUserAttributesResponse =
 {-| The AdminUpdateUserAttributesRequest data model.
 -}
 type alias AdminUpdateUserAttributesRequest =
-    { userAttributes : AttributeListType, userPoolId : UserPoolIdType, username : UsernameType }
+    { userAttributes : AttributeListType, userPoolId : String, username : String }
 
 
 {-| The AdminUpdateDeviceStatusResponse data model.
@@ -7464,10 +5873,10 @@ type alias AdminUpdateDeviceStatusResponse =
 {-| The AdminUpdateDeviceStatusRequest data model.
 -}
 type alias AdminUpdateDeviceStatusRequest =
-    { deviceKey : DeviceKeyType
+    { deviceKey : String
     , deviceRememberedStatus : Maybe DeviceRememberedStatusType
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
+    , userPoolId : String
+    , username : String
     }
 
 
@@ -7480,7 +5889,7 @@ type alias AdminUpdateAuthEventFeedbackResponse =
 {-| The AdminUpdateAuthEventFeedbackRequest data model.
 -}
 type alias AdminUpdateAuthEventFeedbackRequest =
-    { eventId : EventIdType, feedbackValue : FeedbackValueType, userPoolId : UserPoolIdType, username : UsernameType }
+    { eventId : String, feedbackValue : FeedbackValueType, userPoolId : String, username : String }
 
 
 {-| The AdminSetUserSettingsResponse data model.
@@ -7492,7 +5901,7 @@ type alias AdminSetUserSettingsResponse =
 {-| The AdminSetUserSettingsRequest data model.
 -}
 type alias AdminSetUserSettingsRequest =
-    { mfaoptions : MfaoptionListType, userPoolId : UserPoolIdType, username : UsernameType }
+    { mfaoptions : MfaoptionListType, userPoolId : String, username : String }
 
 
 {-| The AdminSetUserPasswordResponse data model.
@@ -7504,7 +5913,7 @@ type alias AdminSetUserPasswordResponse =
 {-| The AdminSetUserPasswordRequest data model.
 -}
 type alias AdminSetUserPasswordRequest =
-    { password : PasswordType, permanent : Maybe BooleanType, userPoolId : UserPoolIdType, username : UsernameType }
+    { password : String, permanent : Maybe Bool, userPoolId : String, username : String }
 
 
 {-| The AdminSetUserMfapreferenceResponse data model.
@@ -7518,8 +5927,8 @@ type alias AdminSetUserMfapreferenceResponse =
 type alias AdminSetUserMfapreferenceRequest =
     { smsmfaSettings : Maybe SmsmfaSettingsType
     , softwareTokenMfaSettings : Maybe SoftwareTokenMfaSettingsType
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
+    , userPoolId : String
+    , username : String
     }
 
 
@@ -7529,7 +5938,7 @@ type alias AdminRespondToAuthChallengeResponse =
     { authenticationResult : Maybe AuthenticationResultType
     , challengeName : Maybe ChallengeNameType
     , challengeParameters : Maybe ChallengeParametersType
-    , session : Maybe SessionType
+    , session : Maybe String
     }
 
 
@@ -7539,10 +5948,10 @@ type alias AdminRespondToAuthChallengeRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
     , challengeName : ChallengeNameType
     , challengeResponses : Maybe ChallengeResponsesType
-    , clientId : ClientIdType
+    , clientId : String
     , contextData : Maybe ContextDataType
-    , session : Maybe SessionType
-    , userPoolId : UserPoolIdType
+    , session : Maybe String
+    , userPoolId : String
     }
 
 
@@ -7555,61 +5964,49 @@ type alias AdminResetUserPasswordResponse =
 {-| The AdminResetUserPasswordRequest data model.
 -}
 type alias AdminResetUserPasswordRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminRemoveUserFromGroupRequest data model.
 -}
 type alias AdminRemoveUserFromGroupRequest =
-    { groupName : GroupNameType, userPoolId : UserPoolIdType, username : UsernameType }
+    { groupName : String, userPoolId : String, username : String }
 
 
 {-| The AdminListUserAuthEventsResponse data model.
 -}
 type alias AdminListUserAuthEventsResponse =
-    { authEvents : Maybe AuthEventsType, nextToken : Maybe PaginationKey }
+    { authEvents : Maybe AuthEventsType, nextToken : Maybe String }
 
 
 {-| The AdminListUserAuthEventsRequest data model.
 -}
 type alias AdminListUserAuthEventsRequest =
-    { maxResults : Maybe QueryLimitType
-    , nextToken : Maybe PaginationKey
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
-    }
+    { maxResults : Maybe Int, nextToken : Maybe String, userPoolId : String, username : String }
 
 
 {-| The AdminListGroupsForUserResponse data model.
 -}
 type alias AdminListGroupsForUserResponse =
-    { groups : Maybe GroupListType, nextToken : Maybe PaginationKey }
+    { groups : Maybe GroupListType, nextToken : Maybe String }
 
 
 {-| The AdminListGroupsForUserRequest data model.
 -}
 type alias AdminListGroupsForUserRequest =
-    { limit : Maybe QueryLimitType
-    , nextToken : Maybe PaginationKey
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
-    }
+    { limit : Maybe Int, nextToken : Maybe String, userPoolId : String, username : String }
 
 
 {-| The AdminListDevicesResponse data model.
 -}
 type alias AdminListDevicesResponse =
-    { devices : Maybe DeviceListType, paginationToken : Maybe SearchPaginationTokenType }
+    { devices : Maybe DeviceListType, paginationToken : Maybe String }
 
 
 {-| The AdminListDevicesRequest data model.
 -}
 type alias AdminListDevicesRequest =
-    { limit : Maybe QueryLimitType
-    , paginationToken : Maybe SearchPaginationTokenType
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
-    }
+    { limit : Maybe Int, paginationToken : Maybe String, userPoolId : String, username : String }
 
 
 {-| The AdminLinkProviderForUserResponse data model.
@@ -7621,7 +6018,7 @@ type alias AdminLinkProviderForUserResponse =
 {-| The AdminLinkProviderForUserRequest data model.
 -}
 type alias AdminLinkProviderForUserRequest =
-    { destinationUser : ProviderUserIdentifierType, sourceUser : ProviderUserIdentifierType, userPoolId : StringType }
+    { destinationUser : ProviderUserIdentifierType, sourceUser : ProviderUserIdentifierType, userPoolId : String }
 
 
 {-| The AdminInitiateAuthResponse data model.
@@ -7630,7 +6027,7 @@ type alias AdminInitiateAuthResponse =
     { authenticationResult : Maybe AuthenticationResultType
     , challengeName : Maybe ChallengeNameType
     , challengeParameters : Maybe ChallengeParametersType
-    , session : Maybe SessionType
+    , session : Maybe String
     }
 
 
@@ -7640,32 +6037,32 @@ type alias AdminInitiateAuthRequest =
     { analyticsMetadata : Maybe AnalyticsMetadataType
     , authFlow : AuthFlowType
     , authParameters : Maybe AuthParametersType
-    , clientId : ClientIdType
+    , clientId : String
     , clientMetadata : Maybe ClientMetadataType
     , contextData : Maybe ContextDataType
-    , userPoolId : UserPoolIdType
+    , userPoolId : String
     }
 
 
 {-| The AdminGetUserResponse data model.
 -}
 type alias AdminGetUserResponse =
-    { enabled : Maybe BooleanType
+    { enabled : Maybe Bool
     , mfaoptions : Maybe MfaoptionListType
-    , preferredMfaSetting : Maybe StringType
+    , preferredMfaSetting : Maybe String
     , userAttributes : Maybe AttributeListType
-    , userCreateDate : Maybe DateType
-    , userLastModifiedDate : Maybe DateType
+    , userCreateDate : Maybe String
+    , userLastModifiedDate : Maybe String
     , userMfasettingList : Maybe UserMfasettingListType
     , userStatus : Maybe UserStatusType
-    , username : UsernameType
+    , username : String
     }
 
 
 {-| The AdminGetUserRequest data model.
 -}
 type alias AdminGetUserRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminGetDeviceResponse data model.
@@ -7677,13 +6074,13 @@ type alias AdminGetDeviceResponse =
 {-| The AdminGetDeviceRequest data model.
 -}
 type alias AdminGetDeviceRequest =
-    { deviceKey : DeviceKeyType, userPoolId : UserPoolIdType, username : UsernameType }
+    { deviceKey : String, userPoolId : String, username : String }
 
 
 {-| The AdminForgetDeviceRequest data model.
 -}
 type alias AdminForgetDeviceRequest =
-    { deviceKey : DeviceKeyType, userPoolId : UserPoolIdType, username : UsernameType }
+    { deviceKey : String, userPoolId : String, username : String }
 
 
 {-| The AdminEnableUserResponse data model.
@@ -7695,7 +6092,7 @@ type alias AdminEnableUserResponse =
 {-| The AdminEnableUserRequest data model.
 -}
 type alias AdminEnableUserRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminDisableUserResponse data model.
@@ -7707,7 +6104,7 @@ type alias AdminDisableUserResponse =
 {-| The AdminDisableUserRequest data model.
 -}
 type alias AdminDisableUserRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminDisableProviderForUserResponse data model.
@@ -7719,13 +6116,13 @@ type alias AdminDisableProviderForUserResponse =
 {-| The AdminDisableProviderForUserRequest data model.
 -}
 type alias AdminDisableProviderForUserRequest =
-    { user : ProviderUserIdentifierType, userPoolId : StringType }
+    { user : ProviderUserIdentifierType, userPoolId : String }
 
 
 {-| The AdminDeleteUserRequest data model.
 -}
 type alias AdminDeleteUserRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminDeleteUserAttributesResponse data model.
@@ -7737,29 +6134,7 @@ type alias AdminDeleteUserAttributesResponse =
 {-| The AdminDeleteUserAttributesRequest data model.
 -}
 type alias AdminDeleteUserAttributesRequest =
-    { userAttributeNames : AttributeNameListType, userPoolId : UserPoolIdType, username : UsernameType }
-
-
-{-| The AdminCreateUserUnusedAccountValidityDaysType data model.
--}
-type AdminCreateUserUnusedAccountValidityDaysType
-    = AdminCreateUserUnusedAccountValidityDaysType Int
-
-
-{-| The AdminCreateUserUnusedAccountValidityDaysType data model.
--}
-adminCreateUserUnusedAccountValidityDaysType : Refined Int AdminCreateUserUnusedAccountValidityDaysType IntError
-adminCreateUserUnusedAccountValidityDaysType =
-    let
-        guardFn val =
-            Refined.gte 0 val
-                |> Result.andThen (Refined.lte 365)
-                |> Result.map AdminCreateUserUnusedAccountValidityDaysType
-
-        unboxFn (AdminCreateUserUnusedAccountValidityDaysType val) =
-            val
-    in
-    Refined.define guardFn Json.Decode.int Json.Encode.int Refined.intErrorToString unboxFn
+    { userAttributeNames : AttributeNameListType, userPoolId : String, username : String }
 
 
 {-| The AdminCreateUserResponse data model.
@@ -7772,12 +6147,12 @@ type alias AdminCreateUserResponse =
 -}
 type alias AdminCreateUserRequest =
     { desiredDeliveryMediums : Maybe DeliveryMediumListType
-    , forceAliasCreation : Maybe ForceAliasCreation
+    , forceAliasCreation : Maybe Bool
     , messageAction : Maybe MessageActionType
-    , temporaryPassword : Maybe PasswordType
+    , temporaryPassword : Maybe String
     , userAttributes : Maybe AttributeListType
-    , userPoolId : UserPoolIdType
-    , username : UsernameType
+    , userPoolId : String
+    , username : String
     , validationData : Maybe AttributeListType
     }
 
@@ -7785,9 +6160,9 @@ type alias AdminCreateUserRequest =
 {-| The AdminCreateUserConfigType data model.
 -}
 type alias AdminCreateUserConfigType =
-    { allowAdminCreateUserOnly : Maybe BooleanType
+    { allowAdminCreateUserOnly : Maybe Bool
     , inviteMessageTemplate : Maybe MessageTemplateType
-    , unusedAccountValidityDays : Maybe AdminCreateUserUnusedAccountValidityDaysType
+    , unusedAccountValidityDays : Maybe Int
     }
 
 
@@ -7800,13 +6175,13 @@ type alias AdminConfirmSignUpResponse =
 {-| The AdminConfirmSignUpRequest data model.
 -}
 type alias AdminConfirmSignUpRequest =
-    { userPoolId : UserPoolIdType, username : UsernameType }
+    { userPoolId : String, username : String }
 
 
 {-| The AdminAddUserToGroupRequest data model.
 -}
 type alias AdminAddUserToGroupRequest =
-    { groupName : GroupNameType, userPoolId : UserPoolIdType, username : UsernameType }
+    { groupName : String, userPoolId : String, username : String }
 
 
 {-| The AddCustomAttributesResponse data model.
@@ -7818,7 +6193,7 @@ type alias AddCustomAttributesResponse =
 {-| The AddCustomAttributesRequest data model.
 -}
 type alias AddCustomAttributesRequest =
-    { customAttributes : CustomAttributesListType, userPoolId : UserPoolIdType }
+    { customAttributes : CustomAttributesListType, userPoolId : String }
 
 
 {-| The AccountTakeoverRiskConfigurationType data model.
@@ -7874,33 +6249,7 @@ type alias AccountTakeoverActionsType =
 {-| The AccountTakeoverActionType data model.
 -}
 type alias AccountTakeoverActionType =
-    { eventAction : AccountTakeoverEventActionType, notify : AccountTakeoverActionNotifyType }
-
-
-{-| The AccountTakeoverActionNotifyType data model.
--}
-type alias AccountTakeoverActionNotifyType =
-    Bool
-
-
-{-| The AwsaccountIdType data model.
--}
-type alias AwsaccountIdType =
-    String
-
-
-{-| Decoder for AwsaccountIdType.
--}
-awsaccountIdTypeDecoder : Decoder AwsaccountIdType
-awsaccountIdTypeDecoder =
-    Json.Decode.string
-
-
-{-| Codec for AccountTakeoverActionNotifyType.
--}
-accountTakeoverActionNotifyTypeCodec : Codec AccountTakeoverActionNotifyType
-accountTakeoverActionNotifyTypeCodec =
-    Codec.bool
+    { eventAction : AccountTakeoverEventActionType, notify : Bool }
 
 
 {-| Codec for AccountTakeoverActionType.
@@ -7909,7 +6258,7 @@ accountTakeoverActionTypeCodec : Codec AccountTakeoverActionType
 accountTakeoverActionTypeCodec =
     Codec.object AccountTakeoverActionType
         |> Codec.field "EventAction" .eventAction accountTakeoverEventActionTypeCodec
-        |> Codec.field "Notify" .notify accountTakeoverActionNotifyTypeCodec
+        |> Codec.field "Notify" .notify Codec.bool
         |> Codec.buildObject
 
 
@@ -7946,22 +6295,10 @@ accountTakeoverRiskConfigurationTypeCodec =
 adminCreateUserConfigTypeCodec : Codec AdminCreateUserConfigType
 adminCreateUserConfigTypeCodec =
     Codec.object AdminCreateUserConfigType
-        |> Codec.optionalField "AllowAdminCreateUserOnly" .allowAdminCreateUserOnly booleanTypeCodec
+        |> Codec.optionalField "AllowAdminCreateUserOnly" .allowAdminCreateUserOnly Codec.bool
         |> Codec.optionalField "InviteMessageTemplate" .inviteMessageTemplate messageTemplateTypeCodec
-        |> Codec.optionalField
-            "UnusedAccountValidityDays"
-            .unusedAccountValidityDays
-            adminCreateUserUnusedAccountValidityDaysTypeCodec
+        |> Codec.optionalField "UnusedAccountValidityDays" .unusedAccountValidityDays Codec.int
         |> Codec.buildObject
-
-
-{-| Codec for AdminCreateUserUnusedAccountValidityDaysType.
--}
-adminCreateUserUnusedAccountValidityDaysTypeCodec : Codec AdminCreateUserUnusedAccountValidityDaysType
-adminCreateUserUnusedAccountValidityDaysTypeCodec =
-    Codec.build
-        (Refined.encoder adminCreateUserUnusedAccountValidityDaysType)
-        (Refined.decoder adminCreateUserUnusedAccountValidityDaysType)
 
 
 {-| Codec for AdvancedSecurityModeType.
@@ -7990,10 +6327,10 @@ aliasAttributesListTypeCodec =
 analyticsConfigurationTypeCodec : Codec AnalyticsConfigurationType
 analyticsConfigurationTypeCodec =
     Codec.object AnalyticsConfigurationType
-        |> Codec.field "ApplicationId" .applicationId hexStringTypeCodec
-        |> Codec.field "ExternalId" .externalId stringTypeCodec
-        |> Codec.field "RoleArn" .roleArn arnTypeCodec
-        |> Codec.optionalField "UserDataShared" .userDataShared booleanTypeCodec
+        |> Codec.field "ApplicationId" .applicationId Codec.string
+        |> Codec.field "ExternalId" .externalId Codec.string
+        |> Codec.field "RoleArn" .roleArn Codec.string
+        |> Codec.optionalField "UserDataShared" .userDataShared Codec.bool
         |> Codec.buildObject
 
 
@@ -8001,15 +6338,8 @@ analyticsConfigurationTypeCodec =
 -}
 analyticsMetadataTypeEncoder : AnalyticsMetadataType -> Value
 analyticsMetadataTypeEncoder val =
-    [ ( "AnalyticsEndpointId", val.analyticsEndpointId ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec) ]
+    [ ( "AnalyticsEndpointId", val.analyticsEndpointId ) |> EncodeOpt.optionalField Json.Encode.string ]
         |> EncodeOpt.objectMaySkip
-
-
-{-| Codec for ArnType.
--}
-arnTypeCodec : Codec ArnType
-arnTypeCodec =
-    Codec.build (Refined.encoder arnType) (Refined.decoder arnType)
 
 
 {-| Codec for AttributeDataType.
@@ -8026,34 +6356,18 @@ attributeListTypeCodec =
     Codec.list attributeTypeCodec
 
 
-{-| Codec for AttributeMappingKeyType.
--}
-attributeMappingKeyTypeCodec : Codec AttributeMappingKeyType
-attributeMappingKeyTypeCodec =
-    Codec.build (Refined.encoder attributeMappingKeyType) (Refined.decoder attributeMappingKeyType)
-
-
 {-| Codec for AttributeMappingType.
 -}
 attributeMappingTypeCodec : Codec AttributeMappingType
 attributeMappingTypeCodec =
-    Codec.build
-        (Refined.dictEncoder attributeMappingKeyType (Codec.encoder stringTypeCodec))
-        (Refined.dictDecoder attributeMappingKeyType (Codec.decoder stringTypeCodec))
+    Codec.dict Codec.string
 
 
 {-| Encoder for AttributeNameListType.
 -}
 attributeNameListTypeEncoder : AttributeNameListType -> Value
 attributeNameListTypeEncoder val =
-    Json.Encode.list (Codec.encoder attributeNameTypeCodec) val
-
-
-{-| Codec for AttributeNameType.
--}
-attributeNameTypeCodec : Codec AttributeNameType
-attributeNameTypeCodec =
-    Codec.build (Refined.encoder attributeNameType) (Refined.decoder attributeNameType)
+    Json.Encode.list Json.Encode.string val
 
 
 {-| Codec for AttributeType.
@@ -8061,16 +6375,9 @@ attributeNameTypeCodec =
 attributeTypeCodec : Codec AttributeType
 attributeTypeCodec =
     Codec.object AttributeType
-        |> Codec.field "Name" .name attributeNameTypeCodec
-        |> Codec.optionalField "Value" .value attributeValueTypeCodec
+        |> Codec.field "Name" .name Codec.string
+        |> Codec.optionalField "Value" .value Codec.string
         |> Codec.buildObject
-
-
-{-| Codec for AttributeValueType.
--}
-attributeValueTypeCodec : Codec AttributeValueType
-attributeValueTypeCodec =
-    Codec.build (Refined.encoder attributeValueType) (Refined.decoder attributeValueType)
 
 
 {-| Decoder for AuthEventType.
@@ -8079,10 +6386,10 @@ authEventTypeDecoder : Decoder AuthEventType
 authEventTypeDecoder =
     Json.Decode.succeed AuthEventType
         |> Pipeline.optional "ChallengeResponses" (Json.Decode.maybe challengeResponseListTypeDecoder) Nothing
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "EventContextData" (Json.Decode.maybe eventContextDataTypeDecoder) Nothing
         |> Pipeline.optional "EventFeedback" (Json.Decode.maybe eventFeedbackTypeDecoder) Nothing
-        |> Pipeline.optional "EventId" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+        |> Pipeline.optional "EventId" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "EventResponse" (Json.Decode.maybe eventResponseTypeDecoder) Nothing
         |> Pipeline.optional "EventRisk" (Json.Decode.maybe eventRiskTypeDecoder) Nothing
         |> Pipeline.optional "EventType" (Json.Decode.maybe eventTypeDecoder) Nothing
@@ -8106,7 +6413,7 @@ authFlowTypeEncoder =
 -}
 authParametersTypeEncoder : AuthParametersType -> Value
 authParametersTypeEncoder val =
-    Json.Encode.dict identity (Codec.encoder stringTypeCodec) val
+    Json.Encode.dict identity Json.Encode.string val
 
 
 {-| Decoder for AuthenticationResultType.
@@ -8114,47 +6421,26 @@ authParametersTypeEncoder val =
 authenticationResultTypeDecoder : Decoder AuthenticationResultType
 authenticationResultTypeDecoder =
     Json.Decode.succeed AuthenticationResultType
-        |> Pipeline.optional "AccessToken" (Json.Decode.maybe (Codec.decoder tokenModelTypeCodec)) Nothing
-        |> Pipeline.optional "ExpiresIn" (Json.Decode.maybe integerTypeDecoder) Nothing
-        |> Pipeline.optional "IdToken" (Json.Decode.maybe (Codec.decoder tokenModelTypeCodec)) Nothing
+        |> Pipeline.optional "AccessToken" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ExpiresIn" (Json.Decode.maybe Json.Decode.int) Nothing
+        |> Pipeline.optional "IdToken" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "NewDeviceMetadata" (Json.Decode.maybe newDeviceMetadataTypeDecoder) Nothing
-        |> Pipeline.optional "RefreshToken" (Json.Decode.maybe (Codec.decoder tokenModelTypeCodec)) Nothing
-        |> Pipeline.optional "TokenType" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+        |> Pipeline.optional "RefreshToken" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "TokenType" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Codec for BlockedIprangeListType.
 -}
 blockedIprangeListTypeCodec : Codec BlockedIprangeListType
 blockedIprangeListTypeCodec =
-    Codec.list stringTypeCodec
-
-
-{-| Codec for BooleanType.
--}
-booleanTypeCodec : Codec BooleanType
-booleanTypeCodec =
-    Codec.bool
-
-
-{-| Codec for Csstype.
--}
-csstypeCodec : Codec Csstype
-csstypeCodec =
-    Codec.string
-
-
-{-| Decoder for CssversionType.
--}
-cssversionTypeDecoder : Decoder CssversionType
-cssversionTypeDecoder =
-    Json.Decode.string
+    Codec.list Codec.string
 
 
 {-| Codec for CallbackUrlsListType.
 -}
 callbackUrlsListTypeCodec : Codec CallbackUrlsListType
 callbackUrlsListTypeCodec =
-    Codec.list redirectUrlTypeCodec
+    Codec.list Codec.string
 
 
 {-| Decoder for ChallengeName.
@@ -8175,7 +6461,7 @@ challengeNameTypeCodec =
 -}
 challengeParametersTypeDecoder : Decoder ChallengeParametersType
 challengeParametersTypeDecoder =
-    Json.Decode.dict (Codec.decoder stringTypeCodec)
+    Json.Decode.dict Json.Decode.string
 
 
 {-| Decoder for ChallengeResponse.
@@ -8205,49 +6491,21 @@ challengeResponseTypeDecoder =
 -}
 challengeResponsesTypeEncoder : ChallengeResponsesType -> Value
 challengeResponsesTypeEncoder val =
-    Json.Encode.dict identity (Codec.encoder stringTypeCodec) val
-
-
-{-| Codec for ClientIdType.
--}
-clientIdTypeCodec : Codec ClientIdType
-clientIdTypeCodec =
-    Codec.build (Refined.encoder clientIdType) (Refined.decoder clientIdType)
+    Json.Encode.dict identity Json.Encode.string val
 
 
 {-| Encoder for ClientMetadataType.
 -}
 clientMetadataTypeEncoder : ClientMetadataType -> Value
 clientMetadataTypeEncoder val =
-    Json.Encode.dict identity (Codec.encoder stringTypeCodec) val
-
-
-{-| Codec for ClientNameType.
--}
-clientNameTypeCodec : Codec ClientNameType
-clientNameTypeCodec =
-    Codec.build (Refined.encoder clientNameType) (Refined.decoder clientNameType)
+    Json.Encode.dict identity Json.Encode.string val
 
 
 {-| Codec for ClientPermissionListType.
 -}
 clientPermissionListTypeCodec : Codec ClientPermissionListType
 clientPermissionListTypeCodec =
-    Codec.list clientPermissionTypeCodec
-
-
-{-| Codec for ClientPermissionType.
--}
-clientPermissionTypeCodec : Codec ClientPermissionType
-clientPermissionTypeCodec =
-    Codec.build (Refined.encoder clientPermissionType) (Refined.decoder clientPermissionType)
-
-
-{-| Decoder for ClientSecretType.
--}
-clientSecretTypeDecoder : Decoder ClientSecretType
-clientSecretTypeDecoder =
-    Refined.decoder clientSecretType
+    Codec.list Codec.string
 
 
 {-| Decoder for CodeDeliveryDetailsListType.
@@ -8262,16 +6520,9 @@ codeDeliveryDetailsListTypeDecoder =
 codeDeliveryDetailsTypeDecoder : Decoder CodeDeliveryDetailsType
 codeDeliveryDetailsTypeDecoder =
     Json.Decode.succeed CodeDeliveryDetailsType
-        |> Pipeline.optional "AttributeName" (Json.Decode.maybe (Codec.decoder attributeNameTypeCodec)) Nothing
+        |> Pipeline.optional "AttributeName" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "DeliveryMedium" (Json.Decode.maybe (Codec.decoder deliveryMediumTypeCodec)) Nothing
-        |> Pipeline.optional "Destination" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-
-
-{-| Decoder for CompletionMessageType.
--}
-completionMessageTypeDecoder : Decoder CompletionMessageType
-completionMessageTypeDecoder =
-    Refined.decoder completionMessageType
+        |> Pipeline.optional "Destination" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Codec for CompromisedCredentialsActionsType.
@@ -8302,31 +6553,17 @@ compromisedCredentialsRiskConfigurationTypeCodec =
         |> Codec.buildObject
 
 
-{-| Encoder for ConfirmationCodeType.
--}
-confirmationCodeTypeEncoder : ConfirmationCodeType -> Value
-confirmationCodeTypeEncoder =
-    Refined.encoder confirmationCodeType
-
-
 {-| Encoder for ContextDataType.
 -}
 contextDataTypeEncoder : ContextDataType -> Value
 contextDataTypeEncoder val =
-    [ ( "EncodedData", val.encodedData ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
+    [ ( "EncodedData", val.encodedData ) |> EncodeOpt.optionalField Json.Encode.string
     , ( "HttpHeaders", val.httpHeaders ) |> EncodeOpt.field httpHeaderListEncoder
-    , ( "IpAddress", val.ipAddress ) |> EncodeOpt.field (Codec.encoder stringTypeCodec)
-    , ( "ServerName", val.serverName ) |> EncodeOpt.field (Codec.encoder stringTypeCodec)
-    , ( "ServerPath", val.serverPath ) |> EncodeOpt.field (Codec.encoder stringTypeCodec)
+    , ( "IpAddress", val.ipAddress ) |> EncodeOpt.field Json.Encode.string
+    , ( "ServerName", val.serverName ) |> EncodeOpt.field Json.Encode.string
+    , ( "ServerPath", val.serverPath ) |> EncodeOpt.field Json.Encode.string
     ]
         |> EncodeOpt.objectMaySkip
-
-
-{-| Codec for CustomAttributeNameType.
--}
-customAttributeNameTypeCodec : Codec CustomAttributeNameType
-customAttributeNameTypeCodec =
-    Codec.build (Refined.encoder customAttributeNameType) (Refined.decoder customAttributeNameType)
 
 
 {-| Encoder for CustomAttributesListType.
@@ -8341,15 +6578,8 @@ customAttributesListTypeEncoder val =
 customDomainConfigTypeCodec : Codec CustomDomainConfigType
 customDomainConfigTypeCodec =
     Codec.object CustomDomainConfigType
-        |> Codec.field "CertificateArn" .certificateArn arnTypeCodec
+        |> Codec.field "CertificateArn" .certificateArn Codec.string
         |> Codec.buildObject
-
-
-{-| Decoder for DateType.
--}
-dateTypeDecoder : Decoder DateType
-dateTypeDecoder =
-    Json.Decode.string
 
 
 {-| Codec for DefaultEmailOptionType.
@@ -8373,28 +6603,14 @@ deliveryMediumTypeCodec =
     Codec.build (Enum.encoder deliveryMediumType) (Enum.decoder deliveryMediumType)
 
 
-{-| Codec for DescriptionType.
--}
-descriptionTypeCodec : Codec DescriptionType
-descriptionTypeCodec =
-    Codec.build (Refined.encoder descriptionType) (Refined.decoder descriptionType)
-
-
 {-| Codec for DeviceConfigurationType.
 -}
 deviceConfigurationTypeCodec : Codec DeviceConfigurationType
 deviceConfigurationTypeCodec =
     Codec.object DeviceConfigurationType
-        |> Codec.optionalField "ChallengeRequiredOnNewDevice" .challengeRequiredOnNewDevice booleanTypeCodec
-        |> Codec.optionalField "DeviceOnlyRememberedOnUserPrompt" .deviceOnlyRememberedOnUserPrompt booleanTypeCodec
+        |> Codec.optionalField "ChallengeRequiredOnNewDevice" .challengeRequiredOnNewDevice Codec.bool
+        |> Codec.optionalField "DeviceOnlyRememberedOnUserPrompt" .deviceOnlyRememberedOnUserPrompt Codec.bool
         |> Codec.buildObject
-
-
-{-| Codec for DeviceKeyType.
--}
-deviceKeyTypeCodec : Codec DeviceKeyType
-deviceKeyTypeCodec =
-    Codec.build (Refined.encoder deviceKeyType) (Refined.decoder deviceKeyType)
 
 
 {-| Decoder for DeviceListType.
@@ -8402,13 +6618,6 @@ deviceKeyTypeCodec =
 deviceListTypeDecoder : Decoder DeviceListType
 deviceListTypeDecoder =
     Json.Decode.list deviceTypeDecoder
-
-
-{-| Encoder for DeviceNameType.
--}
-deviceNameTypeEncoder : DeviceNameType -> Value
-deviceNameTypeEncoder =
-    Refined.encoder deviceNameType
 
 
 {-| Encoder for DeviceRememberedStatusType.
@@ -8422,8 +6631,8 @@ deviceRememberedStatusTypeEncoder =
 -}
 deviceSecretVerifierConfigTypeEncoder : DeviceSecretVerifierConfigType -> Value
 deviceSecretVerifierConfigTypeEncoder val =
-    [ ( "PasswordVerifier", val.passwordVerifier ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
-    , ( "Salt", val.salt ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
+    [ ( "PasswordVerifier", val.passwordVerifier ) |> EncodeOpt.optionalField Json.Encode.string
+    , ( "Salt", val.salt ) |> EncodeOpt.optionalField Json.Encode.string
     ]
         |> EncodeOpt.objectMaySkip
 
@@ -8434,10 +6643,10 @@ deviceTypeDecoder : Decoder DeviceType
 deviceTypeDecoder =
     Json.Decode.succeed DeviceType
         |> Pipeline.optional "DeviceAttributes" (Json.Decode.maybe (Codec.decoder attributeListTypeCodec)) Nothing
-        |> Pipeline.optional "DeviceCreateDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "DeviceKey" (Json.Decode.maybe (Codec.decoder deviceKeyTypeCodec)) Nothing
-        |> Pipeline.optional "DeviceLastAuthenticatedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "DeviceLastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "DeviceCreateDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "DeviceKey" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "DeviceLastAuthenticatedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "DeviceLastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for DomainDescriptionType.
@@ -8445,17 +6654,17 @@ deviceTypeDecoder =
 domainDescriptionTypeDecoder : Decoder DomainDescriptionType
 domainDescriptionTypeDecoder =
     Json.Decode.succeed DomainDescriptionType
-        |> Pipeline.optional "AWSAccountId" (Json.Decode.maybe awsaccountIdTypeDecoder) Nothing
-        |> Pipeline.optional "CloudFrontDistribution" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+        |> Pipeline.optional "AWSAccountId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CloudFrontDistribution" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "CustomDomainConfig"
             (Json.Decode.maybe (Codec.decoder customDomainConfigTypeCodec))
             Nothing
-        |> Pipeline.optional "Domain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
-        |> Pipeline.optional "S3Bucket" (Json.Decode.maybe s3BucketTypeDecoder) Nothing
+        |> Pipeline.optional "Domain" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "S3Bucket" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Status" (Json.Decode.maybe domainStatusTypeDecoder) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
-        |> Pipeline.optional "Version" (Json.Decode.maybe domainVersionTypeDecoder) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Version" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for DomainStatusType.
@@ -8465,50 +6674,15 @@ domainStatusTypeDecoder =
     Enum.decoder domainStatusType
 
 
-{-| Codec for DomainType.
--}
-domainTypeCodec : Codec DomainType
-domainTypeCodec =
-    Codec.build (Refined.encoder domainType) (Refined.decoder domainType)
-
-
-{-| Decoder for DomainVersionType.
--}
-domainVersionTypeDecoder : Decoder DomainVersionType
-domainVersionTypeDecoder =
-    Refined.decoder domainVersionType
-
-
-{-| Codec for EmailAddressType.
--}
-emailAddressTypeCodec : Codec EmailAddressType
-emailAddressTypeCodec =
-    Codec.build (Refined.encoder emailAddressType) (Refined.decoder emailAddressType)
-
-
 {-| Codec for EmailConfigurationType.
 -}
 emailConfigurationTypeCodec : Codec EmailConfigurationType
 emailConfigurationTypeCodec =
     Codec.object EmailConfigurationType
         |> Codec.optionalField "EmailSendingAccount" .emailSendingAccount emailSendingAccountTypeCodec
-        |> Codec.optionalField "ReplyToEmailAddress" .replyToEmailAddress emailAddressTypeCodec
-        |> Codec.optionalField "SourceArn" .sourceArn arnTypeCodec
+        |> Codec.optionalField "ReplyToEmailAddress" .replyToEmailAddress Codec.string
+        |> Codec.optionalField "SourceArn" .sourceArn Codec.string
         |> Codec.buildObject
-
-
-{-| Codec for EmailNotificationBodyType.
--}
-emailNotificationBodyTypeCodec : Codec EmailNotificationBodyType
-emailNotificationBodyTypeCodec =
-    Codec.build (Refined.encoder emailNotificationBodyType) (Refined.decoder emailNotificationBodyType)
-
-
-{-| Codec for EmailNotificationSubjectType.
--}
-emailNotificationSubjectTypeCodec : Codec EmailNotificationSubjectType
-emailNotificationSubjectTypeCodec =
-    Codec.build (Refined.encoder emailNotificationSubjectType) (Refined.decoder emailNotificationSubjectType)
 
 
 {-| Codec for EmailSendingAccountType.
@@ -8518,48 +6692,16 @@ emailSendingAccountTypeCodec =
     Codec.build (Enum.encoder emailSendingAccountType) (Enum.decoder emailSendingAccountType)
 
 
-{-| Codec for EmailVerificationMessageByLinkType.
--}
-emailVerificationMessageByLinkTypeCodec : Codec EmailVerificationMessageByLinkType
-emailVerificationMessageByLinkTypeCodec =
-    Codec.build
-        (Refined.encoder emailVerificationMessageByLinkType)
-        (Refined.decoder emailVerificationMessageByLinkType)
-
-
-{-| Codec for EmailVerificationMessageType.
--}
-emailVerificationMessageTypeCodec : Codec EmailVerificationMessageType
-emailVerificationMessageTypeCodec =
-    Codec.build (Refined.encoder emailVerificationMessageType) (Refined.decoder emailVerificationMessageType)
-
-
-{-| Codec for EmailVerificationSubjectByLinkType.
--}
-emailVerificationSubjectByLinkTypeCodec : Codec EmailVerificationSubjectByLinkType
-emailVerificationSubjectByLinkTypeCodec =
-    Codec.build
-        (Refined.encoder emailVerificationSubjectByLinkType)
-        (Refined.decoder emailVerificationSubjectByLinkType)
-
-
-{-| Codec for EmailVerificationSubjectType.
--}
-emailVerificationSubjectTypeCodec : Codec EmailVerificationSubjectType
-emailVerificationSubjectTypeCodec =
-    Codec.build (Refined.encoder emailVerificationSubjectType) (Refined.decoder emailVerificationSubjectType)
-
-
 {-| Decoder for EventContextDataType.
 -}
 eventContextDataTypeDecoder : Decoder EventContextDataType
 eventContextDataTypeDecoder =
     Json.Decode.succeed EventContextDataType
-        |> Pipeline.optional "City" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional "Country" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional "DeviceName" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional "IpAddress" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional "Timezone" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
+        |> Pipeline.optional "City" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Country" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "DeviceName" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "IpAddress" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Timezone" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for EventFeedbackType.
@@ -8567,9 +6709,9 @@ eventContextDataTypeDecoder =
 eventFeedbackTypeDecoder : Decoder EventFeedbackType
 eventFeedbackTypeDecoder =
     Json.Decode.succeed EventFeedbackType
-        |> Pipeline.optional "FeedbackDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "FeedbackDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.required "FeedbackValue" (Codec.decoder feedbackValueTypeCodec)
-        |> Pipeline.required "Provider" (Codec.decoder stringTypeCodec)
+        |> Pipeline.required "Provider" Json.Decode.string
 
 
 {-| Codec for EventFilterType.
@@ -8584,13 +6726,6 @@ eventFilterTypeCodec =
 eventFiltersTypeCodec : Codec EventFiltersType
 eventFiltersTypeCodec =
     Codec.list eventFilterTypeCodec
-
-
-{-| Encoder for EventIdType.
--}
-eventIdTypeEncoder : EventIdType -> Value
-eventIdTypeEncoder =
-    Refined.encoder eventIdType
 
 
 {-| Decoder for EventResponseType.
@@ -8637,20 +6772,6 @@ feedbackValueTypeCodec =
     Codec.build (Enum.encoder feedbackValueType) (Enum.decoder feedbackValueType)
 
 
-{-| Encoder for ForceAliasCreation.
--}
-forceAliasCreationEncoder : ForceAliasCreation -> Value
-forceAliasCreationEncoder val =
-    Json.Encode.bool val
-
-
-{-| Encoder for GenerateSecret.
--}
-generateSecretEncoder : GenerateSecret -> Value
-generateSecretEncoder val =
-    Json.Encode.bool val
-
-
 {-| Decoder for GroupListType.
 -}
 groupListTypeDecoder : Decoder GroupListType
@@ -8658,40 +6779,26 @@ groupListTypeDecoder =
     Json.Decode.list groupTypeDecoder
 
 
-{-| Codec for GroupNameType.
--}
-groupNameTypeCodec : Codec GroupNameType
-groupNameTypeCodec =
-    Codec.build (Refined.encoder groupNameType) (Refined.decoder groupNameType)
-
-
 {-| Decoder for GroupType.
 -}
 groupTypeDecoder : Decoder GroupType
 groupTypeDecoder =
     Json.Decode.succeed GroupType
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "Description" (Json.Decode.maybe (Codec.decoder descriptionTypeCodec)) Nothing
-        |> Pipeline.optional "GroupName" (Json.Decode.maybe (Codec.decoder groupNameTypeCodec)) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "Precedence" (Json.Decode.maybe (Codec.decoder precedenceTypeCodec)) Nothing
-        |> Pipeline.optional "RoleArn" (Json.Decode.maybe (Codec.decoder arnTypeCodec)) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
-
-
-{-| Codec for HexStringType.
--}
-hexStringTypeCodec : Codec HexStringType
-hexStringTypeCodec =
-    Codec.build (Refined.encoder hexStringType) (Refined.decoder hexStringType)
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Description" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "GroupName" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Precedence" (Json.Decode.maybe Json.Decode.int) Nothing
+        |> Pipeline.optional "RoleArn" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Encoder for HttpHeader.
 -}
 httpHeaderEncoder : HttpHeader -> Value
 httpHeaderEncoder val =
-    [ ( "headerName", val.headerName ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
-    , ( "headerValue", val.headerValue ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
+    [ ( "headerName", val.headerName ) |> EncodeOpt.optionalField Json.Encode.string
+    , ( "headerValue", val.headerValue ) |> EncodeOpt.optionalField Json.Encode.string
     ]
         |> EncodeOpt.objectMaySkip
 
@@ -8709,13 +6816,13 @@ identityProviderTypeDecoder : Decoder IdentityProviderType
 identityProviderTypeDecoder =
     Json.Decode.succeed IdentityProviderType
         |> Pipeline.optional "AttributeMapping" (Json.Decode.maybe (Codec.decoder attributeMappingTypeCodec)) Nothing
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "IdpIdentifiers" (Json.Decode.maybe (Codec.decoder idpIdentifiersListTypeCodec)) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "ProviderDetails" (Json.Decode.maybe (Codec.decoder providerDetailsTypeCodec)) Nothing
-        |> Pipeline.optional "ProviderName" (Json.Decode.maybe (Codec.decoder providerNameTypeCodec)) Nothing
+        |> Pipeline.optional "ProviderName" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "ProviderType" (Json.Decode.maybe (Codec.decoder identityProviderTypeTypeCodec)) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Codec for IdentityProviderTypeType.
@@ -8725,39 +6832,11 @@ identityProviderTypeTypeCodec =
     Codec.build (Enum.encoder identityProviderTypeType) (Enum.decoder identityProviderTypeType)
 
 
-{-| Codec for IdpIdentifierType.
--}
-idpIdentifierTypeCodec : Codec IdpIdentifierType
-idpIdentifierTypeCodec =
-    Codec.build (Refined.encoder idpIdentifierType) (Refined.decoder idpIdentifierType)
-
-
 {-| Codec for IdpIdentifiersListType.
 -}
 idpIdentifiersListTypeCodec : Codec IdpIdentifiersListType
 idpIdentifiersListTypeCodec =
-    Codec.list idpIdentifierTypeCodec
-
-
-{-| Encoder for ImageFileType.
--}
-imageFileTypeEncoder : ImageFileType -> Value
-imageFileTypeEncoder val =
-    Json.Encode.string val
-
-
-{-| Decoder for ImageUrlType.
--}
-imageUrlTypeDecoder : Decoder ImageUrlType
-imageUrlTypeDecoder =
-    Json.Decode.string
-
-
-{-| Decoder for IntegerType.
--}
-integerTypeDecoder : Decoder IntegerType
-integerTypeDecoder =
-    Json.Decode.int
+    Codec.list Codec.string
 
 
 {-| Codec for LambdaConfigType.
@@ -8765,16 +6844,16 @@ integerTypeDecoder =
 lambdaConfigTypeCodec : Codec LambdaConfigType
 lambdaConfigTypeCodec =
     Codec.object LambdaConfigType
-        |> Codec.optionalField "CreateAuthChallenge" .createAuthChallenge arnTypeCodec
-        |> Codec.optionalField "CustomMessage" .customMessage arnTypeCodec
-        |> Codec.optionalField "DefineAuthChallenge" .defineAuthChallenge arnTypeCodec
-        |> Codec.optionalField "PostAuthentication" .postAuthentication arnTypeCodec
-        |> Codec.optionalField "PostConfirmation" .postConfirmation arnTypeCodec
-        |> Codec.optionalField "PreAuthentication" .preAuthentication arnTypeCodec
-        |> Codec.optionalField "PreSignUp" .preSignUp arnTypeCodec
-        |> Codec.optionalField "PreTokenGeneration" .preTokenGeneration arnTypeCodec
-        |> Codec.optionalField "UserMigration" .userMigration arnTypeCodec
-        |> Codec.optionalField "VerifyAuthChallengeResponse" .verifyAuthChallengeResponse arnTypeCodec
+        |> Codec.optionalField "CreateAuthChallenge" .createAuthChallenge Codec.string
+        |> Codec.optionalField "CustomMessage" .customMessage Codec.string
+        |> Codec.optionalField "DefineAuthChallenge" .defineAuthChallenge Codec.string
+        |> Codec.optionalField "PostAuthentication" .postAuthentication Codec.string
+        |> Codec.optionalField "PostConfirmation" .postConfirmation Codec.string
+        |> Codec.optionalField "PreAuthentication" .preAuthentication Codec.string
+        |> Codec.optionalField "PreSignUp" .preSignUp Codec.string
+        |> Codec.optionalField "PreTokenGeneration" .preTokenGeneration Codec.string
+        |> Codec.optionalField "UserMigration" .userMigration Codec.string
+        |> Codec.optionalField "VerifyAuthChallengeResponse" .verifyAuthChallengeResponse Codec.string
         |> Codec.buildObject
 
 
@@ -8782,35 +6861,14 @@ lambdaConfigTypeCodec =
 -}
 listOfStringTypesDecoder : Decoder ListOfStringTypes
 listOfStringTypesDecoder =
-    Json.Decode.list (Codec.decoder stringTypeCodec)
-
-
-{-| Encoder for ListProvidersLimitType.
--}
-listProvidersLimitTypeEncoder : ListProvidersLimitType -> Value
-listProvidersLimitTypeEncoder =
-    Refined.encoder listProvidersLimitType
-
-
-{-| Encoder for ListResourceServersLimitType.
--}
-listResourceServersLimitTypeEncoder : ListResourceServersLimitType -> Value
-listResourceServersLimitTypeEncoder =
-    Refined.encoder listResourceServersLimitType
+    Json.Decode.list Json.Decode.string
 
 
 {-| Codec for LogoutUrlsListType.
 -}
 logoutUrlsListTypeCodec : Codec LogoutUrlsListType
 logoutUrlsListTypeCodec =
-    Codec.list redirectUrlTypeCodec
-
-
-{-| Decoder for LongType.
--}
-longTypeDecoder : Decoder LongType
-longTypeDecoder =
-    Json.Decode.int
+    Codec.list Codec.string
 
 
 {-| Codec for MfaoptionListType.
@@ -8825,7 +6883,7 @@ mfaoptionListTypeCodec =
 mfaoptionTypeCodec : Codec MfaoptionType
 mfaoptionTypeCodec =
     Codec.object MfaoptionType
-        |> Codec.optionalField "AttributeName" .attributeName attributeNameTypeCodec
+        |> Codec.optionalField "AttributeName" .attributeName Codec.string
         |> Codec.optionalField "DeliveryMedium" .deliveryMedium deliveryMediumTypeCodec
         |> Codec.buildObject
 
@@ -8842,9 +6900,9 @@ messageActionTypeEncoder =
 messageTemplateTypeCodec : Codec MessageTemplateType
 messageTemplateTypeCodec =
     Codec.object MessageTemplateType
-        |> Codec.optionalField "EmailMessage" .emailMessage emailVerificationMessageTypeCodec
-        |> Codec.optionalField "EmailSubject" .emailSubject emailVerificationSubjectTypeCodec
-        |> Codec.optionalField "SMSMessage" .smsmessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "EmailMessage" .emailMessage Codec.string
+        |> Codec.optionalField "EmailSubject" .emailSubject Codec.string
+        |> Codec.optionalField "SMSMessage" .smsmessage Codec.string
         |> Codec.buildObject
 
 
@@ -8853,8 +6911,8 @@ messageTemplateTypeCodec =
 newDeviceMetadataTypeDecoder : Decoder NewDeviceMetadataType
 newDeviceMetadataTypeDecoder =
     Json.Decode.succeed NewDeviceMetadataType
-        |> Pipeline.optional "DeviceGroupKey" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional "DeviceKey" (Json.Decode.maybe (Codec.decoder deviceKeyTypeCodec)) Nothing
+        |> Pipeline.optional "DeviceGroupKey" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "DeviceKey" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Codec for NotifyConfigurationType.
@@ -8863,11 +6921,11 @@ notifyConfigurationTypeCodec : Codec NotifyConfigurationType
 notifyConfigurationTypeCodec =
     Codec.object NotifyConfigurationType
         |> Codec.optionalField "BlockEmail" .blockEmail notifyEmailTypeCodec
-        |> Codec.optionalField "From" .from stringTypeCodec
+        |> Codec.optionalField "From" .from Codec.string
         |> Codec.optionalField "MfaEmail" .mfaEmail notifyEmailTypeCodec
         |> Codec.optionalField "NoActionEmail" .noActionEmail notifyEmailTypeCodec
-        |> Codec.optionalField "ReplyTo" .replyTo stringTypeCodec
-        |> Codec.field "SourceArn" .sourceArn arnTypeCodec
+        |> Codec.optionalField "ReplyTo" .replyTo Codec.string
+        |> Codec.field "SourceArn" .sourceArn Codec.string
         |> Codec.buildObject
 
 
@@ -8876,9 +6934,9 @@ notifyConfigurationTypeCodec =
 notifyEmailTypeCodec : Codec NotifyEmailType
 notifyEmailTypeCodec =
     Codec.object NotifyEmailType
-        |> Codec.optionalField "HtmlBody" .htmlBody emailNotificationBodyTypeCodec
-        |> Codec.field "Subject" .subject emailNotificationSubjectTypeCodec
-        |> Codec.optionalField "TextBody" .textBody emailNotificationBodyTypeCodec
+        |> Codec.optionalField "HtmlBody" .htmlBody Codec.string
+        |> Codec.field "Subject" .subject Codec.string
+        |> Codec.optionalField "TextBody" .textBody Codec.string
         |> Codec.buildObject
 
 
@@ -8887,8 +6945,8 @@ notifyEmailTypeCodec =
 numberAttributeConstraintsTypeCodec : Codec NumberAttributeConstraintsType
 numberAttributeConstraintsTypeCodec =
     Codec.object NumberAttributeConstraintsType
-        |> Codec.optionalField "MaxValue" .maxValue stringTypeCodec
-        |> Codec.optionalField "MinValue" .minValue stringTypeCodec
+        |> Codec.optionalField "MaxValue" .maxValue Codec.string
+        |> Codec.optionalField "MinValue" .minValue Codec.string
         |> Codec.buildObject
 
 
@@ -8906,70 +6964,18 @@ oauthFlowsTypeCodec =
     Codec.list oauthFlowTypeCodec
 
 
-{-| Codec for PaginationKey.
--}
-paginationKeyCodec : Codec PaginationKey
-paginationKeyCodec =
-    Codec.build (Refined.encoder paginationKey) (Refined.decoder paginationKey)
-
-
-{-| Codec for PaginationKeyType.
--}
-paginationKeyTypeCodec : Codec PaginationKeyType
-paginationKeyTypeCodec =
-    Codec.build (Refined.encoder paginationKeyType) (Refined.decoder paginationKeyType)
-
-
-{-| Codec for PasswordPolicyMinLengthType.
--}
-passwordPolicyMinLengthTypeCodec : Codec PasswordPolicyMinLengthType
-passwordPolicyMinLengthTypeCodec =
-    Codec.build (Refined.encoder passwordPolicyMinLengthType) (Refined.decoder passwordPolicyMinLengthType)
-
-
 {-| Codec for PasswordPolicyType.
 -}
 passwordPolicyTypeCodec : Codec PasswordPolicyType
 passwordPolicyTypeCodec =
     Codec.object PasswordPolicyType
-        |> Codec.optionalField "MinimumLength" .minimumLength passwordPolicyMinLengthTypeCodec
-        |> Codec.optionalField "RequireLowercase" .requireLowercase booleanTypeCodec
-        |> Codec.optionalField "RequireNumbers" .requireNumbers booleanTypeCodec
-        |> Codec.optionalField "RequireSymbols" .requireSymbols booleanTypeCodec
-        |> Codec.optionalField "RequireUppercase" .requireUppercase booleanTypeCodec
-        |> Codec.optionalField
-            "TemporaryPasswordValidityDays"
-            .temporaryPasswordValidityDays
-            temporaryPasswordValidityDaysTypeCodec
+        |> Codec.optionalField "MinimumLength" .minimumLength Codec.int
+        |> Codec.optionalField "RequireLowercase" .requireLowercase Codec.bool
+        |> Codec.optionalField "RequireNumbers" .requireNumbers Codec.bool
+        |> Codec.optionalField "RequireSymbols" .requireSymbols Codec.bool
+        |> Codec.optionalField "RequireUppercase" .requireUppercase Codec.bool
+        |> Codec.optionalField "TemporaryPasswordValidityDays" .temporaryPasswordValidityDays Codec.int
         |> Codec.buildObject
-
-
-{-| Encoder for PasswordType.
--}
-passwordTypeEncoder : PasswordType -> Value
-passwordTypeEncoder =
-    Refined.encoder passwordType
-
-
-{-| Encoder for PoolQueryLimitType.
--}
-poolQueryLimitTypeEncoder : PoolQueryLimitType -> Value
-poolQueryLimitTypeEncoder =
-    Refined.encoder poolQueryLimitType
-
-
-{-| Decoder for PreSignedUrlType.
--}
-preSignedUrlTypeDecoder : Decoder PreSignedUrlType
-preSignedUrlTypeDecoder =
-    Refined.decoder preSignedUrlType
-
-
-{-| Codec for PrecedenceType.
--}
-precedenceTypeCodec : Codec PrecedenceType
-precedenceTypeCodec =
-    Codec.build (Refined.encoder precedenceType) (Refined.decoder precedenceType)
 
 
 {-| Decoder for ProviderDescription.
@@ -8977,9 +6983,9 @@ precedenceTypeCodec =
 providerDescriptionDecoder : Decoder ProviderDescription
 providerDescriptionDecoder =
     Json.Decode.succeed ProviderDescription
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "ProviderName" (Json.Decode.maybe (Codec.decoder providerNameTypeCodec)) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ProviderName" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "ProviderType" (Json.Decode.maybe (Codec.decoder identityProviderTypeTypeCodec)) Nothing
 
 
@@ -8987,31 +6993,16 @@ providerDescriptionDecoder =
 -}
 providerDetailsTypeCodec : Codec ProviderDetailsType
 providerDetailsTypeCodec =
-    Codec.dict stringTypeCodec
-
-
-{-| Codec for ProviderNameType.
--}
-providerNameTypeCodec : Codec ProviderNameType
-providerNameTypeCodec =
-    Codec.build (Refined.encoder providerNameType) (Refined.decoder providerNameType)
-
-
-{-| Encoder for ProviderNameTypeV1.
--}
-providerNameTypeV1Encoder : ProviderNameTypeV1 -> Value
-providerNameTypeV1Encoder =
-    Refined.encoder providerNameTypeV1
+    Codec.dict Codec.string
 
 
 {-| Encoder for ProviderUserIdentifierType.
 -}
 providerUserIdentifierTypeEncoder : ProviderUserIdentifierType -> Value
 providerUserIdentifierTypeEncoder val =
-    [ ( "ProviderAttributeName", val.providerAttributeName ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
-    , ( "ProviderAttributeValue", val.providerAttributeValue )
-        |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec)
-    , ( "ProviderName", val.providerName ) |> EncodeOpt.optionalField (Codec.encoder providerNameTypeCodec)
+    [ ( "ProviderAttributeName", val.providerAttributeName ) |> EncodeOpt.optionalField Json.Encode.string
+    , ( "ProviderAttributeValue", val.providerAttributeValue ) |> EncodeOpt.optionalField Json.Encode.string
+    , ( "ProviderName", val.providerName ) |> EncodeOpt.optionalField Json.Encode.string
     ]
         |> EncodeOpt.objectMaySkip
 
@@ -9023,57 +7014,6 @@ providersListTypeDecoder =
     Json.Decode.list providerDescriptionDecoder
 
 
-{-| Encoder for QueryLimit.
--}
-queryLimitEncoder : QueryLimit -> Value
-queryLimitEncoder =
-    Refined.encoder queryLimit
-
-
-{-| Encoder for QueryLimitType.
--}
-queryLimitTypeEncoder : QueryLimitType -> Value
-queryLimitTypeEncoder =
-    Refined.encoder queryLimitType
-
-
-{-| Codec for RedirectUrlType.
--}
-redirectUrlTypeCodec : Codec RedirectUrlType
-redirectUrlTypeCodec =
-    Codec.build (Refined.encoder redirectUrlType) (Refined.decoder redirectUrlType)
-
-
-{-| Codec for RefreshTokenValidityType.
--}
-refreshTokenValidityTypeCodec : Codec RefreshTokenValidityType
-refreshTokenValidityTypeCodec =
-    Codec.build (Refined.encoder refreshTokenValidityType) (Refined.decoder refreshTokenValidityType)
-
-
-{-| Codec for ResourceServerIdentifierType.
--}
-resourceServerIdentifierTypeCodec : Codec ResourceServerIdentifierType
-resourceServerIdentifierTypeCodec =
-    Codec.build (Refined.encoder resourceServerIdentifierType) (Refined.decoder resourceServerIdentifierType)
-
-
-{-| Codec for ResourceServerNameType.
--}
-resourceServerNameTypeCodec : Codec ResourceServerNameType
-resourceServerNameTypeCodec =
-    Codec.build (Refined.encoder resourceServerNameType) (Refined.decoder resourceServerNameType)
-
-
-{-| Codec for ResourceServerScopeDescriptionType.
--}
-resourceServerScopeDescriptionTypeCodec : Codec ResourceServerScopeDescriptionType
-resourceServerScopeDescriptionTypeCodec =
-    Codec.build
-        (Refined.encoder resourceServerScopeDescriptionType)
-        (Refined.decoder resourceServerScopeDescriptionType)
-
-
 {-| Codec for ResourceServerScopeListType.
 -}
 resourceServerScopeListTypeCodec : Codec ResourceServerScopeListType
@@ -9081,20 +7021,13 @@ resourceServerScopeListTypeCodec =
     Codec.list resourceServerScopeTypeCodec
 
 
-{-| Codec for ResourceServerScopeNameType.
--}
-resourceServerScopeNameTypeCodec : Codec ResourceServerScopeNameType
-resourceServerScopeNameTypeCodec =
-    Codec.build (Refined.encoder resourceServerScopeNameType) (Refined.decoder resourceServerScopeNameType)
-
-
 {-| Codec for ResourceServerScopeType.
 -}
 resourceServerScopeTypeCodec : Codec ResourceServerScopeType
 resourceServerScopeTypeCodec =
     Codec.object ResourceServerScopeType
-        |> Codec.field "ScopeDescription" .scopeDescription resourceServerScopeDescriptionTypeCodec
-        |> Codec.field "ScopeName" .scopeName resourceServerScopeNameTypeCodec
+        |> Codec.field "ScopeDescription" .scopeDescription Codec.string
+        |> Codec.field "ScopeName" .scopeName Codec.string
         |> Codec.buildObject
 
 
@@ -9103,10 +7036,10 @@ resourceServerScopeTypeCodec =
 resourceServerTypeDecoder : Decoder ResourceServerType
 resourceServerTypeDecoder =
     Json.Decode.succeed ResourceServerType
-        |> Pipeline.optional "Identifier" (Json.Decode.maybe (Codec.decoder resourceServerIdentifierTypeCodec)) Nothing
-        |> Pipeline.optional "Name" (Json.Decode.maybe (Codec.decoder resourceServerNameTypeCodec)) Nothing
+        |> Pipeline.optional "Identifier" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Name" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Scopes" (Json.Decode.maybe (Codec.decoder resourceServerScopeListTypeCodec)) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for ResourceServersListType.
@@ -9125,17 +7058,17 @@ riskConfigurationTypeDecoder =
             "AccountTakeoverRiskConfiguration"
             (Json.Decode.maybe (Codec.decoder accountTakeoverRiskConfigurationTypeCodec))
             Nothing
-        |> Pipeline.optional "ClientId" (Json.Decode.maybe (Codec.decoder clientIdTypeCodec)) Nothing
+        |> Pipeline.optional "ClientId" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "CompromisedCredentialsRiskConfiguration"
             (Json.Decode.maybe (Codec.decoder compromisedCredentialsRiskConfigurationTypeCodec))
             Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "RiskExceptionConfiguration"
             (Json.Decode.maybe (Codec.decoder riskExceptionConfigurationTypeCodec))
             Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for RiskDecisionType.
@@ -9162,19 +7095,12 @@ riskLevelTypeDecoder =
     Enum.decoder riskLevelType
 
 
-{-| Decoder for S3BucketType.
--}
-s3BucketTypeDecoder : Decoder S3BucketType
-s3BucketTypeDecoder =
-    Refined.decoder s3BucketType
-
-
 {-| Encoder for SmsmfaSettingsType.
 -}
 smsmfaSettingsTypeEncoder : SmsmfaSettingsType -> Value
 smsmfaSettingsTypeEncoder val =
-    [ ( "Enabled", val.enabled ) |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
-    , ( "PreferredMfa", val.preferredMfa ) |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
+    [ ( "Enabled", val.enabled ) |> EncodeOpt.optionalField Json.Encode.bool
+    , ( "PreferredMfa", val.preferredMfa ) |> EncodeOpt.optionalField Json.Encode.bool
     ]
         |> EncodeOpt.objectMaySkip
 
@@ -9185,14 +7111,14 @@ schemaAttributeTypeCodec : Codec SchemaAttributeType
 schemaAttributeTypeCodec =
     Codec.object SchemaAttributeType
         |> Codec.optionalField "AttributeDataType" .attributeDataType attributeDataTypeCodec
-        |> Codec.optionalField "DeveloperOnlyAttribute" .developerOnlyAttribute booleanTypeCodec
-        |> Codec.optionalField "Mutable" .mutable booleanTypeCodec
-        |> Codec.optionalField "Name" .name customAttributeNameTypeCodec
+        |> Codec.optionalField "DeveloperOnlyAttribute" .developerOnlyAttribute Codec.bool
+        |> Codec.optionalField "Mutable" .mutable Codec.bool
+        |> Codec.optionalField "Name" .name Codec.string
         |> Codec.optionalField
             "NumberAttributeConstraints"
             .numberAttributeConstraints
             numberAttributeConstraintsTypeCodec
-        |> Codec.optionalField "Required" .required booleanTypeCodec
+        |> Codec.optionalField "Required" .required Codec.bool
         |> Codec.optionalField
             "StringAttributeConstraints"
             .stringAttributeConstraints
@@ -9211,56 +7137,21 @@ schemaAttributesListTypeCodec =
 -}
 scopeListTypeCodec : Codec ScopeListType
 scopeListTypeCodec =
-    Codec.list scopeTypeCodec
-
-
-{-| Codec for ScopeType.
--}
-scopeTypeCodec : Codec ScopeType
-scopeTypeCodec =
-    Codec.build (Refined.encoder scopeType) (Refined.decoder scopeType)
-
-
-{-| Codec for SearchPaginationTokenType.
--}
-searchPaginationTokenTypeCodec : Codec SearchPaginationTokenType
-searchPaginationTokenTypeCodec =
-    Codec.build (Refined.encoder searchPaginationTokenType) (Refined.decoder searchPaginationTokenType)
+    Codec.list Codec.string
 
 
 {-| Encoder for SearchedAttributeNamesListType.
 -}
 searchedAttributeNamesListTypeEncoder : SearchedAttributeNamesListType -> Value
 searchedAttributeNamesListTypeEncoder val =
-    Json.Encode.list (Codec.encoder attributeNameTypeCodec) val
-
-
-{-| Decoder for SecretCodeType.
--}
-secretCodeTypeDecoder : Decoder SecretCodeType
-secretCodeTypeDecoder =
-    Refined.decoder secretCodeType
-
-
-{-| Encoder for SecretHashType.
--}
-secretHashTypeEncoder : SecretHashType -> Value
-secretHashTypeEncoder =
-    Refined.encoder secretHashType
-
-
-{-| Codec for SessionType.
--}
-sessionTypeCodec : Codec SessionType
-sessionTypeCodec =
-    Codec.build (Refined.encoder sessionType) (Refined.decoder sessionType)
+    Json.Encode.list Json.Encode.string val
 
 
 {-| Codec for SkippedIprangeListType.
 -}
 skippedIprangeListTypeCodec : Codec SkippedIprangeListType
 skippedIprangeListTypeCodec =
-    Codec.list stringTypeCodec
+    Codec.list Codec.string
 
 
 {-| Codec for SmsConfigurationType.
@@ -9268,8 +7159,8 @@ skippedIprangeListTypeCodec =
 smsConfigurationTypeCodec : Codec SmsConfigurationType
 smsConfigurationTypeCodec =
     Codec.object SmsConfigurationType
-        |> Codec.optionalField "ExternalId" .externalId stringTypeCodec
-        |> Codec.field "SnsCallerArn" .snsCallerArn arnTypeCodec
+        |> Codec.optionalField "ExternalId" .externalId Codec.string
+        |> Codec.field "SnsCallerArn" .snsCallerArn Codec.string
         |> Codec.buildObject
 
 
@@ -9278,40 +7169,24 @@ smsConfigurationTypeCodec =
 smsMfaConfigTypeCodec : Codec SmsMfaConfigType
 smsMfaConfigTypeCodec =
     Codec.object SmsMfaConfigType
-        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "SmsAuthenticationMessage" .smsAuthenticationMessage Codec.string
         |> Codec.optionalField "SmsConfiguration" .smsConfiguration smsConfigurationTypeCodec
         |> Codec.buildObject
-
-
-{-| Codec for SmsVerificationMessageType.
--}
-smsVerificationMessageTypeCodec : Codec SmsVerificationMessageType
-smsVerificationMessageTypeCodec =
-    Codec.build (Refined.encoder smsVerificationMessageType) (Refined.decoder smsVerificationMessageType)
-
-
-{-| Encoder for SoftwareTokenMfauserCodeType.
--}
-softwareTokenMfauserCodeTypeEncoder : SoftwareTokenMfauserCodeType -> Value
-softwareTokenMfauserCodeTypeEncoder =
-    Refined.encoder softwareTokenMfauserCodeType
 
 
 {-| Codec for SoftwareTokenMfaConfigType.
 -}
 softwareTokenMfaConfigTypeCodec : Codec SoftwareTokenMfaConfigType
 softwareTokenMfaConfigTypeCodec =
-    Codec.object SoftwareTokenMfaConfigType
-        |> Codec.optionalField "Enabled" .enabled booleanTypeCodec
-        |> Codec.buildObject
+    Codec.object SoftwareTokenMfaConfigType |> Codec.optionalField "Enabled" .enabled Codec.bool |> Codec.buildObject
 
 
 {-| Encoder for SoftwareTokenMfaSettingsType.
 -}
 softwareTokenMfaSettingsTypeEncoder : SoftwareTokenMfaSettingsType -> Value
 softwareTokenMfaSettingsTypeEncoder val =
-    [ ( "Enabled", val.enabled ) |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
-    , ( "PreferredMfa", val.preferredMfa ) |> EncodeOpt.optionalField (Codec.encoder booleanTypeCodec)
+    [ ( "Enabled", val.enabled ) |> EncodeOpt.optionalField Json.Encode.bool
+    , ( "PreferredMfa", val.preferredMfa ) |> EncodeOpt.optionalField Json.Encode.bool
     ]
         |> EncodeOpt.objectMaySkip
 
@@ -9328,51 +7203,16 @@ statusTypeDecoder =
 stringAttributeConstraintsTypeCodec : Codec StringAttributeConstraintsType
 stringAttributeConstraintsTypeCodec =
     Codec.object StringAttributeConstraintsType
-        |> Codec.optionalField "MaxLength" .maxLength stringTypeCodec
-        |> Codec.optionalField "MinLength" .minLength stringTypeCodec
+        |> Codec.optionalField "MaxLength" .maxLength Codec.string
+        |> Codec.optionalField "MinLength" .minLength Codec.string
         |> Codec.buildObject
-
-
-{-| Codec for StringType.
--}
-stringTypeCodec : Codec StringType
-stringTypeCodec =
-    Codec.string
 
 
 {-| Codec for SupportedIdentityProvidersListType.
 -}
 supportedIdentityProvidersListTypeCodec : Codec SupportedIdentityProvidersListType
 supportedIdentityProvidersListTypeCodec =
-    Codec.list providerNameTypeCodec
-
-
-{-| Codec for TagKeysType.
--}
-tagKeysTypeCodec : Codec TagKeysType
-tagKeysTypeCodec =
-    Codec.build (Refined.encoder tagKeysType) (Refined.decoder tagKeysType)
-
-
-{-| Codec for TagValueType.
--}
-tagValueTypeCodec : Codec TagValueType
-tagValueTypeCodec =
-    Codec.build (Refined.encoder tagValueType) (Refined.decoder tagValueType)
-
-
-{-| Codec for TemporaryPasswordValidityDaysType.
--}
-temporaryPasswordValidityDaysTypeCodec : Codec TemporaryPasswordValidityDaysType
-temporaryPasswordValidityDaysTypeCodec =
-    Codec.build (Refined.encoder temporaryPasswordValidityDaysType) (Refined.decoder temporaryPasswordValidityDaysType)
-
-
-{-| Codec for TokenModelType.
--}
-tokenModelTypeCodec : Codec TokenModelType
-tokenModelTypeCodec =
-    Codec.build (Refined.encoder tokenModelType) (Refined.decoder tokenModelType)
+    Codec.list Codec.string
 
 
 {-| Decoder for UicustomizationType.
@@ -9380,42 +7220,20 @@ tokenModelTypeCodec =
 uicustomizationTypeDecoder : Decoder UicustomizationType
 uicustomizationTypeDecoder =
     Json.Decode.succeed UicustomizationType
-        |> Pipeline.optional "CSS" (Json.Decode.maybe (Codec.decoder csstypeCodec)) Nothing
-        |> Pipeline.optional "CSSVersion" (Json.Decode.maybe cssversionTypeDecoder) Nothing
-        |> Pipeline.optional "ClientId" (Json.Decode.maybe (Codec.decoder clientIdTypeCodec)) Nothing
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "ImageUrl" (Json.Decode.maybe imageUrlTypeDecoder) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "CSS" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CSSVersion" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ClientId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ImageUrl" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Encoder for UserContextDataType.
 -}
 userContextDataTypeEncoder : UserContextDataType -> Value
 userContextDataTypeEncoder val =
-    [ ( "EncodedData", val.encodedData ) |> EncodeOpt.optionalField (Codec.encoder stringTypeCodec) ]
-        |> EncodeOpt.objectMaySkip
-
-
-{-| Encoder for UserFilterType.
--}
-userFilterTypeEncoder : UserFilterType -> Value
-userFilterTypeEncoder =
-    Refined.encoder userFilterType
-
-
-{-| Codec for UserImportJobIdType.
--}
-userImportJobIdTypeCodec : Codec UserImportJobIdType
-userImportJobIdTypeCodec =
-    Codec.build (Refined.encoder userImportJobIdType) (Refined.decoder userImportJobIdType)
-
-
-{-| Codec for UserImportJobNameType.
--}
-userImportJobNameTypeCodec : Codec UserImportJobNameType
-userImportJobNameTypeCodec =
-    Codec.build (Refined.encoder userImportJobNameType) (Refined.decoder userImportJobNameType)
+    [ ( "EncodedData", val.encodedData ) |> EncodeOpt.optionalField Json.Encode.string ] |> EncodeOpt.objectMaySkip
 
 
 {-| Decoder for UserImportJobStatusType.
@@ -9430,19 +7248,19 @@ userImportJobStatusTypeDecoder =
 userImportJobTypeDecoder : Decoder UserImportJobType
 userImportJobTypeDecoder =
     Json.Decode.succeed UserImportJobType
-        |> Pipeline.optional "CloudWatchLogsRoleArn" (Json.Decode.maybe (Codec.decoder arnTypeCodec)) Nothing
-        |> Pipeline.optional "CompletionDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "CompletionMessage" (Json.Decode.maybe completionMessageTypeDecoder) Nothing
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "FailedUsers" (Json.Decode.maybe longTypeDecoder) Nothing
-        |> Pipeline.optional "ImportedUsers" (Json.Decode.maybe longTypeDecoder) Nothing
-        |> Pipeline.optional "JobId" (Json.Decode.maybe (Codec.decoder userImportJobIdTypeCodec)) Nothing
-        |> Pipeline.optional "JobName" (Json.Decode.maybe (Codec.decoder userImportJobNameTypeCodec)) Nothing
-        |> Pipeline.optional "PreSignedUrl" (Json.Decode.maybe preSignedUrlTypeDecoder) Nothing
-        |> Pipeline.optional "SkippedUsers" (Json.Decode.maybe longTypeDecoder) Nothing
-        |> Pipeline.optional "StartDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "CloudWatchLogsRoleArn" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CompletionDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CompletionMessage" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "FailedUsers" (Json.Decode.maybe Json.Decode.int) Nothing
+        |> Pipeline.optional "ImportedUsers" (Json.Decode.maybe Json.Decode.int) Nothing
+        |> Pipeline.optional "JobId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "JobName" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "PreSignedUrl" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "SkippedUsers" (Json.Decode.maybe Json.Decode.int) Nothing
+        |> Pipeline.optional "StartDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Status" (Json.Decode.maybe userImportJobStatusTypeDecoder) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for UserImportJobsListType.
@@ -9456,7 +7274,7 @@ userImportJobsListTypeDecoder =
 -}
 userMfasettingListTypeDecoder : Decoder UserMfasettingListType
 userMfasettingListTypeDecoder =
-    Json.Decode.list (Codec.decoder stringTypeCodec)
+    Json.Decode.list Json.Decode.string
 
 
 {-| Codec for UserPoolAddOnsType.
@@ -9473,9 +7291,9 @@ userPoolAddOnsTypeCodec =
 userPoolClientDescriptionDecoder : Decoder UserPoolClientDescription
 userPoolClientDescriptionDecoder =
     Json.Decode.succeed UserPoolClientDescription
-        |> Pipeline.optional "ClientId" (Json.Decode.maybe (Codec.decoder clientIdTypeCodec)) Nothing
-        |> Pipeline.optional "ClientName" (Json.Decode.maybe (Codec.decoder clientNameTypeCodec)) Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "ClientId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ClientName" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Decoder for UserPoolClientListType.
@@ -9491,37 +7309,31 @@ userPoolClientTypeDecoder : Decoder UserPoolClientType
 userPoolClientTypeDecoder =
     Json.Decode.succeed UserPoolClientType
         |> Pipeline.optional "AllowedOAuthFlows" (Json.Decode.maybe (Codec.decoder oauthFlowsTypeCodec)) Nothing
-        |> Pipeline.optional
-            "AllowedOAuthFlowsUserPoolClient"
-            (Json.Decode.maybe (Codec.decoder booleanTypeCodec))
-            Nothing
+        |> Pipeline.optional "AllowedOAuthFlowsUserPoolClient" (Json.Decode.maybe Json.Decode.bool) Nothing
         |> Pipeline.optional "AllowedOAuthScopes" (Json.Decode.maybe (Codec.decoder scopeListTypeCodec)) Nothing
         |> Pipeline.optional
             "AnalyticsConfiguration"
             (Json.Decode.maybe (Codec.decoder analyticsConfigurationTypeCodec))
             Nothing
         |> Pipeline.optional "CallbackURLs" (Json.Decode.maybe (Codec.decoder callbackUrlsListTypeCodec)) Nothing
-        |> Pipeline.optional "ClientId" (Json.Decode.maybe (Codec.decoder clientIdTypeCodec)) Nothing
-        |> Pipeline.optional "ClientName" (Json.Decode.maybe (Codec.decoder clientNameTypeCodec)) Nothing
-        |> Pipeline.optional "ClientSecret" (Json.Decode.maybe clientSecretTypeDecoder) Nothing
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "DefaultRedirectURI" (Json.Decode.maybe (Codec.decoder redirectUrlTypeCodec)) Nothing
+        |> Pipeline.optional "ClientId" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ClientName" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "ClientSecret" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "DefaultRedirectURI" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "ExplicitAuthFlows"
             (Json.Decode.maybe (Codec.decoder explicitAuthFlowsListTypeCodec))
             Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "LogoutURLs" (Json.Decode.maybe (Codec.decoder logoutUrlsListTypeCodec)) Nothing
         |> Pipeline.optional "ReadAttributes" (Json.Decode.maybe (Codec.decoder clientPermissionListTypeCodec)) Nothing
-        |> Pipeline.optional
-            "RefreshTokenValidity"
-            (Json.Decode.maybe (Codec.decoder refreshTokenValidityTypeCodec))
-            Nothing
+        |> Pipeline.optional "RefreshTokenValidity" (Json.Decode.maybe Json.Decode.int) Nothing
         |> Pipeline.optional
             "SupportedIdentityProviders"
             (Json.Decode.maybe (Codec.decoder supportedIdentityProvidersListTypeCodec))
             Nothing
-        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "UserPoolId" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "WriteAttributes" (Json.Decode.maybe (Codec.decoder clientPermissionListTypeCodec)) Nothing
 
 
@@ -9530,19 +7342,12 @@ userPoolClientTypeDecoder =
 userPoolDescriptionTypeDecoder : Decoder UserPoolDescriptionType
 userPoolDescriptionTypeDecoder =
     Json.Decode.succeed UserPoolDescriptionType
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "Id" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Id" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "LambdaConfig" (Json.Decode.maybe (Codec.decoder lambdaConfigTypeCodec)) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "Name" (Json.Decode.maybe (Codec.decoder userPoolNameTypeCodec)) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "Name" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Status" (Json.Decode.maybe statusTypeDecoder) Nothing
-
-
-{-| Codec for UserPoolIdType.
--}
-userPoolIdTypeCodec : Codec UserPoolIdType
-userPoolIdTypeCodec =
-    Codec.build (Refined.encoder userPoolIdType) (Refined.decoder userPoolIdType)
 
 
 {-| Decoder for UserPoolListType.
@@ -9559,13 +7364,6 @@ userPoolMfaTypeCodec =
     Codec.build (Enum.encoder userPoolMfaType) (Enum.decoder userPoolMfaType)
 
 
-{-| Codec for UserPoolNameType.
--}
-userPoolNameTypeCodec : Codec UserPoolNameType
-userPoolNameTypeCodec =
-    Codec.build (Refined.encoder userPoolNameType) (Refined.decoder userPoolNameType)
-
-
 {-| Codec for UserPoolPolicyType.
 -}
 userPoolPolicyTypeCodec : Codec UserPoolPolicyType
@@ -9579,16 +7377,14 @@ userPoolPolicyTypeCodec =
 -}
 userPoolTagsListTypeEncoder : UserPoolTagsListType -> Value
 userPoolTagsListTypeEncoder val =
-    Json.Encode.list (Codec.encoder tagKeysTypeCodec) val
+    Json.Encode.list Json.Encode.string val
 
 
 {-| Codec for UserPoolTagsType.
 -}
 userPoolTagsTypeCodec : Codec UserPoolTagsType
 userPoolTagsTypeCodec =
-    Codec.build
-        (Refined.dictEncoder tagKeysType (Codec.encoder tagValueTypeCodec))
-        (Refined.dictDecoder tagKeysType (Codec.decoder tagValueTypeCodec))
+    Codec.dict Codec.string
 
 
 {-| Decoder for UserPoolType.
@@ -9601,52 +7397,40 @@ userPoolTypeDecoder =
             (Json.Decode.maybe (Codec.decoder adminCreateUserConfigTypeCodec))
             Nothing
         |> Pipeline.optional "AliasAttributes" (Json.Decode.maybe (Codec.decoder aliasAttributesListTypeCodec)) Nothing
-        |> Pipeline.optional "Arn" (Json.Decode.maybe (Codec.decoder arnTypeCodec)) Nothing
+        |> Pipeline.optional "Arn" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "AutoVerifiedAttributes"
             (Json.Decode.maybe (Codec.decoder verifiedAttributesListTypeCodec))
             Nothing
-        |> Pipeline.optional "CreationDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "CustomDomain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
+        |> Pipeline.optional "CreationDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "CustomDomain" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "DeviceConfiguration"
             (Json.Decode.maybe (Codec.decoder deviceConfigurationTypeCodec))
             Nothing
-        |> Pipeline.optional "Domain" (Json.Decode.maybe (Codec.decoder domainTypeCodec)) Nothing
+        |> Pipeline.optional "Domain" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional
             "EmailConfiguration"
             (Json.Decode.maybe (Codec.decoder emailConfigurationTypeCodec))
             Nothing
-        |> Pipeline.optional "EmailConfigurationFailure" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional
-            "EmailVerificationMessage"
-            (Json.Decode.maybe (Codec.decoder emailVerificationMessageTypeCodec))
-            Nothing
-        |> Pipeline.optional
-            "EmailVerificationSubject"
-            (Json.Decode.maybe (Codec.decoder emailVerificationSubjectTypeCodec))
-            Nothing
-        |> Pipeline.optional "EstimatedNumberOfUsers" (Json.Decode.maybe integerTypeDecoder) Nothing
-        |> Pipeline.optional "Id" (Json.Decode.maybe (Codec.decoder userPoolIdTypeCodec)) Nothing
+        |> Pipeline.optional "EmailConfigurationFailure" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "EmailVerificationMessage" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "EmailVerificationSubject" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "EstimatedNumberOfUsers" (Json.Decode.maybe Json.Decode.int) Nothing
+        |> Pipeline.optional "Id" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "LambdaConfig" (Json.Decode.maybe (Codec.decoder lambdaConfigTypeCodec)) Nothing
-        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "LastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "MfaConfiguration" (Json.Decode.maybe (Codec.decoder userPoolMfaTypeCodec)) Nothing
-        |> Pipeline.optional "Name" (Json.Decode.maybe (Codec.decoder userPoolNameTypeCodec)) Nothing
+        |> Pipeline.optional "Name" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Policies" (Json.Decode.maybe (Codec.decoder userPoolPolicyTypeCodec)) Nothing
         |> Pipeline.optional
             "SchemaAttributes"
             (Json.Decode.maybe (Codec.decoder schemaAttributesListTypeCodec))
             Nothing
-        |> Pipeline.optional
-            "SmsAuthenticationMessage"
-            (Json.Decode.maybe (Codec.decoder smsVerificationMessageTypeCodec))
-            Nothing
+        |> Pipeline.optional "SmsAuthenticationMessage" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "SmsConfiguration" (Json.Decode.maybe (Codec.decoder smsConfigurationTypeCodec)) Nothing
-        |> Pipeline.optional "SmsConfigurationFailure" (Json.Decode.maybe (Codec.decoder stringTypeCodec)) Nothing
-        |> Pipeline.optional
-            "SmsVerificationMessage"
-            (Json.Decode.maybe (Codec.decoder smsVerificationMessageTypeCodec))
-            Nothing
+        |> Pipeline.optional "SmsConfigurationFailure" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "SmsVerificationMessage" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "Status" (Json.Decode.maybe statusTypeDecoder) Nothing
         |> Pipeline.optional "UserPoolAddOns" (Json.Decode.maybe (Codec.decoder userPoolAddOnsTypeCodec)) Nothing
         |> Pipeline.optional "UserPoolTags" (Json.Decode.maybe (Codec.decoder userPoolTagsTypeCodec)) Nothing
@@ -9673,12 +7457,12 @@ userTypeDecoder : Decoder UserType
 userTypeDecoder =
     Json.Decode.succeed UserType
         |> Pipeline.optional "Attributes" (Json.Decode.maybe (Codec.decoder attributeListTypeCodec)) Nothing
-        |> Pipeline.optional "Enabled" (Json.Decode.maybe (Codec.decoder booleanTypeCodec)) Nothing
+        |> Pipeline.optional "Enabled" (Json.Decode.maybe Json.Decode.bool) Nothing
         |> Pipeline.optional "MFAOptions" (Json.Decode.maybe (Codec.decoder mfaoptionListTypeCodec)) Nothing
-        |> Pipeline.optional "UserCreateDate" (Json.Decode.maybe dateTypeDecoder) Nothing
-        |> Pipeline.optional "UserLastModifiedDate" (Json.Decode.maybe dateTypeDecoder) Nothing
+        |> Pipeline.optional "UserCreateDate" (Json.Decode.maybe Json.Decode.string) Nothing
+        |> Pipeline.optional "UserLastModifiedDate" (Json.Decode.maybe Json.Decode.string) Nothing
         |> Pipeline.optional "UserStatus" (Json.Decode.maybe userStatusTypeDecoder) Nothing
-        |> Pipeline.optional "Username" (Json.Decode.maybe (Codec.decoder usernameTypeCodec)) Nothing
+        |> Pipeline.optional "Username" (Json.Decode.maybe Json.Decode.string) Nothing
 
 
 {-| Codec for UsernameAttributeType.
@@ -9695,13 +7479,6 @@ usernameAttributesListTypeCodec =
     Codec.list usernameAttributeTypeCodec
 
 
-{-| Codec for UsernameType.
--}
-usernameTypeCodec : Codec UsernameType
-usernameTypeCodec =
-    Codec.build (Refined.encoder usernameType) (Refined.decoder usernameType)
-
-
 {-| Decoder for UsersListType.
 -}
 usersListTypeDecoder : Decoder UsersListType
@@ -9715,11 +7492,11 @@ verificationMessageTemplateTypeCodec : Codec VerificationMessageTemplateType
 verificationMessageTemplateTypeCodec =
     Codec.object VerificationMessageTemplateType
         |> Codec.optionalField "DefaultEmailOption" .defaultEmailOption defaultEmailOptionTypeCodec
-        |> Codec.optionalField "EmailMessage" .emailMessage emailVerificationMessageTypeCodec
-        |> Codec.optionalField "EmailMessageByLink" .emailMessageByLink emailVerificationMessageByLinkTypeCodec
-        |> Codec.optionalField "EmailSubject" .emailSubject emailVerificationSubjectTypeCodec
-        |> Codec.optionalField "EmailSubjectByLink" .emailSubjectByLink emailVerificationSubjectByLinkTypeCodec
-        |> Codec.optionalField "SmsMessage" .smsMessage smsVerificationMessageTypeCodec
+        |> Codec.optionalField "EmailMessage" .emailMessage Codec.string
+        |> Codec.optionalField "EmailMessageByLink" .emailMessageByLink Codec.string
+        |> Codec.optionalField "EmailSubject" .emailSubject Codec.string
+        |> Codec.optionalField "EmailSubjectByLink" .emailSubjectByLink Codec.string
+        |> Codec.optionalField "SmsMessage" .smsMessage Codec.string
         |> Codec.buildObject
 
 
